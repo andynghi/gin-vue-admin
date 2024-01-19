@@ -1,11 +1,11 @@
-## GVA 邮件发送功能插件
-#### 开发者：GIN-VUE-ADMIN 官方
+## GVA email sending function plug-in
+#### Developer: GIN-VUE-ADMIN Official
 
-### 使用步骤
+### Steps for usage
 
-#### 1. 前往GVA主程序下的initialize/router.go 在Routers 方法最末尾按照你需要的及安全模式添加本插件
-    例：
-    本插件可以采用gva的配置文件 也可以直接写死内容作为配置 建议为gva添加配置文件结构 然后将配置传入
+#### 1. Go to initialize/router.go under the GVA main program and add this plug-in at the end of the Routers method according to the security mode you need.
+    example:
+    This plug-in can use the configuration file of gva, or you can directly write the content as the configuration. It is recommended to add the configuration file structure to gva and then pass the configuration in.
 	PluginInit(PrivateGroup, email.CreateEmailPlug(
 		global.GVA_CONFIG.Email.To,
 		global.GVA_CONFIG.Email.From,
@@ -16,60 +16,60 @@
 		global.GVA_CONFIG.Email.IsSSL,
 		))
 
-    同样也可以再传入时写死
+    You can also write it in when passing it in
 
     PluginInit(PrivateGroup, email.CreateEmailPlug(
     "a@qq.com",
     "b@qq.com",
     "smtp.qq.com",
     "global.GVA_CONFIG.Email.Secret",
-    "登录密钥",
+    "Login Key",
     465,
     true,
     ))
 
-### 2. 配置说明
+### 2. Configuration instructions
 
-#### 2-1 全局配置结构体说明
-    //其中 Form 和 Secret 通常来说就是用户名和密码
+#### 2-1 Global configuration structure description
+    //The Form and Secret are usually the username and password
 
     type Email struct {
-	    To       string  // 收件人:多个以英文逗号分隔 例：a@qq.com b@qq.com 正式开发中请把此项目作为参数使用 此处配置主要用于发送错误监控邮件
-	    From     string  // 发件人  你自己要发邮件的邮箱
-	    Host     string  // 服务器地址 例如 smtp.qq.com  请前往QQ或者你要发邮件的邮箱查看其smtp协议
-	    Secret   string  // 密钥    用于登录的密钥 最好不要用邮箱密码 去邮箱smtp申请一个用于登录的密钥
-	    Nickname string  // 昵称    发件人昵称 自定义即可 可以不填
-	    Port     int     // 端口     请前往QQ或者你要发邮件的邮箱查看其smtp协议 大多为 465
-	    IsSSL    bool    // 是否SSL   是否开启SSL
+	    To string // Recipients: Multiple separated by English commas. Example: a@qq.com b@qq.com Please use this item as a parameter during official development. The configuration here is mainly used to send error monitoring emails.
+	    From string // Sender: the email address you want to send the email to
+	    Host string // Server address For example smtp.qq.com Please go to QQ or the email address you want to send emails to check its SMTP protocol
+	    Secret string // Key The key used for login. It is best not to use the email password. Go to the email SMTP to apply for a key used for login.
+	    Nickname string // Nickname Sender's nickname can be customized and can be left blank
+	    Port int // Port. Please go to QQ or the email address you want to send emails to check its SMTP protocol. Most of them are 465.
+	    IsSSL bool // Whether to SSL or whether to enable SSL
     }
-#### 2-2 入参结构说明
-    //其中 Form 和 Secret 通常来说就是用户名和密码
+#### 2-2 Input parameter structure description
+    //The Form and Secret are usually the username and password
 
     type Email struct {
-        To      string `json:"to"`      // 邮件发送给谁
-        Subject string `json:"subject"` // 邮件标题
-        Body    string `json:"body"`    // 邮件内容
+        To string `json:"to"` // Who to send the email to
+        Subject string `json:"subject"` // Email title
+        Body string `json:"body"` // Email content
     }
 
 
-### 3. 方法API
+### 3. Method API
 
-    utils.EmailTest(邮件标题，邮件主体) 发送测试邮件
-    例:utils.EmailTest("测试邮件"，"测试邮件")
-    utils.ErrorToEmail(邮件标题,邮件主体) 错误监控
-    例:utils.ErrorToEmail("测试邮件"，"测试邮件")
-    utils.Email(目标邮箱多个的话用逗号分隔，邮件标题，邮件主体) 发送测试邮件
-    例:utils.Email(”a.qq.com,b.qq.com“,"测试邮件"，"测试邮件")
+    utils.EmailTest(email title, email body) Send test email
+    Example: utils.EmailTest("Test Email", "Test Email")
+    utils.ErrorToEmail(mail title, mail body) error monitoring
+    Example: utils.ErrorToEmail("Test Email", "Test Email")
+    utils.Email (if there are multiple target mailboxes, separate them with commas, email title, email body) Send test email
+    Example: utils.Email("a.qq.com,b.qq.com","Test Email","Test Email")
 
-### 4. 可直接调用的接口
+### 4. Directly callable interface
 
-    测试接口： /email/emailTest [post] 已配置swagger
+    Test interface: /email/emailTest [post] swagger configured
 
-    发送邮件接口接口： /email/emailSend [post] 已配置swagger
-    入参：
+    Sending email interface: /email/emailSend [post] swagger configured
+    Input parameters:
     type Email struct {
-        To      string `json:"to"`      // 邮件发送给谁
-        Subject string `json:"subject"` // 邮件标题
-        Body    string `json:"body"`    // 邮件内容
+        To string `json:"to"` // Who to send the email to
+        Subject string `json:"subject"` // Email title
+        Body string `json:"body"` // Email content
     }
    

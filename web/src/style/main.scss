@@ -434,7 +434,7 @@ table,
 th,
 td {
     border: none;
-    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Microsoft YaHei", Arial, sans-serif;
     font-size: 14px;
     margin: 0px;
     padding: 0px;
@@ -507,7 +507,7 @@ li {
     list-style-type: none;
 }
 
-// 导航
+// Navigation
 #app {
     .el-container {
         @apply relative h-full w-full;
@@ -531,12 +531,12 @@ li {
         .el-sub-menu {
             .el-menu {
                 .is-active {
-                    // 关闭三级菜单二级菜单样式
+                    // Close the third-level menu second-level menu style
                     ul {
                         border: none;
                     }
                 }
-                // 关闭三级菜单二级菜单样式
+                // Close the third-level menu second-level menu style
                 .is-active.is-opened {
                     ul {
                         border: none;

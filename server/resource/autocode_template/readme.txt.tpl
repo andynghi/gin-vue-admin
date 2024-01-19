@@ -1,7 +1,7 @@
-代码解压后把fe的api文件内容粘贴进前端api文件夹下并修改为自己想要的名字即可
+After decompressing the code, paste the content of fe's api file into the front-end api folder and change it to the name you want.
 
-后端代码解压后同理，放到自己想要的 mvc对应路径 并且到 initRouter中注册自动生成的路由 到registerTable中注册自动生成的model
+After decompressing the back-end code, use the same method, put it in the path corresponding to the mvc you want, and register the automatically generated route in initRouter, and register the automatically generated model in registerTable.
 
-项目github:"https://github.com/piexlmax/github.com/flipped-aurora/gin-vue-admin/server"
+Project github: "https://github.com/piexlmax/github.com/flipped-aurora/gin-vue-admin/server"
 
-希望大家给个star多多鼓励
+I hope everyone can give this star a lot of encouragement

@@ -12,9 +12,9 @@ import (
 type {{ .PlugName}}Api struct{}
 
 // @Tags {{ .PlugName}}
-// @Summary 请手动填写接口功能
+// @Summary Please fill in the interface function manually
 // @Produce  application/json
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"发送成功"}"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Sent successfully"}"
 // @Router /{{ .RouterGroup}}/routerName [post]
 func (p *{{ .PlugName}}Api) ApiName(c *gin.Context) {
     {{ if .HasRequest}}
@@ -22,13 +22,13 @@ func (p *{{ .PlugName}}Api) ApiName(c *gin.Context) {
         _ = c.ShouldBindJSON(&plug)
     {{ end }}
         if {{ if .HasResponse }} res, {{ end }} err:= service.ServiceGroupApp.PlugService({{ if .HasRequest }}plug{{ end -}}); err != nil {
-		global.GVA_LOG.Error("失败!", zap.Error(err))
-		response.FailWithMessage("失败", c)
+		global.GVA_LOG.Error("Failed!", zap.Error(err))
+		response.FailWithMessage("failure", c)
 	} else {
 	{{if .HasResponse }}
-	    response.OkWithDetailed(res,"成功",c)
+	    response.OkWithDetailed(res,"success",c)
 	{{else}}
-	    response.OkWithData("成功", c)
+	    response.OkWithData("success", c)
 	{{ end -}}
 
 	}

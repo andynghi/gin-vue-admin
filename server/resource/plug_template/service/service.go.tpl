@@ -9,6 +9,6 @@ import (
 type {{ .PlugName}}Service struct{}
 
 func (e *{{ .PlugName}}Service) PlugService({{- if .HasRequest }}req model.Request {{ end -}}) ({{- if .HasResponse }}res model.Response,{{ end -}} err error) {
-    // 写你的业务逻辑
+    //Write your business logic
 	return {{- if .HasResponse }} res,{{ end }} nil
 }

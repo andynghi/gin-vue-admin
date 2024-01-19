@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "A full-stack development basic platform using gin+vue for extremely fast development",
-        "title": "Gin-Vue-Admin Swagger API Interface Document",
+        "title": "Gin-Vue-Admin Swagger API interface document",
         "contact": {},
         "version": "v2.5.9"
     },
@@ -37,7 +37,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Create a basic api",
+                        "description": "Create basic api",
                         "schema": {
                             "allOf": [
                                 {
@@ -87,7 +87,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete api",
+                        "description": "Delete api",
                         "schema": {
                             "allOf": [
                                 {
@@ -137,7 +137,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Delete selected API",
+                        "description": "Delete selected Api",
                         "schema": {
                             "allOf": [
                                 {
@@ -168,7 +168,7 @@
                 "tags": [
                     "SysApi"
                 ],
-                "summary": "Refresh casbin cache",
+                "summary": "refresh casbin cache",
                 "responses": {
                     "200": {
                         "description": "Refresh successful",
@@ -210,7 +210,7 @@
                 "summary": "Get all APIs without paging",
                 "responses": {
                     "200": {
-                        "description": "Get all APIs without pagination and return a list including APIs",
+                        "description": "Get all APIs without paging, return including api list",
                         "schema": {
                             "allOf": [
                                 {
@@ -263,7 +263,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get the api based on the id and return the api details",
+                        "description": "Get api based on id, return including api details",
                         "schema": {
                             "allOf": [
                                 {
@@ -366,7 +366,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Modify the basic api",
+                        "description": "Modify basic api",
                         "schema": {
                             "allOf": [
                                 {
@@ -402,7 +402,7 @@
                 "tags": [
                     "Authority"
                 ],
-                "summary": "Copy character",
+                "summary": "copy character",
                 "parameters": [
                     {
                         "description": "Old role id, new permission id, new permission name, new parent role id",
@@ -416,7 +416,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Copy the role and return the system role details",
+                        "description": "Copy role, return including system role details",
                         "schema": {
                             "allOf": [
                                 {
@@ -458,7 +458,7 @@
                 "summary": "Create role",
                 "parameters": [
                     {
-                        "description": "permission id, permission name, parent role id",
+                        "description": "Permission id, permission name, parent role id",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -469,7 +469,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Create a role and return system role details",
+                        "description": "Create role, return including system role details",
                         "schema": {
                             "allOf": [
                                 {
@@ -558,10 +558,10 @@
                 "tags": [
                     "Authority"
                 ],
-                "summary": "Get the character list in pages",
+                "summary": "Get the role list by pagination",
                 "parameters": [
                     {
-                        "description": "Page number, page size",
+                        "description": "Page number, size of each page",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -664,7 +664,7 @@
                 "summary": "Update character information",
                 "parameters": [
                     {
-                        "description": "permission id, permission name, parent role id",
+                        "description": "Permission id, permission name, parent role id",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -756,7 +756,7 @@
                 "summary": "Get permission button",
                 "parameters": [
                     {
-                        "description": "menu id, role id, selected button id",
+                        "description": "Menu id, role id, selected button id",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -809,7 +809,7 @@
                 "summary": "Set permission button",
                 "parameters": [
                     {
-                        "description": "menu id, role id, selected button id",
+                        "description": "Menu id, role id, selected button id",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -964,7 +964,7 @@
                 "tags": [
                     "AutoCode"
                 ],
-                "summary": "Automatic code template",
+                "summary": "automatic code template",
                 "parameters": [
                     {
                         "description": "Create automatic code",
@@ -1059,7 +1059,7 @@
                 "summary": "Delete rollback records",
                 "parameters": [
                     {
-                        "description": "Request Parameters",
+                        "description": "Request parameter",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -1070,7 +1070,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Delete rollback records",
+                        "description": "Delete rollback record",
                         "schema": {
                             "allOf": [
                                 {
@@ -1195,7 +1195,7 @@
                 "summary": "Get meta information",
                 "parameters": [
                     {
-                        "description": "Request Parameters",
+                        "description": "Request parameter",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -1303,7 +1303,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Query rollback records, return list, total number, page number, and number per page",
+                        "description": "Query the rollback record, return includes list, total number, page number, and number of each page",
                         "schema": {
                             "allOf": [
                                 {
@@ -1342,10 +1342,10 @@
                 "tags": [
                     "AutoCode"
                 ],
-                "summary": "Get all tables of the current database",
+                "summary": "Get all tables in the current database",
                 "responses": {
                     "200": {
-                        "description": "Get all tables of the current database",
+                        "description": "Get all tables in the current database",
                         "schema": {
                             "allOf": [
                                 {
@@ -1493,7 +1493,7 @@
                 "tags": [
                     "AutoCode"
                 ],
-                "summary": "Packaging plug-in",
+                "summary": "packaging plug-in",
                 "parameters": [
                     {
                         "description": "Packaging plug-in",
@@ -1507,7 +1507,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Plug-in packaged successfully",
+                        "description": "Packaging plug-in successful",
                         "schema": {
                             "allOf": [
                                 {
@@ -1547,7 +1547,7 @@
                 "tags": [
                     "AutoCode"
                 ],
-                "summary": "Rollback automatically generated code",
+                "summary": "Roll back automatically generated code",
                 "parameters": [
                     {
                         "description": "Request Parameters",
@@ -1734,7 +1734,7 @@
                 "tags": [
                     "Casbin"
                 ],
-                "summary": "Get permission list",
+                "summary": "Get the permission list",
                 "parameters": [
                     {
                         "description": "Permission id, permission model list",
@@ -1803,13 +1803,13 @@
                     },
                     {
                         "type": "string",
-                        "description": "customer name",
+                        "description": "Customer name",
                         "name": "customerName",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "Customer mobile phone number",
+                        "description": "Customer phone number",
                         "name": "customerPhoneData",
                         "in": "query"
                     },
@@ -1827,14 +1827,14 @@
                     },
                     {
                         "type": "string",
-                        "description": "update time",
+                        "description": "Update time",
                         "name": "updatedAt",
                         "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get single customer information and return customer details",
+                        "description": "Get single customer information, return including customer details",
                         "schema": {
                             "allOf": [
                                 {
@@ -1919,7 +1919,7 @@
                 "tags": [
                     "ExaCustomer"
                 ],
-                "summary": "Create Customer",
+                "summary": "Create a customer",
                 "parameters": [
                     {
                         "description": "Customer username, customer mobile phone number",
@@ -2017,30 +2017,30 @@
                 "tags": [
                     "ExaCustomer"
                 ],
-                "summary": "Get the list of authorized customers in pages",
+                "summary": "Get the list of authorized customers in paging",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "keyword",
+                        "description": "Keyword",
                         "name": "keyword",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "page number",
+                        "description": "Page number",
                         "name": "page",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "size per page",
+                        "description": "Size of each page",
                         "name": "pageSize",
                         "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get the list of authorized customers in paging, and return the list, total number, page number, and quantity per page",
+                        "description": "Get the list of authorized customers in paging, and return the list, total number, page number, and number per page",
                         "schema": {
                             "allOf": [
                                 {
@@ -2138,7 +2138,7 @@
                 "tags": [
                     "ExaFileUploadAndDownload"
                 ],
-                "summary": "Resume breakpoint to server",
+                "summary": "Resume the breakpoint to the server",
                 "parameters": [
                     {
                         "type": "file",
@@ -2150,7 +2150,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Resume breakpoint transfer to server",
+                        "description": "Resume breakpoint to server",
                         "schema": {
                             "allOf": [
                                 {
@@ -2183,7 +2183,7 @@
                 "tags": [
                     "ExaFileUploadAndDownload"
                 ],
-                "summary": "Delete file",
+                "summary": "delete file",
                 "parameters": [
                     {
                         "description": "Just pass in the id in the file",
@@ -2237,7 +2237,7 @@
                 "parameters": [
                     {
                         "type": "file",
-                        "description": "File upload completed",
+                        "description": "Upload file completed",
                         "name": "file",
                         "in": "formData",
                         "required": true
@@ -2245,7 +2245,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Create file and return including file path",
+                        "description": "Create file, return including file path",
                         "schema": {
                             "allOf": [
                                 {
@@ -2284,10 +2284,10 @@
                 "tags": [
                     "ExaFileUploadAndDownload"
                 ],
-                "summary": "Paging file list",
+                "summary": "Paginated file list",
                 "parameters": [
                     {
-                        "description": "Page number, page size",
+                        "description": "Page number, size of each page",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -2298,7 +2298,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Paging file list, returns include list, total number, page number, number per page",
+                        "description": "Paging file list, return includes list, total number, page number, number of pages per page",
                         "schema": {
                             "allOf": [
                                 {
@@ -2337,11 +2337,11 @@
                 "tags": [
                     "ExaFileUploadAndDownload"
                 ],
-                "summary": "Delete slice",
+                "summary": "delete slice",
                 "parameters": [
                     {
                         "type": "file",
-                        "description": "Delete cache tiles",
+                        "description": "Delete cache slice",
                         "name": "file",
                         "in": "formData",
                         "required": true
@@ -2385,7 +2385,7 @@
                 "tags": [
                     "ExaFileUploadAndDownload"
                 ],
-                "summary": "Example of uploaded files",
+                "summary": "Upload file example",
                 "parameters": [
                     {
                         "type": "file",
@@ -2513,7 +2513,7 @@
                 "tags": [
                     "Jwt"
                 ],
-                "summary": "jwt added to blacklist",
+                "summary": "jwt added to the blacklist",
                 "responses": {
                     "200": {
                         "description": "jwt added to blacklist",
@@ -2555,7 +2555,7 @@
                 "summary": "New menu",
                 "parameters": [
                     {
-                        "description": "Route path, parent menu ID, route name, corresponding front-end file path, sorting mark",
+                        "description": "Routing path, parent menu ID, routing name, corresponding front-end file path, sorting mark",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -2652,7 +2652,7 @@
                 "tags": [
                     "Menu"
                 ],
-                "summary": "Delete menu",
+                "summary": "delete menu",
                 "parameters": [
                     {
                         "description": "menu id",
@@ -2702,7 +2702,7 @@
                 "tags": [
                     "Menu"
                 ],
-                "summary": "Get menu based on id",
+                "summary": "Get the menu based on id",
                 "parameters": [
                     {
                         "description": "menu id",
@@ -2716,7 +2716,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get the menu based on id and return the system menu list",
+                        "description": "Get the menu based on the id and return the system menu list",
                         "schema": {
                             "allOf": [
                                 {
@@ -2766,7 +2766,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get the user's dynamic route and return the system menu list",
+                        "description": "Get user dynamic routing, return including system menu list",
                         "schema": {
                             "allOf": [
                                 {
@@ -2858,7 +2858,7 @@
                 "summary": "Get the specified role menu",
                 "parameters": [
                     {
-                        "description": "role ID",
+                        "description": "Role ID",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -2909,10 +2909,10 @@
                 "tags": [
                     "Menu"
                 ],
-                "summary": "Get the basic menu list in paging",
+                "summary": "Get the basic menu list by pagination",
                 "parameters": [
                     {
-                        "description": "Page number, page size",
+                        "description": "Page number, size of each page",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -2923,7 +2923,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get the basic menu list in paging, and return the list, total number, page number, and number per page",
+                        "description": "Get the basic menu list by paging, and return the list, total number, page number, and number per page",
                         "schema": {
                             "allOf": [
                                 {
@@ -2962,10 +2962,10 @@
                 "tags": [
                     "Menu"
                 ],
-                "summary": "Update menu",
+                "summary": "update menu",
                 "parameters": [
                     {
-                        "description": "Route path, parent menu ID, route name, corresponding front-end file path, sorting mark",
+                        "description": "Routing path, parent menu ID, routing name, corresponding front-end file path, sorting mark",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -3062,7 +3062,7 @@
                 "tags": [
                     "SysDictionary"
                 ],
-                "summary": "Delete SysDictionary",
+                "summary": "delete SysDictionary",
                 "parameters": [
                     {
                         "description": "SysDictionary model",
@@ -3112,7 +3112,7 @@
                 "tags": [
                     "SysDictionary"
                 ],
-                "summary": "Query SysDictionary using id",
+                "summary": "Query SysDictionary with id",
                 "parameters": [
                     {
                         "type": "integer",
@@ -3128,19 +3128,19 @@
                     },
                     {
                         "type": "string",
-                        "description": "description",
+                        "description": "Description",
                         "name": "desc",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "Dictionary name (medium)",
+                        "description": "Dictionary name (Chinese)",
                         "name": "name",
                         "in": "query"
                     },
                     {
                         "type": "boolean",
-                        "description": "status",
+                        "description": "Status",
                         "name": "status",
                         "in": "query"
                     },
@@ -3152,14 +3152,14 @@
                     },
                     {
                         "type": "string",
-                        "description": "update time",
+                        "description": "Update time",
                         "name": "updatedAt",
                         "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Query SysDictionary by id",
+                        "description": "Query SysDictionary with id",
                         "schema": {
                             "allOf": [
                                 {
@@ -3199,10 +3199,10 @@
                 "tags": [
                     "SysDictionary"
                 ],
-                "summary": "Get the SysDictionary list in pages",
+                "summary": "Get the SysDictionary list by pagination",
                 "responses": {
                     "200": {
-                        "description": "Get the SysDictionary list in paging, and return the list, total number, page number, and number per page",
+                        "description": "Get the SysDictionary list by paging, and return the list, total number, page number, and number per page",
                         "schema": {
                             "allOf": [
                                 {
@@ -3391,7 +3391,7 @@
                 "tags": [
                     "SysDictionaryDetail"
                 ],
-                "summary": "Query SysDictionaryDetail using id",
+                "summary": "Use id to query SysDictionaryDetail",
                 "parameters": [
                     {
                         "type": "integer",
@@ -3419,7 +3419,7 @@
                     },
                     {
                         "type": "integer",
-                        "description": "sort mark",
+                        "description": "Sort mark",
                         "name": "sort",
                         "in": "query"
                     },
@@ -3431,26 +3431,26 @@
                     },
                     {
                         "type": "integer",
-                        "description": "Association mark",
+                        "description": "associated tag",
                         "name": "sysDictionaryID",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "update time",
+                        "description": "Update time",
                         "name": "updatedAt",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "Dictionary value",
+                        "description": "dictionary value",
                         "name": "value",
                         "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Query SysDictionaryDetail using id",
+                        "description": "Query SysDictionaryDetail with id",
                         "schema": {
                             "allOf": [
                                 {
@@ -3490,7 +3490,7 @@
                 "tags": [
                     "SysDictionaryDetail"
                 ],
-                "summary": "Get the SysDictionaryDetail list in pages",
+                "summary": "Get the SysDictionaryDetail list by pagination",
                 "parameters": [
                     {
                         "type": "integer",
@@ -3512,7 +3512,7 @@
                     },
                     {
                         "type": "string",
-                        "description": "keyword",
+                        "description": "Keyword",
                         "name": "keyword",
                         "in": "query"
                     },
@@ -3524,19 +3524,19 @@
                     },
                     {
                         "type": "integer",
-                        "description": "page number",
+                        "description": "Page number",
                         "name": "page",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "size per page",
+                        "description": "Size of each page",
                         "name": "pageSize",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "sort mark",
+                        "description": "Sort mark",
                         "name": "sort",
                         "in": "query"
                     },
@@ -3548,26 +3548,26 @@
                     },
                     {
                         "type": "integer",
-                        "description": "Association mark",
+                        "description": "associated tag",
                         "name": "sysDictionaryID",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "update time",
+                        "description": "Update time",
                         "name": "updatedAt",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "Dictionary value",
+                        "description": "dictionary value",
                         "name": "value",
                         "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get the SysDictionaryDetail list in paging, and return the list, total number, page number, and number per page",
+                        "description": "Get the SysDictionaryDetail list by paging, and return the list, total number, page number, and number of each page",
                         "schema": {
                             "allOf": [
                                 {
@@ -3606,7 +3606,7 @@
                 "tags": [
                     "SysDictionaryDetail"
                 ],
-                "summary": "UpdateSysDictionaryDetail",
+                "summary": "Update SysDictionaryDetail",
                 "parameters": [
                     {
                         "description": "Update SysDictionaryDetail",
@@ -3635,6 +3635,368 @@
                                     }
                                 }
                             ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sysExportTemplate/createSysExportTemplate": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysExportTemplate"
+                ],
+                "summary": "Create export template",
+                "parameters": [
+                    {
+                        "description": "Create export template",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/system.SysExportTemplate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"Created successfully\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/sysExportTemplate/deleteSysExportTemplate": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysExportTemplate"
+                ],
+                "summary": "Delete export template",
+                "parameters": [
+                    {
+                        "description": "Delete export template",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/system.SysExportTemplate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"Delete successfully\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/sysExportTemplate/deleteSysExportTemplateByIds": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysExportTemplate"
+                ],
+                "summary": "Batch delete export templates",
+                "parameters": [
+                    {
+                        "description": "Delete export templates in batches",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.IdsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"Batch deletion successful\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/sysExportTemplate/exportExcel": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysExportTemplate"
+                ],
+                "summary": "Export table template",
+                "responses": {}
+            }
+        },
+        "/sysExportTemplate/findSysExportTemplate": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysExportTemplate"
+                ],
+                "summary": "Use id to query and export templates",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Primary key ID",
+                        "name": "ID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Creation time",
+                        "name": "createdAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Template name",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Table name",
+                        "name": "tableName",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Template identification",
+                        "name": "templateID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Template information",
+                        "name": "templateInfo",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Update time",
+                        "name": "updatedAt",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"Query successful\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/sysExportTemplate/getSysExportTemplateList": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysExportTemplate"
+                ],
+                "summary": "Get the export template list by pagination",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Primary key ID",
+                        "name": "ID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Creation time",
+                        "name": "createdAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "endCreatedAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Keyword",
+                        "name": "keyword",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Template name",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Size of each page",
+                        "name": "pageSize",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "startCreatedAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Table name",
+                        "name": "tableName",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Template identification",
+                        "name": "templateID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Template information",
+                        "name": "templateInfo",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Update time",
+                        "name": "updatedAt",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"Get successful\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/sysExportTemplate/importExcel": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysImportTemplate"
+                ],
+                "summary": "Import table",
+                "responses": {}
+            }
+        },
+        "/sysExportTemplate/updateSysExportTemplate": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysExportTemplate"
+                ],
+                "summary": "Update export template",
+                "parameters": [
+                    {
+                        "description": "Update export template",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/system.SysExportTemplate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"Update successful\"}",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 }
@@ -3822,7 +4184,7 @@
                     },
                     {
                         "type": "string",
-                        "description": "RequestBody",
+                        "description": "Request Body",
                         "name": "body",
                         "in": "query"
                     },
@@ -3846,7 +4208,7 @@
                     },
                     {
                         "type": "string",
-                        "description": "delay",
+                        "description": "Latency",
                         "name": "latency",
                         "in": "query"
                     },
@@ -3858,13 +4220,13 @@
                     },
                     {
                         "type": "string",
-                        "description": "Request path",
+                        "description": "request path",
                         "name": "path",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "ResponseBody",
+                        "description": "Response Body",
                         "name": "resp",
                         "in": "query"
                     },
@@ -3876,13 +4238,13 @@
                     },
                     {
                         "type": "string",
-                        "description": "update time",
+                        "description": "Update time",
                         "name": "updatedAt",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "userid",
+                        "description": "user id",
                         "name": "user_id",
                         "in": "query"
                     }
@@ -3929,7 +4291,7 @@
                 "tags": [
                     "SysOperationRecord"
                 ],
-                "summary": "Get the SysOperationRecord list in pages",
+                "summary": "Get the SysOperationRecord list in paging",
                 "parameters": [
                     {
                         "type": "integer",
@@ -3945,7 +4307,7 @@
                     },
                     {
                         "type": "string",
-                        "description": "RequestBody",
+                        "description": "Request Body",
                         "name": "body",
                         "in": "query"
                     },
@@ -3969,13 +4331,13 @@
                     },
                     {
                         "type": "string",
-                        "description": "keyword",
+                        "description": "Keyword",
                         "name": "keyword",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "delay",
+                        "description": "Latency",
                         "name": "latency",
                         "in": "query"
                     },
@@ -3987,25 +4349,25 @@
                     },
                     {
                         "type": "integer",
-                        "description": "page number",
+                        "description": "Page number",
                         "name": "page",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "size per page",
+                        "description": "Size of each page",
                         "name": "pageSize",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "Request path",
+                        "description": "request path",
                         "name": "path",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "ResponseBody",
+                        "description": "Response Body",
                         "name": "resp",
                         "in": "query"
                     },
@@ -4017,20 +4379,20 @@
                     },
                     {
                         "type": "string",
-                        "description": "update time",
+                        "description": "Update time",
                         "name": "updatedAt",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "userid",
+                        "description": "user id",
                         "name": "user_id",
                         "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get the SysOperationRecord list in paging, and return the list, total number, page number, and number per page",
+                        "description": "Get the SysOperationRecord list in paging, and return the list, total number, page number, and number of each page",
                         "schema": {
                             "allOf": [
                                 {
@@ -4106,7 +4468,7 @@
                 "tags": [
                     "System"
                 ],
-                "summary": "Get configuration file content",
+                "summary": "Get the configuration file content",
                 "responses": {
                     "200": {
                         "description": "Get the configuration file content and return including system configuration",
@@ -4291,7 +4653,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "User registration account, return including user information",
+                        "description": "User registered account, return includes user information",
                         "schema": {
                             "allOf": [
                                 {
@@ -4377,7 +4739,7 @@
                 "tags": [
                     "SysUser"
                 ],
-                "summary": "Delete user",
+                "summary": "delete user",
                 "parameters": [
                     {
                         "description": "User ID",
@@ -4470,10 +4832,10 @@
                 "tags": [
                     "SysUser"
                 ],
-                "summary": "Get the user list in pages",
+                "summary": "Get the user list by pagination",
                 "parameters": [
                     {
-                        "description": "Page number, page size",
+                        "description": "Page number, size of each page",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -4484,7 +4846,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get the user list in pages, and return the list, total number, page number, and number per page",
+                        "description": "Get the user list in paging, and return the list, total number, page number, and number per page",
                         "schema": {
                             "allOf": [
                                 {
@@ -4862,12 +5224,45 @@
                     "type": "integer"
                 },
                 "open-captcha": {
-                    "description": "The number when the anti-explosion verification code is turned on. 0 means that a verification code is required every time you log in. The other numbers represent the number of wrong passwords. For example, 3 means that the verification code will appear after three errors.",
+                    "description": "Explosion-proof verification code turns on this number, 0 means that a verification code is required for each login, other numbers represent incorrect passwords This number, such as 3, means that a verification code will appear after three errors.",
                     "type": "integer"
                 },
                 "open-captcha-timeout": {
                     "description": "Explosion-proof verification code timeout, unit: s (seconds)",
                     "type": "integer"
+                }
+            }
+        },
+        "config.Email": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "description": "Sender The email address you want to send the email to",
+                    "type": "string"
+                },
+                "host": {
+                    "description": "Server address For example smtp.qq.com Please go to QQ or the email address you want to send the email to check its smtp protocol",
+                    "type": "string"
+                },
+                "is-ssl": {
+                    "description": "Whether to SSL or not. Whether to enable SSL",
+                    "type": "boolean"
+                },
+                "nickname": {
+                    "description": "Nickname The sender's nickname is usually your own email address",
+                    "type": "string"
+                },
+                "port": {
+                    "description": "Port Please go to QQ or the email address you want to send the email to check its SMTP protocol. Most of them are 465.",
+                    "type": "integer"
+                },
+                "secret": {
+                    "description": "Key The key used for login. It is best not to use the email password. Go to the email SMTP to apply for a key used for login.",
+                    "type": "string"
+                },
+                "to": {
+                    "description": "Recipients: multiple separated by English commas. Example: a@qq.com b@qq.com Please put this project under formal development Use as parameter",
+                    "type": "string"
                 }
             }
         },
@@ -4903,7 +5298,7 @@
             "type": "object",
             "properties": {
                 "buffer-time": {
-                    "description": "buffer time",
+                    "description": "Buffer time",
                     "type": "string"
                 },
                 "expires-time": {
@@ -4941,7 +5336,7 @@
                     "type": "string"
                 },
                 "connect-timeout-ms": {
-                    "description": "Connection timeout",
+                    "description": "Connection timeout period",
                     "type": "integer"
                 },
                 "database": {
@@ -4956,7 +5351,7 @@
                     }
                 },
                 "is-zap": {
-                    "description": "Whether to enable zap log",
+                    "description": "Whether to enable zap logs",
                     "type": "boolean"
                 },
                 "max-pool-size": {
@@ -4972,15 +5367,15 @@
                     "type": "string"
                 },
                 "password": {
-                    "description": "password",
+                    "description": "Password",
                     "type": "string"
                 },
                 "socket-timeout-ms": {
-                    "description": "socket timeout",
+                    "description": "socket timeout time",
                     "type": "integer"
                 },
                 "username": {
-                    "description": "username",
+                    "description": "Username",
                     "type": "string"
                 }
             }
@@ -4993,7 +5388,7 @@
                     "type": "string"
                 },
                 "port": {
-                    "description": "port",
+                    "description": "Port",
                     "type": "string"
                 }
             }
@@ -5006,7 +5401,7 @@
                     "type": "string"
                 },
                 "db-name": {
-                    "description": "database name",
+                    "description": "Database name",
                     "type": "string"
                 },
                 "engine": {
@@ -5015,7 +5410,7 @@
                     "default": "InnoDB"
                 },
                 "log-mode": {
-                    "description": "Whether to enable Gorm global logs",
+                    "description": "Whether to enable Gorm global log",
                     "type": "string"
                 },
                 "log-zap": {
@@ -5023,15 +5418,15 @@
                     "type": "boolean"
                 },
                 "max-idle-conns": {
-                    "description": "Maximum number of idle connections",
+                    "description": "The maximum number of idle connections",
                     "type": "integer"
                 },
                 "max-open-conns": {
-                    "description": "Maximum number of open connections to the database",
+                    "description": "Maximum number of connections opened to the database",
                     "type": "integer"
                 },
                 "password": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 },
                 "path": {
@@ -5044,11 +5439,11 @@
                     "type": "string"
                 },
                 "singular": {
-                    "description": "Whether to enable global disabling of pluralization, true means enabled",
+                    "description": "Whether to enable global disabling of plural numbers, true means enabled",
                     "type": "boolean"
                 },
                 "username": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 }
             }
@@ -5061,7 +5456,7 @@
                     "type": "string"
                 },
                 "db-name": {
-                    "description": "database name",
+                    "description": "Database name",
                     "type": "string"
                 },
                 "engine": {
@@ -5070,7 +5465,7 @@
                     "default": "InnoDB"
                 },
                 "log-mode": {
-                    "description": "Whether to enable Gorm global logs",
+                    "description": "Whether to enable Gorm global log",
                     "type": "string"
                 },
                 "log-zap": {
@@ -5078,15 +5473,15 @@
                     "type": "boolean"
                 },
                 "max-idle-conns": {
-                    "description": "Maximum number of idle connections",
+                    "description": "The maximum number of idle connections",
                     "type": "integer"
                 },
                 "max-open-conns": {
-                    "description": "Maximum number of open connections to the database",
+                    "description": "Maximum number of connections opened to the database",
                     "type": "integer"
                 },
                 "password": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 },
                 "path": {
@@ -5099,11 +5494,11 @@
                     "type": "string"
                 },
                 "singular": {
-                    "description": "Whether to enable global disabling of pluralization, true means enabled",
+                    "description": "Whether to enable global disabling of plural numbers, true means enabled",
                     "type": "boolean"
                 },
                 "username": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 }
             }
@@ -5116,7 +5511,7 @@
                     "type": "string"
                 },
                 "db-name": {
-                    "description": "database name",
+                    "description": "Database name",
                     "type": "string"
                 },
                 "engine": {
@@ -5125,7 +5520,7 @@
                     "default": "InnoDB"
                 },
                 "log-mode": {
-                    "description": "Whether to enable Gorm global logs",
+                    "description": "Whether to enable Gorm global log",
                     "type": "string"
                 },
                 "log-zap": {
@@ -5133,15 +5528,15 @@
                     "type": "boolean"
                 },
                 "max-idle-conns": {
-                    "description": "Maximum number of idle connections",
+                    "description": "The maximum number of idle connections",
                     "type": "integer"
                 },
                 "max-open-conns": {
-                    "description": "Maximum number of open connections to the database",
+                    "description": "Maximum number of connections opened to the database",
                     "type": "integer"
                 },
                 "password": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 },
                 "path": {
@@ -5154,11 +5549,11 @@
                     "type": "string"
                 },
                 "singular": {
-                    "description": "Whether to enable global disabling of pluralization, true means enabled",
+                    "description": "Whether to enable global disabling of plural numbers, true means enabled",
                     "type": "boolean"
                 },
                 "username": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 }
             }
@@ -5171,7 +5566,7 @@
                     "type": "string"
                 },
                 "db-name": {
-                    "description": "database name",
+                    "description": "Database name",
                     "type": "string"
                 },
                 "engine": {
@@ -5180,7 +5575,7 @@
                     "default": "InnoDB"
                 },
                 "log-mode": {
-                    "description": "Whether to enable Gorm global logs",
+                    "description": "Whether to enable Gorm global log",
                     "type": "string"
                 },
                 "log-zap": {
@@ -5188,15 +5583,15 @@
                     "type": "boolean"
                 },
                 "max-idle-conns": {
-                    "description": "Maximum number of idle connections",
+                    "description": "The maximum number of idle connections",
                     "type": "integer"
                 },
                 "max-open-conns": {
-                    "description": "Maximum number of open connections to the database",
+                    "description": "Maximum number of connections opened to the database",
                     "type": "integer"
                 },
                 "password": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 },
                 "path": {
@@ -5209,11 +5604,11 @@
                     "type": "string"
                 },
                 "singular": {
-                    "description": "Whether to enable global disabling of pluralization, true means enabled",
+                    "description": "Whether to enable global disabling of plural numbers, true means enabled",
                     "type": "boolean"
                 },
                 "username": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 }
             }
@@ -5222,11 +5617,11 @@
             "type": "object",
             "properties": {
                 "access-key": {
-                    "description": "Secret Key AK",
+                    "description": "Secret key AK",
                     "type": "string"
                 },
                 "bucket": {
-                    "description": "space name",
+                    "description": "Space name",
                     "type": "string"
                 },
                 "img-path": {
@@ -5238,7 +5633,7 @@
                     "type": "string"
                 },
                 "use-cdn-domains": {
-                    "description": "Whether the upload uses CDN upload acceleration",
+                    "description": "Whether to use CDN upload acceleration for uploading",
                     "type": "boolean"
                 },
                 "use-https": {
@@ -5246,7 +5641,7 @@
                     "type": "boolean"
                 },
                 "zone": {
-                    "description": "storage area",
+                    "description": "Storage area",
                     "type": "string"
                 }
             }
@@ -5255,7 +5650,7 @@
             "type": "object",
             "properties": {
                 "addr": {
-                    "description": "Server address:port",
+                    "description": "Server address: port",
                     "type": "string"
                 },
                 "db": {
@@ -5263,7 +5658,7 @@
                     "type": "integer"
                 },
                 "password": {
-                    "description": "password",
+                    "description": "Password",
                     "type": "string"
                 }
             }
@@ -5276,11 +5671,7 @@
                 },
                 "autocode": {
                     "description": "auto",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/config.Autocode"
-                        }
-                    ]
+                    "$ref": "#/definitions/config.Autocode"
                 },
                 "aws-s3": {
                     "$ref": "#/definitions/config.AwsS3"
@@ -5290,11 +5681,7 @@
                 },
                 "cors": {
                     "description": "Cross-domain configuration",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/config.CORS"
-                        }
-                    ]
+                    "$ref": "#/definitions/config.CORS"
                 },
                 "db-list": {
                     "type": "array",
@@ -5303,7 +5690,7 @@
                     }
                 },
                 "email": {
-                    "$ref": "#/definitions/github_com_flipped-aurora_gin-vue-admin_server_config.Email"
+                    "$ref": "#/definitions/config.Email"
                 },
                 "excel": {
                     "$ref": "#/definitions/config.Excel"
@@ -5316,11 +5703,7 @@
                 },
                 "local": {
                     "description": "oss",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/config.Local"
-                        }
-                    ]
+                    "$ref": "#/definitions/config.Local"
                 },
                 "mongo": {
                     "$ref": "#/definitions/config.Mongo"
@@ -5330,11 +5713,7 @@
                 },
                 "mysql": {
                     "description": "gorm",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/config.Mysql"
-                        }
-                    ]
+                    "$ref": "#/definitions/config.Mysql"
                 },
                 "oracle": {
                     "$ref": "#/definitions/config.Oracle"
@@ -5373,7 +5752,7 @@
                     "type": "string"
                 },
                 "db-name": {
-                    "description": "database name",
+                    "description": "Database name",
                     "type": "string"
                 },
                 "disable": {
@@ -5385,7 +5764,7 @@
                     "default": "InnoDB"
                 },
                 "log-mode": {
-                    "description": "Whether to enable Gorm global logs",
+                    "description": "Whether to enable Gorm global log",
                     "type": "string"
                 },
                 "log-zap": {
@@ -5393,15 +5772,15 @@
                     "type": "boolean"
                 },
                 "max-idle-conns": {
-                    "description": "Maximum number of idle connections",
+                    "description": "The maximum number of idle connections",
                     "type": "integer"
                 },
                 "max-open-conns": {
-                    "description": "Maximum number of open connections to the database",
+                    "description": "Maximum number of connections opened to the database",
                     "type": "integer"
                 },
                 "password": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 },
                 "path": {
@@ -5414,14 +5793,14 @@
                     "type": "string"
                 },
                 "singular": {
-                    "description": "Whether to enable global disabling of pluralization, true means enabled",
+                    "description": "Whether to enable global disabling of plural numbers, true means enabled",
                     "type": "boolean"
                 },
                 "type": {
                     "type": "string"
                 },
                 "username": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 }
             }
@@ -5434,7 +5813,7 @@
                     "type": "string"
                 },
                 "db-name": {
-                    "description": "database name",
+                    "description": "Database name",
                     "type": "string"
                 },
                 "engine": {
@@ -5443,7 +5822,7 @@
                     "default": "InnoDB"
                 },
                 "log-mode": {
-                    "description": "Whether to enable Gorm global logs",
+                    "description": "Whether to enable Gorm global log",
                     "type": "string"
                 },
                 "log-zap": {
@@ -5451,15 +5830,15 @@
                     "type": "boolean"
                 },
                 "max-idle-conns": {
-                    "description": "Maximum number of idle connections",
+                    "description": "The maximum number of idle connections",
                     "type": "integer"
                 },
                 "max-open-conns": {
-                    "description": "Maximum number of open connections to the database",
+                    "description": "Maximum number of connections opened to the database",
                     "type": "integer"
                 },
                 "password": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 },
                 "path": {
@@ -5472,11 +5851,11 @@
                     "type": "string"
                 },
                 "singular": {
-                    "description": "Whether to enable global disabling of pluralization, true means enabled",
+                    "description": "Whether to enable global disabling of plural numbers, true means enabled",
                     "type": "boolean"
                 },
                 "username": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 }
             }
@@ -5485,7 +5864,7 @@
             "type": "object",
             "properties": {
                 "addr": {
-                    "description": "port value",
+                    "description": "Port value",
                     "type": "integer"
                 },
                 "db-type": {
@@ -5493,7 +5872,7 @@
                     "type": "string"
                 },
                 "env": {
-                    "description": "environment value",
+                    "description": "Environment value",
                     "type": "string"
                 },
                 "iplimit-count": {
@@ -5514,7 +5893,7 @@
                     "type": "boolean"
                 },
                 "use-multipoint": {
-                    "description": "Multiple login interception",
+                    "description": "Multipoint login interception",
                     "type": "boolean"
                 },
                 "use-redis": {
@@ -5554,15 +5933,15 @@
                     "type": "string"
                 },
                 "encode-level": {
-                    "description": "encoding level",
+                    "description": "Encoding level",
                     "type": "string"
                 },
                 "format": {
-                    "description": "output",
+                    "description": "Output",
                     "type": "string"
                 },
                 "level": {
-                    "description": "level",
+                    "description": "Level",
                     "type": "string"
                 },
                 "log-in-console": {
@@ -5578,7 +5957,7 @@
                     "type": "string"
                 },
                 "show-line": {
-                    "description": "Show row",
+                    "description": "Show line",
                     "type": "boolean"
                 },
                 "stacktrace-key": {
@@ -5599,20 +5978,16 @@
                     "type": "string"
                 },
                 "customerName": {
-                    "description": "customer name",
+                    "description": "Customer name",
                     "type": "string"
                 },
                 "customerPhoneData": {
-                    "description": "Customer mobile phone number",
+                    "description": "Customer phone number",
                     "type": "string"
                 },
                 "sysUser": {
                     "description": "Management details",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/system.SysUser"
-                        }
-                    ]
+                    "$ref": "#/definitions/system.SysUser"
                 },
                 "sysUserAuthorityID": {
                     "description": "Management role ID",
@@ -5623,7 +5998,7 @@
                     "type": "integer"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -5661,7 +6036,7 @@
                     "type": "boolean"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -5687,7 +6062,7 @@
                     "type": "string"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -5704,7 +6079,7 @@
                     "type": "string"
                 },
                 "key": {
-                    "description": "number",
+                    "description": "Number",
                     "type": "string"
                 },
                 "name": {
@@ -5712,48 +6087,15 @@
                     "type": "string"
                 },
                 "tag": {
-                    "description": "File label",
+                    "description": "file tag",
                     "type": "string"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 },
                 "url": {
-                    "description": "File address",
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_flipped-aurora_gin-vue-admin_server_config.Email": {
-            "type": "object",
-            "properties": {
-                "from": {
-                    "description": "Sender: The email address you want to send the email to",
-                    "type": "string"
-                },
-                "host": {
-                    "description": "Server address such as smtp.qq.com Please go to QQ or the email address you want to send emails to check its SMTP protocol",
-                    "type": "string"
-                },
-                "is-ssl": {
-                    "description": "Whether SSL or not? Whether to enable SSL",
-                    "type": "boolean"
-                },
-                "nickname": {
-                    "description": "Nickname: the sender's nickname is usually your own email address",
-                    "type": "string"
-                },
-                "port": {
-                    "description": "Port Please go to QQ or the email address you want to send emails to check its SMTP protocol. Most of them are 465",
-                    "type": "integer"
-                },
-                "secret": {
-                    "description": "Key The key used for login. It is best not to use the email password. Go to the email SMTP to apply for a key used for login",
-                    "type": "string"
-                },
-                "to": {
-                    "description": "Recipients: multiple separated by English commas. Example: a@qq.com b@qq.com Please use this item as a parameter in official development",
+                    "description": "file address",
                     "type": "string"
                 }
             }
@@ -5762,7 +6104,7 @@
             "type": "object",
             "properties": {
                 "authorityId": {
-                    "description": "role ID",
+                    "description": "Role ID",
                     "type": "integer"
                 },
                 "menus": {
@@ -5777,7 +6119,7 @@
             "type": "object",
             "properties": {
                 "authorityId": {
-                    "description": "permission id",
+                    "description": "Authority id",
                     "type": "integer"
                 },
                 "casbinInfos": {
@@ -5809,7 +6151,7 @@
                     "type": "string"
                 },
                 "password": {
-                    "description": "password",
+                    "description": "Password",
                     "type": "string"
                 }
             }
@@ -5821,7 +6163,7 @@
             "type": "object",
             "properties": {
                 "authorityId": {
-                    "description": "role ID",
+                    "description": "Role ID",
                     "type": "integer"
                 }
             }
@@ -5853,7 +6195,7 @@
             ],
             "properties": {
                 "dbName": {
-                    "description": "database name",
+                    "description": "Database name",
                     "type": "string"
                 },
                 "dbPath": {
@@ -5861,15 +6203,15 @@
                     "type": "string"
                 },
                 "dbType": {
-                    "description": "database type",
+                    "description": "Database type",
                     "type": "string"
                 },
                 "host": {
-                    "description": "server address",
+                    "description": "Server address",
                     "type": "string"
                 },
                 "password": {
-                    "description": "database password",
+                    "description": "Database password",
                     "type": "string"
                 },
                 "port": {
@@ -5877,7 +6219,7 @@
                     "type": "string"
                 },
                 "userName": {
-                    "description": "database username",
+                    "description": "Database user name",
                     "type": "string"
                 }
             }
@@ -5894,11 +6236,11 @@
                     "type": "string"
                 },
                 "password": {
-                    "description": "password",
+                    "description": "Password",
                     "type": "string"
                 },
                 "username": {
-                    "description": "username",
+                    "description": "Username",
                     "type": "string"
                 }
             }
@@ -5907,15 +6249,15 @@
             "type": "object",
             "properties": {
                 "keyword": {
-                    "description": "keyword",
+                    "description": "Keyword",
                     "type": "string"
                 },
                 "page": {
-                    "description": "page number",
+                    "description": "Page number",
                     "type": "integer"
                 },
                 "pageSize": {
-                    "description": "size per page",
+                    "description": "Size of each page",
                     "type": "integer"
                 }
             }
@@ -5937,7 +6279,7 @@
                 },
                 "enable": {
                     "type": "string",
-                    "example": "int whether enabled"
+                    "example": "int whether to enable"
                 },
                 "headerImg": {
                     "type": "string",
@@ -5990,7 +6332,7 @@
                     "type": "string"
                 },
                 "desc": {
-                    "description": "Sort by: ascending false (default) | descending true",
+                    "description": "Sorting method: ascending false (default) | descending true",
                     "type": "boolean"
                 },
                 "description": {
@@ -5998,7 +6340,7 @@
                     "type": "string"
                 },
                 "keyword": {
-                    "description": "keyword",
+                    "description": "Keyword",
                     "type": "string"
                 },
                 "method": {
@@ -6006,15 +6348,15 @@
                     "type": "string"
                 },
                 "orderKey": {
-                    "description": "sort",
+                    "description": "Sorting",
                     "type": "string"
                 },
                 "page": {
-                    "description": "page number",
+                    "description": "Page number",
                     "type": "integer"
                 },
                 "pageSize": {
-                    "description": "size per page",
+                    "description": "Size of each page",
                     "type": "integer"
                 },
                 "path": {
@@ -6022,7 +6364,7 @@
                     "type": "string"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -6031,7 +6373,7 @@
             "type": "object",
             "properties": {
                 "authorityId": {
-                    "description": "role ID",
+                    "description": "Role ID",
                     "type": "integer"
                 }
             }
@@ -6040,7 +6382,7 @@
             "type": "object",
             "properties": {
                 "authorityIds": {
-                    "description": "role ID",
+                    "description": "Role ID",
                     "type": "array",
                     "items": {
                         "type": "integer"
@@ -6072,15 +6414,15 @@
             "type": "object",
             "properties": {
                 "keyword": {
-                    "description": "keyword",
+                    "description": "Keyword",
                     "type": "string"
                 },
                 "page": {
-                    "description": "page number",
+                    "description": "Page number",
                     "type": "integer"
                 },
                 "pageSize": {
-                    "description": "size per page",
+                    "description": "Size of each page",
                     "type": "integer"
                 }
             }
@@ -6089,7 +6431,7 @@
             "type": "object",
             "properties": {
                 "body": {
-                    "description": "email content",
+                    "description": "Email content",
                     "type": "string"
                 },
                 "subject": {
@@ -6097,7 +6439,7 @@
                     "type": "string"
                 },
                 "to": {
-                    "description": "To whom the email is sent",
+                    "description": "Who to send the email to",
                     "type": "string"
                 }
             }
@@ -6307,7 +6649,7 @@
                     "type": "string"
                 },
                 "autoCreateApiToSql": {
-                    "description": "Whether to automatically create an api",
+                    "description": "Whether to automatically create api",
                     "type": "boolean"
                 },
                 "autoCreateResource": {
@@ -6364,7 +6706,7 @@
                     "type": "boolean"
                 },
                 "columnName": {
-                    "description": "database field",
+                    "description": "Database field",
                     "type": "string"
                 },
                 "comment": {
@@ -6376,7 +6718,7 @@
                     "type": "string"
                 },
                 "dictType": {
-                    "description": "dictionary",
+                    "description": "Dictionary",
                     "type": "string"
                 },
                 "errorText": {
@@ -6396,7 +6738,7 @@
                     "type": "string"
                 },
                 "fieldSearchType": {
-                    "description": "Search criteria",
+                    "description": "Search conditions",
                     "type": "string"
                 },
                 "fieldType": {
@@ -6410,34 +6752,6 @@
                 "sort": {
                     "description": "Whether to increase sorting",
                     "type": "boolean"
-                }
-            }
-        },
-        "system.Meta": {
-            "type": "object",
-            "properties": {
-                "activeName": {
-                    "type": "string"
-                },
-                "closeTab": {
-                    "description": "Automatically close tab",
-                    "type": "boolean"
-                },
-                "defaultMenu": {
-                    "description": "Whether it is a basic route (under development)",
-                    "type": "boolean"
-                },
-                "icon": {
-                    "description": "menu icon",
-                    "type": "string"
-                },
-                "keepAlive": {
-                    "description": "Whether to cache",
-                    "type": "boolean"
-                },
-                "title": {
-                    "description": "menu name",
-                    "type": "string"
                 }
             }
         },
@@ -6469,7 +6783,7 @@
                     "type": "string"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -6478,11 +6792,11 @@
             "type": "object",
             "properties": {
                 "authorityId": {
-                    "description": "role ID",
+                    "description": "Role ID",
                     "type": "integer"
                 },
                 "authorityName": {
-                    "description": "Character name",
+                    "description": "role name",
                     "type": "string"
                 },
                 "children": {
@@ -6519,7 +6833,7 @@
                     "type": "integer"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -6545,7 +6859,7 @@
                     "type": "string"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -6556,6 +6870,9 @@
                 "ID": {
                     "description": "Primary key ID",
                     "type": "integer"
+                },
+                "activeName": {
+                    "type": "string"
                 },
                 "authoritys": {
                     "type": "array",
@@ -6569,6 +6886,10 @@
                         "$ref": "#/definitions/system.SysBaseMenu"
                     }
                 },
+                "closeTab": {
+                    "description": "Automatically close tab",
+                    "type": "boolean"
+                },
                 "component": {
                     "description": "Corresponding front-end file path",
                     "type": "string"
@@ -6577,8 +6898,20 @@
                     "description": "Creation time",
                     "type": "string"
                 },
+                "defaultMenu": {
+                    "description": "Is it a basic routing (under development)",
+                    "type": "boolean"
+                },
                 "hidden": {
                     "description": "Whether to hide in the list",
+                    "type": "boolean"
+                },
+                "icon": {
+                    "description": "Menu icon",
+                    "type": "string"
+                },
+                "keepAlive": {
+                    "description": "Whether to cache",
                     "type": "boolean"
                 },
                 "menuBtn": {
@@ -6586,14 +6919,6 @@
                     "items": {
                         "$ref": "#/definitions/system.SysBaseMenuBtn"
                     }
-                },
-                "meta": {
-                    "description": "Additional attributes",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/system.Meta"
-                        }
-                    ]
                 },
                 "name": {
                     "description": "route name",
@@ -6610,15 +6935,19 @@
                     "type": "string"
                 },
                 "path": {
-                    "description": "routing path",
+                    "description": "Routing path",
                     "type": "string"
                 },
                 "sort": {
-                    "description": "sort mark",
+                    "description": "Sort mark",
                     "type": "integer"
                 },
+                "title": {
+                    "description": "Menu name",
+                    "type": "string"
+                },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -6644,7 +6973,7 @@
                     "type": "integer"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -6668,11 +6997,11 @@
                     "type": "integer"
                 },
                 "type": {
-                    "description": "Whether the address bar carries parameters as params or query",
+                    "description": "Whether the parameters carried in the address bar are params or query",
                     "type": "string"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 },
                 "value": {
@@ -6693,15 +7022,15 @@
                     "type": "string"
                 },
                 "desc": {
-                    "description": "description",
+                    "description": "Description",
                     "type": "string"
                 },
                 "name": {
-                    "description": "Dictionary name (medium)",
+                    "description": "Dictionary name (Chinese)",
                     "type": "string"
                 },
                 "status": {
-                    "description": "status",
+                    "description": "Status",
                     "type": "boolean"
                 },
                 "sysDictionaryDetails": {
@@ -6715,7 +7044,7 @@
                     "type": "string"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -6740,7 +7069,7 @@
                     "type": "string"
                 },
                 "sort": {
-                    "description": "sort mark",
+                    "description": "Sort mark",
                     "type": "integer"
                 },
                 "status": {
@@ -6748,16 +7077,49 @@
                     "type": "boolean"
                 },
                 "sysDictionaryID": {
-                    "description": "Association mark",
+                    "description": "associated tag",
                     "type": "integer"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 },
                 "value": {
-                    "description": "Dictionary value",
+                    "description": "dictionary value",
                     "type": "integer"
+                }
+            }
+        },
+        "system.SysExportTemplate": {
+            "type": "object",
+            "properties": {
+                "ID": {
+                    "description": "Primary key ID",
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "description": "Creation time",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Template name",
+                    "type": "string"
+                },
+                "tableName": {
+                    "description": "Table name",
+                    "type": "string"
+                },
+                "templateID": {
+                    "description": "Template identification",
+                    "type": "string"
+                },
+                "templateInfo": {
+                    "description": "Template information",
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "description": "Update time",
+                    "type": "string"
                 }
             }
         },
@@ -6767,6 +7129,9 @@
                 "ID": {
                     "description": "Primary key ID",
                     "type": "integer"
+                },
+                "activeName": {
+                    "type": "string"
                 },
                 "authoritys": {
                     "type": "array",
@@ -6786,6 +7151,10 @@
                         "$ref": "#/definitions/system.SysMenu"
                     }
                 },
+                "closeTab": {
+                    "description": "Automatically close tab",
+                    "type": "boolean"
+                },
                 "component": {
                     "description": "Corresponding front-end file path",
                     "type": "string"
@@ -6794,8 +7163,20 @@
                     "description": "Creation time",
                     "type": "string"
                 },
+                "defaultMenu": {
+                    "description": "Is it a basic routing (under development)",
+                    "type": "boolean"
+                },
                 "hidden": {
                     "description": "Whether to hide in the list",
+                    "type": "boolean"
+                },
+                "icon": {
+                    "description": "Menu icon",
+                    "type": "string"
+                },
+                "keepAlive": {
+                    "description": "Whether to cache",
                     "type": "boolean"
                 },
                 "menuBtn": {
@@ -6806,14 +7187,6 @@
                 },
                 "menuId": {
                     "type": "string"
-                },
-                "meta": {
-                    "description": "Additional attributes",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/system.Meta"
-                        }
-                    ]
                 },
                 "name": {
                     "description": "route name",
@@ -6830,15 +7203,19 @@
                     "type": "string"
                 },
                 "path": {
-                    "description": "routing path",
+                    "description": "Routing path",
                     "type": "string"
                 },
                 "sort": {
-                    "description": "sort mark",
+                    "description": "Sort mark",
                     "type": "integer"
                 },
+                "title": {
+                    "description": "Menu name",
+                    "type": "string"
+                },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 }
             }
@@ -6855,7 +7232,7 @@
                     "type": "string"
                 },
                 "body": {
-                    "description": "RequestBody",
+                    "description": "Request Body",
                     "type": "string"
                 },
                 "createdAt": {
@@ -6871,7 +7248,7 @@
                     "type": "string"
                 },
                 "latency": {
-                    "description": "delay",
+                    "description": "Latency",
                     "type": "string"
                 },
                 "method": {
@@ -6879,11 +7256,11 @@
                     "type": "string"
                 },
                 "path": {
-                    "description": "Request path",
+                    "description": "request path",
                     "type": "string"
                 },
                 "resp": {
-                    "description": "ResponseBody",
+                    "description": "Response Body",
                     "type": "string"
                 },
                 "status": {
@@ -6891,14 +7268,14 @@
                     "type": "integer"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 },
                 "user": {
                     "$ref": "#/definitions/system.SysUser"
                 },
                 "user_id": {
-                    "description": "userid",
+                    "description": "user id",
                     "type": "integer"
                 }
             }
@@ -6911,7 +7288,7 @@
                     "type": "integer"
                 },
                 "activeColor": {
-                    "description": "active color",
+                    "description": "Active color",
                     "type": "string"
                 },
                 "authorities": {
@@ -6928,7 +7305,7 @@
                     "type": "integer"
                 },
                 "baseColor": {
-                    "description": "Basic color",
+                    "description": "base color",
                     "type": "string"
                 },
                 "createdAt": {
@@ -6936,7 +7313,7 @@
                     "type": "string"
                 },
                 "email": {
-                    "description": "User Email",
+                    "description": "User's email",
                     "type": "string"
                 },
                 "enable": {
@@ -6952,7 +7329,7 @@
                     "type": "string"
                 },
                 "phone": {
-                    "description": "User mobile phone number",
+                    "description": "User's mobile phone number",
                     "type": "string"
                 },
                 "sideMode": {
@@ -6960,7 +7337,7 @@
                     "type": "string"
                 },
                 "updatedAt": {
-                    "description": "update time",
+                    "description": "Update time",
                     "type": "string"
                 },
                 "userName": {

@@ -1,4 +1,4 @@
-// 自动生成模板{{.StructName}}
+// Automatically generate template {{.StructName}}
 package {{.Package}}
 
 import (
@@ -7,7 +7,7 @@ import (
 	{{ if .NeedJSON }}"gorm.io/datatypes"{{ end }}
 )
 
-// {{.Description}} 结构体  {{.StructName}}
+// {{.Description}} structure {{.StructName}}
 type {{.StructName}} struct {
       global.GVA_MODEL {{- range .Fields}}
             {{- if eq .FieldType "enum" }}
@@ -28,14 +28,14 @@ type {{.StructName}} struct {
       {{.FieldName}}  {{.FieldType}} `json:"{{.FieldJson}}" form:"{{.FieldJson}}" gorm:"column:{{.ColumnName}};comment:{{.Comment}};{{- if .DataTypeLong -}}size:{{.DataTypeLong}};{{- end -}}" {{- if .Require -}}binding:"required"{{- end -}}`
             {{- end }}  {{ if .FieldDesc }}//{{.FieldDesc}} {{ end }} {{- end }}
       {{- if .AutoCreateResource }}
-      CreatedBy  uint   `gorm:"column:created_by;comment:创建者"`
-      UpdatedBy  uint   `gorm:"column:updated_by;comment:更新者"`
-      DeletedBy  uint   `gorm:"column:deleted_by;comment:删除者"`
+      CreatedBy uint `gorm:"column:created_by;comment:creator"`
+      UpdatedBy uint `gorm:"column:updated_by;comment:updater"`
+      DeletedBy uint `gorm:"column:deleted_by;comment:deleted"`
       {{- end}}
 }
 
 {{ if .TableName }}
-// TableName {{.Description}} {{.StructName}}自定义表名 {{.TableName}}
+// TableName {{.Description}} {{.StructName}} Custom table name {{.TableName}}
 func ({{.StructName}}) TableName() string {
   return "{{.TableName}}"
 }

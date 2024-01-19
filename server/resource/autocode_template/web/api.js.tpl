@@ -1,12 +1,12 @@
 import service from '@/utils/request'
 
 // @Tags {{.StructName}}
-// @Summary 创建{{.Description}}
+// @Summary Create {{.Description}}
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.{{.StructName}} true "创建{{.Description}}"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"创建成功"}"
+// @Param data body model.{{.StructName}} true "Create {{.Description}}"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Created successfully"}"
 // @Router /{{.Abbreviation}}/create{{.StructName}} [post]
 export const create{{.StructName}} = (data) => {
   return service({
@@ -17,12 +17,12 @@ export const create{{.StructName}} = (data) => {
 }
 
 // @Tags {{.StructName}}
-// @Summary 删除{{.Description}}
+// @Summary delete {{.Description}}
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.{{.StructName}} true "删除{{.Description}}"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
+// @Param data body model.{{.StructName}} true "Delete{{.Description}}"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /{{.Abbreviation}}/delete{{.StructName}} [delete]
 export const delete{{.StructName}} = (params) => {
   return service({
@@ -33,12 +33,12 @@ export const delete{{.StructName}} = (params) => {
 }
 
 // @Tags {{.StructName}}
-// @Summary 批量删除{{.Description}}
+// @Summary Batch deletion {{.Description}}
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body request.IdsReq true "批量删除{{.Description}}"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
+// @Param data body request.IdsReq true "Batch delete {{.Description}}"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /{{.Abbreviation}}/delete{{.StructName}} [delete]
 export const delete{{.StructName}}ByIds = (params) => {
   return service({
@@ -49,12 +49,12 @@ export const delete{{.StructName}}ByIds = (params) => {
 }
 
 // @Tags {{.StructName}}
-// @Summary 更新{{.Description}}
+// @Summary update {{.Description}}
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.{{.StructName}} true "更新{{.Description}}"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"更新成功"}"
+// @Param data body model.{{.StructName}} true "Update{{.Description}}"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Update successful"}"
 // @Router /{{.Abbreviation}}/update{{.StructName}} [put]
 export const update{{.StructName}} = (data) => {
   return service({
@@ -65,12 +65,12 @@ export const update{{.StructName}} = (data) => {
 }
 
 // @Tags {{.StructName}}
-// @Summary 用id查询{{.Description}}
+// @Summary Use id to query {{.Description}}
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query model.{{.StructName}} true "用id查询{{.Description}}"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"查询成功"}"
+// @Param data query model.{{.StructName}} true "Query {{.Description}} with id"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Query successful"}"
 // @Router /{{.Abbreviation}}/find{{.StructName}} [get]
 export const find{{.StructName}} = (params) => {
   return service({
@@ -81,12 +81,12 @@ export const find{{.StructName}} = (params) => {
 }
 
 // @Tags {{.StructName}}
-// @Summary 分页获取{{.Description}}列表
+// @Summary Get the {{.Description}} list by pagination
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query request.PageInfo true "分页获取{{.Description}}列表"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data query request.PageInfo true "Get the {{.Description}} list in pages"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /{{.Abbreviation}}/get{{.StructName}}List [get]
 export const get{{.StructName}}List = (params) => {
   return service({

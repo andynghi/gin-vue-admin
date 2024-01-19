@@ -94,17 +94,48 @@ definitions:
         description: Verification code height
         type: integer
       img-width:
-        description: verification code width
+        description: Verification code width
         type: integer
       key-long:
         description: Verification code length
         type: integer
       open-captcha:
-        description: This is the number when explosion-proof verification code is turned on. 0 means that a verification code is required every time you log in. Other numbers represent the number of wrong passwords. For example, 3 means that a verification code will appear after three errors.
+        description: Explosion-proof verification code turns on this number, 0 means
+          that a verification code is required for each login, other numbers represent
+          incorrect passwords This number, such as 3, means that a verification code
+          will appear after three errors.
         type: integer
       open-captcha-timeout:
-        description: Explosion-proof verification code timeout, unit: s (seconds)
+        description: 'Explosion-proof verification code timeout, unit: s (seconds)'
         type: integer
+    type: object
+  config.Email:
+    properties:
+      from:
+        description: Sender The email address you want to send the email to
+        type: string
+      host:
+        description: Server address For example smtp.qq.com Please go to QQ or the
+          email address you want to send the email to check its smtp protocol
+        type: string
+      is-ssl:
+        description: Whether to SSL or not. Whether to enable SSL
+        type: boolean
+      nickname:
+        description: Nickname The sender's nickname is usually your own email address
+        type: string
+      port:
+        description: Port Please go to QQ or the email address you want to send the
+          email to check its SMTP protocol. Most of them are 465.
+        type: integer
+      secret:
+        description: Key The key used for login. It is best not to use the email password.
+          Go to the email SMTP to apply for a key used for login.
+        type: string
+      to:
+        description: 'Recipients: multiple separated by English commas. Example: a@qq.com
+          b@qq.com Please put this project under formal development Use as parameter'
+        type: string
     type: object
   config.Excel:
     properties:
@@ -127,13 +158,13 @@ definitions:
   config.JWT:
     properties:
       buffer-time:
-        description: buffer time
+        description: Buffer time
         type: string
       expires-time:
         description: Expiration time
         type: string
       issuer:
-        description: issuer
+        description: Issuer
         type: string
       signing-key:
         description: jwt signature
@@ -142,10 +173,10 @@ definitions:
   config.Local:
     properties:
       path:
-        description: local file access path
+        description: Local file access path
         type: string
       store-path:
-        description: local file storage path
+        description: Local file storage path
         type: string
     type: object
   config.Mongo:
@@ -154,18 +185,18 @@ definitions:
         description: collection name
         type: string
       connect-timeout-ms:
-        description: connection timeout
+        description: Connection timeout period
         type: integer
       database:
         description: database name
         type: string
       hosts:
-        description: host list
+        description: Host list
         items:
           $ref: '#/definitions/config.MongoHost'
         type: array
       is-zap:
-        description: Whether to enable zap log
+        description: Whether to enable zap logs
         type: boolean
       max-pool-size:
         description: Maximum connection pool
@@ -177,13 +208,13 @@ definitions:
         description: mongodb options
         type: string
       password:
-        description: password
+        description: Password
         type: string
       socket-timeout-ms:
-        description: socket timeout
+        description: socket timeout time
         type: integer
       username:
-        description: username
+        description: Username
         type: string
     type: object
   config.MongoHost:
@@ -192,7 +223,7 @@ definitions:
         description: ip address
         type: string
       port:
-        description: port
+        description: Port
         type: string
     type: object
   config.Mssql:
@@ -201,26 +232,26 @@ definitions:
         description: Advanced configuration
         type: string
       db-name:
-        description: database name
+        description: Database name
         type: string
       engine:
         default: InnoDB
         description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: Whether to enable Gorm global logs
+        description: Whether to enable Gorm global log
         type: string
       log-zap:
         description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: Maximum number of idle connections
+        description: The maximum number of idle connections
         type: integer
       max-open-conns:
         description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: database password
+        description: Database password
         type: string
       path:
         type: string
@@ -229,10 +260,11 @@ definitions:
       prefix:
         type: string
       singular:
-        description: Whether to enable global disabling of pluralization, true means enabled
+        description: Whether to enable global disabling of plural numbers, true means
+          enabled
         type: boolean
       username:
-        description: database password
+        description: Database password
         type: string
     type: object
   config.Mysql:
@@ -241,26 +273,26 @@ definitions:
         description: Advanced configuration
         type: string
       db-name:
-        description: database name
+        description: Database name
         type: string
       engine:
         default: InnoDB
         description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: Whether to enable Gorm global logs
+        description: Whether to enable Gorm global log
         type: string
       log-zap:
         description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: Maximum number of idle connections
+        description: The maximum number of idle connections
         type: integer
       max-open-conns:
         description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: database password
+        description: Database password
         type: string
       path:
         type: string
@@ -269,10 +301,11 @@ definitions:
       prefix:
         type: string
       singular:
-        description: Whether to enable global disabling of pluralization, true means enabled
+        description: Whether to enable global disabling of plural numbers, true means
+          enabled
         type: boolean
       username:
-        description: database password
+        description: Database password
         type: string
     type: object
   config.Oracle:
@@ -281,26 +314,26 @@ definitions:
         description: Advanced configuration
         type: string
       db-name:
-        description: database name
+        description: Database name
         type: string
       engine:
         default: InnoDB
         description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: Whether to enable Gorm global logs
+        description: Whether to enable Gorm global log
         type: string
       log-zap:
         description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: Maximum number of idle connections
+        description: The maximum number of idle connections
         type: integer
       max-open-conns:
         description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: database password
+        description: Database password
         type: string
       path:
         type: string
@@ -309,10 +342,11 @@ definitions:
       prefix:
         type: string
       singular:
-        description: Whether to enable global disabling of pluralization, true means enabled
+        description: Whether to enable global disabling of plural numbers, true means
+          enabled
         type: boolean
       username:
-        description: database password
+        description: Database password
         type: string
     type: object
   config.Pgsql:
@@ -321,26 +355,26 @@ definitions:
         description: Advanced configuration
         type: string
       db-name:
-        description: database name
+        description: Database name
         type: string
       engine:
         default: InnoDB
         description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: Whether to enable Gorm global logs
+        description: Whether to enable Gorm global log
         type: string
       log-zap:
         description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: Maximum number of idle connections
+        description: The maximum number of idle connections
         type: integer
       max-open-conns:
         description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: database password
+        description: Database password
         type: string
       path:
         type: string
@@ -349,25 +383,26 @@ definitions:
       prefix:
         type: string
       singular:
-        description: Whether to enable global disabling of pluralization, true means enabled
+        description: Whether to enable global disabling of plural numbers, true means
+          enabled
         type: boolean
       username:
-        description: database password
+        description: Database password
         type: string
     type: object
   config.Qiniu:
     properties:
       access-key:
-        description: secret key AK
+        description: Secret key AK
         type: string
       bucket:
-        description: space name
+        description: Space name
         type: string
       img-path:
         description: CDN accelerated domain name
         type: string
       secret-key:
-        description: secret key SK
+        description: Secret key SK
         type: string
       use-cdn-domains:
         description: Whether to use CDN upload acceleration for uploading
@@ -376,19 +411,19 @@ definitions:
         description: Whether to use https
         type: boolean
       zone:
-        description: storage area
+        description: Storage area
         type: string
     type: object
   config.Redis:
     properties:
       addr:
-        description: server address:port
+        description: 'Server address: port'
         type: string
       db:
         description: Which database of redis
         type: integer
       password:
-        description: password
+        description: Password
         type: string
     type: object
   config.Server:
@@ -396,23 +431,21 @@ definitions:
       aliyun-oss:
         $ref: '#/definitions/config.AliyunOSS'
       autocode:
-        allOf:
-        - $ref: '#/definitions/config.Autocode'
+        $ref: '#/definitions/config.Autocode'
         description: auto
       aws-s3:
         $ref: '#/definitions/config.AwsS3'
       captcha:
         $ref: '#/definitions/config.Captcha'
       cors:
-        allOf:
-        - $ref: '#/definitions/config.CORS'
+        $ref: '#/definitions/config.CORS'
         description: Cross-domain configuration
       db-list:
         items:
           $ref: '#/definitions/config.SpecializedDB'
         type: array
       email:
-        $ref: '#/definitions/github_com_flipped-aurora_gin-vue-admin_server_config.Email'
+        $ref: '#/definitions/config.Email'
       excel:
         $ref: '#/definitions/config.Excel'
       hua-wei-obs:
@@ -420,16 +453,14 @@ definitions:
       jwt:
         $ref: '#/definitions/config.JWT'
       local:
-        allOf:
-        - $ref: '#/definitions/config.Local'
+        $ref: '#/definitions/config.Local'
         description: oss
       mongo:
         $ref: '#/definitions/config.Mongo'
       mssql:
         $ref: '#/definitions/config.Mssql'
       mysql:
-        allOf:
-        - $ref: '#/definitions/config.Mysql'
+        $ref: '#/definitions/config.Mysql'
         description: gorm
       oracle:
         $ref: '#/definitions/config.Oracle'
@@ -456,7 +487,7 @@ definitions:
         description: Advanced configuration
         type: string
       db-name:
-        description: database name
+        description: Database name
         type: string
       disable:
         type: boolean
@@ -465,19 +496,19 @@ definitions:
         description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: Whether to enable Gorm global logs
+        description: Whether to enable Gorm global log
         type: string
       log-zap:
         description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: Maximum number of idle connections
+        description: The maximum number of idle connections
         type: integer
       max-open-conns:
         description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: database password
+        description: Database password
         type: string
       path:
         type: string
@@ -486,12 +517,13 @@ definitions:
       prefix:
         type: string
       singular:
-        description: Whether to enable global disabling of pluralization, true means enabled
+        description: Whether to enable global disabling of plural numbers, true means
+          enabled
         type: boolean
       type:
         type: string
       username:
-        description: database password
+        description: Database password
         type: string
     type: object
   config.Sqlite:
@@ -500,26 +532,26 @@ definitions:
         description: Advanced configuration
         type: string
       db-name:
-        description: database name
+        description: Database name
         type: string
       engine:
         default: InnoDB
         description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: Whether to enable Gorm global logs
+        description: Whether to enable Gorm global log
         type: string
       log-zap:
         description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: Maximum number of idle connections
+        description: The maximum number of idle connections
         type: integer
       max-open-conns:
         description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: database password
+        description: Database password
         type: string
       path:
         type: string
@@ -528,22 +560,23 @@ definitions:
       prefix:
         type: string
       singular:
-        description: Whether to enable global disabling of pluralization, true means enabled
+        description: Whether to enable global disabling of plural numbers, true means
+          enabled
         type: boolean
       username:
-        description: database password
+        description: Database password
         type: string
     type: object
   config.System:
     properties:
       addr:
-        description: port value
+        description: Port value
         type: integer
       db-type:
-        description: Database type: mysql (default)|sqlite|sqlserver|postgresql
+        description: 'Database type: mysql (default)|sqlite|sqlserver|postgresql'
         type: string
       env:
-        description: environment value
+        description: Environment value
         type: string
       iplimit-count:
         type: integer
@@ -555,13 +588,13 @@ definitions:
       router-prefix:
         type: string
       use-mongo:
-        description: using redis
+        description: Use redis
         type: boolean
       use-multipoint:
-        description: Multi-point login interception
+        description: Multipoint login interception
         type: boolean
       use-redis:
-        description: using redis
+        description: Use redis
         type: boolean
     type: object
   config.TencentCOS:
@@ -582,16 +615,16 @@ definitions:
   config.Zap:
     properties:
       director:
-        description: log folder
+        description: Log folder
         type: string
       encode-level:
-        description: encoding level
+        description: Encoding level
         type: string
       format:
-        description: output
+        description: Output
         type: string
       level:
-        description: level
+        description: Level
         type: string
       log-in-console:
         description: Output console
@@ -600,10 +633,10 @@ definitions:
         description: Log retention time
         type: integer
       prefix:
-        description: log prefix
+        description: Log prefix
         type: string
       show-line:
-        description: display row
+        description: Show line
         type: boolean
       stacktrace-key:
         description: stack name
@@ -612,20 +645,19 @@ definitions:
   example.ExaCustomer:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       customerName:
-        description: customer name
+        description: Customer name
         type: string
       customerPhoneData:
-        description: Customer mobile phone number
+        description: Customer phone number
         type: string
       sysUser:
-        allOf:
-        - $ref: '#/definitions/system.SysUser'
+        $ref: '#/definitions/system.SysUser'
         description: Management details
       sysUserAuthorityID:
         description: Management role ID
@@ -634,18 +666,18 @@ definitions:
         description: Management ID
         type: integer
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   example.ExaFile:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       chunkTotal:
         type: integer
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       exaFileChunk:
         items:
@@ -660,16 +692,16 @@ definitions:
       isFinish:
         type: boolean
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   example.ExaFileChunk:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       exaFileID:
         type: integer
@@ -678,61 +710,37 @@ definitions:
       fileChunkPath:
         type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   example.ExaFileUploadAndDownload:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       key:
-        description: number
+        description: Number
         type: string
       name:
         description: file name
         type: string
       tag:
-        description: file label
+        description: file tag
         type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
       url:
         description: file address
         type: string
     type: object
-  github_com_flipped-aurora_gin-vue-admin_server_config.Email:
-    properties:
-      from:
-        description: Sender: the email address you want to send the email to
-        type: string
-      host:
-        description: server address, for example, smtp.qq.com. Please go to QQ or the email address you want to send the email to check its SMTP protocol.
-        type: string
-      is-ssl:
-        description: Whether to SSL or not. Whether to enable SSL.
-        type: boolean
-      nickname:
-        description: Nickname: Nickname of the sender, usually his/her email address
-        type: string
-      port:
-        description: Port Please go to QQ or the email address you want to send the email to check its SMTP protocol. Most of them are 465.
-        type: integer
-      secret:
-        description: Key The key used for login. It is best not to use the email password. Go to the email SMTP to apply for a key used for login.
-        type: string
-      to:
-        description: Recipients: Multiple separated by English commas. Example: a@qq.com b@qq.com Please use this item as a parameter during official development.
-        type: string
-    type: object
   request.AddMenuAuthorityInfo:
     properties:
       authorityId:
-        description: role ID
+        description: Role ID
         type: integer
       menus:
         items:
@@ -742,7 +750,7 @@ definitions:
   request.CasbinInReceive:
     properties:
       authorityId:
-        description: permission id
+        description: Authority id
         type: integer
       casbinInfos:
         items:
@@ -761,10 +769,10 @@ definitions:
   request.ChangePasswordReq:
     properties:
       newPassword:
-        description: new password
+        description: New password
         type: string
       password:
-        description: password
+        description: Password
         type: string
     type: object
   request.Empty:
@@ -772,13 +780,13 @@ definitions:
   request.GetAuthorityId:
     properties:
       authorityId:
-        description: role ID
+        description: Role ID
         type: integer
     type: object
   request.GetById:
     properties:
       id:
-        description: primary key ID
+        description: Primary key ID
         type: integer
     type: object
   request.IdsReq:
@@ -791,25 +799,25 @@ definitions:
   request.InitDB:
     properties:
       dbName:
-        description: database name
+        description: Database name
         type: string
       dbPath:
         description: sqlite database file path
         type: string
       dbType:
-        description: database type
+        description: Database type
         type: string
       host:
-        description: server address
+        description: Server address
         type: string
       password:
-        description: database password
+        description: Database password
         type: string
       port:
         description: Database connection port
         type: string
       userName:
-        description: database username
+        description: Database user name
         type: string
     required:
     - dbName
@@ -817,28 +825,28 @@ definitions:
   request.Login:
     properties:
       captcha:
-        description: verification code
+        description: Verification code
         type: string
       captchaId:
         description: Verification code ID
         type: string
       password:
-        description: password
+        description: Password
         type: string
       username:
-        description: username
+        description: Username
         type: string
     type: object
   request.PageInfo:
     properties:
       keyword:
-        description: keyword
+        description: Keyword
         type: string
       page:
-        description: page number
+        description: Page number
         type: integer
       pageSize:
-        description: size per page
+        description: Size of each page
         type: integer
     type: object
   request.Register:
@@ -853,10 +861,10 @@ definitions:
         example: email
         type: string
       enable:
-        example: int Is it enabled?
+        example: int whether to enable
         type: string
       headerImg:
-        example: avatar link
+        example: Avatar link
         type: string
       nickName:
         example: nickname
@@ -877,58 +885,59 @@ definitions:
         description: Whether to delete the table
         type: boolean
       id:
-        description: primary key ID
+        description: Primary key ID
         type: integer
     type: object
   request.SearchApiParams:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       apiGroup:
         description: api group
         type: string
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       desc:
-        description: Sorting method: ascending false (default) | descending true
+        description: 'Sorting method: ascending false (default) | descending true'
         type: boolean
       description:
         description: api Chinese description
         type: string
       keyword:
-        description: keyword
+        description: Keyword
         type: string
       method:
-        description: Method: Create POST (default) | View GET | Update PUT | Delete DELETE
+        description: 'Method: Create POST (default) | View GET | Update PUT | Delete
+          DELETE'
         type: string
       orderKey:
-        description: sort
+        description: Sorting
         type: string
       page:
-        description: page number
+        description: Page number
         type: integer
       pageSize:
-        description: size per page
+        description: Size of each page
         type: integer
       path:
         description: api path
         type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   request.SetUserAuth:
     properties:
       authorityId:
-        description: role ID
+        description: Role ID
         type: integer
     type: object
   request.SetUserAuthorities:
     properties:
       authorityIds:
-        description: role ID
+        description: Role ID
         items:
           type: integer
         type: array
@@ -949,22 +958,22 @@ definitions:
   request.SysAutoHistory:
     properties:
       keyword:
-        description: keyword
+        description: Keyword
         type: string
       page:
-        description: page number
+        description: Page number
         type: integer
       pageSize:
-        description: size per page
+        description: Size of each page
         type: integer
     type: object
   response.Email:
     properties:
       body:
-        description: email content
+        description: Email content
         type: string
       subject:
-        description: email title
+        description: Email title
         type: string
       to:
         description: Who to send the email to
@@ -1048,7 +1057,7 @@ definitions:
       authority:
         $ref: '#/definitions/system.SysAuthority'
       oldAuthorityId:
-        description: old role ID
+        description: Old role ID
         type: integer
     type: object
   response.SysAuthorityResponse:
@@ -1102,7 +1111,7 @@ definitions:
         description: Struct abbreviation
         type: string
       autoCreateApiToSql:
-        description: Whether to automatically create an api
+        description: Whether to automatically create api
         type: boolean
       autoCreateResource:
         description: Whether to automatically create resource identifiers
@@ -1111,7 +1120,7 @@ definitions:
         description: Whether to automatically move files
         type: boolean
       businessDB:
-        description: business database
+        description: Business database
         type: string
       description:
         description: Struct Chinese name
@@ -1128,7 +1137,7 @@ definitions:
       package:
         type: string
       packageName:
-        description: file name
+        description: File name
         type: string
       structName:
         description: Struct name
@@ -1143,16 +1152,16 @@ definitions:
         description: Whether it can be cleared
         type: boolean
       columnName:
-        description: database field
+        description: Database field
         type: string
       comment:
-        description: database field description
+        description: Database field description
         type: string
       dataTypeLong:
-        description: database field length
+        description: Database field length
         type: string
       dictType:
-        description: dictionary
+        description: Dictionary
         type: string
       errorText:
         description: Verification failure text
@@ -1167,7 +1176,7 @@ definitions:
         description: Field name
         type: string
       fieldSearchType:
-        description: search criteria
+        description: Search conditions
         type: string
       fieldType:
         description: Field data type
@@ -1179,64 +1188,45 @@ definitions:
         description: Whether to increase sorting
         type: boolean
     type: object
-  system.Meta:
-    properties:
-      activeName:
-        type: string
-      closeTab:
-        description: Automatically close tab
-        type: boolean
-      defaultMenu:
-        description: Whether it is a basic route (under development)
-        type: boolean
-      icon:
-        description: menu icon
-        type: string
-      keepAlive:
-        description: Whether to cache
-        type: boolean
-      title:
-        description: menu name
-        type: string
-    type: object
   system.SysApi:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       apiGroup:
         description: api group
         type: string
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       description:
         description: api Chinese description
         type: string
       method:
-        description: Method: Create POST (default) | View GET | Update PUT | Delete DELETE
+        description: 'Method: Create POST (default) | View GET | Update PUT | Delete
+          DELETE'
         type: string
       path:
         description: api path
         type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   system.SysAuthority:
     properties:
       authorityId:
-        description: role ID
+        description: Role ID
         type: integer
       authorityName:
-        description: character name
+        description: role name
         type: string
       children:
         items:
           $ref: '#/definitions/system.SysAuthority'
         type: array
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       dataAuthorityId:
         items:
@@ -1255,16 +1245,16 @@ definitions:
         description: Parent role ID
         type: integer
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   system.SysAutoCode:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       desc:
         type: string
@@ -1273,14 +1263,16 @@ definitions:
       packageName:
         type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   system.SysBaseMenu:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
+      activeName:
+        type: string
       authoritys:
         items:
           $ref: '#/definitions/system.SysAuthority'
@@ -1289,23 +1281,31 @@ definitions:
         items:
           $ref: '#/definitions/system.SysBaseMenu'
         type: array
+      closeTab:
+        description: Automatically close tab
+        type: boolean
       component:
         description: Corresponding front-end file path
         type: string
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
+      defaultMenu:
+        description: Is it a basic routing (under development)
+        type: boolean
       hidden:
         description: Whether to hide in the list
+        type: boolean
+      icon:
+        description: Menu icon
+        type: string
+      keepAlive:
+        description: Whether to cache
         type: boolean
       menuBtn:
         items:
           $ref: '#/definitions/system.SysBaseMenuBtn'
         type: array
-      meta:
-        allOf:
-        - $ref: '#/definitions/system.Meta'
-        description: additional attributes
       name:
         description: route name
         type: string
@@ -1317,22 +1317,25 @@ definitions:
         description: Parent menu ID
         type: string
       path:
-        description: routing path
+        description: Routing path
         type: string
       sort:
-        description: sorting mark
+        description: Sort mark
         type: integer
+      title:
+        description: Menu name
+        type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   system.SysBaseMenuBtn:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       desc:
         type: string
@@ -1341,27 +1344,28 @@ definitions:
       sysBaseMenuID:
         type: integer
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   system.SysBaseMenuParameter:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       key:
-        description: The key that carries parameters in the address bar
+        description: key that carries parameters in the address bar
         type: string
       sysBaseMenuID:
         type: integer
       type:
-        description: Whether the parameters carried in the address bar are params or query
+        description: Whether the parameters carried in the address bar are params
+          or query
         type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
       value:
         description: The value of the parameter carried in the address bar
@@ -1370,19 +1374,19 @@ definitions:
   system.SysDictionary:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       desc:
-        description: description
+        description: Description
         type: string
       name:
-        description: dictionary name (medium)
+        description: Dictionary name (Chinese)
         type: string
       status:
-        description: status
+        description: Status
         type: boolean
       sysDictionaryDetails:
         items:
@@ -1392,44 +1396,70 @@ definitions:
         description: Dictionary name (English)
         type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   system.SysDictionaryDetail:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       extend:
-        description: extended value
+        description: Extended value
         type: string
       label:
         description: display value
         type: string
       sort:
-        description: sorting mark
+        description: Sort mark
         type: integer
       status:
-        description: enabled status
+        description: Enabled status
         type: boolean
       sysDictionaryID:
         description: associated tag
         type: integer
       updatedAt:
-        description: update time
+        description: Update time
         type: string
       value:
         description: dictionary value
         type: integer
     type: object
+  system.SysExportTemplate:
+    properties:
+      ID:
+        description: Primary key ID
+        type: integer
+      createdAt:
+        description: Creation time
+        type: string
+      name:
+        description: Template name
+        type: string
+      tableName:
+        description: Table name
+        type: string
+      templateID:
+        description: Template identification
+        type: string
+      templateInfo:
+        description: Template information
+        type: string
+      updatedAt:
+        description: Update time
+        type: string
+    type: object
   system.SysMenu:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
+      activeName:
+        type: string
       authoritys:
         items:
           $ref: '#/definitions/system.SysAuthority'
@@ -1442,14 +1472,26 @@ definitions:
         items:
           $ref: '#/definitions/system.SysMenu'
         type: array
+      closeTab:
+        description: Automatically close tab
+        type: boolean
       component:
         description: Corresponding front-end file path
         type: string
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
+      defaultMenu:
+        description: Is it a basic routing (under development)
+        type: boolean
       hidden:
         description: Whether to hide in the list
+        type: boolean
+      icon:
+        description: Menu icon
+        type: string
+      keepAlive:
+        description: Whether to cache
         type: boolean
       menuBtn:
         items:
@@ -1457,10 +1499,6 @@ definitions:
         type: array
       menuId:
         type: string
-      meta:
-        allOf:
-        - $ref: '#/definitions/system.Meta'
-        description: additional attributes
       name:
         description: route name
         type: string
@@ -1472,40 +1510,43 @@ definitions:
         description: Parent menu ID
         type: string
       path:
-        description: routing path
+        description: Routing path
         type: string
       sort:
-        description: sorting mark
+        description: Sort mark
         type: integer
+      title:
+        description: Menu name
+        type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
     type: object
   system.SysOperationRecord:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       agent:
-        description: agent
+        description: Agent
         type: string
       body:
         description: Request Body
         type: string
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       error_message:
-        description: error message
+        description: Error message
         type: string
       ip:
         description: request ip
         type: string
       latency:
-        description: delay
+        description: Latency
         type: string
       method:
-        description: request method
+        description: Request method
         type: string
       path:
         description: request path
@@ -1514,24 +1555,24 @@ definitions:
         description: Response Body
         type: string
       status:
-        description: request status
+        description: Request status
         type: integer
       updatedAt:
-        description: update time
+        description: Update time
         type: string
       user:
         $ref: '#/definitions/system.SysUser'
       user_id:
-        description: userid
+        description: user id
         type: integer
     type: object
   system.SysUser:
     properties:
       ID:
-        description: primary key ID
+        description: Primary key ID
         type: integer
       activeColor:
-        description: active color
+        description: Active color
         type: string
       authorities:
         items:
@@ -1546,10 +1587,10 @@ definitions:
         description: base color
         type: string
       createdAt:
-        description: creation time
+        description: Creation time
         type: string
       email:
-        description: user email
+        description: User's email
         type: string
       enable:
         description: Whether the user is frozen 1 normal 2 frozen
@@ -1558,22 +1599,22 @@ definitions:
         description: User avatar
         type: string
       nickName:
-        description: user nickname
+        description: User nickname
         type: string
       phone:
-        description: User mobile phone number
+        description: User's mobile phone number
         type: string
       sideMode:
         description: User side theme
         type: string
       updatedAt:
-        description: update time
+        description: Update time
         type: string
       userName:
-        description: user login name
+        description: User login name
         type: string
       uuid:
-        description: userUUID
+        description: UserUUID
         type: string
     type: object
   system.System:
@@ -1583,8 +1624,9 @@ definitions:
     type: object
 info:
   contact: {}
-  description: A full-stack development basic platform using gin+vue for extremely fast development
-  title: Gin-Vue-Admin Swagger API Interface Documentation
+  description: A full-stack development basic platform using gin+vue for extremely
+    fast development
+  title: Gin-Vue-Admin Swagger API interface document
   version: v2.5.9
 paths:
   /api/createApi:
@@ -1602,7 +1644,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Create a basic API
+          description: Create basic api
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1612,7 +1654,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Create a basic API
+      summary: Create basic api
       tags:
       - SysApi
   /api/deleteApi:
@@ -1630,7 +1672,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: delete api
+          description: Delete api
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1658,7 +1700,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Delete selected API
+          description: Delete selected Api
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1698,7 +1740,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get all APIs without pagination, return a list including APIs
+          description: Get all APIs without paging, return including api list
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1710,7 +1752,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Get all APIs without pagination
+      summary: Get all APIs without paging
       tags:
       - SysApi
   /api/getApiById:
@@ -1746,7 +1788,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: Get the API list in pages
+      - description: Get the API list by pagination
         in: body
         name: data
         required: true
@@ -1756,7 +1798,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the API list in paging, and return the list, total number, page number, and number per page
+          description: Get the API list in paging, and return the list, total number,
+            page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1768,7 +1811,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Get the API list in pages
+      summary: Get the API list by pagination
       tags:
       - SysApi
   /api/updateApi:
@@ -1786,7 +1829,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Modify the basic API
+          description: Modify basic api
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1796,7 +1839,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Modify the basic API
+      summary: Modify the basic api
       tags:
       - SysApi
   /authority/copyAuthority:
@@ -1804,7 +1847,8 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: old role id, new permission id, new permission name, new parent role id
+      - description: Old role id, new permission id, new permission name, new parent
+          role id
         in: body
         name: data
         required: true
@@ -1814,7 +1858,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Copy the role and return the system role details.
+          description: Copy role, return including system role details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1834,7 +1878,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: permission id, permission name, parent role id
+      - description: Permission id, permission name, parent role id
         in: body
         name: data
         required: true
@@ -1844,7 +1888,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Create a role and return system role details
+          description: Create role, return including system role details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1856,7 +1900,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Create a role
+      summary: Create role
       tags:
       - Authority
   /authority/deleteAuthority:
@@ -1884,7 +1928,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: delete role
+      summary: Delete role
       tags:
       - Authority
   /authority/getAuthorityList:
@@ -1892,7 +1936,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: page number, size of each page
+      - description: Page number, size of each page
         in: body
         name: data
         required: true
@@ -1902,7 +1946,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the role list in paging, and return the list, total number, page number, and number per page
+          description: Get the role list in paging, and return the list, total number,
+            page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1914,7 +1959,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Get the role list in paging
+      summary: Get the role list by pagination
       tags:
       - Authority
   /authority/setDataAuthority:
@@ -1950,7 +1995,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: permission id, permission name, parent role id
+      - description: Permission id, permission name, parent role id
         in: body
         name: data
         required: true
@@ -1972,7 +2017,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Update role information
+      summary: Update character information
       tags:
       - Authority
   /authorityBtn/canRemoveAuthorityBtn:
@@ -1983,7 +2028,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Deletion successful
+          description: Delete successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2001,7 +2046,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: menu id, role id, selected button id
+      - description: Menu id, role id, selected button id
         in: body
         name: data
         required: true
@@ -2031,7 +2076,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: menu id, role id, selected button id
+      - description: Menu id, role id, selected button id
         in: body
         name: data
         required: true
@@ -2154,7 +2199,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Package deleted successfully
+          description: Delete package successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2175,7 +2220,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: request parameters
+      - description: Request parameter
         in: body
         name: data
         required: true
@@ -2185,7 +2230,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Delete rollback records
+          description: Delete rollback record
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2251,7 +2296,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: request parameters
+      - description: Request parameter
         in: body
         name: data
         required: true
@@ -2298,7 +2343,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: get package
+      summary: Get package
       tags:
       - AutoCode
   /autoCode/getSysHistory:
@@ -2306,7 +2351,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: request parameters
+      - description: Request Parameters
         in: body
         name: data
         required: true
@@ -2316,7 +2361,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Query the rollback record and return the list, total number, page number, and number of each page
+          description: Query the rollback record, return includes list, total number,
+            page number, and number of each page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2339,7 +2385,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get all tables of the current database
+          description: Get all tables in the current database
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2352,7 +2398,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Get all tables of the current database
+      summary: Get all tables in the current database
       tags:
       - AutoCode
   /autoCode/installPlugin:
@@ -2422,7 +2468,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: packaged plug-in
+      - description: Packaging plug-in
         in: body
         name: data
         required: true
@@ -2432,7 +2478,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Plug-in packaged successfully
+          description: Packaging plug-in successful
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2445,7 +2491,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: packaged plug-in
+      summary: packaging plug-in
       tags:
       - AutoCode
   /autoCode/rollback:
@@ -2453,7 +2499,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: request parameters
+      - description: Request Parameters
         in: body
         name: data
         required: true
@@ -2473,7 +2519,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Rollback automatically generated code
+      summary: Roll back automatically generated code
       tags:
       - AutoCode
   /base/captcha:
@@ -2484,7 +2530,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Generate verification code, return including random number id, base64, verification code length, whether to enable verification code
+          description: Generate verification code, return including random number
+            id, base64, verification code length, whether to enable verification code
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2502,7 +2549,7 @@ paths:
   /base/login:
     post:
       parameters:
-      - description: username, password, verification code
+      - description: Username, password, verification code
         in: body
         name: data
         required: true
@@ -2512,7 +2559,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Returns user information, token, expiration time
+          description: Return includes user information, token, expiration time
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2530,7 +2577,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: permission id, permission model list
+      - description: Permission id, permission model list
         in: body
         name: data
         required: true
@@ -2558,7 +2605,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: permission id, permission model list
+      - description: Permission id, permission model list
         in: body
         name: data
         required: true
@@ -2568,7 +2615,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the permission list and return the list including casbin details
+          description: Get the permission list and return the list including casbin
+            details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2588,7 +2636,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: customer ID
+      - description: Customer ID
         in: body
         name: data
         required: true
@@ -2608,26 +2656,26 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: delete customer
+      summary: Delete customer
       tags:
       - ExaCustomer
     get:
       consumes:
       - application/json
       parameters:
-      - description: primary key ID
+      - description: Primary key ID
         in: query
         name: ID
         type: integer
-      - description: creation time
+      - description: Creation time
         in: query
         name: createdAt
         type: string
-      - description: customer name
+      - description: Customer name
         in: query
         name: customerName
         type: string
-      - description: customer mobile phone number
+      - description: Customer phone number
         in: query
         name: customerPhoneData
         type: string
@@ -2639,7 +2687,7 @@ paths:
         in: query
         name: sysUserId
         type: integer
-      - description: update time
+      - description: Update time
         in: query
         name: updatedAt
         type: string
@@ -2647,7 +2695,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Obtain single customer information and return customer details
+          description: Get single customer information, return including customer
+            details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2666,7 +2715,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: customer username, customer mobile phone number
+      - description: Customer username, customer mobile phone number
         in: body
         name: data
         required: true
@@ -2676,7 +2725,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Create a customer
+          description: Create customer
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2693,7 +2742,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: customer ID, customer information
+      - description: Customer ID, customer information
         in: body
         name: data
         required: true
@@ -2721,15 +2770,15 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: keyword
+      - description: Keyword
         in: query
         name: keyword
         type: string
-      - description: page number
+      - description: Page number
         in: query
         name: page
         type: integer
-      - description: size per page
+      - description: Size of each page
         in: query
         name: pageSize
         type: integer
@@ -2737,7 +2786,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the list of authorized customers in paging, and return the list, total number, page number, and quantity per page
+          description: Get the list of authorized customers in paging, and return
+            the list, total number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2769,7 +2819,7 @@ paths:
   /email/sendEmail:
     post:
       parameters:
-      - description: necessary parameters for sending emails
+      - description: Required parameters for sending emails
         in: body
         name: data
         required: true
@@ -2784,7 +2834,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: send email
+      summary: Send email
       tags:
       - System
   /fileUploadAndDownload/breakpointContinue:
@@ -2801,7 +2851,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Resume transfer to server from breakpoint
+          description: Resume breakpoint to server
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2811,7 +2861,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Resume transmission to server from breakpoint
+      summary: Resume the breakpoint to the server
       tags:
       - ExaFileUploadAndDownload
   /fileUploadAndDownload/deleteFile:
@@ -2827,7 +2877,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: delete file
+          description: Delete file
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2837,7 +2887,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: delete files
+      summary: delete file
       tags:
       - ExaFileUploadAndDownload
   /fileUploadAndDownload/findFile:
@@ -2845,7 +2895,7 @@ paths:
       consumes:
       - multipart/form-data
       parameters:
-      - description: File upload completed
+      - description: Upload file completed
         in: formData
         name: file
         required: true
@@ -2854,7 +2904,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Create a file, return including the file path
+          description: Create file, return including file path
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2874,7 +2924,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: page number, size of each page
+      - description: Page number, size of each page
         in: body
         name: data
         required: true
@@ -2884,7 +2934,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Paging file list, returns include list, total number, page number, number per page
+          description: Paging file list, return includes list, total number, page
+            number, number of pages per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2896,7 +2947,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: paging file list
+      summary: Paginated file list
       tags:
       - ExaFileUploadAndDownload
   /fileUploadAndDownload/removeChunk:
@@ -2904,7 +2955,7 @@ paths:
       consumes:
       - multipart/form-data
       parameters:
-      - description: Delete cache tiles
+      - description: Delete cache slice
         in: formData
         name: file
         required: true
@@ -2913,7 +2964,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: delete slice
+          description: Delete slice
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2931,7 +2982,7 @@ paths:
       consumes:
       - multipart/form-data
       parameters:
-      - description: Example of uploading file
+      - description: Upload file example
         in: formData
         name: file
         required: true
@@ -2952,7 +3003,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Example of uploading files
+      summary: Upload file example
       tags:
       - ExaFileUploadAndDownload
   /init/checkdb:
@@ -3017,7 +3068,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: jwt added to blacklist
+      summary: jwt added to the blacklist
       tags:
       - Jwt
   /menu/addBaseMenu:
@@ -3025,7 +3076,8 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: routing path, parent menu ID, routing name, corresponding front-end file path, sorting mark
+      - description: Routing path, parent menu ID, routing name, corresponding front-end
+          file path, sorting mark
         in: body
         name: data
         required: true
@@ -3073,7 +3125,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Increase the relationship between menu and role
+      summary: Add the relationship between menu and role
       tags:
       - AuthorityMenu
   /menu/deleteBaseMenu:
@@ -3091,7 +3143,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: delete menu
+          description: Delete menu
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3119,7 +3171,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the menu based on id and return the system menu list
+          description: Get the menu based on the id and return the system menu list
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3131,7 +3183,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Get menu based on id
+      summary: Get the menu based on id
       tags:
       - Menu
   /menu/getBaseMenuTree:
@@ -3147,7 +3199,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the user's dynamic route and return the system menu list
+          description: Get user dynamic routing, return including system menu list
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3175,7 +3227,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get user dynamic routing and return a list including system menu details
+          description: Get user dynamic routing and return a list including system
+            menu details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3195,7 +3248,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: role ID
+      - description: Role ID
         in: body
         name: data
         required: true
@@ -3226,7 +3279,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: page number, size of each page
+      - description: Page number, size of each page
         in: body
         name: data
         required: true
@@ -3236,7 +3289,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the basic menu list in paging, and return the list, total number, page number, and number per page
+          description: Get the basic menu list by paging, and return the list, total
+            number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3256,7 +3310,8 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: routing path, parent menu ID, routing name, corresponding front-end file path, sorting mark
+      - description: Routing path, parent menu ID, routing name, corresponding front-end
+          file path, sorting mark
         in: body
         name: data
         required: true
@@ -3266,7 +3321,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: update menu
+          description: Update menu
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3332,7 +3387,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Delete SysDictionary
+      summary: delete SysDictionary
       tags:
       - SysDictionary
   /sysDictionary/findSysDictionary:
@@ -3340,31 +3395,31 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: primary key ID
+      - description: Primary key ID
         in: query
         name: ID
         type: integer
-      - description: creation time
+      - description: Creation time
         in: query
         name: createdAt
         type: string
-      - description: description
+      - description: Description
         in: query
         name: desc
         type: string
-      - description: dictionary name (medium)
+      - description: Dictionary name (Chinese)
         in: query
         name: name
         type: string
-      - description: status
+      - description: Status
         in: query
         name: status
         type: boolean
-      - description: dictionary name (English)
+      - description: Dictionary name (English)
         in: query
         name: type
         type: string
-      - description: update time
+      - description: Update time
         in: query
         name: updatedAt
         type: string
@@ -3385,7 +3440,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Query SysDictionary using id
+      summary: Query SysDictionary with id
       tags:
       - SysDictionary
   /sysDictionary/getSysDictionaryList:
@@ -3396,7 +3451,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the SysDictionary list in paging, and return the list, total number, page number, and number per page
+          description: Get the SysDictionary list by paging, and return the list,
+            total number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3408,7 +3464,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Get the SysDictionary list in pages
+      summary: Get the SysDictionary list by pagination
       tags:
       - SysDictionary
   /sysDictionary/updateSysDictionary:
@@ -3500,15 +3556,15 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: primary key ID
+      - description: Primary key ID
         in: query
         name: ID
         type: integer
-      - description: creation time
+      - description: Creation time
         in: query
         name: createdAt
         type: string
-      - description: extended value
+      - description: Extended value
         in: query
         name: extend
         type: string
@@ -3516,11 +3572,11 @@ paths:
         in: query
         name: label
         type: string
-      - description: sorting mark
+      - description: Sort mark
         in: query
         name: sort
         type: integer
-      - description: enabled status
+      - description: Enabled status
         in: query
         name: status
         type: boolean
@@ -3528,7 +3584,7 @@ paths:
         in: query
         name: sysDictionaryID
         type: integer
-      - description: update time
+      - description: Update time
         in: query
         name: updatedAt
         type: string
@@ -3553,7 +3609,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Query SysDictionaryDetail using id
+      summary: Use id to query SysDictionaryDetail
       tags:
       - SysDictionaryDetail
   /sysDictionaryDetail/getSysDictionaryDetailList:
@@ -3561,19 +3617,19 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: primary key ID
+      - description: Primary key ID
         in: query
         name: ID
         type: integer
-      - description: creation time
+      - description: Creation time
         in: query
         name: createdAt
         type: string
-      - description: extended value
+      - description: Extended value
         in: query
         name: extend
         type: string
-      - description: keyword
+      - description: Keyword
         in: query
         name: keyword
         type: string
@@ -3581,19 +3637,19 @@ paths:
         in: query
         name: label
         type: string
-      - description: page number
+      - description: Page number
         in: query
         name: page
         type: integer
-      - description: size per page
+      - description: Size of each page
         in: query
         name: pageSize
         type: integer
-      - description: sorting mark
+      - description: Sort mark
         in: query
         name: sort
         type: integer
-      - description: enabled status
+      - description: Enabled status
         in: query
         name: status
         type: boolean
@@ -3601,7 +3657,7 @@ paths:
         in: query
         name: sysDictionaryID
         type: integer
-      - description: update time
+      - description: Update time
         in: query
         name: updatedAt
         type: string
@@ -3613,7 +3669,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the SysDictionaryDetail list in pages, and return the list, total number, page number, and number per page
+          description: Get the SysDictionaryDetail list by paging, and return the
+            list, total number, page number, and number of each page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3625,7 +3682,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Get the SysDictionaryDetail list in pages
+      summary: Get the SysDictionaryDetail list by pagination
       tags:
       - SysDictionaryDetail
   /sysDictionaryDetail/updateSysDictionaryDetail:
@@ -3656,6 +3713,230 @@ paths:
       summary: Update SysDictionaryDetail
       tags:
       - SysDictionaryDetail
+  /sysExportTemplate/createSysExportTemplate:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Create export template
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/system.SysExportTemplate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"Created successfully"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Create export template
+      tags:
+      - SysExportTemplate
+  /sysExportTemplate/deleteSysExportTemplate:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Delete export template
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/system.SysExportTemplate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"Delete successfully"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Delete export template
+      tags:
+      - SysExportTemplate
+  /sysExportTemplate/deleteSysExportTemplateByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Delete export templates in batches
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"Batch deletion successful"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Batch delete export templates
+      tags:
+      - SysExportTemplate
+  /sysExportTemplate/exportExcel:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Export table template
+      tags:
+      - SysExportTemplate
+  /sysExportTemplate/findSysExportTemplate:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Primary key ID
+        in: query
+        name: ID
+        type: integer
+      - description: Creation time
+        in: query
+        name: createdAt
+        type: string
+      - description: Template name
+        in: query
+        name: name
+        type: string
+      - description: Table name
+        in: query
+        name: tableName
+        type: string
+      - description: Template identification
+        in: query
+        name: templateID
+        type: string
+      - description: Template information
+        in: query
+        name: templateInfo
+        type: string
+      - description: Update time
+        in: query
+        name: updatedAt
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"Query successful"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Use id to query and export templates
+      tags:
+      - SysExportTemplate
+  /sysExportTemplate/getSysExportTemplateList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Primary key ID
+        in: query
+        name: ID
+        type: integer
+      - description: Creation time
+        in: query
+        name: createdAt
+        type: string
+      - in: query
+        name: endCreatedAt
+        type: string
+      - description: Keyword
+        in: query
+        name: keyword
+        type: string
+      - description: Template name
+        in: query
+        name: name
+        type: string
+      - description: Page number
+        in: query
+        name: page
+        type: integer
+      - description: Size of each page
+        in: query
+        name: pageSize
+        type: integer
+      - in: query
+        name: startCreatedAt
+        type: string
+      - description: Table name
+        in: query
+        name: tableName
+        type: string
+      - description: Template identification
+        in: query
+        name: templateID
+        type: string
+      - description: Template information
+        in: query
+        name: templateInfo
+        type: string
+      - description: Update time
+        in: query
+        name: updatedAt
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"Get successful"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Get the export template list by pagination
+      tags:
+      - SysExportTemplate
+  /sysExportTemplate/importExcel:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Import table
+      tags:
+      - SysImportTemplate
+  /sysExportTemplate/updateSysExportTemplate:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Update export template
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/system.SysExportTemplate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"Update successful"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Update export template
+      tags:
+      - SysExportTemplate
   /sysOperationRecord/createSysOperationRecord:
     post:
       consumes:
@@ -3745,11 +4026,11 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: primary key ID
+      - description: Primary key ID
         in: query
         name: ID
         type: integer
-      - description: agent
+      - description: Agent
         in: query
         name: agent
         type: string
@@ -3757,11 +4038,11 @@ paths:
         in: query
         name: body
         type: string
-      - description: creation time
+      - description: Creation time
         in: query
         name: createdAt
         type: string
-      - description: error message
+      - description: Error message
         in: query
         name: error_message
         type: string
@@ -3769,11 +4050,11 @@ paths:
         in: query
         name: ip
         type: string
-      - description: delay
+      - description: Latency
         in: query
         name: latency
         type: string
-      - description: request method
+      - description: Request method
         in: query
         name: method
         type: string
@@ -3785,11 +4066,11 @@ paths:
         in: query
         name: resp
         type: string
-      - description: request status
+      - description: Request status
         in: query
         name: status
         type: integer
-      - description: update time
+      - description: Update time
         in: query
         name: updatedAt
         type: string
@@ -3814,7 +4095,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Query SysOperationRecord using id
+      summary: Query SysOperationRecord with id
       tags:
       - SysOperationRecord
   /sysOperationRecord/getSysOperationRecordList:
@@ -3822,11 +4103,11 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: primary key ID
+      - description: Primary key ID
         in: query
         name: ID
         type: integer
-      - description: agent
+      - description: Agent
         in: query
         name: agent
         type: string
@@ -3834,11 +4115,11 @@ paths:
         in: query
         name: body
         type: string
-      - description: creation time
+      - description: Creation time
         in: query
         name: createdAt
         type: string
-      - description: error message
+      - description: Error message
         in: query
         name: error_message
         type: string
@@ -3846,23 +4127,23 @@ paths:
         in: query
         name: ip
         type: string
-      - description: keyword
+      - description: Keyword
         in: query
         name: keyword
         type: string
-      - description: delay
+      - description: Latency
         in: query
         name: latency
         type: string
-      - description: request method
+      - description: Request method
         in: query
         name: method
         type: string
-      - description: page number
+      - description: Page number
         in: query
         name: page
         type: integer
-      - description: size per page
+      - description: Size of each page
         in: query
         name: pageSize
         type: integer
@@ -3874,11 +4155,11 @@ paths:
         in: query
         name: resp
         type: string
-      - description: request status
+      - description: Request status
         in: query
         name: status
         type: integer
-      - description: update time
+      - description: Update time
         in: query
         name: updatedAt
         type: string
@@ -3890,7 +4171,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the SysOperationRecord list in paging, and return the list, total number, page number, and number per page
+          description: Get the SysOperationRecord list in paging, and return the list,
+            total number, page number, and number of each page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3902,7 +4184,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Get the SysOperationRecord list in pages
+      summary: Get the SysOperationRecord list in paging
       tags:
       - SysOperationRecord
   /system/getServerInfo:
@@ -3933,7 +4215,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the content of the configuration file and return the system configuration.
+          description: Get the configuration file content and return including system
+            configuration
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4027,7 +4310,7 @@ paths:
   /user/admin_register:
     post:
       parameters:
-      - description: username, nickname, password, role ID
+      - description: Username, nickname, password, role ID
         in: body
         name: data
         required: true
@@ -4037,7 +4320,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: User registered account, returns including user information
+          description: User registered account, return includes user information
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4053,7 +4336,7 @@ paths:
   /user/changePassword:
     post:
       parameters:
-      - description: username, original password, new password
+      - description: Username, original password, new password
         in: body
         name: data
         required: true
@@ -4081,7 +4364,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: user ID
+      - description: User ID
         in: body
         name: data
         required: true
@@ -4091,7 +4374,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: delete user
+          description: Delete user
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4133,7 +4416,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: page number, size of each page
+      - description: Page number, size of each page
         in: body
         name: data
         required: true
@@ -4143,7 +4426,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: Get the user list in pages, and return the list, total number, page number, and number per page
+          description: Get the user list in paging, and return the list, total number,
+            page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4155,7 +4439,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: Get the user list in pages
+      summary: Get the user list by pagination
       tags:
       - SysUser
   /user/resetPassword:
@@ -4189,7 +4473,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: user UUID, role ID
+      - description: User UUID, role ID
         in: body
         name: data
         required: true
@@ -4217,7 +4501,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: user UUID, role ID
+      - description: User UUID, role ID
         in: body
         name: data
         required: true
