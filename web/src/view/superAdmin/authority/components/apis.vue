@@ -4,13 +4,13 @@
       <el-input
         v-model="filterText"
         class="w-3/5"
-        placeholder="筛选"
+        placeholder="Filter"
       />
       <el-button
         class="float-right"
         type="primary"
         @click="authApiEnter"
-      >确 定</el-button>
+      >Confirm</el-button>
     </div>
     <div class="tree-content">
       <el-scrollbar>
@@ -79,12 +79,12 @@ const needConfirm = ref(false)
 const nodeChange = () => {
   needConfirm.value = true
 }
-// 暴露给外层使用的切换拦截统一方法
+// Unified switching interception method exposed to the outer layer
 const enterAndNext = () => {
   authApiEnter()
 }
 
-// 创建api树方法
+// Create api tree method
 const buildApiTree = (apis) => {
   const apiObj = {}
   apis &&
@@ -100,7 +100,7 @@ const buildApiTree = (apis) => {
   for (const key in apiObj) {
     const treeNode = {
       ID: key,
-      description: key + '组',
+      description: key + 'group',
       children: apiObj[key]
     }
     apiTree.push(treeNode)
@@ -108,7 +108,7 @@ const buildApiTree = (apis) => {
   return apiTree
 }
 
-// 关联关系确定
+// Association relationship determined
 const apiTree = ref(null)
 const authApiEnter = async() => {
   const checkArr = apiTree.value.getCheckedNodes(true)
@@ -125,7 +125,7 @@ const authApiEnter = async() => {
     casbinInfos
   })
   if (res.code === 0) {
-    ElMessage({ type: 'success', message: 'api设置成功' })
+    ElMessage({ type: 'success', message: 'api set up successfully' })
   }
 }
 

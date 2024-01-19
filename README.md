@@ -10,338 +10,338 @@
 <img src="https://img.shields.io/badge/gorm-1.25.2-red"/>
 </div>
 
-[English](./README-en.md) | 简体中文
+[English](./README-en.md) | Simplified Chinese
 
-## 不同版本
+## different versions
 
-我们会对以下四个版本持续维护，请选择适合自己的版本使用。最新技术栈为组合式api版本，已支持多语言（I18N）
+We will continue to maintain the following four versions, please choose the version that suits you. The latest technology stack is a combined API version that supports multiple languages (I18N)
 
-[组合式API版（主）](https://github.com/flipped-aurora/gin-vue-admin) | 
-[组合式API多语言(i18n)版](https://github.com/flipped-aurora/gin-vue-admin/tree/i18n-dev-new) | 
-[声明式API版](https://github.com/flipped-aurora/gin-vue-admin/tree/v2.4.x) | 
-[声明式API多语言(i18n)版](https://github.com/flipped-aurora/gin-vue-admin/tree/i18n-dev)
+[Combined API version (main)](https://github.com/flipped-aurora/gin-vue-admin) |
+[Combined API multi-language (i18n) version](https://github.com/flipped-aurora/gin-vue-admin/tree/i18n-dev-new) |
+[Declarative API version](https://github.com/flipped-aurora/gin-vue-admin/tree/v2.4.x) |
+[Declarative API multi-language (i18n) version](https://github.com/flipped-aurora/gin-vue-admin/tree/i18n-dev)
 
-# 项目文档
-[在线文档](https://www.gin-vue-admin.com) : https://www.gin-vue-admin.com
+#Project documentation
+[Online Documentation](https://www.gin-vue-admin.com): https://www.gin-vue-admin.com
 
-[初始化](https://www.gin-vue-admin.com/guide/start-quickly/initialization.html)
+[Initialization](https://www.gin-vue-admin.com/guide/start-quickly/initialization.html)
 						       
-[从环境到部署教学视频](https://www.bilibili.com/video/BV1Rg411u7xH)
+[From environment to deployment teaching video](https://www.bilibili.com/video/BV1Rg411u7xH)
 
-[开发教学](https://www.gin-vue-admin.com/guide/start-quickly/env.html) (贡献者:  <a href="https://github.com/LLemonGreen">LLemonGreen</a> And <a href="https://github.com/fkk0509">Fann</a>)
+[Development Tutorial](https://www.gin-vue-admin.com/guide/start-quickly/env.html) (Contributor: <a href="https://github.com/LLemonGreen">LLemonGreen </a> And <a href="https://github.com/fkk0509">Fann</a>)
 
-[交流社区](https://support.qq.com/products/371961)
+[Communication Community](https://support.qq.com/products/371961)
 
-[插件市场](https://plugin.gin-vue-admin.com/)
+[Plugin Market](https://plugin.gin-vue-admin.com/)
 
-# 重要提示
+# important hint
 
-1.本项目从起步到开发到部署均有文档和详细视频教程
+1. This project has documentation and detailed video tutorials from start-up to development to deployment.
 
-2.本项目需要您有一定的golang和vue基础
+2. This project requires you to have a certain foundation in golang and vue
 
-3.您完全可以通过我们的教程和文档完成一切操作，因此我们不再提供免费的技术服务，如需服务请进行[付费支持](https://www.gin-vue-admin.com/coffee/payment.html)
+3. You can complete all operations through our tutorials and documents, so we no longer provide free technical services. If you need services, please go to [paid support] (https://www.gin-vue-admin.com/coffee /payment.html)
 
-4.如果您将此项目用于商业用途，请遵守Apache2.0协议并保留作者技术支持声明。您需保留如下版权声明信息，其余信息功能不做任何限制。如需剔除请[购买授权](https://www.gin-vue-admin.com/empower/index.html)
+4. If you use this project for commercial purposes, please comply with the Apache2.0 agreement and retain the author's technical support statement. You need to retain the following copyright statement information, and there are no restrictions on other information functions. If you need to remove it, please [Purchase Authorization](https://www.gin-vue-admin.com/empower/index.html)
 
 <img src="https://qmplusimg.henrongyi.top/%E6%8E%88%E6%9D%83.png" width="1000">
 
-## 1. 基本介绍
+## 1. Basic introduction
 
-### 1.1 项目介绍
+### 1.1 Project Introduction
 
-> Gin-vue-admin是一个基于 [vue](https://vuejs.org) 和 [gin](https://gin-gonic.com) 开发的全栈前后端分离的开发基础平台，集成jwt鉴权，动态路由，动态菜单，casbin鉴权，表单生成器，代码生成器等功能，提供多种示例文件，让您把更多时间专注在业务开发上。
+> Gin-vue-admin is a full-stack front-end and back-end development basic platform developed based on [vue](https://vuejs.org) and [gin](https://gin-gonic.com), integrating jwt Authentication, dynamic routing, dynamic menu, casbin authentication, form generator, code generator and other functions provide a variety of sample files, allowing you to focus more time on business development.
 
-[在线预览](http://demo.gin-vue-admin.com): http://demo.gin-vue-admin.com
+[Online preview](http://demo.gin-vue-admin.com): http://demo.gin-vue-admin.com
 
-测试用户名：admin
+Test username: admin
 
-测试密码：123456
+Test password: 123456
 
-### 1.2 贡献指南
-Hi! 首先感谢你使用 gin-vue-admin。
+### 1.2 Contribution Guidelines
+Hi! First of all, thank you for using gin-vue-admin.
 
-Gin-vue-admin 是一套为快速研发准备的一整套前后端分离架构式的开源框架，旨在快速搭建中小型项目。
+Gin-vue-admin is a set of open source frameworks with a front-end and back-end separation architecture prepared for rapid research and development. It is designed to quickly build small and medium-sized projects.
 
-Gin-vue-admin 的成长离不开大家的支持，如果你愿意为 gin-vue-admin 贡献代码或提供建议，请阅读以下内容。
+The growth of Gin-vue-admin cannot be separated from everyone's support. If you are willing to contribute code or provide suggestions for gin-vue-admin, please read the following content.
 
-#### 1.2.1 Issue 规范
-- issue 仅用于提交 Bug 或 Feature 以及设计相关的内容，其它内容可能会被直接关闭。
+#### 1.2.1 Issue specification
+- Issues are only used to submit bugs or features and design-related content. Other content may be closed directly.
 									      
-- 在提交 issue 之前，请搜索相关内容是否已被提出。
+- Before submitting an issue, please search to see if the relevant content has been raised.
 
-#### 1.2.2 Pull Request 规范
-- 请先 fork 一份到自己的项目下，不要直接在仓库下建分支。
+#### 1.2.2 Pull Request Specification
+- Please fork a copy to your own project first, do not create a branch directly under the warehouse.
 
-- commit 信息要以`[文件名]: 描述信息` 的形式填写，例如 `README.md: fix xxx bug`。
+- The commit information should be filled in in the form of `[file name]: description information`, for example `README.md: fix xxx bug`.
 
-- 如果是修复 bug，请在 PR 中给出描述信息。
+- If you are fixing a bug, please provide a description in the PR.
 
-- 合并代码需要两名维护人员参与：一人进行 review 后 approve，另一人再次 review，通过后即可合并。
+- Merging the code requires the participation of two maintainers: one person reviews and then approves, and the other person reviews again, and can be merged after approval.
 
-## 2. 使用说明
+## 2. Instructions for use
 
 ```
-- node版本 > v16.8.3
-- golang版本 >= v1.16
-- IDE推荐：Goland
+- node version > v16.8.3
+- golang version >= v1.16
+- IDE recommendation: Goland
 ```
 
-### 2.1 server项目
+### 2.1 server project
 
-使用 `Goland` 等编辑工具，打开server目录，不可以打开 gin-vue-admin 根目录
+Use editing tools such as `Goland` to open the server directory. Do not open the gin-vue-admin root directory.
 
 ```bash
 
-# 克隆项目
+# Clone project
 git clone https://github.com/flipped-aurora/gin-vue-admin.git
-# 进入server文件夹
+# Enter the server folder
 cd server
 
-# 使用 go mod 并安装go依赖包
+# Use go mod and install go dependency packages
 go generate
 
-# 编译 
-go build -o server main.go (windows编译命令为go build -o server.exe main.go )
+# compile
+go build -o server main.go (the windows compilation command is go build -o server.exe main.go)
 
-# 运行二进制
-./server (windows运行命令为 server.exe)
+# Run binary
+./server (Windows running command is server.exe)
 ```
 
-### 2.2 web项目
+### 2.2 web project
 
 ```bash
-# 进入web文件夹
+# Enter the web folder
 cd web
 
-# 安装依赖
+# Install dependencies
 npm install
 
-# 启动web项目
+# Start web project
 npm run serve
 ```
 
-### 2.3 swagger自动化API文档
+### 2.3 swagger automation API documentation
 
-#### 2.3.1 安装 swagger
+#### 2.3.1 Install swagger
 
 ``` shell
 go install github.com/swaggo/swag/cmd/swag@latest
 ```
 
-#### 2.3.2 生成API文档
+#### 2.3.2 Generate API documentation
 
 ```` shell
 cd server
 swag init
 ````
 
-> 执行上面的命令后，server目录下会出现docs文件夹里的 `docs.go`, `swagger.json`, `swagger.yaml` 三个文件更新，启动go服务之后, 在浏览器输入 [http://localhost:8888/swagger/index.html](http://localhost:8888/swagger/index.html) 即可查看swagger文档
+> After executing the above command, the three files `docs.go`, `swagger.json`, and `swagger.yaml` in the docs folder will appear in the server directory. After starting the go service, enter [http in the browser ://localhost:8888/swagger/index.html](http://localhost:8888/swagger/index.html) to view the swagger documentation
 
-### 2.4 VSCode工作区
+### 2.4 VSCode workspace
 
-#### 2.4.1 开发
+#### 2.4.1 Development
 
-使用`VSCode`打开根目录下的工作区文件`gin-vue-admin.code-workspace`，在边栏可以看到三个虚拟目录：`backend`、`frontend`、`root`。
+Use `VSCode` to open the workspace file `gin-vue-admin.code-workspace` in the root directory. You can see three virtual directories in the sidebar: `backend`, `frontend`, and `root`.
 
-#### 2.4.2 运行/调试
+#### 2.4.2 Run/Debug
 
-在运行和调试中也可以看到三个task：`Backend`、`Frontend`、`Both (Backend & Frontend)`。运行`Both (Backend & Frontend)`可以同时启动前后端项目。
+You can also see three tasks in running and debugging: `Backend`, `Frontend`, and `Both (Backend & Frontend)`. Run `Both (Backend & Frontend)` to start the front-end and front-end projects at the same time.
 
 #### 2.4.3 settings
 
-在工作区配置文件中有`go.toolsEnvVars`字段，是用于`VSCode`自身的go工具环境变量。此外在多go版本的系统中，可以通过`gopath`、`go.goroot`指定运行版本。
+There is a `go.toolsEnvVars` field in the workspace configuration file, which is the go tool environment variable used for `VSCode` itself. In addition, in systems with multiple go versions, you can specify the running version through `gopath` and `go.goroot`.
 
 ```json
     "go.gopath": null,
     "go.goroot": null,
 ```
 
-## 3. 技术选型
+## 3. Technology selection
 
-- 前端：用基于 [Vue](https://vuejs.org) 的 [Element](https://github.com/ElemeFE/element) 构建基础页面。
-- 后端：用 [Gin](https://gin-gonic.com/) 快速搭建基础restful风格API，[Gin](https://gin-gonic.com/) 是一个go语言编写的Web框架。
-- 数据库：采用`MySql` > (5.7) 版本 数据库引擎 InnoDB，使用 [gorm](http://gorm.cn) 实现对数据库的基本操作。
-- 缓存：使用`Redis`实现记录当前活跃用户的`jwt`令牌并实现多点登录限制。
-- API文档：使用`Swagger`构建自动化文档。
-- 配置文件：使用 [fsnotify](https://github.com/fsnotify/fsnotify) 和 [viper](https://github.com/spf13/viper) 实现`yaml`格式的配置文件。
-- 日志：使用 [zap](https://github.com/uber-go/zap) 实现日志记录。
+- Front-end: Build the basic page with [Element](https://github.com/ElemeFE/element) based on [Vue](https://vuejs.org).
+- Backend: Use [Gin](https://gin-gonic.com/) to quickly build a basic restful style API. [Gin](https://gin-gonic.com/) is a web framework written in go language. .
+- Database: Use `MySql` > (5.7) version database engine InnoDB, use [gorm](http://gorm.cn) to implement basic operations on the database.
+- Cache: Use `Redis` to record the `jwt` token of the current active user and implement multi-point login restrictions.
+- API documentation: Use `Swagger` to build automation documentation.
+- Configuration file: Use [fsnotify](https://github.com/fsnotify/fsnotify) and [viper](https://github.com/spf13/viper) to implement the `yaml` format configuration file.
+- Log: Use [zap](https://github.com/uber-go/zap) to implement logging.
 
-## 4. 项目架构
+## 4. Project structure
 
-### 4.1 系统架构图
+### 4.1 System Architecture Diagram
 
-![系统架构图](http://qmplusimg.henrongyi.top/gva/gin-vue-admin.png)
+![System Architecture Diagram](http://qmplusimg.henrongyi.top/gva/gin-vue-admin.png)
 
-### 4.2 前端详细设计图 （提供者:<a href="https://github.com/baobeisuper">baobeisuper</a>）
+### 4.2 Front-end detailed design drawing (provided by: <a href="https://github.com/baobeisuper">baobeisuper</a>)
 
-![前端详细设计图](http://qmplusimg.henrongyi.top/naotu.png)
+![Front-end detailed design drawing](http://qmplusimg.henrongyi.top/naotu.png)
 
-### 4.3 目录结构
+### 4.3 Directory structure
 
 ```
     ├── server
-        ├── api             (api层)
-        │   └── v1          (v1版本接口)
-        ├── config          (配置包)
-        ├── core            (核心文件)
-        ├── docs            (swagger文档目录)
-        ├── global          (全局对象)                    
-        ├── initialize      (初始化)                        
-        │   └── internal    (初始化内部函数)                            
-        ├── middleware      (中间件层)                        
-        ├── model           (模型层)                    
-        │   ├── request     (入参结构体)                        
-        │   └── response    (出参结构体)                            
-        ├── packfile        (静态文件打包)                        
-        ├── resource        (静态资源文件夹)                        
-        │   ├── excel       (excel导入导出默认路径)                        
-        │   ├── page        (表单生成器)                        
-        │   └── template    (模板)                            
-        ├── router          (路由层)                    
-        ├── service         (service层)                    
-        ├── source          (source层)                    
-        └── utils           (工具包)                    
-            ├── timer       (定时器接口封装)                        
-            └── upload      (oss接口封装)                        
+        ├── api (api layer)
+        │ └── v1 (v1 version interface)
+        ├── config (configuration package)
+        ├── core (core file)
+        ├── docs (swagger document directory)
+        ├── global (global object)
+        ├── initialize (initialization)
+        │ └── internal (initialization internal function)
+        ├── middleware (middleware layer)
+        ├── model (model layer)
+        │ ├── request (input parameter structure)
+        │ └── response (parameter structure)
+        ├── packfile (static file packaging)
+        ├── resource (static resource folder)
+        │ ├── excel (default path for excel import and export)
+        │ ├── page (form builder)
+        │ └── template
+        ├── router (routing layer)
+        ├── service (service layer)
+        ├── source (source layer)
+        └── utils (toolkit)
+            ├── timer (timer interface package)
+            └── upload (oss interface encapsulation)
     
             web
         ├── babel.config.js
         ├── Dockerfile
         ├── favicon.ico
-        ├── index.html                 -- 主页面
-        ├── limit.js                   -- 助手代码
-        ├── package.json               -- 包管理器代码
-        ├── src                        -- 源代码
-        │   ├── api                    -- api 组
-        │   ├── App.vue                -- 主页面
-        │   ├── assets                 -- 静态资源
-        │   ├── components             -- 全局组件
-        │   ├── core                   -- gva 组件包
-        │   │   ├── config.js          -- gva网站配置文件
-        │   │   ├── gin-vue-admin.js   -- 注册欢迎文件
-        │   │   └── global.js          -- 统一导入文件
-        │   ├── directive              -- v-auth 注册文件
-        │   ├── main.js                -- 主文件
-        │   ├── permission.js          -- 路由中间件
-        │   ├── pinia                  -- pinia 状态管理器，取代vuex
-        │   │   ├── index.js           -- 入口文件
+        ├── index.html -- main page
+        ├── limit.js -- helper code
+        ├── package.json -- package manager code
+        ├── src -- source code
+        │ ├── api -- api group
+        │ ├── App.vue -- Main page
+        │ ├── assets -- static resources
+        │ ├── components -- global components
+        │ ├── core -- gva component package
+        │ │ ├── config.js -- gva website configuration file
+        │ │ ├── gin-vue-admin.js -- Registration welcome file
+        │ │ └── global.js -- unified import file
+        │ ├── directive -- v-auth registration file
+        │ ├── main.js -- main file
+        │ ├── permission.js -- routing middleware
+        │ ├── pinia -- pinia state manager, replacing vuex
+        │ │ ├── index.js -- entry file
         │   │   └── modules            -- modules
         │   │       ├── dictionary.js
         │   │       ├── router.js
         │   │       └── user.js
-        │   ├── router                 -- 路由声明文件
+        │ ├── router -- routing declaration file
         │   │   └── index.js
-        │   ├── style                  -- 全局样式
+        │ ├── style -- global style
         │   │   ├── base.scss
         │   │   ├── basics.scss
-        │   │   ├── element_visiable.scss  -- 此处可以全局覆盖 element-plus 样式
-        │   │   ├── iconfont.css           -- 顶部几个icon的样式文件
+        │ │ ├── element_visiable.scss -- The element-plus style can be globally overridden here.
+        │ │ ├── iconfont.css -- style files for the top icons
         │   │   ├── main.scss
         │   │   ├── mobile.scss
         │   │   └── newLogin.scss
-        │   ├── utils                  -- 方法包库
-        │   │   ├── asyncRouter.js     -- 动态路由相关
-        │   │   ├── btnAuth.js         -- 动态权限按钮相关
-        │   │   ├── bus.js             -- 全局mitt声明文件
-        │   │   ├── date.js            -- 日期相关
-        │   │   ├── dictionary.js      -- 获取字典方法 
-        │   │   ├── downloadImg.js     -- 下载图片方法
-        │   │   ├── format.js          -- 格式整理相关
-        │   │   ├── image.js           -- 图片相关方法
-        │   │   ├── page.js            -- 设置页面标题
-        │   │   ├── request.js         -- 请求
-        │   │   └── stringFun.js       -- 字符串文件
-        |   ├── view -- 主要view代码
-        |   |   ├── about -- 关于我们
-        |   |   ├── dashboard -- 面板
-        |   |   ├── error -- 错误
-        |   |   ├── example --上传案例
-        |   |   ├── iconList -- icon列表
-        |   |   ├── init -- 初始化数据  
-        |   |   |   ├── index -- 新版本
-        |   |   |   ├── init -- 旧版本
-        |   |   ├── layout  --  layout约束页面 
+        │ ├── utils -- method package library
+        │ │ ├── asyncRouter.js -- dynamic routing related
+        │ │ ├── btnAuth.js -- Dynamic permission button related
+        │ │ ├── bus.js -- global mitt declaration file
+        │ │ ├── date.js -- date related
+        │ │ ├── dictionary.js -- Get dictionary method
+        │ │ ├── downloadImg.js -- How to download images
+        │ │ ├── format.js -- formatting related
+        │ │ ├── image.js -- Image related methods
+        │ │ ├── page.js -- Set page title
+        │ │ ├── request.js -- Request
+        │ │ └── stringFun.js -- string file
+        | ├── view -- main view code
+        | | ├── about -- About us
+        | | ├── dashboard -- panel
+        | | ├── error -- error
+        | | ├── example --upload case
+        | | ├── iconList -- icon list
+        | | ├── init -- initialization data
+        | | | ├── index -- new version
+        | | | ├── init -- old version
+        | | ├── layout -- layout constraint page
         |   |   |   ├── aside 
         |   |   |   ├── bottomInfo     -- bottomInfo
-        |   |   |   ├── screenfull     -- 全屏设置
-        |   |   |   ├── setting        -- 系统设置
-        |   |   |   └── index.vue      -- base 约束
-        |   |   ├── login              --登录 
-        |   |   ├── person             --个人中心 
-        |   |   ├── superAdmin         -- 超级管理员操作
-        |   |   ├── system             -- 系统检测页面
-        |   |   ├── systemTools        -- 系统配置相关页面
-        |   |   └── routerHolder.vue   -- page 入口页面 
-        ├── vite.config.js             -- vite 配置文件
+        | | | ├── screenfull -- full screen settings
+        | | | ├── setting -- system settings
+        | | | └── index.vue -- base constraints
+        | | ├── login --log in
+        | | ├── person --personal center
+        | | ├── superAdmin -- super administrator operation
+        | | ├── system -- system detection page
+        | | ├── systemTools -- System configuration related pages
+        | | └── routerHolder.vue -- page entry page
+        ├── vite.config.js -- vite configuration file
         └── yarn.lock
 
 ```
 
-## 5. 主要功能
+## 5. Main functions
 
-- 权限管理：基于`jwt`和`casbin`实现的权限管理。
-- 文件上传下载：实现基于`七牛云`, `阿里云`, `腾讯云` 的文件上传操作(请开发自己去各个平台的申请对应 `token` 或者对应`key`)。
-- 分页封装：前端使用 `mixins` 封装分页，分页方法调用 `mixins` 即可。
-- 用户管理：系统管理员分配用户角色和角色权限。
-- 角色管理：创建权限控制的主要对象，可以给角色分配不同api权限和菜单权限。
-- 菜单管理：实现用户动态菜单配置，实现不同角色不同菜单。
-- api管理：不同用户可调用的api接口的权限不同。
-- 配置管理：配置文件可前台修改(在线体验站点不开放此功能)。
-- 条件搜索：增加条件搜索示例。
-- restful示例：可以参考用户管理模块中的示例API。
-	- 前端文件参考: [web/src/view/superAdmin/api/api.vue](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/src/view/superAdmin/api/api.vue)
-    - 后台文件参考: [server/router/sys_api.go](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/router/sys_api.go)
-- 多点登录限制：需要在`config.yaml`中把`system`中的`use-multipoint`修改为true(需要自行配置Redis和Config中的Redis参数，测试阶段，有bug请及时反馈)。
-- 分片上传：提供文件分片上传和大文件分片上传功能示例。
-- 表单生成器：表单生成器借助 [@Variant Form](https://github.com/vform666/variant-form) 。
-- 代码生成器：后台基础逻辑以及简单curd的代码生成器。
+- Permission management: Permission management based on `jwt` and `casbin`.
+- File upload and download: implement file upload operations based on `Qiniu Cloud`, `Alibaba Cloud`, `Tencent Cloud` (please develop your own application for `token` or `key` for each platform).
+- Paging encapsulation: The front end uses `mixins` to encapsulate paging, and the paging method calls `mixins`.
+- User management: System administrator assigns user roles and role permissions.
+- Role management: Create the main object for permission control, and assign different API permissions and menu permissions to roles.
+- Menu management: realize user dynamic menu configuration and realize different menus for different roles.
+- API management: Different users have different permissions on the API interfaces they can call.
+- Configuration management: Configuration files can be modified at the front desk (this function is not available on the online experience site).
+- Conditional search: Add conditional search examples.
+- restful example: You can refer to the sample API in the user management module.
+	- Front-end file reference: [web/src/view/superAdmin/api/api.vue](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/src/view/superAdmin /api/api.vue)
+    - Backend file reference: [server/router/sys_api.go](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/router/sys_api.go)
+- Multipoint login restrictions: You need to change `use-multipoint` in `system` to true in `config.yaml` (you need to configure Redis and Redis parameters in Config yourself. During the testing phase, please report any bugs in time).
+- Multipart upload: Provides examples of multipart file upload and multipart upload of large files.
+- Form builder: The form builder uses [@Variant Form](https://github.com/vform666/variant-form).
+- Code generator: background basic logic and simple curd code generator.
 
-## 6. 知识库 
+## 6. Knowledge Base
 
-## 6.1 团队博客
+## 6.1 Team Blog
 
 > https://www.yuque.com/flipped-aurora
 >
->内有前端框架教学视频。如果觉得项目对您有所帮助可以添加我的个人微信:shouzi_1994，欢迎您提出宝贵的需求。
+>Contains front-end framework teaching videos. If you think the project is helpful to you, you can add my personal WeChat: shouzi_1994. You are welcome to make valuable requests.
 
-## 6.2 教学视频
+## 6.2 Teaching video
 
-（1）手把手教学视频
+(1) Step-by-step instruction video
 
 > https://www.bilibili.com/video/BV1Rg411u7xH/
 
-（2）后端目录结构调整介绍以及使用方法
+(2) Introduction to back-end directory structure adjustment and how to use it
 
 > https://www.bilibili.com/video/BV1x44y117TT/
 
-（3）golang基础教学视频
+(3) golang basic teaching video
 
 > bilibili：https://space.bilibili.com/322210472/channel/detail?cid=108884
 
-（4）gin框架基础教学
+(4) Basic teaching of gin framework
 
 > bilibili：https://space.bilibili.com/322210472/channel/detail?cid=126418&ctype=0
 
-（5）gin-vue-admin 版本更新介绍视频
+(5) gin-vue-admin version update introduction video
 
 > bilibili：https://www.bilibili.com/video/BV1kv4y1g7nT
 
-## 7. 联系方式
+## 7. Contact information
 
-### 7.1 技术群
+### 7.1 Technical Group
 
-### QQ交流群：622360840
-| QQ 群 |
+### QQ communication group: 622360840
+| QQ group |
 |  :---:  |
 | <img src="http://qmplusimg.henrongyi.top/qq.jpg" width="180"/> |
 
-### 微信交流群
-| 微信 |
+### WeChat communication group
+| WeChat |
 |  :---:  | 
 | <img width="150" src="http://qmplusimg.henrongyi.top/qrjjz.png"> 
 
-防止广告进群，添加微信，输入以下代码执行结果（请勿转码为string）
+To prevent advertisements from entering the group, add WeChat and enter the following code execution results (do not convert to string)
 
 ```
 str := "5Yqg5YWlR1ZB5Lqk5rWB576k"
@@ -349,20 +349,20 @@ decodeBytes, err := base64.StdEncoding.DecodeString(str)
 fmt.Println(decodeBytes, err)
 ```
 
-### [关于我们](https://www.gin-vue-admin.com/about/join.html)
+### [About us](https://www.gin-vue-admin.com/about/join.html)
 
-## 8. 贡献者
+## 8. Contributors
 
-感谢您对gin-vue-admin的贡献!
+Thank you for your contribution to gin-vue-admin!
 
 <a href="https://github.com/flipped-aurora/gin-vue-admin/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=flipped-aurora/gin-vue-admin" />
 </a>
 
-## 9. 捐赠
+## 9. Donate
 
-如果你觉得这个项目对你有帮助，你可以请作者喝饮料 :tropical_drink: [点我](https://www.gin-vue-admin.com/coffee/index.html)
+If you think this project is helpful to you, you can buy the author a drink :tropical_drink: [Click me](https://www.gin-vue-admin.com/coffee/index.html)
 
-## 10. 商用注意事项
+## 10. Precautions for commercial use
 
-如果您将此项目用于商业用途，请遵守Apache2.0协议并保留作者技术支持声明。
+If you use this project for commercial purposes, please comply with the Apache2.0 license and retain the author's technical support statement.

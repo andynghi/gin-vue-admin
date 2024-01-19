@@ -44,13 +44,13 @@ func (i *initAuthority) InitializeData(ctx context.Context) (context.Context, er
 		return ctx, system.ErrMissingDBContext
 	}
 	entities := []sysModel.SysAuthority{
-		{AuthorityId: 888, AuthorityName: "普通用户", ParentId: utils.Pointer[uint](0), DefaultRouter: "dashboard"},
-		{AuthorityId: 9528, AuthorityName: "测试角色", ParentId: utils.Pointer[uint](0), DefaultRouter: "dashboard"},
-		{AuthorityId: 8881, AuthorityName: "普通用户子角色", ParentId: utils.Pointer[uint](888), DefaultRouter: "dashboard"},
+		{AuthorityId: 888, AuthorityName: "Ordinary user", ParentId: utils.Pointer[uint](0), DefaultRouter: "dashboard"},
+		{AuthorityId: 9528, AuthorityName: "Test Role", ParentId: utils.Pointer[uint](0), DefaultRouter: "dashboard"},
+		{AuthorityId: 8881, AuthorityName: "Normal user sub-role", ParentId: utils.Pointer[uint](888), DefaultRouter: "dashboard"},
 	}
 
 	if err := db.Create(&entities).Error; err != nil {
-		return ctx, errors.Wrapf(err, "%s表数据初始化失败!", sysModel.SysAuthority{}.TableName())
+		return ctx, errors.Wrapf(err, "%s table data initialization failed!", sysModel.SysAuthority{}.TableName())
 	}
 	// data authority
 	if err := db.Model(&entities[0]).Association("DataAuthorityId").Replace(
@@ -59,7 +59,7 @@ func (i *initAuthority) InitializeData(ctx context.Context) (context.Context, er
 			{AuthorityId: 9528},
 			{AuthorityId: 8881},
 		}); err != nil {
-		return ctx, errors.Wrapf(err, "%s表数据初始化失败!",
+		return ctx, errors.Wrapf(err, "%s table data initialization failed!",
 			db.Model(&entities[0]).Association("DataAuthorityId").Relationship.JoinTable.Name)
 	}
 	if err := db.Model(&entities[1]).Association("DataAuthorityId").Replace(
@@ -67,7 +67,7 @@ func (i *initAuthority) InitializeData(ctx context.Context) (context.Context, er
 			{AuthorityId: 9528},
 			{AuthorityId: 8881},
 		}); err != nil {
-		return ctx, errors.Wrapf(err, "%s表数据初始化失败!",
+		return ctx, errors.Wrapf(err, "%s table data initialization failed!",
 			db.Model(&entities[1]).Association("DataAuthorityId").Relationship.JoinTable.Name)
 	}
 
@@ -81,7 +81,7 @@ func (i *initAuthority) DataInserted(ctx context.Context) bool {
 		return false
 	}
 	if errors.Is(db.Where("authority_id = ?", "8881").
-		First(&sysModel.SysAuthority{}).Error, gorm.ErrRecordNotFound) { // 判断是否存在数据
+		First(&sysModel.SysAuthority{}).Error, gorm.ErrRecordNotFound) { // Determine whether data exists
 		return false
 	}
 	return true

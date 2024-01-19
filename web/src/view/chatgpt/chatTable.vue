@@ -1,19 +1,19 @@
 <template>
   <div class="gva-table-box">
-    <warning-bar title="使用GPT-3.5模型，存在一定不稳定性，成功率为50%左右，使用GPT-4可以极大提升成功率，但是费用较高。" />
+    <warning-bar title="There is some instability when using the GPT-3.5 model, and the success rate is about 50%. Using GPT-4 can greatly improve the success rate, but the cost is higher." />
     <div v-if="!chatToken">
       <el-input
         v-model="skObj.sk"
         class="query-ipt"
-        placeholder="请输入您的ChatGpt SK"
+        placeholder="Please enter your ChatGpt SK"
         clearable
       />
       <el-button
         type="primary"
         @click="save"
-      >保存</el-button>
+      >Save</el-button>
       <div class="secret">
-        <el-empty description="请到gpt网站获取您的sk：https://platform.openai.com/account/api-keys" />
+        <el-empty description="Please go to the gpt website to get your sk: https://platform.openai.com/account/api-keys" />
       </div>
     </div>
     <div v-else>
@@ -21,31 +21,31 @@
         :model="form"
         label-width="120px"
       >
-        <el-form-item label="删除当前sk：">
+        <el-form-item label="Delete current sk:">
           <el-popover
             placement="top"
             width="160"
           >
-            <p>确定要删除并返回吗？</p>
+            <p>Are you sure you want to delete and return? </p>
             <div style="text-align: right; margin-top: 8px;">
               <el-button
                 type="primary"
                 @click="deleteSK"
-              >确定</el-button>
+              >OK</el-button>
             </div>
             <template #reference>
               <el-button
                 type="primary"
                 link
                 icon="delete"
-              >删除</el-button>
+              >Delete</el-button>
             </template>
           </el-popover>
         </el-form-item>
-        <el-form-item label="查询db名称：">
+        <el-form-item label="Query db name:">
           <el-select
             v-model="form.dbname"
-            placeholder="请选择库"
+            placeholder="Please select a library"
             style="width: 115px"
           >
             <el-option
@@ -56,28 +56,28 @@
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="查询db描述：">
+        <el-form-item label="Query db description:">
           <el-input
             v-model="form.chat"
             :autosize="{ minRows: 2, maxRows: 4 }"
             type="textarea"
             clearable
-            placeholder="请输入对话"
+            placeholder="Please enter the conversation"
           />
         </el-form-item>
-        <el-form-item label="GPT生成SQL:">
+        <el-form-item label="GPT generates SQL:">
           <el-input
             v-model="sql"
             :autosize="{ minRows: 2, maxRows: 4 }"
             type="textarea"
             disabled
-            placeholder="此处展示自动生成的sql"
+            placeholder="Display automatically generated sql here"
           />
         </el-form-item>
         <el-button
           type="primary"
           @click="handleQueryTable"
-        >查询</el-button>
+        >Query</el-button>
       </el-form>
       <div class="tables">
         <el-table
@@ -100,7 +100,7 @@
         <p
           v-else
           class="text"
-        >请在对话框输入你需要AI帮你查询的内容：）</p>
+        >Please enter the content you need AI to query for you in the dialog box:)</p>
       </div>
     </div>
   </div>
@@ -160,7 +160,7 @@ const handleQueryTable = async() => {
     tableData.value = res.data.results || []
   }
   sql.value = res.data.sql
-  // 根据后台返回值动态渲染表格
+  // Dynamically render the table based on the background return value
 }
 </script>
 

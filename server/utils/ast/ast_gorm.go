@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-// 自动为 gorm.go 注册一个自动迁移
+// Automatically register an automatic migration for gorm.go
 func AddRegisterTablesAst(path, funcName, pk, varName, dbName, model string) {
 	modelPk := fmt.Sprintf("github.com/flipped-aurora/gin-vue-admin/server/model/%s", pk)
 	src, err := os.ReadFile(path)
@@ -36,7 +36,7 @@ func AddRegisterTablesAst(path, funcName, pk, varName, dbName, model string) {
 	os.WriteFile(path, bf.Bytes(), 0666)
 }
 
-// 增加一个 db库变量
+// Add a db library variable
 func addDBVar(astBody *ast.BlockStmt, varName, dbName string) {
 	if dbName == "" {
 		return
@@ -81,17 +81,17 @@ func addDBVar(astBody *ast.BlockStmt, varName, dbName string) {
 	astBody.List = append([]ast.Stmt{assignNode}, astBody.List...)
 }
 
-// 为db库变量增加 AutoMigrate 方法
+// Add AutoMigrate method to db library variables
 func addAutoMigrate(astBody *ast.BlockStmt, dbname string, pk string, model string) {
 	if dbname == "" {
 		dbname = "db"
 	}
 	flag := true
 	ast.Inspect(astBody, func(node ast.Node) bool {
-		// 首先判断需要加入的方法调用语句是否存在 不存在则直接走到下方逻辑
+		// First determine whether the method call statement that needs to be added exists. If it does not exist, go directly to the logic below.
 		switch n := node.(type) {
 		case *ast.CallExpr:
-			// 判断是否找到了AutoMigrate语句
+			// Determine whether the AutoMigrate statement is found
 			if s, ok := n.Fun.(*ast.SelectorExpr); ok {
 				if x, ok := s.X.(*ast.Ident); ok {
 					if s.Sel.Name == "AutoMigrate" && x.Name == dbname {
@@ -99,7 +99,7 @@ func addAutoMigrate(astBody *ast.BlockStmt, dbname string, pk string, model stri
 						if !NeedAppendModel(n, pk, model) {
 							return false
 						}
-						// 判断已经找到了AutoMigrate语句
+						// Determine that the AutoMigrate statement has been found
 						n.Args = append(n.Args, &ast.CompositeLit{
 							Type: &ast.SelectorExpr{
 								X: &ast.Ident{
@@ -116,7 +116,7 @@ func addAutoMigrate(astBody *ast.BlockStmt, dbname string, pk string, model stri
 			}
 		}
 		return true
-		//然后判断 pk.model是否存在 如果存在直接跳出 如果不存在 则向已经找到的方法调用语句的node里面push一条
+		//Then determine whether pk.model exists. If it exists, jump out directly. If it does not exist, push a message to the node of the method call statement that has been found.
 	})
 
 	if flag {
@@ -147,7 +147,7 @@ func addAutoMigrate(astBody *ast.BlockStmt, dbname string, pk string, model stri
 	}
 }
 
-// 为automigrate增加实参
+// Add actual parameters to automigrate
 func NeedAppendModel(callNode ast.Node, pk string, model string) bool {
 	flag := true
 	ast.Inspect(callNode, func(node ast.Node) bool {

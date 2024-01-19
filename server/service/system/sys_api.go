@@ -12,7 +12,7 @@ import (
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: CreateApi
-//@description: 新增基础api
+//@description: Add new basic api
 //@param: api model.SysApi
 //@return: err error
 
@@ -22,21 +22,21 @@ var ApiServiceApp = new(ApiService)
 
 func (apiService *ApiService) CreateApi(api system.SysApi) (err error) {
 	if !errors.Is(global.GVA_DB.Where("path = ? AND method = ?", api.Path, api.Method).First(&system.SysApi{}).Error, gorm.ErrRecordNotFound) {
-		return errors.New("存在相同api")
+		return errors.New("The same api exists")
 	}
 	return global.GVA_DB.Create(&api).Error
 }
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: DeleteApi
-//@description: 删除基础api
+//@description: Delete basic api
 //@param: api model.SysApi
 //@return: err error
 
 func (apiService *ApiService) DeleteApi(api system.SysApi) (err error) {
 	var entity system.SysApi
-	err = global.GVA_DB.Where("id = ?", api.ID).First(&entity).Error // 根据id查询api记录
-	if errors.Is(err, gorm.ErrRecordNotFound) {                      // api记录不存在
+	err = global.GVA_DB.Where("id = ?", api.ID).First(&entity).Error // Query api records based on id
+	if errors.Is(err, gorm.ErrRecordNotFound) {                      // api record does not exist
 		return err
 	}
 	err = global.GVA_DB.Delete(&entity).Error
@@ -52,7 +52,7 @@ func (apiService *ApiService) DeleteApi(api system.SysApi) (err error) {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetAPIInfoList
-//@description: 分页获取数据,
+//@description: Get data in pages,
 //@param: api model.SysApi, info request.PageInfo, order string, desc bool
 //@return: list interface{}, total int64, err error
 
@@ -86,8 +86,8 @@ func (apiService *ApiService) GetAPIInfoList(api system.SysApi, info request.Pag
 		db = db.Limit(limit).Offset(offset)
 		if order != "" {
 			var OrderStr string
-			// 设置有效排序key 防止sql注入
-			// 感谢 Tom4t0 提交漏洞信息
+			//Set a valid sort key to prevent sql injection
+			// Thanks to Tom4t0 for submitting the vulnerability information
 			orderMap := make(map[string]bool, 5)
 			orderMap["id"] = true
 			orderMap["path"] = true
@@ -101,7 +101,7 @@ func (apiService *ApiService) GetAPIInfoList(api system.SysApi, info request.Pag
 					OrderStr = order
 				}
 			} else { // didn't match any order key in `orderMap`
-				err = fmt.Errorf("非法的排序字段: %v", order)
+				err = fmt.Errorf("Illegal sort field: %v", order)
 				return apiList, total, err
 			}
 
@@ -115,7 +115,7 @@ func (apiService *ApiService) GetAPIInfoList(api system.SysApi, info request.Pag
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetAllApis
-//@description: 获取所有的api
+//@description: Get all apis
 //@return:  apis []model.SysApi, err error
 
 func (apiService *ApiService) GetAllApis() (apis []system.SysApi, err error) {
@@ -125,7 +125,7 @@ func (apiService *ApiService) GetAllApis() (apis []system.SysApi, err error) {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetApiById
-//@description: 根据id获取api
+//@description: Get api based on id
 //@param: id float64
 //@return: api model.SysApi, err error
 
@@ -136,7 +136,7 @@ func (apiService *ApiService) GetApiById(id int) (api system.SysApi, err error) 
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: UpdateApi
-//@description: 根据id更新api
+//@description: update api based on id
 //@param: api model.SysApi
 //@return: err error
 
@@ -145,7 +145,7 @@ func (apiService *ApiService) UpdateApi(api system.SysApi) (err error) {
 	err = global.GVA_DB.Where("id = ?", api.ID).First(&oldA).Error
 	if oldA.Path != api.Path || oldA.Method != api.Method {
 		if !errors.Is(global.GVA_DB.Where("path = ? AND method = ?", api.Path, api.Method).First(&system.SysApi{}).Error, gorm.ErrRecordNotFound) {
-			return errors.New("存在相同api路径")
+			return errors.New("The same api path exists")
 		}
 	}
 	if err != nil {
@@ -163,7 +163,7 @@ func (apiService *ApiService) UpdateApi(api system.SysApi) (err error) {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: DeleteApis
-//@description: 删除选中API
+//@description: Delete selected API
 //@param: apis []model.SysApi
 //@return: err error
 

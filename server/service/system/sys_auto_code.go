@@ -102,7 +102,7 @@ func Init(Package string) {
 type injectionMeta struct {
 	path        string
 	funcName    string
-	structNameF string // 带格式化的
+	structNameF string // formatted
 }
 
 type astInjectionMeta struct {
@@ -127,7 +127,7 @@ var AutoCodeServiceApp = new(AutoCodeService)
 
 // @author: [songzhibin97](https://github.com/songzhibin97)
 // @function: PreviewTemp
-// @description: 预览创建代码
+// @description: Preview creation code
 // @param: model.AutoCodeStruct
 // @return: map[string]string, error
 
@@ -163,15 +163,15 @@ func (autoCodeService *AutoCodeService) PreviewTemp(autoCode system.AutoCodeStru
 		return nil, err
 	}
 
-	// 写入文件前，先创建文件夹
+	// Before writing the file, create the folder first
 	if err = utils.CreateDir(needMkdir...); err != nil {
 		return nil, err
 	}
 
-	// 创建map
+	// Create map
 	ret := make(map[string]string)
 
-	// 生成map
+	// Generate map
 	for _, value := range dataList {
 		ext := ""
 		if ext = filepath.Ext(value.autoCodePath); ext == ".txt" {
@@ -208,7 +208,7 @@ func (autoCodeService *AutoCodeService) PreviewTemp(autoCode system.AutoCodeStru
 		_ = f.Close()
 
 	}
-	defer func() { // 移除中间文件
+	defer func() { // Remove intermediate files
 		if err := os.RemoveAll(autoPath); err != nil {
 			return
 		}
@@ -231,7 +231,7 @@ func makeDictTypes(autoCode *system.AutoCodeStruct) {
 
 // @author: [piexlmax](https://github.com/piexlmax)
 // @function: CreateTemp
-// @description: 创建代码
+// @description: Create code
 // @param: model.AutoCodeStruct
 // @return: err error
 
@@ -262,7 +262,7 @@ func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruc
 			autoCode.HasFile = true
 		}
 	}
-	// 增加判断: 重复创建struct
+	// Add judgment: Create struct repeatedly
 	if autoCode.AutoMoveFile && AutoCodeHistoryServiceApp.Repeat(autoCode.BusinessDB, autoCode.StructName, autoCode.Package) {
 		return RepeatErr
 	}
@@ -272,17 +272,17 @@ func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruc
 	}
 	meta, _ := json.Marshal(autoCode)
 
-	// 增加判断：Package不为空
+	// Add judgment: Package is not empty
 	if autoCode.Package == "" {
-		return errors.New("Package为空\n")
+		return errors.New("Package is empty\n")
 	}
 
-	// 写入文件前，先创建文件夹
+	// Before writing the file, create the folder first
 	if err = utils.CreateDir(needMkdir...); err != nil {
 		return err
 	}
 
-	// 生成文件
+	// Generate file
 	for _, value := range dataList {
 		f, err := os.OpenFile(value.autoCodePath, os.O_CREATE|os.O_WRONLY, 0o755)
 		if err != nil {
@@ -294,7 +294,7 @@ func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruc
 		_ = f.Close()
 	}
 
-	defer func() { // 移除中间文件
+	defer func() { // Remove intermediate files
 		if err := os.RemoveAll(autoPath); err != nil {
 			return
 		}
@@ -306,25 +306,25 @@ func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruc
 		idBf.WriteString(strconv.Itoa(int(id)))
 		idBf.WriteString(";")
 	}
-	if autoCode.AutoMoveFile { // 判断是否需要自动转移
+	if autoCode.AutoMoveFile { // Determine whether automatic transfer is required
 		Init(autoCode.Package)
 		for index := range dataList {
 			autoCodeService.addAutoMoveFile(&dataList[index])
 		}
-		// 判断目标文件是否都可以移动
+		// Determine whether all target files can be moved
 		for _, value := range dataList {
 			if utils.FileExist(value.autoMoveFilePath) {
-				return errors.New(fmt.Sprintf("目标文件已存在:%s\n", value.autoMoveFilePath))
+				return errors.New(fmt.Sprintf("The target file already exists: %s\n", value.autoMoveFilePath))
 			}
 		}
-		for _, value := range dataList { // 移动文件
+		for _, value := range dataList { //Move files
 			if err := utils.FileMove(value.autoCodePath, value.autoMoveFilePath); err != nil {
 				return err
 			}
 		}
 
 		{
-			// 在gorm.go 注入 自动迁移
+			//Inject automatic migration in gorm.go
 			path := filepath.Join(global.GVA_CONFIG.AutoCode.Root,
 				global.GVA_CONFIG.AutoCode.Server, global.GVA_CONFIG.AutoCode.SInitialize, "gorm.go")
 			varDB := utils.MaheHump(autoCode.BusinessDB)
@@ -332,24 +332,24 @@ func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruc
 		}
 
 		{
-			// router.go 注入 自动迁移
+			// router.go injection automatic migration
 			path := filepath.Join(global.GVA_CONFIG.AutoCode.Root,
 				global.GVA_CONFIG.AutoCode.Server, global.GVA_CONFIG.AutoCode.SInitialize, "router.go")
 			ast2.AddRouterCode(path, "Routers", autoCode.Package, autoCode.StructName)
 		}
-		// 给各个enter进行注入
+		//Inject into each enter
 		err = injectionCode(autoCode.StructName, &injectionCodeMeta)
 		if err != nil {
 			return
 		}
-		// 保存生成信息
+		//Save generated information
 		for _, data := range dataList {
 			if len(data.autoMoveFilePath) != 0 {
 				bf.WriteString(data.autoMoveFilePath)
 				bf.WriteString(";")
 			}
 		}
-	} else { // 打包
+	} else { // package
 		if err = utils.ZipFiles("./ginvueadmin.zip", fileList, ".", "."); err != nil {
 			return err
 		}
@@ -392,7 +392,7 @@ func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruc
 
 // @author: [piexlmax](https://github.com/piexlmax)
 // @function: GetAllTplFile
-// @description: 获取 pathName 文件夹下所有 tpl 文件
+// @description: Get all tpl files in the pathName folder
 // @param: pathName string, fileList []string
 // @return: []string, error
 
@@ -415,7 +415,7 @@ func (autoCodeService *AutoCodeService) GetAllTplFile(pathName string, fileList 
 
 // @author: [piexlmax](https://github.com/piexlmax)
 // @function: GetDB
-// @description: 获取指定数据库和指定数据表的所有字段名,类型值等
+// @description: Get all field names, type values, etc. of the specified database and specified data table
 // @param: tableName string, dbName string
 // @return: err error, Columns []request.ColumnReq
 
@@ -430,7 +430,7 @@ func (autoCodeService *AutoCodeService) DropTable(BusinessDb, tableName string) 
 // @author: [SliverHorn](https://github.com/SliverHorn)
 // @author: [songzhibin97](https://github.com/songzhibin97)
 // @function: addAutoMoveFile
-// @description: 生成对应的迁移文件路径
+// @description: Generate the corresponding migration file path
 // @param: *tplData
 // @return: null
 
@@ -475,7 +475,7 @@ func (autoCodeService *AutoCodeService) addAutoMoveFile(data *tplData) {
 // @author: [piexlmax](https://github.com/piexlmax)
 // @author: [SliverHorn](https://github.com/SliverHorn)
 // @function: CreateApi
-// @description: 自动创建api数据,
+// @description: Automatically create api data,
 // @param: a *model.AutoCodeStruct
 // @return: err error
 
@@ -483,37 +483,37 @@ func (autoCodeService *AutoCodeService) AutoCreateApi(a *system.AutoCodeStruct) 
 	apiList := []system.SysApi{
 		{
 			Path:        "/" + a.Abbreviation + "/" + "create" + a.StructName,
-			Description: "新增" + a.Description,
+			Description: "New" + a.Description,
 			ApiGroup:    a.Description,
 			Method:      "POST",
 		},
 		{
 			Path:        "/" + a.Abbreviation + "/" + "delete" + a.StructName,
-			Description: "删除" + a.Description,
+			Description: "Delete" + a.Description,
 			ApiGroup:    a.Description,
 			Method:      "DELETE",
 		},
 		{
 			Path:        "/" + a.Abbreviation + "/" + "delete" + a.StructName + "ByIds",
-			Description: "批量删除" + a.Description,
+			Description: "Batch delete" + a.Description,
 			ApiGroup:    a.Description,
 			Method:      "DELETE",
 		},
 		{
 			Path:        "/" + a.Abbreviation + "/" + "update" + a.StructName,
-			Description: "更新" + a.Description,
+			Description: "Update" + a.Description,
 			ApiGroup:    a.Description,
 			Method:      "PUT",
 		},
 		{
 			Path:        "/" + a.Abbreviation + "/" + "find" + a.StructName,
-			Description: "根据ID获取" + a.Description,
+			Description: "Get based on ID" + a.Description,
 			ApiGroup:    a.Description,
 			Method:      "GET",
 		},
 		{
 			Path:        "/" + a.Abbreviation + "/" + "get" + a.StructName + "List",
-			Description: "获取" + a.Description + "列表",
+			Description: "Get" + a.Description + "List",
 			ApiGroup:    a.Description,
 			Method:      "GET",
 		},
@@ -522,7 +522,7 @@ func (autoCodeService *AutoCodeService) AutoCreateApi(a *system.AutoCodeStruct) 
 		for _, v := range apiList {
 			var api system.SysApi
 			if errors.Is(tx.Where("path = ? AND method = ?", v.Path, v.Method).First(&api).Error, gorm.ErrRecordNotFound) {
-				if err = tx.Create(&v).Error; err != nil { // 遇到错误时回滚事务
+				if err = tx.Create(&v).Error; err != nil { // Roll back the transaction when an error is encountered
 					return err
 				} else {
 					ids = append(ids, v.ID)
@@ -535,31 +535,31 @@ func (autoCodeService *AutoCodeService) AutoCreateApi(a *system.AutoCodeStruct) 
 }
 
 func (autoCodeService *AutoCodeService) getNeedList(autoCode *system.AutoCodeStruct) (dataList []tplData, fileList []string, needMkdir []string, err error) {
-	// 去除所有空格
+	// Remove all spaces
 	utils.TrimSpace(autoCode)
 	for _, field := range autoCode.Fields {
 		utils.TrimSpace(field)
 	}
-	// 获取 basePath 文件夹下所有tpl文件
+	// Get all tpl files in the basePath folder
 	tplFileList, err := autoCodeService.GetAllTplFile(autocodePath, nil)
 	if err != nil {
 		return nil, nil, nil, err
 	}
 	dataList = make([]tplData, 0, len(tplFileList))
 	fileList = make([]string, 0, len(tplFileList))
-	needMkdir = make([]string, 0, len(tplFileList)) // 当文件夹下存在多个tpl文件时，改为map更合理
-	// 根据文件路径生成 tplData 结构体，待填充数据
+	needMkdir = make([]string, 0, len(tplFileList)) // When there are multiple tpl files in the folder, it is more reasonable to change to map
+	//Generate the tplData structure based on the file path, and the data needs to be filled in
 	for _, value := range tplFileList {
 		dataList = append(dataList, tplData{locationPath: value, autoPackage: autoCode.Package})
 	}
-	// 生成 *Template, 填充 template 字段
+	// Generate *Template, fill in the template field
 	for index, value := range dataList {
 		dataList[index].template, err = template.ParseFiles(value.locationPath)
 		if err != nil {
 			return nil, nil, nil, err
 		}
 	}
-	// 生成文件路径，填充 autoCodePath 字段，readme.txt.tpl不符合规则，需要特殊处理
+	// Generate the file path and fill in the autoCodePath field. readme.txt.tpl does not comply with the rules and requires special processing.
 	// resource/template/web/api.js.tpl -> autoCode/web/autoCode.PackageName/api/autoCode.PackageName.js
 	// resource/template/readme.txt.tpl -> autoCode/readme.txt
 	for index, value := range dataList {
@@ -595,7 +595,7 @@ func (autoCodeService *AutoCodeService) getNeedList(autoCode *system.AutoCodeStr
 	return dataList, fileList, needMkdir, err
 }
 
-// injectionCode 封装代码注入
+// injectionCode encapsulates code injection
 func injectionCode(structName string, bf *strings.Builder) error {
 	for _, meta := range injectionPaths {
 		code := fmt.Sprintf(meta.structNameF, structName)
@@ -607,10 +607,10 @@ func injectionCode(structName string, bf *strings.Builder) error {
 
 func (autoCodeService *AutoCodeService) CreateAutoCode(s *system.SysAutoCode) error {
 	if s.PackageName == "autocode" || s.PackageName == "system" || s.PackageName == "example" || s.PackageName == "" {
-		return errors.New("不能使用已保留的package name")
+		return errors.New("The reserved package name cannot be used")
 	}
 	if !errors.Is(global.GVA_DB.Where("package_name = ?", s.PackageName).First(&system.SysAutoCode{}).Error, gorm.ErrRecordNotFound) {
-		return errors.New("存在相同PackageName")
+		return errors.New("The same PackageName exists")
 	}
 	if e := autoCodeService.CreatePackageTemp(s.PackageName); e != nil {
 		return e
@@ -645,7 +645,7 @@ func (autoCodeService *AutoCodeService) CreatePackageTemp(packageName string) er
 	for i, s := range pendingTemp {
 		pendingTemp[i].path = filepath.Join(global.GVA_CONFIG.AutoCode.Root, global.GVA_CONFIG.AutoCode.Server, filepath.Clean(fmt.Sprintf(s.path, packageName)))
 	}
-	// 选择模板
+	//Select template
 	for _, s := range pendingTemp {
 		err := os.MkdirAll(filepath.Dir(s.path), 0755)
 		if err != nil {
@@ -670,7 +670,7 @@ func (autoCodeService *AutoCodeService) CreatePackageTemp(packageName string) er
 			return err
 		}
 	}
-	// 创建完成后在对应的位置插入结构代码
+	// After creation, insert the structure code at the corresponding location
 	for _, v := range pendingTemp {
 		meta := packageInjectionMap[v.name]
 		if err := ast2.ImportReference(meta.path, fmt.Sprintf(meta.importCodeF, v.name, packageName), fmt.Sprintf(meta.structNameF, utils.FirstUpper(packageName)), fmt.Sprintf(meta.packageNameF, packageName), meta.groupName); err != nil {
@@ -680,9 +680,9 @@ func (autoCodeService *AutoCodeService) CreatePackageTemp(packageName string) er
 	return nil
 }
 
-// CreatePlug 自动创建插件模板
+// CreatePlug automatically creates plug-in templates
 func (autoCodeService *AutoCodeService) CreatePlug(plug system.AutoPlugReq) error {
-	// 检查列表参数是否有效
+	// Check whether the list parameters are valid
 	plug.CheckList()
 	tplFileList, _ := autoCodeService.GetAllTplFile(plugPath, nil)
 	for _, tpl := range tplFileList {
@@ -754,8 +754,8 @@ func (autoCodeService *AutoCodeService) InstallPlugin(file *multipart.FileHeader
 		}
 	}
 	if webIndex == -1 && serverIndex == -1 {
-		zap.L().Error("非标准插件，请按照文档自动迁移使用")
-		return webIndex, serverIndex, errors.New("非标准插件，请按照文档自动迁移使用")
+		zap.L().Error("Non-standard plug-in, please follow the documentation for automatic migration")
+		return webIndex, serverIndex, errors.New("Non-standard plug-ins, please follow the documentation for automatic migration")
 	}
 
 	if webIndex != -1 {
@@ -783,8 +783,8 @@ func installation(path string, formPath string, toPath string) error {
 	var to = filepath.ToSlash(global.GVA_CONFIG.AutoCode.Root + toPath + "/plugin/")
 	_, err := os.Stat(to + name)
 	if err == nil {
-		zap.L().Error("autoPath 已存在同名插件，请自行手动安装", zap.String("to", to))
-		return errors.New(toPath + "已存在同名插件，请自行手动安装")
+		zap.L().Error("autoPath already has a plug-in with the same name, please install it manually", zap.String("to", to))
+		return errors.New(toPath + "A plug-in with the same name already exists, please install it manually")
 	}
 	return cp.Copy(form, to, cp.Options{Skip: skipMacSpecialDocument})
 }
@@ -809,28 +809,28 @@ func skipMacSpecialDocument(src string) (bool, error) {
 
 func (autoCodeService *AutoCodeService) PubPlug(plugName string) (zipPath string, err error) {
 	if plugName == "" {
-		return "", errors.New("插件名称不能为空")
+		return "", errors.New("Plug-in name cannot be empty")
 	}
 
-	// 防止路径穿越
+	// Prevent path crossing
 	plugName = filepath.Clean(plugName)
 
 	webPath := filepath.Join(global.GVA_CONFIG.AutoCode.Root, global.GVA_CONFIG.AutoCode.Web, "plugin", plugName)
 	serverPath := filepath.Join(global.GVA_CONFIG.AutoCode.Root, global.GVA_CONFIG.AutoCode.Server, "plugin", plugName)
-	// 创建一个新的zip文件
+	//Create a new zip file
 
-	// 判断目录是否存在
+	// Determine whether the directory exists
 	_, err = os.Stat(webPath)
 	if err != nil {
-		return "", errors.New("web路径不存在")
+		return "", errors.New("web path does not exist")
 	}
 	_, err = os.Stat(serverPath)
 	if err != nil {
-		return "", errors.New("server路径不存在")
+		return "", errors.New("server path does not exist")
 	}
 
 	fileName := plugName + ".zip"
-	// 创建一个新的zip文件
+	//Create a new zip file
 	zipFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Println(err)
@@ -838,7 +838,7 @@ func (autoCodeService *AutoCodeService) PubPlug(plugName string) (zipPath string
 	}
 	defer zipFile.Close()
 
-	// 创建一个zip写入器
+	//Create a zip writer
 	zipWriter := zip.NewWriter(zipFile)
 	defer zipWriter.Close()
 
@@ -858,38 +858,38 @@ func (autoCodeService *AutoCodeService) PubPlug(plugName string) (zipPath string
 /*
 *
 
-	zipWriter zip写入器
-	serverPath 存储的路径
-	headerName 写有zip的路径
+	zipWriter zip writer
+	serverPath stored path
+	headerName writes the path of zip
 
 *
 */
 func (autoCodeService *AutoCodeService) doZip(zipWriter *zip.Writer, serverPath, headerName string) (err error) {
-	// 遍历serverPath目录并将所有非隐藏文件添加到zip归档中
+	// Traverse the serverPath directory and add all non-hidden files to the zip archive
 	err = filepath.Walk(serverPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 
-		// 跳过隐藏文件和目录
+		// Skip hidden files and directories
 		if strings.HasPrefix(info.Name(), ".") {
 			return nil
 		}
 
-		// 创建一个新的文件头
+		//Create a new file header
 		header, err := zip.FileInfoHeader(info)
 		if err != nil {
 			return err
 		}
 
-		// 将文件头的名称设置为文件的相对路径
+		// Set the name of the file header to the relative path of the file
 		rel, _ := filepath.Rel(serverPath, path)
 		header.Name = filepath.Join(headerName, rel)
-		// 目录需要拼上一个 "/" ，否则会出现一个和目录一样的文件在压缩包中
+		// The directory needs to be spelled with a "/", otherwise a file identical to the directory will appear in the compressed package
 		if info.IsDir() {
 			header.Name += "/"
 		}
-		// 将文件添加到zip归档中
+		// Add files to zip archive
 		writer, err := zipWriter.CreateHeader(header)
 		if err != nil {
 			return err
@@ -899,7 +899,7 @@ func (autoCodeService *AutoCodeService) doZip(zipWriter *zip.Writer, serverPath,
 			return nil
 		}
 
-		// 打开文件并将其内容复制到zip归档中
+		// Open the file and copy its contents into the zip archive
 		file, err := os.Open(path)
 		if err != nil {
 			return err

@@ -16,7 +16,7 @@ const codeLineTrack = (code, id) => {
   const lineList = code.split('\n')
   const newList = []
   lineList.forEach((item, index) => {
-    newList.push(addLineAttr(item, index + 1, id)) // 添加位置属性，index+1为具体的代码行号
+    newList.push(addLineAttr(item, index + 1, id)) //Add position attribute, index+1 is the specific code line number
   })
   return newList.join('\n')
 }

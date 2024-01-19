@@ -1,6 +1,6 @@
 version: "3"
 
-# 声明一个名为network的networks,subnet为network的子网地址,默认网关是177.7.0.1
+# Declare a network named network, subnet is the subnet address of network, and the default gateway is 177.7.0.1
 networks:
   network:
     ipam:
@@ -8,7 +8,7 @@ networks:
       config:
         - subnet: '177.7.0.0/16'
         
-# 设置mysql，redis持久化保存
+# Set up mysql and redis persistence
 volumes:
   mysql:
   redis:
@@ -17,14 +17,14 @@ services:
   web:
     image: node:16
     container_name: gva-web
-    hostname: gva-web           #可以通过容器名访问
+    hostname: gva-web #can be accessed through the container name
     restart: always
     ports:
       - '8080:8080'
     depends_on:
       - server
-    working_dir: /web       # 如果docker 设置了workdir 则此处不需要设置
-    #若网络不太好，请自行换源，如下
+    working_dir: /web # If docker sets workdir, no setting is required here.
+    #If the network is not very good, please change the source yourself, as follows
     #command: bash -c "yarn config set registry https://registry.npm.taobao.org --global && yarn install && yarn serve"
     command: bash -c "yarn install && yarn serve"
     volumes:
@@ -45,7 +45,7 @@ services:
       - redis
     volumes:
       - ../../server:/server
-    working_dir: /server    # 如果docker 设置了workdir 则此处不需要设置 
+    working_dir: /server # If docker sets workdir, no setting is required here.
     command: bash -c "go env -w GOPROXY=https://goproxy.cn,direct && go mod tidy && go run main.go"
     links:
       - mysql
@@ -55,16 +55,16 @@ services:
         ipv4_address: 177.7.0.12
 
   mysql:
-    image: mysql:8.0.21    # 如果您是 arm64 架构：如 MacOS 的 M1，请修改镜像为 image: mysql/mysql-server:8.0.21
+    image: mysql:8.0.21 # If you have an arm64 architecture: such as MacOS M1, please modify the image to image: mysql/mysql-server:8.0.21
     container_name: gva-mysql
     hostname: gva-mysql
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci #设置utf8字符集
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci #Set utf8 character set
     restart: always
     ports:
-      - "13306:3306"  # host物理直接映射端口为13306
+      - "13306:3306" # The host physical direct mapping port is 13306
     environment:
-      #MYSQL_ROOT_PASSWORD: 'Aa@6447985' # root管理员用户密码
-      MYSQL_DATABASE: 'qmPlus' # 初始化启动时要创建的数据库的名称
+      #MYSQL_ROOT_PASSWORD: 'Aa@6447985' # root administrator user password
+      MYSQL_DATABASE: 'qmPlus' # The name of the database to be created during initial startup
       MYSQL_USER: 'gva'
       MYSQL_PASSWORD: 'Aa@6447985'
     volumes:
@@ -75,7 +75,7 @@ services:
 
   redis:
     image: redis:6.0.6
-    container_name: gva-redis # 容器名
+    container_name: gva-redis # Container name
     hostname: gva-redis
     restart: always
     ports:

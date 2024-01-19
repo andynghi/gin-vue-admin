@@ -47,7 +47,7 @@ func (i *initExaFileMysql) InitializeData(ctx context.Context) (context.Context,
 		{Name: "logo.png", Url: "https://qmplusimg.henrongyi.top/1576554439myAvatar.png", Tag: "png", Key: "1587973709logo.png"},
 	}
 	if err := db.Create(&entities).Error; err != nil {
-		return ctx, errors.Wrap(err, example.ExaFileUploadAndDownload{}.TableName()+"表数据初始化失败!")
+		return ctx, errors.Wrap(err, example.ExaFileUploadAndDownload{}.TableName()+"Table data initialization failed!")
 	}
 	return ctx, nil
 }

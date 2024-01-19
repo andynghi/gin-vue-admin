@@ -8,7 +8,7 @@ import (
 // Add menu authority info structure
 type AddMenuAuthorityInfo struct {
 	Menus       []system.SysBaseMenu `json:"menus"`
-	AuthorityId uint                 `json:"authorityId"` // 角色ID
+	AuthorityId uint                 `json:"authorityId"` // Role ID
 }
 
 func DefaultMenu() []system.SysBaseMenu {
@@ -20,7 +20,7 @@ func DefaultMenu() []system.SysBaseMenu {
 		Component: "view/dashboard/index.vue",
 		Sort:      1,
 		Meta: system.Meta{
-			Title: "仪表盘",
+			Title: "Dashboard",
 			Icon:  "setting",
 		},
 	}}

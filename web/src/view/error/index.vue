@@ -3,14 +3,14 @@
     <div class="w-full h-screen bg-gray-50 flex items-center justify-center">
       <div class="flex flex-col items-center text-2xl gap-4">
         <img src="../../assets/notFound.png">
-        <p>页面被神秘力量吸走了（如果您是开源版请联系我们修复）</p>
-        <p style="font-size:18px;line-height:40px;">常见问题为当前此角色无当前路由，如果确定要使用本路由，请到角色管理进行分配</p>
+        <p>The page was sucked away by a mysterious force (if you are using the open source version, please contact us to fix it)</p>
+        <p style="font-size:18px;line-height:40px;">The common problem is that there is no current route for this role. If you are sure you want to use this route, please go to role management to assign it</p>
         <p>↓</p>
         <img
           src="../../assets/qm.png"
           class="w-16 h-16 mt-20"
         >
-        <el-button @click="toDashboard">返回首页</el-button>
+        <el-button @click="toDashboard">Return to home page</el-button>
       </div>
     </div>
   </div>

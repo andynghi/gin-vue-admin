@@ -1,10 +1,10 @@
 import config from './config'
 import { h } from 'vue'
 
-// 统一导入el-icon图标
+// Uniformly import the el-icon icon
 import * as ElIconModules from '@element-plus/icons-vue'
 import svgIcon from '@/components/svgIcon/svgIcon.vue'
-// 导入转换图标名称的函数
+//Import the function that converts the icon name
 
 const createIconComponent = (name) => ({
   name: 'SvgIcon',
@@ -19,7 +19,7 @@ const registerIcons = async(app) => {
   const iconModules = import.meta.glob('@/assets/icons/**/*.svg')
   for (const path in iconModules) {
     const iconName = path.split('/').pop().replace(/\.svg$/, '')
-    // 如果iconName带空格则不加入到图标库中并且提示名称不合法
+    // If iconName contains spaces, it will not be added to the icon library and will prompt that the name is illegal.
     console.log(iconName)
     if (iconName.indexOf(' ') !== -1) {
       console.error(`icon ${iconName}.svg includes whitespace`)
@@ -35,7 +35,7 @@ const registerIcons = async(app) => {
 }
 
 export const register = (app) => {
-  // 统一注册el-icon图标
+  // Unified registration of el-icon icon
   for (const iconName in ElIconModules) {
     app.component(iconName, ElIconModules[iconName])
   }

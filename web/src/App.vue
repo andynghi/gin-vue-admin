@@ -8,7 +8,7 @@
 
 <script setup>
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-// element 2.3.8之前使用下面的语句
+// Use the following statement before element 2.3.8
 // import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 
 defineOptions({
@@ -20,7 +20,7 @@ defineOptions({
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-// 引入初始化样式
+//Introduce initialization style
 #app {
   background: #eee;
   height: 100vh;

@@ -11,7 +11,7 @@
       :accept="accept"
       class="upload-btn"
     >
-      <el-button type="primary">上传文件</el-button>
+      <el-button type="primary">Upload files</el-button>
     </el-upload>
   </div>
 </template>
@@ -76,7 +76,7 @@ const uploadSuccess = (res) => {
 const uploadError = () => {
   ElMessage({
     type: 'error',
-    message: '上传失败'
+    message: 'Upload failed'
   })
   fullscreenLoading.value = false
 }

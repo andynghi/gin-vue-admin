@@ -9,10 +9,10 @@ import (
 )
 
 type wsPlugin struct {
-	logger               *zap.Logger                       // 日志输出对象
+	logger               *zap.Logger                       // Log output object
 	manageBuf            int64                             // buffer
-	registeredMsgHandler map[int32]func(biz.IMessage) bool // 消息处理
-	checkMap             map[string]biz.CheckFunc          // 用户校验
+	registeredMsgHandler map[int32]func(biz.IMessage) bool // Message processing
+	checkMap             map[string]biz.CheckFunc          // User verification
 
 	admin     biz.IManage
 	adminCase *biz.AdminCase
@@ -21,10 +21,10 @@ type wsPlugin struct {
 func DefaultRegisteredMsgHandler(admin biz.IManage, logger *zap.Logger) map[int32]func(biz.IMessage) bool {
 	return map[int32]func(msg biz.IMessage) bool{
 		1: func(msg biz.IMessage) bool {
-			// w.admin 里面找到注册客户端的方法
+			// Find the method to register the client in w.admin
 			client, ok := admin.FindClient(msg.GetTo())
 			if !ok {
-				logger.Info("没有找到该用户")
+				logger.Info("The user was not found")
 				return false
 			}
 			return client.SendMes(msg)
@@ -35,17 +35,17 @@ func DefaultRegisteredMsgHandler(admin biz.IManage, logger *zap.Logger) map[int3
 func DefaultCheckMap() map[string]biz.CheckFunc {
 	return map[string]biz.CheckFunc{
 		"gva_ws": func(c interface{}) (string, bool) {
-			// 先断言是gin.content
+			// First assert that it is gin.content
 			cc, ok := c.(*gin.Context)
 			if !ok {
 				return "", false
 			}
 			token := cc.Query("jwt")
-			// 可以携带jwt
+			// can carry jwt
 			if len(token) == 0 {
 				return "", false
 			}
-			// 解析 jwt...
+			// Parse jwt...
 
 			return token, true
 		},
@@ -53,7 +53,7 @@ func DefaultCheckMap() map[string]biz.CheckFunc {
 }
 
 func (w *wsPlugin) Register(g *gin.RouterGroup) {
-	// gva_ws 为身份校验函数
+	// gva_ws is the identity verification function
 	g.GET("/ws", w.adminCase.HandlerWS("gva_ws", &websocket.AcceptOptions{
 		InsecureSkipVerify: true,
 	}))

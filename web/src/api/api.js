@@ -1,12 +1,12 @@
 import service from '@/utils/request'
 
 // @Tags api
-// @Summary 分页获取角色列表
+// @Summary Get the role list by pagination
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body modelInterface.PageInfo true "分页获取用户列表"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body modelInterface.PageInfo true "Get the user list by page"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /api/getApiList [post]
 // {
 //  page     int
@@ -21,12 +21,12 @@ export const getApiList = (data) => {
 }
 
 // @Tags Api
-// @Summary 创建基础api
+// @Summary Create basic api
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body api.CreateApiParams true "创建api"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body api.CreateApiParams true "Create api"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /api/createApi [post]
 export const createApi = (data) => {
   return service({
@@ -37,12 +37,12 @@ export const createApi = (data) => {
 }
 
 // @Tags menu
-// @Summary 根据id获取菜单
+// @Summary Get the menu based on id
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body api.GetById true "根据id获取菜单"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body api.GetById true "Get menu based on id"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /menu/getApiById [post]
 export const getApiById = (data) => {
   return service({
@@ -53,12 +53,12 @@ export const getApiById = (data) => {
 }
 
 // @Tags Api
-// @Summary 更新api
+// @Summary update api
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body api.CreateApiParams true "更新api"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"更新成功"}"
+// @Param data body api.CreateApiParams true "Update api"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Update successful"}"
 // @Router /api/updateApi [post]
 export const updateApi = (data) => {
   return service({
@@ -69,12 +69,12 @@ export const updateApi = (data) => {
 }
 
 // @Tags Api
-// @Summary 更新api
+// @Summary update api
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body api.CreateApiParams true "更新api"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"更新成功"}"
+// @Param data body api.CreateApiParams true "Update api"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Update successful"}"
 // @Router /api/setAuthApi [post]
 export const setAuthApi = (data) => {
   return service({
@@ -85,11 +85,11 @@ export const setAuthApi = (data) => {
 }
 
 // @Tags Api
-// @Summary 获取所有的Api 不分页
+// @Summary Get all APIs without paging
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /api/getAllApis [post]
 export const getAllApis = (data) => {
   return service({
@@ -100,12 +100,12 @@ export const getAllApis = (data) => {
 }
 
 // @Tags Api
-// @Summary 删除指定api
+// @Summary Delete the specified api
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body dbModel.Api true "删除api"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"删除成功"}"
+// @Param data body dbModel.Api true "Delete api"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /api/deleteApi [post]
 export const deleteApi = (data) => {
   return service({
@@ -116,12 +116,12 @@ export const deleteApi = (data) => {
 }
 
 // @Tags SysApi
-// @Summary 删除选中Api
+// @Summary Delete selected API
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "ID"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /api/deleteApisByIds [delete]
 export const deleteApisByIds = (data) => {
   return service({
@@ -133,10 +133,10 @@ export const deleteApisByIds = (data) => {
 
 // FreshCasbin
 // @Tags      SysApi
-// @Summary   刷新casbin缓存
+// @Summary refresh casbin cache
 // @accept    application/json
 // @Produce   application/json
-// @Success   200   {object}  response.Response{msg=string}  "刷新成功"
+// @Success 200 {object} response.Response{msg=string} "Refresh successful"
 // @Router    /api/freshCasbin [get]
 export const freshCasbin = () => {
   return service({

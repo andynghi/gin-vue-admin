@@ -17,7 +17,7 @@ import (
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: UpdateCasbin
-//@description: 更新casbin权限
+//@description: Update casbin permissions
 //@param: authorityId string, casbinInfos []request.CasbinInfo
 //@return: error
 
@@ -29,7 +29,7 @@ func (casbinService *CasbinService) UpdateCasbin(AuthorityID uint, casbinInfos [
 	authorityId := strconv.Itoa(int(AuthorityID))
 	casbinService.ClearCasbin(0, authorityId)
 	rules := [][]string{}
-	//做权限去重处理
+	//Do permission deduplication processing
 	deduplicateMap := make(map[string]bool)
 	for _, v := range casbinInfos {
 		key := authorityId + v.Path + v.Method
@@ -41,14 +41,14 @@ func (casbinService *CasbinService) UpdateCasbin(AuthorityID uint, casbinInfos [
 	e := casbinService.Casbin()
 	success, _ := e.AddPolicies(rules)
 	if !success {
-		return errors.New("存在相同api,添加失败,请联系管理员")
+		return errors.New("The same api exists, the addition failed, please contact the administrator")
 	}
 	return nil
 }
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: UpdateCasbinApi
-//@description: API更新随动
+//@description: Follow API updates
 //@param: oldPath string, newPath string, oldMethod string, newMethod string
 //@return: error
 
@@ -67,7 +67,7 @@ func (casbinService *CasbinService) UpdateCasbinApi(oldPath string, newPath stri
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetPolicyPathByAuthorityId
-//@description: 获取权限列表
+//@description: Get the permission list
 //@param: authorityId string
 //@return: pathMaps []request.CasbinInfo
 
@@ -86,7 +86,7 @@ func (casbinService *CasbinService) GetPolicyPathByAuthorityId(AuthorityID uint)
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: ClearCasbin
-//@description: 清除匹配的权限
+//@description: Clear matching permissions
 //@param: v int, p ...string
 //@return: bool
 
@@ -98,7 +98,7 @@ func (casbinService *CasbinService) ClearCasbin(v int, p ...string) bool {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: RemoveFilteredPolicy
-//@description: 使用数据库方法清理筛选的politicy 此方法需要调用FreshCasbin方法才可以在系统中即刻生效
+//@description: Use the database method to clean the filtered policy. This method needs to call the FreshCasbin method to take effect immediately in the system.
 //@param: db *gorm.DB, authorityId string
 //@return: error
 
@@ -108,7 +108,7 @@ func (casbinService *CasbinService) RemoveFilteredPolicy(db *gorm.DB, authorityI
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: RemoveFilteredPolicy
-//@description: 同步目前数据库的policy 此方法需要调用FreshCasbin方法才可以在系统中即刻生效
+//@description: Synchronize the policy of the current database. This method needs to call the FreshCasbin method to take effect immediately in the system.
 //@param: db *gorm.DB, authorityId string, rules [][]string
 //@return: error
 
@@ -122,7 +122,7 @@ func (casbinService *CasbinService) SyncPolicy(db *gorm.DB, authorityId string, 
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: ClearCasbin
-//@description: 清除匹配的权限
+//@description: Clear matching permissions
 //@param: v int, p ...string
 //@return: bool
 
@@ -147,7 +147,7 @@ func (CasbinService *CasbinService) FreshCasbin() (err error) {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Casbin
-//@description: 持久化到数据库  引入自定义规则
+//@description: persist to database and introduce custom rules
 //@return: *casbin.Enforcer
 
 var (
@@ -159,7 +159,7 @@ func (casbinService *CasbinService) Casbin() *casbin.SyncedCachedEnforcer {
 	once.Do(func() {
 		a, err := gormadapter.NewAdapterByDB(global.GVA_DB)
 		if err != nil {
-			zap.L().Error("适配数据库失败请检查casbin表是否为InnoDB引擎!", zap.Error(err))
+			zap.L().Error("Failed to adapt to the database, please check whether the casbin table is an InnoDB engine!", zap.Error(err))
 			return
 		}
 		text := `
@@ -180,7 +180,7 @@ func (casbinService *CasbinService) Casbin() *casbin.SyncedCachedEnforcer {
 		`
 		m, err := model.NewModelFromString(text)
 		if err != nil {
-			zap.L().Error("字符串加载模型失败!", zap.Error(err))
+			zap.L().Error("String failed to load model!", zap.Error(err))
 			return
 		}
 		syncedCachedEnforcer, _ = casbin.NewSyncedCachedEnforcer(m, a)

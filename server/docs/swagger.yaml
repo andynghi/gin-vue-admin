@@ -91,19 +91,19 @@ definitions:
   config.Captcha:
     properties:
       img-height:
-        description: 验证码高度
+        description: Verification code height
         type: integer
       img-width:
-        description: 验证码宽度
+        description: verification code width
         type: integer
       key-long:
-        description: 验证码长度
+        description: Verification code length
         type: integer
       open-captcha:
-        description: 防爆破验证码开启此数，0代表每次登录都需要验证码，其他数字代表错误密码此数，如3代表错误三次后出现验证码
+        description: This is the number when explosion-proof verification code is turned on. 0 means that a verification code is required every time you log in. Other numbers represent the number of wrong passwords. For example, 3 means that a verification code will appear after three errors.
         type: integer
       open-captcha-timeout:
-        description: 防爆破验证码超时时间，单位：s(秒)
+        description: Explosion-proof verification code timeout, unit: s (seconds)
         type: integer
     type: object
   config.Excel:
@@ -127,25 +127,25 @@ definitions:
   config.JWT:
     properties:
       buffer-time:
-        description: 缓冲时间
+        description: buffer time
         type: string
       expires-time:
-        description: 过期时间
+        description: Expiration time
         type: string
       issuer:
-        description: 签发者
+        description: issuer
         type: string
       signing-key:
-        description: jwt签名
+        description: jwt signature
         type: string
     type: object
   config.Local:
     properties:
       path:
-        description: 本地文件访问路径
+        description: local file access path
         type: string
       store-path:
-        description: 本地文件存储路径
+        description: local file storage path
         type: string
     type: object
   config.Mongo:
@@ -154,73 +154,73 @@ definitions:
         description: collection name
         type: string
       connect-timeout-ms:
-        description: 连接超时时间
+        description: connection timeout
         type: integer
       database:
         description: database name
         type: string
       hosts:
-        description: 主机列表
+        description: host list
         items:
           $ref: '#/definitions/config.MongoHost'
         type: array
       is-zap:
-        description: 是否开启zap日志
+        description: Whether to enable zap log
         type: boolean
       max-pool-size:
-        description: 最大连接池
+        description: Maximum connection pool
         type: integer
       min-pool-size:
-        description: 最小连接池
+        description: Minimum connection pool
         type: integer
       options:
         description: mongodb options
         type: string
       password:
-        description: 密码
+        description: password
         type: string
       socket-timeout-ms:
-        description: socket超时时间
+        description: socket timeout
         type: integer
       username:
-        description: 用户名
+        description: username
         type: string
     type: object
   config.MongoHost:
     properties:
       host:
-        description: ip地址
+        description: ip address
         type: string
       port:
-        description: 端口
+        description: port
         type: string
     type: object
   config.Mssql:
     properties:
       config:
-        description: 高级配置
+        description: Advanced configuration
         type: string
       db-name:
-        description: 数据库名
+        description: database name
         type: string
       engine:
         default: InnoDB
-        description: 数据库引擎，默认InnoDB
+        description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: 是否开启Gorm全局日志
+        description: Whether to enable Gorm global logs
         type: string
       log-zap:
-        description: 是否通过zap写入日志文件
+        description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: 空闲中的最大连接数
+        description: Maximum number of idle connections
         type: integer
       max-open-conns:
-        description: 打开到数据库的最大连接数
+        description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: 数据库密码
+        description: database password
         type: string
       path:
         type: string
@@ -229,38 +229,38 @@ definitions:
       prefix:
         type: string
       singular:
-        description: 是否开启全局禁用复数，true表示开启
+        description: Whether to enable global disabling of pluralization, true means enabled
         type: boolean
       username:
-        description: 数据库密码
+        description: database password
         type: string
     type: object
   config.Mysql:
     properties:
       config:
-        description: 高级配置
+        description: Advanced configuration
         type: string
       db-name:
-        description: 数据库名
+        description: database name
         type: string
       engine:
         default: InnoDB
-        description: 数据库引擎，默认InnoDB
+        description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: 是否开启Gorm全局日志
+        description: Whether to enable Gorm global logs
         type: string
       log-zap:
-        description: 是否通过zap写入日志文件
+        description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: 空闲中的最大连接数
+        description: Maximum number of idle connections
         type: integer
       max-open-conns:
-        description: 打开到数据库的最大连接数
+        description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: 数据库密码
+        description: database password
         type: string
       path:
         type: string
@@ -269,38 +269,38 @@ definitions:
       prefix:
         type: string
       singular:
-        description: 是否开启全局禁用复数，true表示开启
+        description: Whether to enable global disabling of pluralization, true means enabled
         type: boolean
       username:
-        description: 数据库密码
+        description: database password
         type: string
     type: object
   config.Oracle:
     properties:
       config:
-        description: 高级配置
+        description: Advanced configuration
         type: string
       db-name:
-        description: 数据库名
+        description: database name
         type: string
       engine:
         default: InnoDB
-        description: 数据库引擎，默认InnoDB
+        description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: 是否开启Gorm全局日志
+        description: Whether to enable Gorm global logs
         type: string
       log-zap:
-        description: 是否通过zap写入日志文件
+        description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: 空闲中的最大连接数
+        description: Maximum number of idle connections
         type: integer
       max-open-conns:
-        description: 打开到数据库的最大连接数
+        description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: 数据库密码
+        description: database password
         type: string
       path:
         type: string
@@ -309,38 +309,38 @@ definitions:
       prefix:
         type: string
       singular:
-        description: 是否开启全局禁用复数，true表示开启
+        description: Whether to enable global disabling of pluralization, true means enabled
         type: boolean
       username:
-        description: 数据库密码
+        description: database password
         type: string
     type: object
   config.Pgsql:
     properties:
       config:
-        description: 高级配置
+        description: Advanced configuration
         type: string
       db-name:
-        description: 数据库名
+        description: database name
         type: string
       engine:
         default: InnoDB
-        description: 数据库引擎，默认InnoDB
+        description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: 是否开启Gorm全局日志
+        description: Whether to enable Gorm global logs
         type: string
       log-zap:
-        description: 是否通过zap写入日志文件
+        description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: 空闲中的最大连接数
+        description: Maximum number of idle connections
         type: integer
       max-open-conns:
-        description: 打开到数据库的最大连接数
+        description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: 数据库密码
+        description: database password
         type: string
       path:
         type: string
@@ -349,46 +349,46 @@ definitions:
       prefix:
         type: string
       singular:
-        description: 是否开启全局禁用复数，true表示开启
+        description: Whether to enable global disabling of pluralization, true means enabled
         type: boolean
       username:
-        description: 数据库密码
+        description: database password
         type: string
     type: object
   config.Qiniu:
     properties:
       access-key:
-        description: 秘钥AK
+        description: secret key AK
         type: string
       bucket:
-        description: 空间名称
+        description: space name
         type: string
       img-path:
-        description: CDN加速域名
+        description: CDN accelerated domain name
         type: string
       secret-key:
-        description: 秘钥SK
+        description: secret key SK
         type: string
       use-cdn-domains:
-        description: 上传是否使用CDN上传加速
+        description: Whether to use CDN upload acceleration for uploading
         type: boolean
       use-https:
-        description: 是否使用https
+        description: Whether to use https
         type: boolean
       zone:
-        description: 存储区域
+        description: storage area
         type: string
     type: object
   config.Redis:
     properties:
       addr:
-        description: 服务器地址:端口
+        description: server address:port
         type: string
       db:
-        description: redis的哪个数据库
+        description: Which database of redis
         type: integer
       password:
-        description: 密码
+        description: password
         type: string
     type: object
   config.Server:
@@ -406,7 +406,7 @@ definitions:
       cors:
         allOf:
         - $ref: '#/definitions/config.CORS'
-        description: 跨域配置
+        description: Cross-domain configuration
       db-list:
         items:
           $ref: '#/definitions/config.SpecializedDB'
@@ -453,31 +453,31 @@ definitions:
       alias-name:
         type: string
       config:
-        description: 高级配置
+        description: Advanced configuration
         type: string
       db-name:
-        description: 数据库名
+        description: database name
         type: string
       disable:
         type: boolean
       engine:
         default: InnoDB
-        description: 数据库引擎，默认InnoDB
+        description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: 是否开启Gorm全局日志
+        description: Whether to enable Gorm global logs
         type: string
       log-zap:
-        description: 是否通过zap写入日志文件
+        description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: 空闲中的最大连接数
+        description: Maximum number of idle connections
         type: integer
       max-open-conns:
-        description: 打开到数据库的最大连接数
+        description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: 数据库密码
+        description: database password
         type: string
       path:
         type: string
@@ -486,40 +486,40 @@ definitions:
       prefix:
         type: string
       singular:
-        description: 是否开启全局禁用复数，true表示开启
+        description: Whether to enable global disabling of pluralization, true means enabled
         type: boolean
       type:
         type: string
       username:
-        description: 数据库密码
+        description: database password
         type: string
     type: object
   config.Sqlite:
     properties:
       config:
-        description: 高级配置
+        description: Advanced configuration
         type: string
       db-name:
-        description: 数据库名
+        description: database name
         type: string
       engine:
         default: InnoDB
-        description: 数据库引擎，默认InnoDB
+        description: Database engine, default InnoDB
         type: string
       log-mode:
-        description: 是否开启Gorm全局日志
+        description: Whether to enable Gorm global logs
         type: string
       log-zap:
-        description: 是否通过zap写入日志文件
+        description: Whether to write log files through zap
         type: boolean
       max-idle-conns:
-        description: 空闲中的最大连接数
+        description: Maximum number of idle connections
         type: integer
       max-open-conns:
-        description: 打开到数据库的最大连接数
+        description: Maximum number of connections opened to the database
         type: integer
       password:
-        description: 数据库密码
+        description: database password
         type: string
       path:
         type: string
@@ -528,40 +528,40 @@ definitions:
       prefix:
         type: string
       singular:
-        description: 是否开启全局禁用复数，true表示开启
+        description: Whether to enable global disabling of pluralization, true means enabled
         type: boolean
       username:
-        description: 数据库密码
+        description: database password
         type: string
     type: object
   config.System:
     properties:
       addr:
-        description: 端口值
+        description: port value
         type: integer
       db-type:
-        description: 数据库类型:mysql(默认)|sqlite|sqlserver|postgresql
+        description: Database type: mysql (default)|sqlite|sqlserver|postgresql
         type: string
       env:
-        description: 环境值
+        description: environment value
         type: string
       iplimit-count:
         type: integer
       iplimit-time:
         type: integer
       oss-type:
-        description: Oss类型
+        description: Oss type
         type: string
       router-prefix:
         type: string
       use-mongo:
-        description: 使用redis
+        description: using redis
         type: boolean
       use-multipoint:
-        description: 多点登录拦截
+        description: Multi-point login interception
         type: boolean
       use-redis:
-        description: 使用redis
+        description: using redis
         type: boolean
     type: object
   config.TencentCOS:
@@ -582,70 +582,70 @@ definitions:
   config.Zap:
     properties:
       director:
-        description: 日志文件夹
+        description: log folder
         type: string
       encode-level:
-        description: 编码级
+        description: encoding level
         type: string
       format:
-        description: 输出
+        description: output
         type: string
       level:
-        description: 级别
+        description: level
         type: string
       log-in-console:
-        description: 输出控制台
+        description: Output console
         type: boolean
       max-age:
-        description: 日志留存时间
+        description: Log retention time
         type: integer
       prefix:
-        description: 日志前缀
+        description: log prefix
         type: string
       show-line:
-        description: 显示行
+        description: display row
         type: boolean
       stacktrace-key:
-        description: 栈名
+        description: stack name
         type: string
     type: object
   example.ExaCustomer:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       customerName:
-        description: 客户名
+        description: customer name
         type: string
       customerPhoneData:
-        description: 客户手机号
+        description: Customer mobile phone number
         type: string
       sysUser:
         allOf:
         - $ref: '#/definitions/system.SysUser'
-        description: 管理详情
+        description: Management details
       sysUserAuthorityID:
-        description: 管理角色ID
+        description: Management role ID
         type: integer
       sysUserId:
-        description: 管理ID
+        description: Management ID
         type: integer
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   example.ExaFile:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       chunkTotal:
         type: integer
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       exaFileChunk:
         items:
@@ -660,16 +660,16 @@ definitions:
       isFinish:
         type: boolean
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   example.ExaFileChunk:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       exaFileID:
         type: integer
@@ -678,61 +678,61 @@ definitions:
       fileChunkPath:
         type: string
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   example.ExaFileUploadAndDownload:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       key:
-        description: 编号
+        description: number
         type: string
       name:
-        description: 文件名
+        description: file name
         type: string
       tag:
-        description: 文件标签
+        description: file label
         type: string
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
       url:
-        description: 文件地址
+        description: file address
         type: string
     type: object
   github_com_flipped-aurora_gin-vue-admin_server_config.Email:
     properties:
       from:
-        description: 发件人  你自己要发邮件的邮箱
+        description: Sender: the email address you want to send the email to
         type: string
       host:
-        description: 服务器地址 例如 smtp.qq.com  请前往QQ或者你要发邮件的邮箱查看其smtp协议
+        description: server address, for example, smtp.qq.com. Please go to QQ or the email address you want to send the email to check its SMTP protocol.
         type: string
       is-ssl:
-        description: 是否SSL   是否开启SSL
+        description: Whether to SSL or not. Whether to enable SSL.
         type: boolean
       nickname:
-        description: 昵称    发件人昵称 通常为自己的邮箱
+        description: Nickname: Nickname of the sender, usually his/her email address
         type: string
       port:
-        description: 端口     请前往QQ或者你要发邮件的邮箱查看其smtp协议 大多为 465
+        description: Port Please go to QQ or the email address you want to send the email to check its SMTP protocol. Most of them are 465.
         type: integer
       secret:
-        description: 密钥    用于登录的密钥 最好不要用邮箱密码 去邮箱smtp申请一个用于登录的密钥
+        description: Key The key used for login. It is best not to use the email password. Go to the email SMTP to apply for a key used for login.
         type: string
       to:
-        description: 收件人:多个以英文逗号分隔 例：a@qq.com b@qq.com 正式开发中请把此项目作为参数使用
+        description: Recipients: Multiple separated by English commas. Example: a@qq.com b@qq.com Please use this item as a parameter during official development.
         type: string
     type: object
   request.AddMenuAuthorityInfo:
     properties:
       authorityId:
-        description: 角色ID
+        description: role ID
         type: integer
       menus:
         items:
@@ -742,7 +742,7 @@ definitions:
   request.CasbinInReceive:
     properties:
       authorityId:
-        description: 权限id
+        description: permission id
         type: integer
       casbinInfos:
         items:
@@ -752,19 +752,19 @@ definitions:
   request.CasbinInfo:
     properties:
       method:
-        description: 方法
+        description: method
         type: string
       path:
-        description: 路径
+        description: path
         type: string
     type: object
   request.ChangePasswordReq:
     properties:
       newPassword:
-        description: 新密码
+        description: new password
         type: string
       password:
-        description: 密码
+        description: password
         type: string
     type: object
   request.Empty:
@@ -772,13 +772,13 @@ definitions:
   request.GetAuthorityId:
     properties:
       authorityId:
-        description: 角色ID
+        description: role ID
         type: integer
     type: object
   request.GetById:
     properties:
       id:
-        description: 主键ID
+        description: primary key ID
         type: integer
     type: object
   request.IdsReq:
@@ -791,25 +791,25 @@ definitions:
   request.InitDB:
     properties:
       dbName:
-        description: 数据库名
+        description: database name
         type: string
       dbPath:
-        description: sqlite数据库文件路径
+        description: sqlite database file path
         type: string
       dbType:
-        description: 数据库类型
+        description: database type
         type: string
       host:
-        description: 服务器地址
+        description: server address
         type: string
       password:
-        description: 数据库密码
+        description: database password
         type: string
       port:
-        description: 数据库连接端口
+        description: Database connection port
         type: string
       userName:
-        description: 数据库用户名
+        description: database username
         type: string
     required:
     - dbName
@@ -817,118 +817,118 @@ definitions:
   request.Login:
     properties:
       captcha:
-        description: 验证码
+        description: verification code
         type: string
       captchaId:
-        description: 验证码ID
+        description: Verification code ID
         type: string
       password:
-        description: 密码
+        description: password
         type: string
       username:
-        description: 用户名
+        description: username
         type: string
     type: object
   request.PageInfo:
     properties:
       keyword:
-        description: 关键字
+        description: keyword
         type: string
       page:
-        description: 页码
+        description: page number
         type: integer
       pageSize:
-        description: 每页大小
+        description: size per page
         type: integer
     type: object
   request.Register:
     properties:
       authorityId:
-        example: int 角色id
+        example: int role id
         type: string
       authorityIds:
-        example: '[]uint 角色id'
+        example: '[]uint role id'
         type: string
       email:
-        example: 电子邮箱
+        example: email
         type: string
       enable:
-        example: int 是否启用
+        example: int Is it enabled?
         type: string
       headerImg:
-        example: 头像链接
+        example: avatar link
         type: string
       nickName:
-        example: 昵称
+        example: nickname
         type: string
       passWord:
-        example: 密码
+        example: password
         type: string
       phone:
-        example: 电话号码
+        example: phone number
         type: string
       userName:
-        example: 用户名
+        example: username
         type: string
     type: object
   request.RollBack:
     properties:
       deleteTable:
-        description: 是否删除表
+        description: Whether to delete the table
         type: boolean
       id:
-        description: 主键ID
+        description: primary key ID
         type: integer
     type: object
   request.SearchApiParams:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       apiGroup:
-        description: api组
+        description: api group
         type: string
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       desc:
-        description: 排序方式:升序false(默认)|降序true
+        description: Sorting method: ascending false (default) | descending true
         type: boolean
       description:
-        description: api中文描述
+        description: api Chinese description
         type: string
       keyword:
-        description: 关键字
+        description: keyword
         type: string
       method:
-        description: 方法:创建POST(默认)|查看GET|更新PUT|删除DELETE
+        description: Method: Create POST (default) | View GET | Update PUT | Delete DELETE
         type: string
       orderKey:
-        description: 排序
+        description: sort
         type: string
       page:
-        description: 页码
+        description: page number
         type: integer
       pageSize:
-        description: 每页大小
+        description: size per page
         type: integer
       path:
-        description: api路径
+        description: api path
         type: string
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   request.SetUserAuth:
     properties:
       authorityId:
-        description: 角色ID
+        description: role ID
         type: integer
     type: object
   request.SetUserAuthorities:
     properties:
       authorityIds:
-        description: 角色ID
+        description: role ID
         items:
           type: integer
         type: array
@@ -949,25 +949,25 @@ definitions:
   request.SysAutoHistory:
     properties:
       keyword:
-        description: 关键字
+        description: keyword
         type: string
       page:
-        description: 页码
+        description: page number
         type: integer
       pageSize:
-        description: 每页大小
+        description: size per page
         type: integer
     type: object
   response.Email:
     properties:
       body:
-        description: 邮件内容
+        description: email content
         type: string
       subject:
-        description: 邮件标题
+        description: email title
         type: string
       to:
-        description: 邮件发送给谁
+        description: Who to send the email to
         type: string
     type: object
   response.ExaCustomerResponse:
@@ -1048,7 +1048,7 @@ definitions:
       authority:
         $ref: '#/definitions/system.SysAuthority'
       oldAuthorityId:
-        description: 旧角色ID
+        description: old role ID
         type: integer
     type: object
   response.SysAuthorityResponse:
@@ -1099,22 +1099,22 @@ definitions:
   system.AutoCodeStruct:
     properties:
       abbreviation:
-        description: Struct简称
+        description: Struct abbreviation
         type: string
       autoCreateApiToSql:
-        description: 是否自动创建api
+        description: Whether to automatically create an api
         type: boolean
       autoCreateResource:
-        description: 是否自动创建资源标识
+        description: Whether to automatically create resource identifiers
         type: boolean
       autoMoveFile:
-        description: 是否自动移动文件
+        description: Whether to automatically move files
         type: boolean
       businessDB:
-        description: 业务数据库
+        description: business database
         type: string
       description:
-        description: Struct中文名称
+        description: Struct Chinese name
         type: string
       fields:
         items:
@@ -1123,60 +1123,60 @@ definitions:
       hasTimer:
         type: boolean
       humpPackageName:
-        description: go文件名称
+        description: go file name
         type: string
       package:
         type: string
       packageName:
-        description: 文件名称
+        description: file name
         type: string
       structName:
-        description: Struct名称
+        description: Struct name
         type: string
       tableName:
-        description: 表名
+        description: table name
         type: string
     type: object
   system.Field:
     properties:
       clearable:
-        description: 是否可清空
+        description: Whether it can be cleared
         type: boolean
       columnName:
-        description: 数据库字段
+        description: database field
         type: string
       comment:
-        description: 数据库字段描述
+        description: database field description
         type: string
       dataTypeLong:
-        description: 数据库字段长度
+        description: database field length
         type: string
       dictType:
-        description: 字典
+        description: dictionary
         type: string
       errorText:
-        description: 校验失败文字
+        description: Verification failure text
         type: string
       fieldDesc:
-        description: 中文名
+        description: Chinese name
         type: string
       fieldJson:
         description: FieldJson
         type: string
       fieldName:
-        description: Field名
+        description: Field name
         type: string
       fieldSearchType:
-        description: 搜索条件
+        description: search criteria
         type: string
       fieldType:
-        description: Field数据类型
+        description: Field data type
         type: string
       require:
-        description: 是否必填
+        description: Is it required?
         type: boolean
       sort:
-        description: 是否增加排序
+        description: Whether to increase sorting
         type: boolean
     type: object
   system.Meta:
@@ -1184,66 +1184,66 @@ definitions:
       activeName:
         type: string
       closeTab:
-        description: 自动关闭tab
+        description: Automatically close tab
         type: boolean
       defaultMenu:
-        description: 是否是基础路由（开发中）
+        description: Whether it is a basic route (under development)
         type: boolean
       icon:
-        description: 菜单图标
+        description: menu icon
         type: string
       keepAlive:
-        description: 是否缓存
+        description: Whether to cache
         type: boolean
       title:
-        description: 菜单名
+        description: menu name
         type: string
     type: object
   system.SysApi:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       apiGroup:
-        description: api组
+        description: api group
         type: string
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       description:
-        description: api中文描述
+        description: api Chinese description
         type: string
       method:
-        description: 方法:创建POST(默认)|查看GET|更新PUT|删除DELETE
+        description: Method: Create POST (default) | View GET | Update PUT | Delete DELETE
         type: string
       path:
-        description: api路径
+        description: api path
         type: string
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   system.SysAuthority:
     properties:
       authorityId:
-        description: 角色ID
+        description: role ID
         type: integer
       authorityName:
-        description: 角色名
+        description: character name
         type: string
       children:
         items:
           $ref: '#/definitions/system.SysAuthority'
         type: array
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       dataAuthorityId:
         items:
           $ref: '#/definitions/system.SysAuthority'
         type: array
       defaultRouter:
-        description: 默认菜单(默认dashboard)
+        description: Default menu (default dashboard)
         type: string
       deletedAt:
         type: string
@@ -1252,19 +1252,19 @@ definitions:
           $ref: '#/definitions/system.SysBaseMenu'
         type: array
       parentId:
-        description: 父角色ID
+        description: Parent role ID
         type: integer
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   system.SysAutoCode:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       desc:
         type: string
@@ -1273,13 +1273,13 @@ definitions:
       packageName:
         type: string
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   system.SysBaseMenu:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       authoritys:
         items:
@@ -1290,13 +1290,13 @@ definitions:
           $ref: '#/definitions/system.SysBaseMenu'
         type: array
       component:
-        description: 对应前端文件路径
+        description: Corresponding front-end file path
         type: string
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       hidden:
-        description: 是否在列表隐藏
+        description: Whether to hide in the list
         type: boolean
       menuBtn:
         items:
@@ -1305,34 +1305,34 @@ definitions:
       meta:
         allOf:
         - $ref: '#/definitions/system.Meta'
-        description: 附加属性
+        description: additional attributes
       name:
-        description: 路由name
+        description: route name
         type: string
       parameters:
         items:
           $ref: '#/definitions/system.SysBaseMenuParameter'
         type: array
       parentId:
-        description: 父菜单ID
+        description: Parent menu ID
         type: string
       path:
-        description: 路由path
+        description: routing path
         type: string
       sort:
-        description: 排序标记
+        description: sorting mark
         type: integer
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   system.SysBaseMenuBtn:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       desc:
         type: string
@@ -1341,94 +1341,94 @@ definitions:
       sysBaseMenuID:
         type: integer
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   system.SysBaseMenuParameter:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       key:
-        description: 地址栏携带参数的key
+        description: The key that carries parameters in the address bar
         type: string
       sysBaseMenuID:
         type: integer
       type:
-        description: 地址栏携带参数为params还是query
+        description: Whether the parameters carried in the address bar are params or query
         type: string
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
       value:
-        description: 地址栏携带参数的值
+        description: The value of the parameter carried in the address bar
         type: string
     type: object
   system.SysDictionary:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       desc:
-        description: 描述
+        description: description
         type: string
       name:
-        description: 字典名（中）
+        description: dictionary name (medium)
         type: string
       status:
-        description: 状态
+        description: status
         type: boolean
       sysDictionaryDetails:
         items:
           $ref: '#/definitions/system.SysDictionaryDetail'
         type: array
       type:
-        description: 字典名（英）
+        description: Dictionary name (English)
         type: string
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   system.SysDictionaryDetail:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       extend:
-        description: 扩展值
+        description: extended value
         type: string
       label:
-        description: 展示值
+        description: display value
         type: string
       sort:
-        description: 排序标记
+        description: sorting mark
         type: integer
       status:
-        description: 启用状态
+        description: enabled status
         type: boolean
       sysDictionaryID:
-        description: 关联标记
+        description: associated tag
         type: integer
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
       value:
-        description: 字典值
+        description: dictionary value
         type: integer
     type: object
   system.SysMenu:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       authoritys:
         items:
@@ -1443,13 +1443,13 @@ definitions:
           $ref: '#/definitions/system.SysMenu'
         type: array
       component:
-        description: 对应前端文件路径
+        description: Corresponding front-end file path
         type: string
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       hidden:
-        description: 是否在列表隐藏
+        description: Whether to hide in the list
         type: boolean
       menuBtn:
         items:
@@ -1460,78 +1460,78 @@ definitions:
       meta:
         allOf:
         - $ref: '#/definitions/system.Meta'
-        description: 附加属性
+        description: additional attributes
       name:
-        description: 路由name
+        description: route name
         type: string
       parameters:
         items:
           $ref: '#/definitions/system.SysBaseMenuParameter'
         type: array
       parentId:
-        description: 父菜单ID
+        description: Parent menu ID
         type: string
       path:
-        description: 路由path
+        description: routing path
         type: string
       sort:
-        description: 排序标记
+        description: sorting mark
         type: integer
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
     type: object
   system.SysOperationRecord:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       agent:
-        description: 代理
+        description: agent
         type: string
       body:
-        description: 请求Body
+        description: Request Body
         type: string
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       error_message:
-        description: 错误信息
+        description: error message
         type: string
       ip:
-        description: 请求ip
+        description: request ip
         type: string
       latency:
-        description: 延迟
+        description: delay
         type: string
       method:
-        description: 请求方法
+        description: request method
         type: string
       path:
-        description: 请求路径
+        description: request path
         type: string
       resp:
-        description: 响应Body
+        description: Response Body
         type: string
       status:
-        description: 请求状态
+        description: request status
         type: integer
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
       user:
         $ref: '#/definitions/system.SysUser'
       user_id:
-        description: 用户id
+        description: userid
         type: integer
     type: object
   system.SysUser:
     properties:
       ID:
-        description: 主键ID
+        description: primary key ID
         type: integer
       activeColor:
-        description: 活跃颜色
+        description: active color
         type: string
       authorities:
         items:
@@ -1540,40 +1540,40 @@ definitions:
       authority:
         $ref: '#/definitions/system.SysAuthority'
       authorityId:
-        description: 用户角色ID
+        description: User role ID
         type: integer
       baseColor:
-        description: 基础颜色
+        description: base color
         type: string
       createdAt:
-        description: 创建时间
+        description: creation time
         type: string
       email:
-        description: 用户邮箱
+        description: user email
         type: string
       enable:
-        description: 用户是否被冻结 1正常 2冻结
+        description: Whether the user is frozen 1 normal 2 frozen
         type: integer
       headerImg:
-        description: 用户头像
+        description: User avatar
         type: string
       nickName:
-        description: 用户昵称
+        description: user nickname
         type: string
       phone:
-        description: 用户手机号
+        description: User mobile phone number
         type: string
       sideMode:
-        description: 用户侧边主题
+        description: User side theme
         type: string
       updatedAt:
-        description: 更新时间
+        description: update time
         type: string
       userName:
-        description: 用户登录名
+        description: user login name
         type: string
       uuid:
-        description: 用户UUID
+        description: userUUID
         type: string
     type: object
   system.System:
@@ -1583,8 +1583,8 @@ definitions:
     type: object
 info:
   contact: {}
-  description: 使用gin+vue进行极速开发的全栈开发基础平台
-  title: Gin-Vue-Admin Swagger API接口文档
+  description: A full-stack development basic platform using gin+vue for extremely fast development
+  title: Gin-Vue-Admin Swagger API Interface Documentation
   version: v2.5.9
 paths:
   /api/createApi:
@@ -1592,7 +1592,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: api路径, api中文描述, api组, 方法
+      - description: api path, api Chinese description, api group, method
         in: body
         name: data
         required: true
@@ -1602,7 +1602,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建基础api
+          description: Create a basic API
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1612,7 +1612,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 创建基础api
+      summary: Create a basic API
       tags:
       - SysApi
   /api/deleteApi:
@@ -1630,7 +1630,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除api
+          description: delete api
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1640,7 +1640,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除api
+      summary: delete api
       tags:
       - SysApi
   /api/deleteApisByIds:
@@ -1658,7 +1658,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除选中Api
+          description: Delete selected API
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1668,7 +1668,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除选中Api
+      summary: Delete selected API
       tags:
       - SysApi
   /api/freshCasbin:
@@ -1679,7 +1679,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 刷新成功
+          description: Refresh successful
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1687,7 +1687,7 @@ paths:
                 msg:
                   type: string
               type: object
-      summary: 刷新casbin缓存
+      summary: refresh casbin cache
       tags:
       - SysApi
   /api/getAllApis:
@@ -1698,7 +1698,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取所有的Api 不分页,返回包括api列表
+          description: Get all APIs without pagination, return a list including APIs
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1710,7 +1710,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取所有的Api 不分页
+      summary: Get all APIs without pagination
       tags:
       - SysApi
   /api/getApiById:
@@ -1718,7 +1718,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 根据id获取api
+      - description: Get api based on id
         in: body
         name: data
         required: true
@@ -1728,7 +1728,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 根据id获取api,返回包括api详情
+          description: Get api based on id, return including api details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1738,7 +1738,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 根据id获取api
+      summary: Get api based on id
       tags:
       - SysApi
   /api/getApiList:
@@ -1746,7 +1746,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 分页获取API列表
+      - description: Get the API list in pages
         in: body
         name: data
         required: true
@@ -1756,7 +1756,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 分页获取API列表,返回包括列表,总数,页码,每页数量
+          description: Get the API list in paging, and return the list, total number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1768,7 +1768,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 分页获取API列表
+      summary: Get the API list in pages
       tags:
       - SysApi
   /api/updateApi:
@@ -1776,7 +1776,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: api路径, api中文描述, api组, 方法
+      - description: api path, api Chinese description, api group, method
         in: body
         name: data
         required: true
@@ -1786,7 +1786,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 修改基础api
+          description: Modify the basic API
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1796,7 +1796,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 修改基础api
+      summary: Modify the basic API
       tags:
       - SysApi
   /authority/copyAuthority:
@@ -1804,7 +1804,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 旧角色id, 新权限id, 新权限名, 新父角色id
+      - description: old role id, new permission id, new permission name, new parent role id
         in: body
         name: data
         required: true
@@ -1814,7 +1814,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 拷贝角色,返回包括系统角色详情
+          description: Copy the role and return the system role details.
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1826,7 +1826,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 拷贝角色
+      summary: copy character
       tags:
       - Authority
   /authority/createAuthority:
@@ -1834,7 +1834,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 权限id, 权限名, 父角色id
+      - description: permission id, permission name, parent role id
         in: body
         name: data
         required: true
@@ -1844,7 +1844,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建角色,返回包括系统角色详情
+          description: Create a role and return system role details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1856,7 +1856,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 创建角色
+      summary: Create a role
       tags:
       - Authority
   /authority/deleteAuthority:
@@ -1864,7 +1864,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 删除角色
+      - description: Delete role
         in: body
         name: data
         required: true
@@ -1874,7 +1874,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除角色
+          description: Delete role
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1884,7 +1884,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除角色
+      summary: delete role
       tags:
       - Authority
   /authority/getAuthorityList:
@@ -1892,7 +1892,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 页码, 每页大小
+      - description: page number, size of each page
         in: body
         name: data
         required: true
@@ -1902,7 +1902,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 分页获取角色列表,返回包括列表,总数,页码,每页数量
+          description: Get the role list in paging, and return the list, total number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1914,7 +1914,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 分页获取角色列表
+      summary: Get the role list in paging
       tags:
       - Authority
   /authority/setDataAuthority:
@@ -1922,7 +1922,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 设置角色资源权限
+      - description: Set role resource permissions
         in: body
         name: data
         required: true
@@ -1932,7 +1932,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 设置角色资源权限
+          description: Set role resource permissions
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1942,7 +1942,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 设置角色资源权限
+      summary: Set role resource permissions
       tags:
       - Authority
   /authority/updateAuthority:
@@ -1950,7 +1950,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 权限id, 权限名, 父角色id
+      - description: permission id, permission name, parent role id
         in: body
         name: data
         required: true
@@ -1960,7 +1960,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 更新角色信息,返回包括系统角色详情
+          description: Update role information, return including system role details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1972,7 +1972,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 更新角色信息
+      summary: Update role information
       tags:
       - Authority
   /authorityBtn/canRemoveAuthorityBtn:
@@ -1983,7 +1983,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除成功
+          description: Deletion successful
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -1993,7 +1993,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 设置权限按钮
+      summary: Set permission button
       tags:
       - AuthorityBtn
   /authorityBtn/getAuthorityBtn:
@@ -2001,7 +2001,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 菜单id, 角色id, 选中的按钮id
+      - description: menu id, role id, selected button id
         in: body
         name: data
         required: true
@@ -2011,7 +2011,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 返回列表成功
+          description: Return list successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2023,7 +2023,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取权限按钮
+      summary: Get permission button
       tags:
       - AuthorityBtn
   /authorityBtn/setAuthorityBtn:
@@ -2031,7 +2031,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 菜单id, 角色id, 选中的按钮id
+      - description: menu id, role id, selected button id
         in: body
         name: data
         required: true
@@ -2041,7 +2041,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 返回列表成功
+          description: Return list successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2051,7 +2051,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 设置权限按钮
+      summary: Set permission button
       tags:
       - AuthorityBtn
   /autoCode/createPackage:
@@ -2059,7 +2059,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 创建package
+      - description: Create package
         in: body
         name: data
         required: true
@@ -2069,7 +2069,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建package成功
+          description: Package created successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2082,7 +2082,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 创建package
+      summary: Create package
       tags:
       - AutoCode
   /autoCode/createPlug:
@@ -2090,7 +2090,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 创建插件模板
+      - description: Create plug-in template
         in: body
         name: data
         required: true
@@ -2100,7 +2100,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建插件模板成功
+          description: Plug-in template created successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2113,7 +2113,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 创建插件模板
+      summary: Create plug-in template
       tags:
       - AutoCode
   /autoCode/createTemp:
@@ -2121,7 +2121,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 创建自动代码
+      - description: Create automatic code
         in: body
         name: data
         required: true
@@ -2131,12 +2131,12 @@ paths:
       - application/json
       responses:
         "200":
-          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          description: '{"success":true,"data":{},"msg":"Created successfully"}'
           schema:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 自动代码模板
+      summary: automatic code template
       tags:
       - AutoCode
   /autoCode/delPackage:
@@ -2144,7 +2144,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 创建package
+      - description: Create package
         in: body
         name: data
         required: true
@@ -2154,7 +2154,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除package成功
+          description: Package deleted successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2167,7 +2167,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除package
+      summary: delete package
       tags:
       - AutoCode
   /autoCode/delSysHistory:
@@ -2175,7 +2175,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 请求参数
+      - description: request parameters
         in: body
         name: data
         required: true
@@ -2185,7 +2185,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除回滚记录
+          description: Delete rollback records
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2195,7 +2195,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除回滚记录
+      summary: Delete rollback records
       tags:
       - AutoCode
   /autoCode/getColumn:
@@ -2206,7 +2206,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取当前表所有字段
+          description: Get all fields of the current table
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2219,7 +2219,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取当前表所有字段
+      summary: Get all fields of the current table
       tags:
       - AutoCode
   /autoCode/getDatabase:
@@ -2230,7 +2230,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取当前所有数据库
+          description: Get all current databases
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2243,7 +2243,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取当前所有数据库
+      summary: Get all current databases
       tags:
       - AutoCode
   /autoCode/getMeta:
@@ -2251,7 +2251,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 请求参数
+      - description: request parameters
         in: body
         name: data
         required: true
@@ -2261,7 +2261,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取meta信息
+          description: Get meta information
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2274,7 +2274,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取meta信息
+      summary: Get meta information
       tags:
       - AutoCode
   /autoCode/getPackage:
@@ -2285,7 +2285,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建package成功
+          description: Package created successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2298,7 +2298,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取package
+      summary: get package
       tags:
       - AutoCode
   /autoCode/getSysHistory:
@@ -2306,7 +2306,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 请求参数
+      - description: request parameters
         in: body
         name: data
         required: true
@@ -2316,7 +2316,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 查询回滚记录,返回包括列表,总数,页码,每页数量
+          description: Query the rollback record and return the list, total number, page number, and number of each page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2328,7 +2328,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 查询回滚记录
+      summary: Query rollback records
       tags:
       - AutoCode
   /autoCode/getTables:
@@ -2339,7 +2339,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取当前数据库所有表
+          description: Get all tables of the current database
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2352,7 +2352,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取当前数据库所有表
+      summary: Get all tables of the current database
       tags:
       - AutoCode
   /autoCode/installPlugin:
@@ -2369,7 +2369,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 安装插件成功
+          description: Plug-in installed successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2383,7 +2383,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 安装插件
+      summary: Install plug-in
       tags:
       - AutoCode
   /autoCode/preview:
@@ -2391,7 +2391,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 预览创建代码
+      - description: Preview creation code
         in: body
         name: data
         required: true
@@ -2401,7 +2401,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 预览创建后的代码
+          description: Preview the created code
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2414,7 +2414,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 预览创建后的代码
+      summary: Preview the created code
       tags:
       - AutoCode
   /autoCode/pubPlug:
@@ -2422,7 +2422,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 打包插件
+      - description: packaged plug-in
         in: body
         name: data
         required: true
@@ -2432,7 +2432,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 打包插件成功
+          description: Plug-in packaged successfully
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2445,7 +2445,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 打包插件
+      summary: packaged plug-in
       tags:
       - AutoCode
   /autoCode/rollback:
@@ -2453,7 +2453,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 请求参数
+      - description: request parameters
         in: body
         name: data
         required: true
@@ -2463,7 +2463,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 回滚自动生成代码
+          description: Rollback automatically generated code
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2473,7 +2473,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 回滚自动生成代码
+      summary: Rollback automatically generated code
       tags:
       - AutoCode
   /base/captcha:
@@ -2484,7 +2484,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 生成验证码,返回包括随机数id,base64,验证码长度,是否开启验证码
+          description: Generate verification code, return including random number id, base64, verification code length, whether to enable verification code
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2496,13 +2496,13 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 生成验证码
+      summary: Generate verification code
       tags:
       - Base
   /base/login:
     post:
       parameters:
-      - description: 用户名, 密码, 验证码
+      - description: username, password, verification code
         in: body
         name: data
         required: true
@@ -2512,7 +2512,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 返回包括用户信息,token,过期时间
+          description: Returns user information, token, expiration time
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2522,7 +2522,7 @@ paths:
                 msg:
                   type: string
               type: object
-      summary: 用户登录
+      summary: User login
       tags:
       - Base
   /casbin/UpdateCasbin:
@@ -2530,7 +2530,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 权限id, 权限模型列表
+      - description: permission id, permission model list
         in: body
         name: data
         required: true
@@ -2540,7 +2540,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 更新角色api权限
+          description: Update role api permissions
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2550,7 +2550,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 更新角色api权限
+      summary: Update role api permissions
       tags:
       - Casbin
   /casbin/getPolicyPathByAuthorityId:
@@ -2558,7 +2558,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 权限id, 权限模型列表
+      - description: permission id, permission model list
         in: body
         name: data
         required: true
@@ -2568,7 +2568,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取权限列表,返回包括casbin详情列表
+          description: Get the permission list and return the list including casbin details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2580,7 +2580,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取权限列表
+      summary: Get the permission list
       tags:
       - Casbin
   /customer/customer:
@@ -2588,7 +2588,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 客户ID
+      - description: customer ID
         in: body
         name: data
         required: true
@@ -2598,7 +2598,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除客户
+          description: Delete customer
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2608,38 +2608,38 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除客户
+      summary: delete customer
       tags:
       - ExaCustomer
     get:
       consumes:
       - application/json
       parameters:
-      - description: 主键ID
+      - description: primary key ID
         in: query
         name: ID
         type: integer
-      - description: 创建时间
+      - description: creation time
         in: query
         name: createdAt
         type: string
-      - description: 客户名
+      - description: customer name
         in: query
         name: customerName
         type: string
-      - description: 客户手机号
+      - description: customer mobile phone number
         in: query
         name: customerPhoneData
         type: string
-      - description: 管理角色ID
+      - description: Management role ID
         in: query
         name: sysUserAuthorityID
         type: integer
-      - description: 管理ID
+      - description: Management ID
         in: query
         name: sysUserId
         type: integer
-      - description: 更新时间
+      - description: update time
         in: query
         name: updatedAt
         type: string
@@ -2647,7 +2647,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取单一客户信息,返回包括客户详情
+          description: Obtain single customer information and return customer details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2659,14 +2659,14 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取单一客户信息
+      summary: Get single customer information
       tags:
       - ExaCustomer
     post:
       consumes:
       - application/json
       parameters:
-      - description: 客户用户名, 客户手机号码
+      - description: customer username, customer mobile phone number
         in: body
         name: data
         required: true
@@ -2676,7 +2676,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建客户
+          description: Create a customer
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2686,14 +2686,14 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 创建客户
+      summary: Create a customer
       tags:
       - ExaCustomer
     put:
       consumes:
       - application/json
       parameters:
-      - description: 客户ID, 客户信息
+      - description: customer ID, customer information
         in: body
         name: data
         required: true
@@ -2703,7 +2703,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 更新客户信息
+          description: Update customer information
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2713,7 +2713,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 更新客户信息
+      summary: Update customer information
       tags:
       - ExaCustomer
   /customer/customerList:
@@ -2721,15 +2721,15 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 关键字
+      - description: keyword
         in: query
         name: keyword
         type: string
-      - description: 页码
+      - description: page number
         in: query
         name: page
         type: integer
-      - description: 每页大小
+      - description: size per page
         in: query
         name: pageSize
         type: integer
@@ -2737,7 +2737,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 分页获取权限客户列表,返回包括列表,总数,页码,每页数量
+          description: Get the list of authorized customers in paging, and return the list, total number, page number, and quantity per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2749,7 +2749,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 分页获取权限客户列表
+      summary: Get the list of authorized customers in paging
       tags:
       - ExaCustomer
   /email/emailTest:
@@ -2758,18 +2758,18 @@ paths:
       - application/json
       responses:
         "200":
-          description: '{"success":true,"data":{},"msg":"发送成功"}'
+          description: '{"success":true,"data":{},"msg":"Sent successfully"}'
           schema:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 发送测试邮件
+      summary: Send test email
       tags:
       - System
   /email/sendEmail:
     post:
       parameters:
-      - description: 发送邮件必须的参数
+      - description: necessary parameters for sending emails
         in: body
         name: data
         required: true
@@ -2779,12 +2779,12 @@ paths:
       - application/json
       responses:
         "200":
-          description: '{"success":true,"data":{},"msg":"发送成功"}'
+          description: '{"success":true,"data":{},"msg":"Sent successfully"}'
           schema:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 发送邮件
+      summary: send email
       tags:
       - System
   /fileUploadAndDownload/breakpointContinue:
@@ -2792,7 +2792,7 @@ paths:
       consumes:
       - multipart/form-data
       parameters:
-      - description: an example for breakpoint resume, 断点续传示例
+      - description: an example for breakpoint resume, breakpoint resume example
         in: formData
         name: file
         required: true
@@ -2801,7 +2801,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 断点续传到服务器
+          description: Resume transfer to server from breakpoint
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2811,13 +2811,13 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 断点续传到服务器
+      summary: Resume transmission to server from breakpoint
       tags:
       - ExaFileUploadAndDownload
   /fileUploadAndDownload/deleteFile:
     post:
       parameters:
-      - description: 传入文件里面id即可
+      - description: Just pass in the id in the file
         in: body
         name: data
         required: true
@@ -2827,7 +2827,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除文件
+          description: delete file
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2837,7 +2837,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除文件
+      summary: delete files
       tags:
       - ExaFileUploadAndDownload
   /fileUploadAndDownload/findFile:
@@ -2845,7 +2845,7 @@ paths:
       consumes:
       - multipart/form-data
       parameters:
-      - description: 上传文件完成
+      - description: File upload completed
         in: formData
         name: file
         required: true
@@ -2854,7 +2854,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建文件,返回包括文件路径
+          description: Create a file, return including the file path
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2866,7 +2866,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 创建文件
+      summary: Create file
       tags:
       - ExaFileUploadAndDownload
   /fileUploadAndDownload/getFileList:
@@ -2874,7 +2874,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 页码, 每页大小
+      - description: page number, size of each page
         in: body
         name: data
         required: true
@@ -2884,7 +2884,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 分页文件列表,返回包括列表,总数,页码,每页数量
+          description: Paging file list, returns include list, total number, page number, number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2896,7 +2896,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 分页文件列表
+      summary: paging file list
       tags:
       - ExaFileUploadAndDownload
   /fileUploadAndDownload/removeChunk:
@@ -2904,7 +2904,7 @@ paths:
       consumes:
       - multipart/form-data
       parameters:
-      - description: 删除缓存切片
+      - description: Delete cache tiles
         in: formData
         name: file
         required: true
@@ -2913,7 +2913,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除切片
+          description: delete slice
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2923,7 +2923,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除切片
+      summary: delete slice
       tags:
       - ExaFileUploadAndDownload
   /fileUploadAndDownload/upload:
@@ -2931,7 +2931,7 @@ paths:
       consumes:
       - multipart/form-data
       parameters:
-      - description: 上传文件示例
+      - description: Example of uploading file
         in: formData
         name: file
         required: true
@@ -2940,7 +2940,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 上传文件示例,返回包括文件详情
+          description: Upload file example, return including file details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2952,7 +2952,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 上传文件示例
+      summary: Example of uploading files
       tags:
       - ExaFileUploadAndDownload
   /init/checkdb:
@@ -2961,7 +2961,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 初始化用户数据库
+          description: Initialize user database
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2972,13 +2972,13 @@ paths:
                 msg:
                   type: string
               type: object
-      summary: 初始化用户数据库
+      summary: Initialize user database
       tags:
       - CheckDB
   /init/initdb:
     post:
       parameters:
-      - description: 初始化数据库参数
+      - description: Initialization database parameters
         in: body
         name: data
         required: true
@@ -2988,7 +2988,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 初始化用户数据库
+          description: Initialize user database
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2996,7 +2996,7 @@ paths:
                 data:
                   type: string
               type: object
-      summary: 初始化用户数据库
+      summary: Initialize user database
       tags:
       - InitDB
   /jwt/jsonInBlacklist:
@@ -3007,7 +3007,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: jwt加入黑名单
+          description: jwt added to blacklist
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3017,7 +3017,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: jwt加入黑名单
+      summary: jwt added to blacklist
       tags:
       - Jwt
   /menu/addBaseMenu:
@@ -3025,7 +3025,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记
+      - description: routing path, parent menu ID, routing name, corresponding front-end file path, sorting mark
         in: body
         name: data
         required: true
@@ -3035,7 +3035,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 新增菜单
+          description: New menu
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3045,7 +3045,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 新增菜单
+      summary: New menu
       tags:
       - Menu
   /menu/addMenuAuthority:
@@ -3053,7 +3053,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 角色ID
+      - description: role ID
         in: body
         name: data
         required: true
@@ -3063,7 +3063,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 增加menu和角色关联关系
+          description: Add the relationship between menu and role
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3073,7 +3073,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 增加menu和角色关联关系
+      summary: Increase the relationship between menu and role
       tags:
       - AuthorityMenu
   /menu/deleteBaseMenu:
@@ -3081,7 +3081,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 菜单id
+      - description: menu id
         in: body
         name: data
         required: true
@@ -3091,7 +3091,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除菜单
+          description: delete menu
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3101,7 +3101,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除菜单
+      summary: delete menu
       tags:
       - Menu
   /menu/getBaseMenuById:
@@ -3109,7 +3109,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 菜单id
+      - description: menu id
         in: body
         name: data
         required: true
@@ -3119,7 +3119,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 根据id获取菜单,返回包括系统菜单列表
+          description: Get the menu based on id and return the system menu list
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3131,13 +3131,13 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 根据id获取菜单
+      summary: Get menu based on id
       tags:
       - Menu
   /menu/getBaseMenuTree:
     post:
       parameters:
-      - description: 空
+      - description: empty
         in: body
         name: data
         required: true
@@ -3147,7 +3147,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取用户动态路由,返回包括系统菜单列表
+          description: Get the user's dynamic route and return the system menu list
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3159,13 +3159,13 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取用户动态路由
+      summary: Get user dynamic routing
       tags:
       - AuthorityMenu
   /menu/getMenu:
     post:
       parameters:
-      - description: 空
+      - description: empty
         in: body
         name: data
         required: true
@@ -3175,7 +3175,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取用户动态路由,返回包括系统菜单详情列表
+          description: Get user dynamic routing and return a list including system menu details
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3187,7 +3187,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取用户动态路由
+      summary: Get user dynamic routing
       tags:
       - AuthorityMenu
   /menu/getMenuAuthority:
@@ -3195,7 +3195,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 角色ID
+      - description: role ID
         in: body
         name: data
         required: true
@@ -3205,7 +3205,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取指定角色menu
+          description: Get the specified role menu
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3218,7 +3218,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取指定角色menu
+      summary: Get the specified role menu
       tags:
       - AuthorityMenu
   /menu/getMenuList:
@@ -3226,7 +3226,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 页码, 每页大小
+      - description: page number, size of each page
         in: body
         name: data
         required: true
@@ -3236,7 +3236,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 分页获取基础menu列表,返回包括列表,总数,页码,每页数量
+          description: Get the basic menu list in paging, and return the list, total number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3248,7 +3248,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 分页获取基础menu列表
+      summary: Get the basic menu list by pagination
       tags:
       - Menu
   /menu/updateBaseMenu:
@@ -3256,7 +3256,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记
+      - description: routing path, parent menu ID, routing name, corresponding front-end file path, sorting mark
         in: body
         name: data
         required: true
@@ -3266,7 +3266,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 更新菜单
+          description: update menu
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3276,7 +3276,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 更新菜单
+      summary: update menu
       tags:
       - Menu
   /sysDictionary/createSysDictionary:
@@ -3284,7 +3284,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: SysDictionary模型
+      - description: SysDictionary model
         in: body
         name: data
         required: true
@@ -3294,7 +3294,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建SysDictionary
+          description: Create SysDictionary
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3304,7 +3304,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 创建SysDictionary
+      summary: Create SysDictionary
       tags:
       - SysDictionary
   /sysDictionary/deleteSysDictionary:
@@ -3312,7 +3312,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: SysDictionary模型
+      - description: SysDictionary model
         in: body
         name: data
         required: true
@@ -3322,7 +3322,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除SysDictionary
+          description: Delete SysDictionary
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3332,7 +3332,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除SysDictionary
+      summary: Delete SysDictionary
       tags:
       - SysDictionary
   /sysDictionary/findSysDictionary:
@@ -3340,31 +3340,31 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 主键ID
+      - description: primary key ID
         in: query
         name: ID
         type: integer
-      - description: 创建时间
+      - description: creation time
         in: query
         name: createdAt
         type: string
-      - description: 描述
+      - description: description
         in: query
         name: desc
         type: string
-      - description: 字典名（中）
+      - description: dictionary name (medium)
         in: query
         name: name
         type: string
-      - description: 状态
+      - description: status
         in: query
         name: status
         type: boolean
-      - description: 字典名（英）
+      - description: dictionary name (English)
         in: query
         name: type
         type: string
-      - description: 更新时间
+      - description: update time
         in: query
         name: updatedAt
         type: string
@@ -3372,7 +3372,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 用id查询SysDictionary
+          description: Query SysDictionary with id
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3385,7 +3385,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 用id查询SysDictionary
+      summary: Query SysDictionary using id
       tags:
       - SysDictionary
   /sysDictionary/getSysDictionaryList:
@@ -3396,7 +3396,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 分页获取SysDictionary列表,返回包括列表,总数,页码,每页数量
+          description: Get the SysDictionary list in paging, and return the list, total number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3408,7 +3408,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 分页获取SysDictionary列表
+      summary: Get the SysDictionary list in pages
       tags:
       - SysDictionary
   /sysDictionary/updateSysDictionary:
@@ -3416,7 +3416,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: SysDictionary模型
+      - description: SysDictionary model
         in: body
         name: data
         required: true
@@ -3426,7 +3426,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 更新SysDictionary
+          description: Update SysDictionary
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3436,7 +3436,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 更新SysDictionary
+      summary: Update SysDictionary
       tags:
       - SysDictionary
   /sysDictionaryDetail/createSysDictionaryDetail:
@@ -3444,7 +3444,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: SysDictionaryDetail模型
+      - description: SysDictionaryDetail model
         in: body
         name: data
         required: true
@@ -3454,7 +3454,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建SysDictionaryDetail
+          description: Create SysDictionaryDetail
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3464,7 +3464,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 创建SysDictionaryDetail
+      summary: Create SysDictionaryDetail
       tags:
       - SysDictionaryDetail
   /sysDictionaryDetail/deleteSysDictionaryDetail:
@@ -3472,7 +3472,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: SysDictionaryDetail模型
+      - description: SysDictionaryDetail model
         in: body
         name: data
         required: true
@@ -3482,7 +3482,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除SysDictionaryDetail
+          description: Delete SysDictionaryDetail
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3492,7 +3492,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除SysDictionaryDetail
+      summary: Delete SysDictionaryDetail
       tags:
       - SysDictionaryDetail
   /sysDictionaryDetail/findSysDictionaryDetail:
@@ -3500,39 +3500,39 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 主键ID
+      - description: primary key ID
         in: query
         name: ID
         type: integer
-      - description: 创建时间
+      - description: creation time
         in: query
         name: createdAt
         type: string
-      - description: 扩展值
+      - description: extended value
         in: query
         name: extend
         type: string
-      - description: 展示值
+      - description: display value
         in: query
         name: label
         type: string
-      - description: 排序标记
+      - description: sorting mark
         in: query
         name: sort
         type: integer
-      - description: 启用状态
+      - description: enabled status
         in: query
         name: status
         type: boolean
-      - description: 关联标记
+      - description: associated tag
         in: query
         name: sysDictionaryID
         type: integer
-      - description: 更新时间
+      - description: update time
         in: query
         name: updatedAt
         type: string
-      - description: 字典值
+      - description: dictionary value
         in: query
         name: value
         type: integer
@@ -3540,7 +3540,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 用id查询SysDictionaryDetail
+          description: Query SysDictionaryDetail with id
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3553,7 +3553,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 用id查询SysDictionaryDetail
+      summary: Query SysDictionaryDetail using id
       tags:
       - SysDictionaryDetail
   /sysDictionaryDetail/getSysDictionaryDetailList:
@@ -3561,51 +3561,51 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 主键ID
+      - description: primary key ID
         in: query
         name: ID
         type: integer
-      - description: 创建时间
+      - description: creation time
         in: query
         name: createdAt
         type: string
-      - description: 扩展值
+      - description: extended value
         in: query
         name: extend
         type: string
-      - description: 关键字
+      - description: keyword
         in: query
         name: keyword
         type: string
-      - description: 展示值
+      - description: display value
         in: query
         name: label
         type: string
-      - description: 页码
+      - description: page number
         in: query
         name: page
         type: integer
-      - description: 每页大小
+      - description: size per page
         in: query
         name: pageSize
         type: integer
-      - description: 排序标记
+      - description: sorting mark
         in: query
         name: sort
         type: integer
-      - description: 启用状态
+      - description: enabled status
         in: query
         name: status
         type: boolean
-      - description: 关联标记
+      - description: associated tag
         in: query
         name: sysDictionaryID
         type: integer
-      - description: 更新时间
+      - description: update time
         in: query
         name: updatedAt
         type: string
-      - description: 字典值
+      - description: dictionary value
         in: query
         name: value
         type: integer
@@ -3613,7 +3613,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 分页获取SysDictionaryDetail列表,返回包括列表,总数,页码,每页数量
+          description: Get the SysDictionaryDetail list in pages, and return the list, total number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3625,7 +3625,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 分页获取SysDictionaryDetail列表
+      summary: Get the SysDictionaryDetail list in pages
       tags:
       - SysDictionaryDetail
   /sysDictionaryDetail/updateSysDictionaryDetail:
@@ -3633,7 +3633,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 更新SysDictionaryDetail
+      - description: Update SysDictionaryDetail
         in: body
         name: data
         required: true
@@ -3643,7 +3643,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 更新SysDictionaryDetail
+          description: Update SysDictionaryDetail
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3653,7 +3653,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 更新SysDictionaryDetail
+      summary: Update SysDictionaryDetail
       tags:
       - SysDictionaryDetail
   /sysOperationRecord/createSysOperationRecord:
@@ -3661,7 +3661,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 创建SysOperationRecord
+      - description: Create SysOperationRecord
         in: body
         name: data
         required: true
@@ -3671,7 +3671,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 创建SysOperationRecord
+          description: Create SysOperationRecord
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3681,7 +3681,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 创建SysOperationRecord
+      summary: Create SysOperationRecord
       tags:
       - SysOperationRecord
   /sysOperationRecord/deleteSysOperationRecord:
@@ -3689,7 +3689,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: SysOperationRecord模型
+      - description: SysOperationRecord model
         in: body
         name: data
         required: true
@@ -3699,7 +3699,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除SysOperationRecord
+          description: Delete SysOperationRecord
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3709,7 +3709,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除SysOperationRecord
+      summary: Delete SysOperationRecord
       tags:
       - SysOperationRecord
   /sysOperationRecord/deleteSysOperationRecordByIds:
@@ -3717,7 +3717,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 批量删除SysOperationRecord
+      - description: Delete SysOperationRecord in batches
         in: body
         name: data
         required: true
@@ -3727,7 +3727,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 批量删除SysOperationRecord
+          description: Delete SysOperationRecord in batches
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3737,7 +3737,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 批量删除SysOperationRecord
+      summary: Delete SysOperationRecord in batches
       tags:
       - SysOperationRecord
   /sysOperationRecord/findSysOperationRecord:
@@ -3745,55 +3745,55 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 主键ID
+      - description: primary key ID
         in: query
         name: ID
         type: integer
-      - description: 代理
+      - description: agent
         in: query
         name: agent
         type: string
-      - description: 请求Body
+      - description: Request Body
         in: query
         name: body
         type: string
-      - description: 创建时间
+      - description: creation time
         in: query
         name: createdAt
         type: string
-      - description: 错误信息
+      - description: error message
         in: query
         name: error_message
         type: string
-      - description: 请求ip
+      - description: request ip
         in: query
         name: ip
         type: string
-      - description: 延迟
+      - description: delay
         in: query
         name: latency
         type: string
-      - description: 请求方法
+      - description: request method
         in: query
         name: method
         type: string
-      - description: 请求路径
+      - description: request path
         in: query
         name: path
         type: string
-      - description: 响应Body
+      - description: Response Body
         in: query
         name: resp
         type: string
-      - description: 请求状态
+      - description: request status
         in: query
         name: status
         type: integer
-      - description: 更新时间
+      - description: update time
         in: query
         name: updatedAt
         type: string
-      - description: 用户id
+      - description: user id
         in: query
         name: user_id
         type: integer
@@ -3801,7 +3801,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 用id查询SysOperationRecord
+          description: Query SysOperationRecord with id
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3814,7 +3814,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 用id查询SysOperationRecord
+      summary: Query SysOperationRecord using id
       tags:
       - SysOperationRecord
   /sysOperationRecord/getSysOperationRecordList:
@@ -3822,67 +3822,67 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 主键ID
+      - description: primary key ID
         in: query
         name: ID
         type: integer
-      - description: 代理
+      - description: agent
         in: query
         name: agent
         type: string
-      - description: 请求Body
+      - description: Request Body
         in: query
         name: body
         type: string
-      - description: 创建时间
+      - description: creation time
         in: query
         name: createdAt
         type: string
-      - description: 错误信息
+      - description: error message
         in: query
         name: error_message
         type: string
-      - description: 请求ip
+      - description: request ip
         in: query
         name: ip
         type: string
-      - description: 关键字
+      - description: keyword
         in: query
         name: keyword
         type: string
-      - description: 延迟
+      - description: delay
         in: query
         name: latency
         type: string
-      - description: 请求方法
+      - description: request method
         in: query
         name: method
         type: string
-      - description: 页码
+      - description: page number
         in: query
         name: page
         type: integer
-      - description: 每页大小
+      - description: size per page
         in: query
         name: pageSize
         type: integer
-      - description: 请求路径
+      - description: request path
         in: query
         name: path
         type: string
-      - description: 响应Body
+      - description: Response Body
         in: query
         name: resp
         type: string
-      - description: 请求状态
+      - description: request status
         in: query
         name: status
         type: integer
-      - description: 更新时间
+      - description: update time
         in: query
         name: updatedAt
         type: string
-      - description: 用户id
+      - description: user id
         in: query
         name: user_id
         type: integer
@@ -3890,7 +3890,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 分页获取SysOperationRecord列表,返回包括列表,总数,页码,每页数量
+          description: Get the SysOperationRecord list in paging, and return the list, total number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3902,7 +3902,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 分页获取SysOperationRecord列表
+      summary: Get the SysOperationRecord list in pages
       tags:
       - SysOperationRecord
   /system/getServerInfo:
@@ -3911,7 +3911,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取服务器信息
+          description: Get server information
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3924,7 +3924,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取服务器信息
+      summary: Get server information
       tags:
       - System
   /system/getSystemConfig:
@@ -3933,7 +3933,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取配置文件内容,返回包括系统配置
+          description: Get the content of the configuration file and return the system configuration.
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3945,7 +3945,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取配置文件内容
+      summary: Get the configuration file content
       tags:
       - System
   /system/reloadSystem:
@@ -3954,7 +3954,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 重启系统
+          description: Restart the system
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3964,13 +3964,13 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 重启系统
+      summary: Restart the system
       tags:
       - System
   /system/setSystemConfig:
     post:
       parameters:
-      - description: 设置配置文件内容
+      - description: Set configuration file content
         in: body
         name: data
         required: true
@@ -3980,7 +3980,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 设置配置文件内容
+          description: Set configuration file content
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -3990,7 +3990,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 设置配置文件内容
+      summary: Set configuration file content
       tags:
       - System
   /user/SetSelfInfo:
@@ -3998,7 +3998,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: ID, 用户名, 昵称, 头像链接
+      - description: ID, username, nickname, avatar link
         in: body
         name: data
         required: true
@@ -4008,7 +4008,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 设置用户信息
+          description: Set user information
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4021,13 +4021,13 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 设置用户信息
+      summary: Set user information
       tags:
       - SysUser
   /user/admin_register:
     post:
       parameters:
-      - description: 用户名, 昵称, 密码, 角色ID
+      - description: username, nickname, password, role ID
         in: body
         name: data
         required: true
@@ -4037,7 +4037,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 用户注册账号,返回包括用户信息
+          description: User registered account, returns including user information
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4047,13 +4047,13 @@ paths:
                 msg:
                   type: string
               type: object
-      summary: 用户注册账号
+      summary: User registration account
       tags:
       - SysUser
   /user/changePassword:
     post:
       parameters:
-      - description: 用户名, 原密码, 新密码
+      - description: username, original password, new password
         in: body
         name: data
         required: true
@@ -4063,7 +4063,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 用户修改密码
+          description: User changes password
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4073,7 +4073,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 用户修改密码
+      summary: User changes password
       tags:
       - SysUser
   /user/deleteUser:
@@ -4081,7 +4081,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 用户ID
+      - description: user ID
         in: body
         name: data
         required: true
@@ -4091,7 +4091,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 删除用户
+          description: delete user
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4101,7 +4101,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 删除用户
+      summary: delete user
       tags:
       - SysUser
   /user/getUserInfo:
@@ -4112,7 +4112,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 获取用户信息
+          description: Get user information
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4125,7 +4125,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 获取用户信息
+      summary: Get user information
       tags:
       - SysUser
   /user/getUserList:
@@ -4133,7 +4133,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 页码, 每页大小
+      - description: page number, size of each page
         in: body
         name: data
         required: true
@@ -4143,7 +4143,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 分页获取用户列表,返回包括列表,总数,页码,每页数量
+          description: Get the user list in pages, and return the list, total number, page number, and number per page
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4155,7 +4155,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 分页获取用户列表
+      summary: Get the user list in pages
       tags:
       - SysUser
   /user/resetPassword:
@@ -4171,7 +4171,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 重置用户密码
+          description: Reset user password
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4181,7 +4181,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 重置用户密码
+      summary: Reset user password
       tags:
       - SysUser
   /user/setUserAuthorities:
@@ -4189,7 +4189,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 用户UUID, 角色ID
+      - description: user UUID, role ID
         in: body
         name: data
         required: true
@@ -4199,7 +4199,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 设置用户权限
+          description: Set user permissions
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4209,7 +4209,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 设置用户权限
+      summary: Set user permissions
       tags:
       - SysUser
   /user/setUserAuthority:
@@ -4217,7 +4217,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 用户UUID, 角色ID
+      - description: user UUID, role ID
         in: body
         name: data
         required: true
@@ -4227,7 +4227,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 设置用户权限
+          description: Set user permissions
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4237,7 +4237,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 更改用户权限
+      summary: Change user permissions
       tags:
       - SysUser
   /user/setUserInfo:
@@ -4245,7 +4245,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: ID, 用户名, 昵称, 头像链接
+      - description: ID, username, nickname, avatar link
         in: body
         name: data
         required: true
@@ -4255,7 +4255,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 设置用户信息
+          description: Set user information
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -4268,7 +4268,7 @@ paths:
               type: object
       security:
       - ApiKeyAuth: []
-      summary: 设置用户信息
+      summary: Set user information
       tags:
       - SysUser
 securityDefinitions:

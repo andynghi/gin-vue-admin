@@ -13,7 +13,7 @@ import (
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Upload
-//@description: 创建文件上传记录
+//@description: Create file upload record
 //@param: file model.ExaFileUploadAndDownload
 //@return: error
 
@@ -23,7 +23,7 @@ func (e *FileUploadAndDownloadService) Upload(file example.ExaFileUploadAndDownl
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: FindFile
-//@description: 查询文件记录
+//@description: Query file records
 //@param: id uint
 //@return: model.ExaFileUploadAndDownload, error
 
@@ -35,7 +35,7 @@ func (e *FileUploadAndDownloadService) FindFile(id uint) (example.ExaFileUploadA
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: DeleteFile
-//@description: 删除文件记录
+//@description: Delete file records
 //@param: file model.ExaFileUploadAndDownload
 //@return: err error
 
@@ -47,13 +47,13 @@ func (e *FileUploadAndDownloadService) DeleteFile(file example.ExaFileUploadAndD
 	}
 	oss := upload.NewOss()
 	if err = oss.DeleteFile(fileFromDb.Key); err != nil {
-		return errors.New("文件删除失败")
+		return errors.New("File deletion failed")
 	}
 	err = global.GVA_DB.Where("id = ?", file.ID).Unscoped().Delete(&file).Error
 	return err
 }
 
-// EditFileName 编辑文件名或者备注
+// EditFileName edit file name or remarks
 func (e *FileUploadAndDownloadService) EditFileName(file example.ExaFileUploadAndDownload) (err error) {
 	var fileFromDb example.ExaFileUploadAndDownload
 	return global.GVA_DB.Where("id = ?", file.ID).First(&fileFromDb).Update("name", file.Name).Error
@@ -61,7 +61,7 @@ func (e *FileUploadAndDownloadService) EditFileName(file example.ExaFileUploadAn
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetFileRecordInfoList
-//@description: 分页获取数据
+//@description: Get data in pages
 //@param: info request.PageInfo
 //@return: list interface{}, total int64, err error
 
@@ -84,7 +84,7 @@ func (e *FileUploadAndDownloadService) GetFileRecordInfoList(info request.PageIn
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: UploadFile
-//@description: 根据配置文件判断是文件上传到本地或者七牛云
+//@description: Determine whether the file is uploaded to local or Qiniu Cloud based on the configuration file
 //@param: header *multipart.FileHeader, noSave string
 //@return: file model.ExaFileUploadAndDownload, err error
 

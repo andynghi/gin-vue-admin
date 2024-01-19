@@ -19,7 +19,7 @@ var Gorm = new(_gorm)
 
 type _gorm struct{}
 
-// Config gorm 自定义配置
+// Config gorm custom configuration
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (g *_gorm) Config(prefix string, singular bool) *gorm.Config {
 	config := &gorm.Config{

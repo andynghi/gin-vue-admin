@@ -1,12 +1,12 @@
 import service from '@/utils/request'
 
 // @Tags SysExportTemplate
-// @Summary 创建导出模板
+// @Summary Create export template
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysExportTemplate true "创建导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"创建成功"}"
+// @Param data body model.SysExportTemplate true "Create export template"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Created successfully"}"
 // @Router /sysExportTemplate/createSysExportTemplate [post]
 export const createSysExportTemplate = (data) => {
   return service({
@@ -17,12 +17,12 @@ export const createSysExportTemplate = (data) => {
 }
 
 // @Tags SysExportTemplate
-// @Summary 删除导出模板
+// @Summary Delete export template
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysExportTemplate true "删除导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
+// @Param data body model.SysExportTemplate true "Delete export template"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /sysExportTemplate/deleteSysExportTemplate [delete]
 export const deleteSysExportTemplate = (data) => {
   return service({
@@ -33,12 +33,12 @@ export const deleteSysExportTemplate = (data) => {
 }
 
 // @Tags SysExportTemplate
-// @Summary 批量删除导出模板
+// @Summary Batch delete export templates
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body request.IdsReq true "批量删除导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
+// @Param data body request.IdsReq true "Delete export templates in batches"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /sysExportTemplate/deleteSysExportTemplate [delete]
 export const deleteSysExportTemplateByIds = (data) => {
   return service({
@@ -49,12 +49,12 @@ export const deleteSysExportTemplateByIds = (data) => {
 }
 
 // @Tags SysExportTemplate
-// @Summary 更新导出模板
+// @Summary Update export template
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysExportTemplate true "更新导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"更新成功"}"
+// @Param data body model.SysExportTemplate true "Update export template"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Update successful"}"
 // @Router /sysExportTemplate/updateSysExportTemplate [put]
 export const updateSysExportTemplate = (data) => {
   return service({
@@ -65,12 +65,12 @@ export const updateSysExportTemplate = (data) => {
 }
 
 // @Tags SysExportTemplate
-// @Summary 用id查询导出模板
+// @Summary Use id to query and export templates
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query model.SysExportTemplate true "用id查询导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"查询成功"}"
+// @Param data query model.SysExportTemplate true "Query the export template with id"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Query successful"}"
 // @Router /sysExportTemplate/findSysExportTemplate [get]
 export const findSysExportTemplate = (params) => {
   return service({
@@ -81,12 +81,12 @@ export const findSysExportTemplate = (params) => {
 }
 
 // @Tags SysExportTemplate
-// @Summary 分页获取导出模板列表
+// @Summary Get the export template list by pagination
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query request.PageInfo true "分页获取导出模板列表"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data query request.PageInfo true "Get the export template list in pages"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /sysExportTemplate/getSysExportTemplateList [get]
 export const getSysExportTemplateList = (params) => {
   return service({

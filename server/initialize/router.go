@@ -12,11 +12,11 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-// 初始化总路由
+//Initialize the general route
 
 func Routers() *gin.Engine {
 
-	// 设置为发布模式
+	// Set to publish mode
 	if global.GVA_CONFIG.System.Env == "public" {
 		gin.SetMode(gin.ReleaseMode) //DebugMode ReleaseMode TestMode
 	}
@@ -27,58 +27,58 @@ func Routers() *gin.Engine {
 		Router.Use(gin.Logger())
 	}
 
-	InstallPlugin(Router) // 安装插件
+	InstallPlugin(Router) // Install plug-in
 	systemRouter := router.RouterGroupApp.System
 	exampleRouter := router.RouterGroupApp.Example
-	// 如果想要不使用nginx代理前端网页，可以修改 web/.env.production 下的
+	// If you don’t want to use nginx to proxy the front-end web page, you can modify it under web/.env.production
 	// VUE_APP_BASE_API = /
 	// VUE_APP_BASE_PATH = http://localhost
-	// 然后执行打包命令 npm run build。在打开下面3行注释
+	// Then execute the packaging command npm run build. Open the following 3 lines of comments
 	//Router.Static("/favicon.ico", "./dist/favicon.ico")
-	//Router.Static("/static", "./dist/static")   // dist里面的静态资源
-	//Router.StaticFile("/", "./dist/index.html") // 前端网页入口页面
+	//Router.Static("/static", "./dist/static") // Static resources in dist
+	//Router.StaticFile("/", "./dist/index.html") // Front-end web entrance page
 
-	Router.StaticFS(global.GVA_CONFIG.Local.StorePath, http.Dir(global.GVA_CONFIG.Local.StorePath)) // 为用户头像和文件提供静态地址
-	// Router.Use(middleware.LoadTls())  // 如果需要使用https 请打开此中间件 然后前往 core/server.go 将启动模式 更变为 Router.RunTLS("端口","你的cre/pem文件","你的key文件")
-	// 跨域，如需跨域可以打开下面的注释
-	// Router.Use(middleware.Cors()) // 直接放行全部跨域请求
-	// Router.Use(middleware.CorsByRules()) // 按照配置的规则放行跨域请求
+	Router.StaticFS(global.GVA_CONFIG.Local.StorePath, http.Dir(global.GVA_CONFIG.Local.StorePath)) // Provide static addresses for user avatars and files
+	// Router.Use(middleware.LoadTls()) // If you need to use https, please open this middleware and go to core/server.go to change the startup mode to Router.RunTLS("port","your cre/pem file","your key file")
+	// Cross-domain, if you need to cross-domain, you can open the following comments
+	// Router.Use(middleware.Cors()) // Directly allow all cross-domain requests
+	// Router.Use(middleware.CorsByRules()) // Release cross-domain requests according to configured rules
 	//global.GVA_LOG.Info("use middleware cors")
 	docs.SwaggerInfo.BasePath = global.GVA_CONFIG.System.RouterPrefix
 	Router.GET(global.GVA_CONFIG.System.RouterPrefix+"/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	global.GVA_LOG.Info("register swagger handler")
-	// 方便统一添加路由组前缀 多服务器上线使用
+	// Conveniently add routing group prefix for multiple servers to go online.
 
 	PublicGroup := Router.Group(global.GVA_CONFIG.System.RouterPrefix)
 	{
-		// 健康监测
+		// health monitoring
 		PublicGroup.GET("/health", func(c *gin.Context) {
 			c.JSON(http.StatusOK, "ok")
 		})
 	}
 	{
-		systemRouter.InitBaseRouter(PublicGroup) // 注册基础功能路由 不做鉴权
-		systemRouter.InitInitRouter(PublicGroup) // 自动初始化相关
+		systemRouter.InitBaseRouter(PublicGroup) //Register basic function routing without authentication
+		systemRouter.InitInitRouter(PublicGroup) // Automatic initialization related
 	}
 	PrivateGroup := Router.Group(global.GVA_CONFIG.System.RouterPrefix)
 	PrivateGroup.Use(middleware.JWTAuth()).Use(middleware.CasbinHandler())
 	{
-		systemRouter.InitApiRouter(PrivateGroup, PublicGroup)       // 注册功能api路由
-		systemRouter.InitJwtRouter(PrivateGroup)                    // jwt相关路由
-		systemRouter.InitUserRouter(PrivateGroup)                   // 注册用户路由
-		systemRouter.InitMenuRouter(PrivateGroup)                   // 注册menu路由
-		systemRouter.InitSystemRouter(PrivateGroup)                 // system相关路由
-		systemRouter.InitCasbinRouter(PrivateGroup)                 // 权限相关路由
-		systemRouter.InitAutoCodeRouter(PrivateGroup)               // 创建自动化代码
-		systemRouter.InitAuthorityRouter(PrivateGroup)              // 注册角色路由
-		systemRouter.InitSysDictionaryRouter(PrivateGroup)          // 字典管理
-		systemRouter.InitAutoCodeHistoryRouter(PrivateGroup)        // 自动化代码历史
-		systemRouter.InitSysOperationRecordRouter(PrivateGroup)     // 操作记录
-		systemRouter.InitSysDictionaryDetailRouter(PrivateGroup)    // 字典详情管理
-		systemRouter.InitAuthorityBtnRouterRouter(PrivateGroup)     // 字典详情管理
-		systemRouter.InitSysExportTemplateRouter(PrivateGroup)      // 导出模板
-		exampleRouter.InitCustomerRouter(PrivateGroup)              // 客户路由
-		exampleRouter.InitFileUploadAndDownloadRouter(PrivateGroup) // 文件上传下载功能路由
+		systemRouter.InitApiRouter(PrivateGroup, PublicGroup)       //Register function api routing
+		systemRouter.InitJwtRouter(PrivateGroup)                    // jwt related routing
+		systemRouter.InitUserRouter(PrivateGroup)                   //Register user route
+		systemRouter.InitMenuRouter(PrivateGroup)                   //Register menu route
+		systemRouter.InitSystemRouter(PrivateGroup)                 // system related routing
+		systemRouter.InitCasbinRouter(PrivateGroup)                 // Permission-related routing
+		systemRouter.InitAutoCodeRouter(PrivateGroup)               // Create automation code
+		systemRouter.InitAuthorityRouter(PrivateGroup)              //Register role route
+		systemRouter.InitSysDictionaryRouter(PrivateGroup)          // Dictionary management
+		systemRouter.InitAutoCodeHistoryRouter(PrivateGroup)        // Automated code history
+		systemRouter.InitSysOperationRecordRouter(PrivateGroup)     // Operation record
+		systemRouter.InitSysDictionaryDetailRouter(PrivateGroup)    // Dictionary details management
+		systemRouter.InitAuthorityBtnRouterRouter(PrivateGroup)     // Dictionary details management
+		systemRouter.InitSysExportTemplateRouter(PrivateGroup)      // Export template
+		exampleRouter.InitCustomerRouter(PrivateGroup)              //Customer routing
+		exampleRouter.InitFileUploadAndDownloadRouter(PrivateGroup) //File upload and download function routing
 
 	}
 

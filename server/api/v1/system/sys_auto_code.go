@@ -20,12 +20,12 @@ type AutoCodeApi struct{}
 
 // PreviewTemp
 // @Tags      AutoCode
-// @Summary   预览创建后的代码
+// @Summary Preview the created code
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.AutoCodeStruct                                      true  "预览创建代码"
-// @Success   200   {object}  response.Response{data=map[string]interface{},msg=string}  "预览创建后的代码"
+// @Param data body system.AutoCodeStruct true "Preview creation code"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Preview the created code"
 // @Router    /autoCode/preview [post]
 func (autoApi *AutoCodeApi) PreviewTemp(c *gin.Context) {
 	var a system.AutoCodeStruct
@@ -34,25 +34,25 @@ func (autoApi *AutoCodeApi) PreviewTemp(c *gin.Context) {
 		response.FailWithMessage(err.Error(), c)
 		return
 	}
-	a.Pretreatment() // 处理go关键字
+	a.Pretreatment() // Process the go keyword
 	a.PackageT = utils.FirstUpper(a.Package)
 	autoCode, err := autoCodeService.PreviewTemp(a)
 	if err != nil {
-		global.GVA_LOG.Error("预览失败!", zap.Error(err))
-		response.FailWithMessage("预览失败", c)
+		global.GVA_LOG.Error("Preview failed!", zap.Error(err))
+		response.FailWithMessage("Preview failed", c)
 	} else {
-		response.OkWithDetailed(gin.H{"autoCode": autoCode}, "预览成功", c)
+		response.OkWithDetailed(gin.H{"autoCode": autoCode}, "Preview successful", c)
 	}
 }
 
 // CreateTemp
 // @Tags      AutoCode
-// @Summary   自动代码模板
+// @Summary automatic code template
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.AutoCodeStruct  true  "创建自动代码"
-// @Success   200   {string}  string                 "{"success":true,"data":{},"msg":"创建成功"}"
+// @Param data body system.AutoCodeStruct true "Create automatic code"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Created successfully"}"
 // @Router    /autoCode/createTemp [post]
 func (autoApi *AutoCodeApi) CreateTemp(c *gin.Context) {
 	var a system.AutoCodeStruct
@@ -65,9 +65,9 @@ func (autoApi *AutoCodeApi) CreateTemp(c *gin.Context) {
 	var apiIds []uint
 	if a.AutoCreateApiToSql {
 		if ids, err := autoCodeService.AutoCreateApi(&a); err != nil {
-			global.GVA_LOG.Error("自动化创建失败!请自行清空垃圾数据!", zap.Error(err))
+			global.GVA_LOG.Error("Automated creation failed! Please clear the garbage data yourself!", zap.Error(err))
 			c.Writer.Header().Add("success", "false")
-			c.Writer.Header().Add("msg", url.QueryEscape("自动化创建失败!请自行清空垃圾数据!"))
+			c.Writer.Header().Add("msg", url.QueryEscape("Automation creation failed! Please clear the junk data yourself!"))
 			return
 		} else {
 			apiIds = ids
@@ -85,7 +85,7 @@ func (autoApi *AutoCodeApi) CreateTemp(c *gin.Context) {
 			_ = os.Remove("./ginvueadmin.zip")
 		}
 	} else {
-		c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", "ginvueadmin.zip")) // fmt.Sprintf("attachment; filename=%s", filename)对下载的文件重命名
+		c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", "ginvueadmin.zip")) // fmt.Sprintf("attachment; filename=%s" , filename) to rename the downloaded file
 		c.Writer.Header().Add("Content-Type", "application/json")
 		c.Writer.Header().Add("success", "true")
 		c.File("./ginvueadmin.zip")
@@ -95,11 +95,11 @@ func (autoApi *AutoCodeApi) CreateTemp(c *gin.Context) {
 
 // GetDB
 // @Tags      AutoCode
-// @Summary   获取当前所有数据库
+// @Summary Get all current databases
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Success   200  {object}  response.Response{data=map[string]interface{},msg=string}  "获取当前所有数据库"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Get all current databases"
 // @Router    /autoCode/getDatabase [get]
 func (autoApi *AutoCodeApi) GetDB(c *gin.Context) {
 	businessDB := c.Query("businessDB")
@@ -114,40 +114,40 @@ func (autoApi *AutoCodeApi) GetDB(c *gin.Context) {
 		dbList = append(dbList, item)
 	}
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 	} else {
-		response.OkWithDetailed(gin.H{"dbs": dbs, "dbList": dbList}, "获取成功", c)
+		response.OkWithDetailed(gin.H{"dbs": dbs, "dbList": dbList}, "Get successful", c)
 	}
 }
 
 // GetTables
 // @Tags      AutoCode
-// @Summary   获取当前数据库所有表
+// @Summary Get all tables in the current database
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Success   200  {object}  response.Response{data=map[string]interface{},msg=string}  "获取当前数据库所有表"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Get all tables in the current database"
 // @Router    /autoCode/getTables [get]
 func (autoApi *AutoCodeApi) GetTables(c *gin.Context) {
 	dbName := c.DefaultQuery("dbName", global.GVA_CONFIG.Mysql.Dbname)
 	businessDB := c.Query("businessDB")
 	tables, err := autoCodeService.Database(businessDB).GetTables(businessDB, dbName)
 	if err != nil {
-		global.GVA_LOG.Error("查询table失败!", zap.Error(err))
-		response.FailWithMessage("查询table失败", c)
+		global.GVA_LOG.Error("Query table failed!", zap.Error(err))
+		response.FailWithMessage("Query table failed", c)
 	} else {
-		response.OkWithDetailed(gin.H{"tables": tables}, "获取成功", c)
+		response.OkWithDetailed(gin.H{"tables": tables}, "Get successful", c)
 	}
 }
 
 // GetColumn
 // @Tags      AutoCode
-// @Summary   获取当前表所有字段
+// @Summary Get all fields of the current table
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Success   200  {object}  response.Response{data=map[string]interface{},msg=string}  "获取当前表所有字段"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Get all fields of the current table"
 // @Router    /autoCode/getColumn [get]
 func (autoApi *AutoCodeApi) GetColumn(c *gin.Context) {
 	businessDB := c.Query("businessDB")
@@ -155,21 +155,21 @@ func (autoApi *AutoCodeApi) GetColumn(c *gin.Context) {
 	tableName := c.Query("tableName")
 	columns, err := autoCodeService.Database(businessDB).GetColumn(businessDB, tableName, dbName)
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 	} else {
-		response.OkWithDetailed(gin.H{"columns": columns}, "获取成功", c)
+		response.OkWithDetailed(gin.H{"columns": columns}, "Get successful", c)
 	}
 }
 
 // CreatePackage
 // @Tags      AutoCode
-// @Summary   创建package
+// @Summary Create package
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysAutoCode                                         true  "创建package"
-// @Success   200   {object}  response.Response{data=map[string]interface{},msg=string}  "创建package成功"
+// @Param data body system.SysAutoCode true "Create package"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Package created successfully"
 // @Router    /autoCode/createPackage [post]
 func (autoApi *AutoCodeApi) CreatePackage(c *gin.Context) {
 	var a system.SysAutoCode
@@ -181,60 +181,60 @@ func (autoApi *AutoCodeApi) CreatePackage(c *gin.Context) {
 	err := autoCodeService.CreateAutoCode(&a)
 	if err != nil {
 
-		global.GVA_LOG.Error("创建失败!", zap.Error(err))
-		response.FailWithMessage("创建失败", c)
+		global.GVA_LOG.Error("Creation failed!", zap.Error(err))
+		response.FailWithMessage("Creation failed", c)
 	} else {
-		response.OkWithMessage("创建成功", c)
+		response.OkWithMessage("Created successfully", c)
 	}
 }
 
 // GetPackage
 // @Tags      AutoCode
-// @Summary   获取package
+// @Summary Get package
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Success   200  {object}  response.Response{data=map[string]interface{},msg=string}  "创建package成功"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Package created successfully"
 // @Router    /autoCode/getPackage [post]
 func (autoApi *AutoCodeApi) GetPackage(c *gin.Context) {
 	pkgs, err := autoCodeService.GetPackage()
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 	} else {
-		response.OkWithDetailed(gin.H{"pkgs": pkgs}, "获取成功", c)
+		response.OkWithDetailed(gin.H{"pkgs": pkgs}, "Get successful", c)
 	}
 }
 
 // DelPackage
 // @Tags      AutoCode
-// @Summary   删除package
+// @Summary delete package
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysAutoCode                                         true  "创建package"
-// @Success   200   {object}  response.Response{data=map[string]interface{},msg=string}  "删除package成功"
+// @Param data body system.SysAutoCode true "Create package"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Delete package successfully"
 // @Router    /autoCode/delPackage [post]
 func (autoApi *AutoCodeApi) DelPackage(c *gin.Context) {
 	var a system.SysAutoCode
 	_ = c.ShouldBindJSON(&a)
 	err := autoCodeService.DelPackage(a)
 	if err != nil {
-		global.GVA_LOG.Error("删除失败!", zap.Error(err))
-		response.FailWithMessage("删除失败", c)
+		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
+		response.FailWithMessage("Deletion failed", c)
 	} else {
-		response.OkWithMessage("删除成功", c)
+		response.OkWithMessage("Deletion successful", c)
 	}
 }
 
 // AutoPlug
 // @Tags      AutoCode
-// @Summary   创建插件模板
+// @Summary Create plug-in template
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysAutoCode                                         true  "创建插件模板"
-// @Success   200   {object}  response.Response{data=map[string]interface{},msg=string}  "创建插件模板成功"
+// @Param data body system.SysAutoCode true "Create plug-in template"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Plug-in template created successfully"
 // @Router    /autoCode/createPlug [post]
 func (autoApi *AutoCodeApi) AutoPlug(c *gin.Context) {
 	var a system.AutoPlugReq
@@ -247,8 +247,8 @@ func (autoApi *AutoCodeApi) AutoPlug(c *gin.Context) {
 	a.NeedModel = a.HasRequest || a.HasResponse
 	err = autoCodeService.CreatePlug(a)
 	if err != nil {
-		global.GVA_LOG.Error("预览失败!", zap.Error(err))
-		response.FailWithMessage("预览失败", c)
+		global.GVA_LOG.Error("Preview failed!", zap.Error(err))
+		response.FailWithMessage("Preview failed", c)
 		return
 	}
 	response.Ok(c)
@@ -256,12 +256,12 @@ func (autoApi *AutoCodeApi) AutoPlug(c *gin.Context) {
 
 // InstallPlugin
 // @Tags      AutoCode
-// @Summary   安装插件
+// @Summary Install plug-in
 // @Security  ApiKeyAuth
 // @accept    multipart/form-data
 // @Produce   application/json
 // @Param     plug  formData  file                                              true  "this is a test file"
-// @Success   200   {object}  response.Response{data=[]interface{},msg=string}  "安装插件成功"
+// @Success 200 {object} response.Response{data=[]interface{},msg=string} "Plug-in installed successfully"
 // @Router    /autoCode/installPlugin [post]
 func (autoApi *AutoCodeApi) InstallPlugin(c *gin.Context) {
 	header, err := c.FormFile("plug")
@@ -270,13 +270,13 @@ func (autoApi *AutoCodeApi) InstallPlugin(c *gin.Context) {
 		return
 	}
 	web, server, err := autoCodeService.InstallPlugin(header)
-	webStr := "web插件安装成功"
-	serverStr := "server插件安装成功"
+	webStr := "web plug-in installed successfully"
+	serverStr := "server plug-in installed successfully"
 	if web == -1 {
-		webStr = "web端插件未成功安装，请按照文档自行解压安装，如果为纯后端插件请忽略此条提示"
+		webStr = "The web-side plug-in was not successfully installed. Please unzip and install it according to the document. If it is a pure back-end plug-in, please ignore this prompt."
 	}
 	if server == -1 {
-		serverStr = "server端插件未成功安装，请按照文档自行解压安装，如果为纯前端插件请忽略此条提示"
+		serverStr = "The server-side plug-in was not successfully installed. Please unzip and install it according to the document. If it is a pure front-end plug-in, please ignore this prompt."
 	}
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
@@ -295,20 +295,20 @@ func (autoApi *AutoCodeApi) InstallPlugin(c *gin.Context) {
 
 // PubPlug
 // @Tags      AutoCode
-// @Summary   打包插件
+// @Summary packaging plug-in
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysAutoCode                                         true  "打包插件"
-// @Success   200   {object}  response.Response{data=map[string]interface{},msg=string}  "打包插件成功"
+// @Param data body system.SysAutoCode true "Packaging plug-in"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Packaging plug-in successful"
 // @Router    /autoCode/pubPlug [get]
 func (autoApi *AutoCodeApi) PubPlug(c *gin.Context) {
 	plugName := c.Query("plugName")
 	zipPath, err := autoCodeService.PubPlug(plugName)
 	if err != nil {
-		global.GVA_LOG.Error("打包失败!", zap.Error(err))
-		response.FailWithMessage("打包失败"+err.Error(), c)
+		global.GVA_LOG.Error("Packaging failed!", zap.Error(err))
+		response.FailWithMessage("Packaging failed"+err.Error(), c)
 		return
 	}
-	response.OkWithMessage(fmt.Sprintf("打包成功,文件路径为:%s", zipPath), c)
+	response.OkWithMessage(fmt.Sprintf("Packaging successful, file path is: %s", zipPath), c)
 }

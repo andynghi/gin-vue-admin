@@ -12,7 +12,7 @@ type BaseMenuService struct{}
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: DeleteBaseMenu
-//@description: 删除基础路由
+//@description: Delete basic routing
 //@param: id float64
 //@return: err error
 
@@ -36,14 +36,14 @@ func (baseMenuService *BaseMenuService) DeleteBaseMenu(id int) (err error) {
 			}
 		}
 	} else {
-		return errors.New("此菜单存在子菜单不可删除")
+		return errors.New("This menu has submenus and cannot be deleted")
 	}
 	return err
 }
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: UpdateBaseMenu
-//@description: 更新路由
+//@description: Update route
 //@param: menu model.SysBaseMenu
 //@return: err error
 
@@ -67,8 +67,8 @@ func (baseMenuService *BaseMenuService) UpdateBaseMenu(menu system.SysBaseMenu) 
 		db := tx.Where("id = ?", menu.ID).Find(&oldMenu)
 		if oldMenu.Name != menu.Name {
 			if !errors.Is(tx.Where("id <> ? AND name = ?", menu.ID, menu.Name).First(&system.SysBaseMenu{}).Error, gorm.ErrRecordNotFound) {
-				global.GVA_LOG.Debug("存在相同name修改失败")
-				return errors.New("存在相同name修改失败")
+				global.GVA_LOG.Debug("Failed to modify the same name")
+				return errors.New("Failed to modify the same name")
 			}
 		}
 		txErr := tx.Unscoped().Delete(&system.SysBaseMenuParameter{}, "sys_base_menu_id = ?", menu.ID).Error
@@ -115,7 +115,7 @@ func (baseMenuService *BaseMenuService) UpdateBaseMenu(menu system.SysBaseMenu) 
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetBaseMenuById
-//@description: 返回当前选中menu
+//@description: Returns the currently selected menu
 //@param: id float64
 //@return: menu system.SysBaseMenu, err error
 

@@ -8,7 +8,7 @@
       :show-file-list="false"
       class="upload-btn"
     >
-      <el-button type="primary">普通上传</el-button>
+      <el-button type="primary">Normal upload</el-button>
     </el-upload>
   </div>
 </template>
@@ -32,23 +32,23 @@ const fullscreenLoading = ref(false)
 
 const checkFile = (file) => {
   fullscreenLoading.value = true
-  const isLt500K = file.size / 1024 / 1024 < 0.5 // 500K, @todo 应支持在项目中设置
-  const isLt5M = file.size / 1024 / 1024 < 5 // 5MB, @todo 应支持项目中设置
+  const isLt500K = file.size / 1024 / 1024 < 0.5 // 500K, @todo should support setting in the project
+  const isLt5M = file.size / 1024 / 1024 < 5 // 5MB, @todo should support the setting in the project
   const isVideo = isVideoMime(file.type)
   const isImage = isImageMime(file.type)
   let pass = true
   if (!isVideo && !isImage) {
-    ElMessage.error('上传图片只能是 jpg,png,svg,webp 格式, 上传视频只能是 mp4,webm 格式!')
+    ElMessage.error('Uploaded pictures can only be in jpg, png, svg, webp format, uploaded videos can only be in mp4, webm format!')
     fullscreenLoading.value = false
     pass = false
   }
   if (!isLt5M && isVideo) {
-    ElMessage.error('上传视频大小不能超过 5MB')
+    ElMessage.error('The uploaded video size cannot exceed 5MB')
     fullscreenLoading.value = false
     pass = false
   }
   if (!isLt500K && isImage) {
-    ElMessage.error('未压缩的上传图片大小不能超过 500KB，请使用压缩上传')
+    ElMessage.error('The size of uncompressed uploaded images cannot exceed 500KB, please use compression to upload')
     fullscreenLoading.value = false
     pass = false
   }
@@ -68,7 +68,7 @@ const uploadSuccess = (res) => {
 const uploadError = () => {
   ElMessage({
     type: 'error',
-    message: '上传失败'
+    message: 'Upload failed'
   })
   fullscreenLoading.value = false
 }

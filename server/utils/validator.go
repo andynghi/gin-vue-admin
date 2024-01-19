@@ -16,13 +16,13 @@ var CustomizeMap = make(map[string]Rules)
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: RegisterRule
-//@description: 注册自定义规则方案建议在路由初始化层即注册
+//@description: It is recommended to register the custom rule scheme at the routing initialization layer.
 //@param: key string, rule Rules
 //@return: err error
 
 func RegisterRule(key string, rule Rules) (err error) {
 	if CustomizeMap[key] != nil {
-		return errors.New(key + "已注册,无法重复注册")
+		return errors.New(key + "Already registered, cannot be re-registered")
 	} else {
 		CustomizeMap[key] = rule
 		return nil
@@ -31,7 +31,7 @@ func RegisterRule(key string, rule Rules) (err error) {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: NotEmpty
-//@description: 非空 不能为其对应类型的0值
+//@description: non-empty, cannot be the 0 value of its corresponding type
 //@return: string
 
 func NotEmpty() string {
@@ -40,7 +40,7 @@ func NotEmpty() string {
 
 // @author: [zooqkl](https://github.com/zooqkl)
 // @function: RegexpMatch
-// @description: 正则校验 校验输入项是否满足正则表达式
+// @description: Regular verification Verifies whether the input item satisfies the regular expression
 // @param:  rule string
 // @return: string
 
@@ -50,7 +50,7 @@ func RegexpMatch(rule string) string {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Lt
-//@description: 小于入参(<) 如果为string array Slice则为长度比较 如果是 int uint float 则为数值比较
+//@description: Less than the input parameter (<) If it is a string array Slice, it is a length comparison. If it is an int uint float, it is a numerical comparison.
 //@param: mark string
 //@return: string
 
@@ -60,7 +60,7 @@ func Lt(mark string) string {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Le
-//@description: 小于等于入参(<=) 如果为string array Slice则为长度比较 如果是 int uint float 则为数值比较
+//@description: Less than or equal to the input parameter (<=) If it is string array Slice, it is length comparison. If it is int uint float, it is numerical comparison.
 //@param: mark string
 //@return: string
 
@@ -70,7 +70,7 @@ func Le(mark string) string {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Eq
-//@description: 等于入参(==) 如果为string array Slice则为长度比较 如果是 int uint float 则为数值比较
+//@description: equal to the input parameter (==) If it is a string array Slice, it is a length comparison. If it is an int uint float, it is a numerical comparison.
 //@param: mark string
 //@return: string
 
@@ -80,7 +80,7 @@ func Eq(mark string) string {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Ne
-//@description: 不等于入参(!=)  如果为string array Slice则为长度比较 如果是 int uint float 则为数值比较
+//@description: Not equal to the input parameter (!=) If it is string array Slice, it is length comparison. If it is int uint float, it is numerical comparison.
 //@param: mark string
 //@return: string
 
@@ -90,7 +90,7 @@ func Ne(mark string) string {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Ge
-//@description: 大于等于入参(>=) 如果为string array Slice则为长度比较 如果是 int uint float 则为数值比较
+//@description: Greater than or equal to the input parameter (>=) If it is string array Slice, it is length comparison. If it is int uint float, it is numerical comparison.
 //@param: mark string
 //@return: string
 
@@ -100,7 +100,7 @@ func Ge(mark string) string {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Gt
-//@description: 大于入参(>) 如果为string array Slice则为长度比较 如果是 int uint float 则为数值比较
+//@description: Greater than the input parameter (>) If it is a string array Slice, it is a length comparison. If it is an int uint float, it is a numerical comparison.
 //@param: mark string
 //@return: string
 
@@ -111,8 +111,8 @@ func Gt(mark string) string {
 //
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Verify
-//@description: 校验方法
-//@param: st interface{}, roleMap Rules(入参实例，规则map)
+//@description: Verification method
+//@param: st interface{}, roleMap Rules(parameter instance, rule map)
 //@return: err error
 
 func Verify(st interface{}, roleMap Rules) (err error) {
@@ -126,14 +126,14 @@ func Verify(st interface{}, roleMap Rules) (err error) {
 	}
 
 	typ := reflect.TypeOf(st)
-	val := reflect.ValueOf(st) // 获取reflect.Type类型
+	val := reflect.ValueOf(st) // Get the reflect.Type type
 
-	kd := val.Kind() // 获取到st对应的类别
+	kd := val.Kind() // Get the category corresponding to st
 	if kd != reflect.Struct {
 		return errors.New("expect struct")
 	}
 	num := val.NumField()
-	// 遍历结构体的所有字段
+	// Traverse all fields of the structure
 	for i := 0; i < num; i++ {
 		tagVal := typ.Field(i)
 		val := val.Field(i)
@@ -147,15 +147,15 @@ func Verify(st interface{}, roleMap Rules) (err error) {
 				switch {
 				case v == "notEmpty":
 					if isBlank(val) {
-						return errors.New(tagVal.Name + "值不能为空")
+						return errors.New(tagVal.Name + "Value cannot be empty")
 					}
 				case strings.Split(v, "=")[0] == "regexp":
 					if !regexpMatch(strings.Split(v, "=")[1], val.String()) {
-						return errors.New(tagVal.Name + "格式校验不通过")
+						return errors.New(tagVal.Name + "Format verification failed")
 					}
 				case compareMap[strings.Split(v, "=")[0]]:
 					if !compareVerify(val, v) {
-						return errors.New(tagVal.Name + "长度或值不在合法范围," + v)
+						return errors.New(tagVal.Name + "The length or value is not within the legal range," + v)
 					}
 				}
 			}
@@ -166,7 +166,7 @@ func Verify(st interface{}, roleMap Rules) (err error) {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: compareVerify
-//@description: 长度和数字的校验方法 根据类型自动校验
+//@description: Verification method for length and number. Automatic verification based on type.
 //@param: value reflect.Value, VerifyStr string
 //@return: bool
 
@@ -189,7 +189,7 @@ func compareVerify(value reflect.Value, VerifyStr string) bool {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: isBlank
-//@description: 非空校验
+//@description: non-empty check
 //@param: value reflect.Value
 //@return: bool
 
@@ -213,7 +213,7 @@ func isBlank(value reflect.Value) bool {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: compare
-//@description: 比较函数
+//@description: comparison function
 //@param: value interface{}, VerifyStr string
 //@return: bool
 

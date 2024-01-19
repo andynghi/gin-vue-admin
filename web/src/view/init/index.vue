@@ -8,34 +8,34 @@
       >
         <div class=" text-lg">
           <div class="font-sans text-4xl font-bold text-center mb-4">GIN-VUE-ADMIN</div>
-          <p class="text-gray-600 mb-2">初始化须知</p>
-          <p class="text-gray-600 mb-2">1.您需有用一定的VUE和GOLANG基础</p>
-          <p class="text-gray-600 mb-2">2.请您确认是否已经阅读过<a
+          <p class="text-gray-600 mb-2">Initialization instructions</p>
+          <p class="text-gray-600 mb-2">1. You need to have a certain basic knowledge of VUE and GOLANG</p>
+          <p class="text-gray-600 mb-2">2. Please confirm whether you have read it<a
             class="text-blue-600 font-bold"
             href="https://www.gin-vue-admin.com"
             target="_blank"
-          >官方文档</a> <a
+          >Official Documents</a> <a
             class="text-blue-600 font-bold"
             href="https://www.bilibili.com/video/BV1kv4y1g7nT?p=2"
             target="_blank"
-          >初始化视频</a></p>
-          <p class="text-gray-600 mb-2">3.请您确认是否了解后续的配置流程</p>
-          <p class="text-gray-600 mb-2">4.如果您使用mysql数据库，请确认数据库引擎为<span class="text-red-600 font-bold text-3xl ml-2 ">innoDB</span></p>
-          <p class="text-gray-600 mb-2">注：开发组不为文档中书写过的内容提供无偿服务</p>
+          >Initialization video</a></p>
+          <p class="text-gray-600 mb-2">3. Please confirm whether you understand the subsequent configuration process</p>
+          <p class="text-gray-600 mb-2">4. If you use mysql database, please confirm that the database engine is <span class="text-red-600 font-bold text-3xl ml-2 ">innoDB </span></p>
+          <p class="text-gray-600 mb-2">Note: The development team does not provide free services for the content written in the document</p>
           <p class="flex items-center justify-between mt-8">
             <el-button
               type="primary"
               size="large"
               @click="goDoc"
             >
-              阅读文档
+              Read the documentation
             </el-button>
             <el-button
               type="primary"
               size="large"
               @click="showNext"
             >
-              我已确认
+              I have confirmed
             </el-button>
           </p>
         </div>
@@ -51,10 +51,10 @@
           label-width="100px"
           size="large"
         >
-          <el-form-item label="数据库类型">
+          <el-form-item label="Database type">
             <el-select
               v-model="form.dbType"
-              placeholder="请选择"
+              placeholder="Please select"
               class="w-full"
               @change="changeDB"
             >
@@ -91,7 +91,7 @@
           >
             <el-input
               v-model="form.host"
-              placeholder="请输入数据库链接"
+              placeholder="Please enter the database link"
             />
           </el-form-item>
           <el-form-item
@@ -100,7 +100,7 @@
           >
             <el-input
               v-model="form.port"
-              placeholder="请输入数据库端口"
+              placeholder="Please enter the database port"
             />
           </el-form-item>
           <el-form-item
@@ -109,7 +109,7 @@
           >
             <el-input
               v-model="form.userName"
-              placeholder="请输入数据库用户名"
+              placeholder="Please enter database user name"
             />
           </el-form-item>
           <el-form-item
@@ -118,13 +118,13 @@
           >
             <el-input
               v-model="form.password"
-              placeholder="请输入数据库密码（没有则为空）"
+              placeholder="Please enter the database password (empty if not available)"
             />
           </el-form-item>
           <el-form-item label="dbName">
             <el-input
               v-model="form.dbName"
-              placeholder="请输入数据库名称"
+              placeholder="Please enter the database name"
             />
           </el-form-item>
           <el-form-item
@@ -133,7 +133,7 @@
           >
             <el-input
               v-model="form.dbPath"
-              placeholder="请输入sqlite数据库文件存放路径"
+              placeholder="Please enter the sqlite database file storage path"
             />
           </el-form-item>
           <el-form-item>
@@ -141,7 +141,7 @@
               <el-button
                 type="primary"
                 @click="onSubmit"
-              >立即初始化</el-button>
+              >Initialize now</el-button>
             </div>
           </el-form-item>
         </el-form>
@@ -269,7 +269,7 @@ const changeDB = (val) => {
 const onSubmit = async() => {
   const loading = ElLoading.service({
     lock: true,
-    text: '正在初始化数据库，请稍候',
+    text: 'Initializing database, please wait',
     spinner: 'loading',
     background: 'rgba(0, 0, 0, 0.7)',
   })

@@ -8,11 +8,11 @@ const (
 	OnlyFuncName = "Plugin"
 )
 
-// Plugin 插件模式接口化
+// Plugin plug-in mode interface
 type Plugin interface {
-	// Register 注册路由
+	// Register register route
 	Register(group *gin.RouterGroup)
 
-	// RouterPath 用户返回注册路由
+	// RouterPath user returns the registered route
 	RouterPath() string
 }

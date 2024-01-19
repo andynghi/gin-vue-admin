@@ -1,6 +1,6 @@
 <template>
   <div>
-    <warning-bar title="id , created_at , updated_at , deleted_at 会自动生成请勿重复创建。搜索时如果条件为LIKE只支持字符串" />
+    <warning-bar title="id, created_at, updated_at, deleted_at will be automatically generated and please do not create it again. When searching, if the condition is LIKE, only strings are supported" />
     <el-form
       ref="fieldDialogFrom"
       :model="middleDate"
@@ -10,7 +10,7 @@
       class="grid grid-cols-2"
     >
       <el-form-item
-        label="字段名称"
+        label="field name"
         prop="fieldName"
       >
         <el-input
@@ -22,11 +22,11 @@
           style="width:18%;margin-left:2%"
           @click="autoFill"
         >
-          <span style="font-size: 12px">自动填充</span>
+          <span style="font-size: 12px">Autofill</span>
         </el-button>
       </el-form-item>
       <el-form-item
-        label="字段中文名"
+        label="Field Chinese name"
         prop="fieldDesc"
       >
         <el-input
@@ -35,7 +35,7 @@
         />
       </el-form-item>
       <el-form-item
-        label="字段JSON"
+        label="Field JSON"
         prop="fieldJson"
       >
         <el-input
@@ -44,7 +44,7 @@
         />
       </el-form-item>
       <el-form-item
-        label="数据库字段名"
+        label="database field name"
         prop="columnName"
       >
         <el-input
@@ -53,7 +53,7 @@
         />
       </el-form-item>
       <el-form-item
-        label="数据库字段描述"
+        label="Database field description"
         prop="comment"
       >
         <el-input
@@ -62,13 +62,13 @@
         />
       </el-form-item>
       <el-form-item
-        label="字段类型"
+        label="field type"
         prop="fieldType"
       >
         <el-select
           v-model="middleDate.fieldType"
           style="width:100%"
-          placeholder="请选择字段类型"
+          placeholder="Please select field type"
           clearable
           @change="clearOther"
         >
@@ -82,22 +82,22 @@
         </el-select>
       </el-form-item>
       <el-form-item
-        :label="middleDate.fieldType === 'enum' ? '枚举值' : '类型长度'"
+        :label="middleDate.fieldType === 'enum' ? 'enumeration value' : 'type length'"
         prop="dataTypeLong"
       >
         <el-input
           v-model="middleDate.dataTypeLong"
-          :placeholder="middleDate.fieldType === 'enum'?`例:'北京','天津'`:'数据库类型长度'"
+          :placeholder="middleDate.fieldType === 'enum'?`Example:'Beijing','Tianjin'`:'Database type length'"
         />
       </el-form-item>
       <el-form-item
-        label="字段查询条件"
+        label="field query conditions"
         prop="fieldSearchType"
       >
         <el-select
           v-model="middleDate.fieldSearchType"
           style="width:100%"
-          placeholder="请选择字段查询条件"
+          placeholder="Please select field query conditions"
           clearable
         >
           <el-option
@@ -110,14 +110,14 @@
         </el-select>
       </el-form-item>
       <el-form-item
-        label="关联字典"
+        label="associated dictionary"
         prop="dictType"
       >
         <el-select
           v-model="middleDate.dictType"
           style="width:100%"
           :disabled="middleDate.fieldType!=='int'"
-          placeholder="请选择字典"
+          placeholder="Please select a dictionary"
           clearable
         >
           <el-option
@@ -128,16 +128,16 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="是否排序">
+      <el-form-item label="Whether to sort">
         <el-switch v-model="middleDate.sort" />
       </el-form-item>
-      <el-form-item label="是否必填">
+      <el-form-item label="Is it required">
         <el-switch v-model="middleDate.require" />
       </el-form-item>
-      <el-form-item label="是否可清空">
+      <el-form-item label="Can it be cleared">
         <el-switch v-model="middleDate.clearable" />
       </el-form-item>
-      <el-form-item label="校验失败文案">
+      <el-form-item label="Verification failure copy">
         <el-input v-model="middleDate.errorText" />
       </el-form-item>
 
@@ -181,19 +181,19 @@ const dictOptions = ref([])
 
 const rules = ref({
   fieldName: [
-    { required: true, message: '请输入字段英文名', trigger: 'blur' }
+    { required: true, message: 'Please enter the English name of the field', trigger: 'blur' }
   ],
   fieldDesc: [
-    { required: true, message: '请输入字段中文名', trigger: 'blur' }
+    { required: true, message: 'Please enter the Chinese name of the field', trigger: 'blur' }
   ],
   fieldJson: [
-    { required: true, message: '请输入字段格式化json', trigger: 'blur' }
+    { required: true, message: 'Please enter the field to format json', trigger: 'blur' }
   ],
   columnName: [
-    { required: true, message: '请输入数据库字段', trigger: 'blur' }
+    { required: true, message: 'Please enter database fields', trigger: 'blur' }
   ],
   fieldType: [
-    { required: true, message: '请选择字段类型', trigger: 'blur' }
+    { required: true, message: 'Please select field type', trigger: 'blur' }
   ]
 })
 

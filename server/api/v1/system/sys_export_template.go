@@ -19,14 +19,14 @@ type SysExportTemplateApi struct {
 
 var sysExportTemplateService = service.ServiceGroupApp.SystemServiceGroup.SysExportTemplateService
 
-// CreateSysExportTemplate 创建导出模板
+// CreateSysExportTemplate creates an export template
 // @Tags SysExportTemplate
-// @Summary 创建导出模板
+// @Summary Create export template
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body system.SysExportTemplate true "创建导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"创建成功"}"
+// @Param data body system.SysExportTemplate true "Create export template"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Created successfully"}"
 // @Router /sysExportTemplate/createSysExportTemplate [post]
 func (sysExportTemplateApi *SysExportTemplateApi) CreateSysExportTemplate(c *gin.Context) {
 	var sysExportTemplate system.SysExportTemplate
@@ -43,21 +43,21 @@ func (sysExportTemplateApi *SysExportTemplateApi) CreateSysExportTemplate(c *gin
 		return
 	}
 	if err := sysExportTemplateService.CreateSysExportTemplate(&sysExportTemplate); err != nil {
-		global.GVA_LOG.Error("创建失败!", zap.Error(err))
-		response.FailWithMessage("创建失败", c)
+		global.GVA_LOG.Error("Creation failed!", zap.Error(err))
+		response.FailWithMessage("Creation failed", c)
 	} else {
-		response.OkWithMessage("创建成功", c)
+		response.OkWithMessage("Created successfully", c)
 	}
 }
 
-// DeleteSysExportTemplate 删除导出模板
+// DeleteSysExportTemplate deletes the export template
 // @Tags SysExportTemplate
-// @Summary 删除导出模板
+// @Summary Delete export template
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body system.SysExportTemplate true "删除导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
+// @Param data body system.SysExportTemplate true "Delete export template"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /sysExportTemplate/deleteSysExportTemplate [delete]
 func (sysExportTemplateApi *SysExportTemplateApi) DeleteSysExportTemplate(c *gin.Context) {
 	var sysExportTemplate system.SysExportTemplate
@@ -67,21 +67,21 @@ func (sysExportTemplateApi *SysExportTemplateApi) DeleteSysExportTemplate(c *gin
 		return
 	}
 	if err := sysExportTemplateService.DeleteSysExportTemplate(sysExportTemplate); err != nil {
-		global.GVA_LOG.Error("删除失败!", zap.Error(err))
-		response.FailWithMessage("删除失败", c)
+		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
+		response.FailWithMessage("Deletion failed", c)
 	} else {
-		response.OkWithMessage("删除成功", c)
+		response.OkWithMessage("Deletion successful", c)
 	}
 }
 
-// DeleteSysExportTemplateByIds 批量删除导出模板
+// DeleteSysExportTemplateByIds delete export templates in batches
 // @Tags SysExportTemplate
-// @Summary 批量删除导出模板
+// @Summary Batch delete export templates
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body request.IdsReq true "批量删除导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"批量删除成功"}"
+// @Param data body request.IdsReq true "Delete export templates in batches"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Batch deletion successful"}"
 // @Router /sysExportTemplate/deleteSysExportTemplateByIds [delete]
 func (sysExportTemplateApi *SysExportTemplateApi) DeleteSysExportTemplateByIds(c *gin.Context) {
 	var IDS request.IdsReq
@@ -91,21 +91,21 @@ func (sysExportTemplateApi *SysExportTemplateApi) DeleteSysExportTemplateByIds(c
 		return
 	}
 	if err := sysExportTemplateService.DeleteSysExportTemplateByIds(IDS); err != nil {
-		global.GVA_LOG.Error("批量删除失败!", zap.Error(err))
-		response.FailWithMessage("批量删除失败", c)
+		global.GVA_LOG.Error("Batch deletion failed!", zap.Error(err))
+		response.FailWithMessage("Batch deletion failed", c)
 	} else {
-		response.OkWithMessage("批量删除成功", c)
+		response.OkWithMessage("Batch deletion successful", c)
 	}
 }
 
-// UpdateSysExportTemplate 更新导出模板
+// UpdateSysExportTemplate updates the export template
 // @Tags SysExportTemplate
-// @Summary 更新导出模板
+// @Summary Update export template
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body system.SysExportTemplate true "更新导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"更新成功"}"
+// @Param data body system.SysExportTemplate true "Update export template"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Update successful"}"
 // @Router /sysExportTemplate/updateSysExportTemplate [put]
 func (sysExportTemplateApi *SysExportTemplateApi) UpdateSysExportTemplate(c *gin.Context) {
 	var sysExportTemplate system.SysExportTemplate
@@ -122,21 +122,21 @@ func (sysExportTemplateApi *SysExportTemplateApi) UpdateSysExportTemplate(c *gin
 		return
 	}
 	if err := sysExportTemplateService.UpdateSysExportTemplate(sysExportTemplate); err != nil {
-		global.GVA_LOG.Error("更新失败!", zap.Error(err))
-		response.FailWithMessage("更新失败", c)
+		global.GVA_LOG.Error("Update failed!", zap.Error(err))
+		response.FailWithMessage("Update failed", c)
 	} else {
-		response.OkWithMessage("更新成功", c)
+		response.OkWithMessage("Update successful", c)
 	}
 }
 
-// FindSysExportTemplate 用id查询导出模板
+// FindSysExportTemplate uses id to query the export template
 // @Tags SysExportTemplate
-// @Summary 用id查询导出模板
+// @Summary Use id to query and export templates
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query system.SysExportTemplate true "用id查询导出模板"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"查询成功"}"
+// @Param data query system.SysExportTemplate true "Query the export template using id"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Query successful"}"
 // @Router /sysExportTemplate/findSysExportTemplate [get]
 func (sysExportTemplateApi *SysExportTemplateApi) FindSysExportTemplate(c *gin.Context) {
 	var sysExportTemplate system.SysExportTemplate
@@ -146,21 +146,21 @@ func (sysExportTemplateApi *SysExportTemplateApi) FindSysExportTemplate(c *gin.C
 		return
 	}
 	if resysExportTemplate, err := sysExportTemplateService.GetSysExportTemplate(sysExportTemplate.ID); err != nil {
-		global.GVA_LOG.Error("查询失败!", zap.Error(err))
-		response.FailWithMessage("查询失败", c)
+		global.GVA_LOG.Error("Query failed!", zap.Error(err))
+		response.FailWithMessage("Query failed", c)
 	} else {
 		response.OkWithData(gin.H{"resysExportTemplate": resysExportTemplate}, c)
 	}
 }
 
-// GetSysExportTemplateList 分页获取导出模板列表
+// GetSysExportTemplateList Gets the export template list in paging
 // @Tags SysExportTemplate
-// @Summary 分页获取导出模板列表
+// @Summary Get the export template list by pagination
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query systemReq.SysExportTemplateSearch true "分页获取导出模板列表"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data query systemReq.SysExportTemplateSearch true "Get the export template list in pages"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /sysExportTemplate/getSysExportTemplateList [get]
 func (sysExportTemplateApi *SysExportTemplateApi) GetSysExportTemplateList(c *gin.Context) {
 	var pageInfo systemReq.SysExportTemplateSearch
@@ -170,21 +170,21 @@ func (sysExportTemplateApi *SysExportTemplateApi) GetSysExportTemplateList(c *gi
 		return
 	}
 	if list, total, err := sysExportTemplateService.GetSysExportTemplateInfoList(pageInfo); err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 	} else {
 		response.OkWithDetailed(response.PageResult{
 			List:     list,
 			Total:    total,
 			Page:     pageInfo.Page,
 			PageSize: pageInfo.PageSize,
-		}, "获取成功", c)
+		}, "Get successful", c)
 	}
 }
 
-// ExportExcel 导出表格
+// ExportExcel export table
 // @Tags SysExportTemplate
-// @Summary 导出表格
+// @Summary Export table
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
@@ -192,22 +192,22 @@ func (sysExportTemplateApi *SysExportTemplateApi) GetSysExportTemplateList(c *gi
 func (sysExportTemplateApi *SysExportTemplateApi) ExportExcel(c *gin.Context) {
 	templateID := c.Query("templateID")
 	if templateID == "" {
-		response.FailWithMessage("模板ID不能为空", c)
+		response.FailWithMessage("Template ID cannot be empty", c)
 		return
 	}
 	if file, name, err := sysExportTemplateService.ExportExcel(templateID); err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 	} else {
-		c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s", name+utils.RandomString(6)+".xlsx")) // 对下载的文件重命名
+		c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s", name+utils.RandomString(6)+".xlsx")) // Rename the downloaded file
 		c.Header("success", "true")
 		c.Data(http.StatusOK, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", file.Bytes())
 	}
 }
 
-// ExportExcel 导出表格模板
+// ExportExcel export table template
 // @Tags SysExportTemplate
-// @Summary 导出表格模板
+// @Summary Export table template
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
@@ -215,22 +215,22 @@ func (sysExportTemplateApi *SysExportTemplateApi) ExportExcel(c *gin.Context) {
 func (sysExportTemplateApi *SysExportTemplateApi) ExportTemplate(c *gin.Context) {
 	templateID := c.Query("templateID")
 	if templateID == "" {
-		response.FailWithMessage("模板ID不能为空", c)
+		response.FailWithMessage("Template ID cannot be empty", c)
 		return
 	}
 	if file, name, err := sysExportTemplateService.ExportTemplate(templateID); err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 	} else {
-		c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s", name+"模板.xlsx")) // 对下载的文件重命名
+		c.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s", name+"template.xlsx")) // Rename the downloaded file
 		c.Header("success", "true")
 		c.Data(http.StatusOK, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", file.Bytes())
 	}
 }
 
-// ExportExcel 导入表格
+// ExportExcel import table
 // @Tags SysImportTemplate
-// @Summary 导入表格
+// @Summary Import table
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
@@ -238,19 +238,19 @@ func (sysExportTemplateApi *SysExportTemplateApi) ExportTemplate(c *gin.Context)
 func (sysExportTemplateApi *SysExportTemplateApi) ImportExcel(c *gin.Context) {
 	templateID := c.Query("templateID")
 	if templateID == "" {
-		response.FailWithMessage("模板ID不能为空", c)
+		response.FailWithMessage("Template ID cannot be empty", c)
 		return
 	}
 	file, err := c.FormFile("file")
 	if err != nil {
-		global.GVA_LOG.Error("文件获取失败!", zap.Error(err))
-		response.FailWithMessage("文件获取失败", c)
+		global.GVA_LOG.Error("File acquisition failed!", zap.Error(err))
+		response.FailWithMessage("File acquisition failed", c)
 		return
 	}
 	if err := sysExportTemplateService.ImportExcel(templateID, file); err != nil {
 		global.GVA_LOG.Error(err.Error(), zap.Error(err))
 		response.FailWithMessage(err.Error(), c)
 	} else {
-		response.OkWithMessage("导入成功", c)
+		response.OkWithMessage("Import successful", c)
 	}
 }

@@ -17,51 +17,51 @@ type AuthorityMenuApi struct{}
 
 // GetMenu
 // @Tags      AuthorityMenu
-// @Summary   获取用户动态路由
+// @Summary Get user dynamic routing
 // @Security  ApiKeyAuth
 // @Produce   application/json
-// @Param     data  body      request.Empty                                                  true  "空"
-// @Success   200   {object}  response.Response{data=systemRes.SysMenusResponse,msg=string}  "获取用户动态路由,返回包括系统菜单详情列表"
+// @Param data body request.Empty true "empty"
+// @Success 200 {object} response.Response{data=systemRes.SysMenusResponse,msg=string} "Get user dynamic routing and return a list including system menu details"
 // @Router    /menu/getMenu [post]
 func (a *AuthorityMenuApi) GetMenu(c *gin.Context) {
 	menus, err := menuService.GetMenuTree(utils.GetUserAuthorityId(c))
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
 	if menus == nil {
 		menus = []system.SysMenu{}
 	}
-	response.OkWithDetailed(systemRes.SysMenusResponse{Menus: menus}, "获取成功", c)
+	response.OkWithDetailed(systemRes.SysMenusResponse{Menus: menus}, "Get successful", c)
 }
 
 // GetBaseMenuTree
 // @Tags      AuthorityMenu
-// @Summary   获取用户动态路由
+// @Summary Get user dynamic routing
 // @Security  ApiKeyAuth
 // @Produce   application/json
-// @Param     data  body      request.Empty                                                      true  "空"
-// @Success   200   {object}  response.Response{data=systemRes.SysBaseMenusResponse,msg=string}  "获取用户动态路由,返回包括系统菜单列表"
+// @Param data body request.Empty true "empty"
+// @Success 200 {object} response.Response{data=systemRes.SysBaseMenusResponse,msg=string} "Get user dynamic routing, return including system menu list"
 // @Router    /menu/getBaseMenuTree [post]
 func (a *AuthorityMenuApi) GetBaseMenuTree(c *gin.Context) {
 	menus, err := menuService.GetBaseMenuTree()
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
-	response.OkWithDetailed(systemRes.SysBaseMenusResponse{Menus: menus}, "获取成功", c)
+	response.OkWithDetailed(systemRes.SysBaseMenusResponse{Menus: menus}, "Get successful", c)
 }
 
 // AddMenuAuthority
 // @Tags      AuthorityMenu
-// @Summary   增加menu和角色关联关系
+// @Summary Add the relationship between menu and role
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      systemReq.AddMenuAuthorityInfo  true  "角色ID"
-// @Success   200   {object}  response.Response{msg=string}   "增加menu和角色关联关系"
+// @Param data body systemReq.AddMenuAuthorityInfo true "role ID"
+// @Success 200 {object} response.Response{msg=string} "Add the relationship between menu and role"
 // @Router    /menu/addMenuAuthority [post]
 func (a *AuthorityMenuApi) AddMenuAuthority(c *gin.Context) {
 	var authorityMenu systemReq.AddMenuAuthorityInfo
@@ -75,21 +75,21 @@ func (a *AuthorityMenuApi) AddMenuAuthority(c *gin.Context) {
 		return
 	}
 	if err := menuService.AddMenuAuthority(authorityMenu.Menus, authorityMenu.AuthorityId); err != nil {
-		global.GVA_LOG.Error("添加失败!", zap.Error(err))
-		response.FailWithMessage("添加失败", c)
+		global.GVA_LOG.Error("Add failed!", zap.Error(err))
+		response.FailWithMessage("Add failed", c)
 	} else {
-		response.OkWithMessage("添加成功", c)
+		response.OkWithMessage("Added successfully", c)
 	}
 }
 
 // GetMenuAuthority
 // @Tags      AuthorityMenu
-// @Summary   获取指定角色menu
+// @Summary Get the specified role menu
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.GetAuthorityId                                     true  "角色ID"
-// @Success   200   {object}  response.Response{data=map[string]interface{},msg=string}  "获取指定角色menu"
+// @Param data body request.GetAuthorityId true "Role ID"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Get the specified role menu"
 // @Router    /menu/getMenuAuthority [post]
 func (a *AuthorityMenuApi) GetMenuAuthority(c *gin.Context) {
 	var param request.GetAuthorityId
@@ -105,21 +105,21 @@ func (a *AuthorityMenuApi) GetMenuAuthority(c *gin.Context) {
 	}
 	menus, err := menuService.GetMenuAuthority(&param)
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithDetailed(systemRes.SysMenusResponse{Menus: menus}, "获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithDetailed(systemRes.SysMenusResponse{Menus: menus}, "Failed to obtain", c)
 		return
 	}
-	response.OkWithDetailed(gin.H{"menus": menus}, "获取成功", c)
+	response.OkWithDetailed(gin.H{"menus": menus}, "Get successful", c)
 }
 
 // AddBaseMenu
 // @Tags      Menu
-// @Summary   新增菜单
+// @Summary New menu
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysBaseMenu             true  "路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记"
-// @Success   200   {object}  response.Response{msg=string}  "新增菜单"
+// @Param data body system.SysBaseMenu true "Routing path, parent menu ID, routing name, corresponding front-end file path, sorting mark"
+// @Success 200 {object} response.Response{msg=string} "New menu"
 // @Router    /menu/addBaseMenu [post]
 func (a *AuthorityMenuApi) AddBaseMenu(c *gin.Context) {
 	var menu system.SysBaseMenu
@@ -140,21 +140,21 @@ func (a *AuthorityMenuApi) AddBaseMenu(c *gin.Context) {
 	}
 	err = menuService.AddBaseMenu(menu)
 	if err != nil {
-		global.GVA_LOG.Error("添加失败!", zap.Error(err))
-		response.FailWithMessage("添加失败", c)
+		global.GVA_LOG.Error("Add failed!", zap.Error(err))
+		response.FailWithMessage("Add failed", c)
 		return
 	}
-	response.OkWithMessage("添加成功", c)
+	response.OkWithMessage("Added successfully", c)
 }
 
 // DeleteBaseMenu
 // @Tags      Menu
-// @Summary   删除菜单
+// @Summary delete menu
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.GetById                true  "菜单id"
-// @Success   200   {object}  response.Response{msg=string}  "删除菜单"
+// @Param data body request.GetById true "menu id"
+// @Success 200 {object} response.Response{msg=string} "Delete menu"
 // @Router    /menu/deleteBaseMenu [post]
 func (a *AuthorityMenuApi) DeleteBaseMenu(c *gin.Context) {
 	var menu request.GetById
@@ -170,21 +170,21 @@ func (a *AuthorityMenuApi) DeleteBaseMenu(c *gin.Context) {
 	}
 	err = baseMenuService.DeleteBaseMenu(menu.ID)
 	if err != nil {
-		global.GVA_LOG.Error("删除失败!", zap.Error(err))
-		response.FailWithMessage("删除失败", c)
+		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
+		response.FailWithMessage("Deletion failed", c)
 		return
 	}
-	response.OkWithMessage("删除成功", c)
+	response.OkWithMessage("Deletion successful", c)
 }
 
 // UpdateBaseMenu
 // @Tags      Menu
-// @Summary   更新菜单
+// @Summary update menu
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysBaseMenu             true  "路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记"
-// @Success   200   {object}  response.Response{msg=string}  "更新菜单"
+// @Param data body system.SysBaseMenu true "Routing path, parent menu ID, routing name, corresponding front-end file path, sorting mark"
+// @Success 200 {object} response.Response{msg=string} "Update menu"
 // @Router    /menu/updateBaseMenu [post]
 func (a *AuthorityMenuApi) UpdateBaseMenu(c *gin.Context) {
 	var menu system.SysBaseMenu
@@ -205,21 +205,21 @@ func (a *AuthorityMenuApi) UpdateBaseMenu(c *gin.Context) {
 	}
 	err = baseMenuService.UpdateBaseMenu(menu)
 	if err != nil {
-		global.GVA_LOG.Error("更新失败!", zap.Error(err))
-		response.FailWithMessage("更新失败", c)
+		global.GVA_LOG.Error("Update failed!", zap.Error(err))
+		response.FailWithMessage("Update failed", c)
 		return
 	}
-	response.OkWithMessage("更新成功", c)
+	response.OkWithMessage("Update successful", c)
 }
 
 // GetBaseMenuById
 // @Tags      Menu
-// @Summary   根据id获取菜单
+// @Summary Get the menu based on id
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.GetById                                                   true  "菜单id"
-// @Success   200   {object}  response.Response{data=systemRes.SysBaseMenuResponse,msg=string}  "根据id获取菜单,返回包括系统菜单列表"
+// @Param data body request.GetById true "menu id"
+// @Success 200 {object} response.Response{data=systemRes.SysBaseMenuResponse,msg=string} "Get the menu based on the id and return the system menu list"
 // @Router    /menu/getBaseMenuById [post]
 func (a *AuthorityMenuApi) GetBaseMenuById(c *gin.Context) {
 	var idInfo request.GetById
@@ -235,21 +235,21 @@ func (a *AuthorityMenuApi) GetBaseMenuById(c *gin.Context) {
 	}
 	menu, err := baseMenuService.GetBaseMenuById(idInfo.ID)
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
-	response.OkWithDetailed(systemRes.SysBaseMenuResponse{Menu: menu}, "获取成功", c)
+	response.OkWithDetailed(systemRes.SysBaseMenuResponse{Menu: menu}, "Get successful", c)
 }
 
 // GetMenuList
 // @Tags      Menu
-// @Summary   分页获取基础menu列表
+// @Summary Get the basic menu list by pagination
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.PageInfo                                        true  "页码, 每页大小"
-// @Success   200   {object}  response.Response{data=response.PageResult,msg=string}  "分页获取基础menu列表,返回包括列表,总数,页码,每页数量"
+// @Param data body request.PageInfo true "Page number, size of each page"
+// @Success 200 {object} response.Response{data=response.PageResult,msg=string} "Get the basic menu list by paging, and return the list, total number, page number, and number per page"
 // @Router    /menu/getMenuList [post]
 func (a *AuthorityMenuApi) GetMenuList(c *gin.Context) {
 	var pageInfo request.PageInfo
@@ -265,8 +265,8 @@ func (a *AuthorityMenuApi) GetMenuList(c *gin.Context) {
 	}
 	menuList, total, err := menuService.GetInfoList()
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
 	response.OkWithDetailed(response.PageResult{
@@ -274,5 +274,5 @@ func (a *AuthorityMenuApi) GetMenuList(c *gin.Context) {
 		Total:    total,
 		Page:     pageInfo.Page,
 		PageSize: pageInfo.PageSize,
-	}, "获取成功", c)
+	}, "Get successful", c)
 }

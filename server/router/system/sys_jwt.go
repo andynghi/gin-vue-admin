@@ -11,6 +11,6 @@ func (s *JwtRouter) InitJwtRouter(Router *gin.RouterGroup) {
 	jwtRouter := Router.Group("jwt")
 	jwtApi := v1.ApiGroupApp.SystemApiGroup.JwtApi
 	{
-		jwtRouter.POST("jsonInBlacklist", jwtApi.JsonInBlacklist) // jwt加入黑名单
+		jwtRouter.POST("jsonInBlacklist", jwtApi.JsonInBlacklist) // jwt added to blacklist
 	}
 }

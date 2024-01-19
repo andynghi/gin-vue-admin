@@ -1,8 +1,8 @@
 /*
-                    商用代码公司自用产品无需授权
-    若作为代码出售的产品（任何涉及代码交付第三方作为后续开发）必须保留此脚本
-                         或标注原作者信息
-                          否则将依法维权
+                    Commercial code company’s own products do not require authorization
+    This script must be retained if the product is sold as code (anything involving delivery of code to a third party for subsequent development)
+                         Or mark the original author information
+                          Otherwise, rights will be safeguarded according to law
 */
 
 var child_process = require('child_process')

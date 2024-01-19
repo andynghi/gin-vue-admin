@@ -15,7 +15,7 @@ import (
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: Register
-//@description: 用户注册
+//@description: User registration
 //@param: u model.SysUser
 //@return: userInter system.SysUser, err error
 
@@ -23,10 +23,10 @@ type UserService struct{}
 
 func (userService *UserService) Register(u system.SysUser) (userInter system.SysUser, err error) {
 	var user system.SysUser
-	if !errors.Is(global.GVA_DB.Where("username = ?", u.Username).First(&user).Error, gorm.ErrRecordNotFound) { // 判断用户名是否注册
-		return userInter, errors.New("用户名已注册")
+	if !errors.Is(global.GVA_DB.Where("username = ?", u.Username).First(&user).Error, gorm.ErrRecordNotFound) { // Determine whether the username is registered
+		return userInter, errors.New("Username has been registered")
 	}
-	// 否则 附加uuid 密码hash加密 注册
+	// Otherwise, append uuid, password hash encryption and registration
 	u.Password = utils.BcryptHash(u.Password)
 	u.UUID = uuid.Must(uuid.NewV4())
 	err = global.GVA_DB.Create(&u).Error
@@ -36,7 +36,7 @@ func (userService *UserService) Register(u system.SysUser) (userInter system.Sys
 //@author: [piexlmax](https://github.com/piexlmax)
 //@author: [SliverHorn](https://github.com/SliverHorn)
 //@function: Login
-//@description: 用户登录
+//@description: User login
 //@param: u *model.SysUser
 //@return: err error, userInter *model.SysUser
 
@@ -49,7 +49,7 @@ func (userService *UserService) Login(u *system.SysUser) (userInter *system.SysU
 	err = global.GVA_DB.Where("username = ?", u.Username).Preload("Authorities").Preload("Authority").First(&user).Error
 	if err == nil {
 		if ok := utils.BcryptCheck(u.Password, user.Password); !ok {
-			return nil, errors.New("密码错误")
+			return nil, errors.New("Password error")
 		}
 		MenuServiceApp.UserAuthorityDefaultRouter(&user)
 	}
@@ -58,7 +58,7 @@ func (userService *UserService) Login(u *system.SysUser) (userInter *system.SysU
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: ChangePassword
-//@description: 修改用户密码
+//@description: Modify user password
 //@param: u *model.SysUser, newPassword string
 //@return: userInter *model.SysUser,err error
 
@@ -68,7 +68,7 @@ func (userService *UserService) ChangePassword(u *system.SysUser, newPassword st
 		return nil, err
 	}
 	if ok := utils.BcryptCheck(u.Password, user.Password); !ok {
-		return nil, errors.New("原密码错误")
+		return nil, errors.New("Original password is wrong")
 	}
 	user.Password = utils.BcryptHash(newPassword)
 	err = global.GVA_DB.Save(&user).Error
@@ -78,7 +78,7 @@ func (userService *UserService) ChangePassword(u *system.SysUser, newPassword st
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetUserInfoList
-//@description: 分页获取数据
+//@description: Get data in pages
 //@param: info request.PageInfo
 //@return: err error, list interface{}, total int64
 
@@ -97,14 +97,14 @@ func (userService *UserService) GetUserInfoList(info request.PageInfo) (list int
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: SetUserAuthority
-//@description: 设置一个用户的权限
+//@description: Set the permissions of a user
 //@param: uuid uuid.UUID, authorityId string
 //@return: err error
 
 func (userService *UserService) SetUserAuthority(id uint, authorityId uint) (err error) {
 	assignErr := global.GVA_DB.Where("sys_user_id = ? AND sys_authority_authority_id = ?", id, authorityId).First(&system.SysUserAuthority{}).Error
 	if errors.Is(assignErr, gorm.ErrRecordNotFound) {
-		return errors.New("该用户无此角色")
+		return errors.New("This user does not have this role")
 	}
 	err = global.GVA_DB.Where("id = ?", id).First(&system.SysUser{}).Update("authority_id", authorityId).Error
 	return err
@@ -112,7 +112,7 @@ func (userService *UserService) SetUserAuthority(id uint, authorityId uint) (err
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: SetUserAuthorities
-//@description: 设置一个用户的权限
+//@description: Set the permissions of a user
 //@param: id uint, authorityIds []string
 //@return: err error
 
@@ -136,14 +136,14 @@ func (userService *UserService) SetUserAuthorities(id uint, authorityIds []uint)
 		if TxErr != nil {
 			return TxErr
 		}
-		// 返回 nil 提交事务
+		// Return nil to commit the transaction
 		return nil
 	})
 }
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: DeleteUser
-//@description: 删除用户
+//@description: Delete user
 //@param: id float64
 //@return: err error
 
@@ -161,7 +161,7 @@ func (userService *UserService) DeleteUser(id int) (err error) {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: SetUserInfo
-//@description: 设置用户信息
+//@description: Set user information
 //@param: reqUser model.SysUser
 //@return: err error, user model.SysUser
 
@@ -182,7 +182,7 @@ func (userService *UserService) SetUserInfo(req system.SysUser) error {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: SetUserInfo
-//@description: 设置用户信息
+//@description: Set user information
 //@param: reqUser model.SysUser
 //@return: err error, user model.SysUser
 
@@ -195,7 +195,7 @@ func (userService *UserService) SetSelfInfo(req system.SysUser) error {
 //@author: [piexlmax](https://github.com/piexlmax)
 //@author: [SliverHorn](https://github.com/SliverHorn)
 //@function: GetUserInfo
-//@description: 获取用户信息
+//@description: Get user information
 //@param: uuid uuid.UUID
 //@return: err error, user system.SysUser
 
@@ -211,7 +211,7 @@ func (userService *UserService) GetUserInfo(uuid uuid.UUID) (user system.SysUser
 
 //@author: [SliverHorn](https://github.com/SliverHorn)
 //@function: FindUserById
-//@description: 通过id获取用户信息
+//@description: Get user information by id
 //@param: id int
 //@return: err error, user *model.SysUser
 
@@ -223,21 +223,21 @@ func (userService *UserService) FindUserById(id int) (user *system.SysUser, err 
 
 //@author: [SliverHorn](https://github.com/SliverHorn)
 //@function: FindUserByUuid
-//@description: 通过uuid获取用户信息
+//@description: Get user information through uuid
 //@param: uuid string
 //@return: err error, user *model.SysUser
 
 func (userService *UserService) FindUserByUuid(uuid string) (user *system.SysUser, err error) {
 	var u system.SysUser
 	if err = global.GVA_DB.Where("uuid = ?", uuid).First(&u).Error; err != nil {
-		return &u, errors.New("用户不存在")
+		return &u, errors.New("User does not exist")
 	}
 	return &u, nil
 }
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: resetPassword
-//@description: 修改用户密码
+//@description: Modify user password
 //@param: ID uint
 //@return: err error
 

@@ -24,11 +24,11 @@ type Visitor struct {
 func (vi *Visitor) Visit(node ast.Node) ast.Visitor {
 	switch n := node.(type) {
 	case *ast.GenDecl:
-		// 查找有没有import context包
-		// Notice：没有考虑没有import任何包的情况
+		// Check if there is an import context package
+		// Notice: The case of not importing any package is not considered.
 		if n.Tok == token.IMPORT && vi.ImportCode != "" {
 			vi.addImport(n)
-			// 不需要再遍历子树
+			// No need to traverse the subtree anymore
 			return nil
 		}
 		if n.Tok == token.TYPE && vi.StructName != "" && vi.PackageName != "" && vi.GroupName != "" {
@@ -80,11 +80,11 @@ func (vi *Visitor) addStruct(genDecl *ast.GenDecl) ast.Visitor {
 }
 
 func (vi *Visitor) addImport(genDecl *ast.GenDecl) ast.Visitor {
-	// 是否已经import
+	// Whether it has been imported
 	hasImported := false
 	for _, v := range genDecl.Specs {
 		importSpec := v.(*ast.ImportSpec)
-		// 如果已经包含
+		// if already included
 		if importSpec.Path.Value == strconv.Quote(vi.ImportCode) {
 			hasImported = true
 		}
@@ -176,6 +176,6 @@ func ImportReference(filepath, importCode, structName, packageName, groupName st
 	if err != nil {
 		log.Fatal(err)
 	}
-	// 写回数据
+	//Write back data
 	return os.WriteFile(filepath, buffer.Bytes(), 0o600)
 }

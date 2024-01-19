@@ -12,7 +12,7 @@ var AutoCodeSqlite = new(autoCodeSqlite)
 
 type autoCodeSqlite struct{}
 
-// GetDB 获取数据库的所有数据库名
+// GetDB gets all database names of the database
 // Author [piexlmax](https://github.com/piexlmax)
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (a *autoCodeSqlite) GetDB(businessDB string) (data []response.Db, err error) {
@@ -39,7 +39,7 @@ func (a *autoCodeSqlite) GetDB(businessDB string) (data []response.Db, err error
 	return entities, err
 }
 
-// GetTables 获取数据库的所有表名
+// GetTables gets all table names in the database
 // Author [piexlmax](https://github.com/piexlmax)
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (a *autoCodeSqlite) GetTables(businessDB string, dbName string) (data []response.Table, err error) {
@@ -57,7 +57,7 @@ func (a *autoCodeSqlite) GetTables(businessDB string, dbName string) (data []res
 	return entities, err
 }
 
-// GetColumn 获取指定数据表的所有字段名,类型值等
+// GetColumn gets all field names, type values, etc. of the specified data table
 // Author [piexlmax](https://github.com/piexlmax)
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (a *autoCodeSqlite) GetColumn(businessDB string, tableName string, dbName string) (data []response.Column, err error) {

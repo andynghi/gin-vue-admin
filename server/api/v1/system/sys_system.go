@@ -15,28 +15,28 @@ type SystemApi struct{}
 
 // GetSystemConfig
 // @Tags      System
-// @Summary   获取配置文件内容
+// @Summary Get the configuration file content
 // @Security  ApiKeyAuth
 // @Produce   application/json
-// @Success   200  {object}  response.Response{data=systemRes.SysConfigResponse,msg=string}  "获取配置文件内容,返回包括系统配置"
+// @Success 200 {object} response.Response{data=systemRes.SysConfigResponse,msg=string} "Get the configuration file content and return including system configuration"
 // @Router    /system/getSystemConfig [post]
 func (s *SystemApi) GetSystemConfig(c *gin.Context) {
 	config, err := systemConfigService.GetSystemConfig()
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
-	response.OkWithDetailed(systemRes.SysConfigResponse{Config: config}, "获取成功", c)
+	response.OkWithDetailed(systemRes.SysConfigResponse{Config: config}, "Get successful", c)
 }
 
 // SetSystemConfig
 // @Tags      System
-// @Summary   设置配置文件内容
+// @Summary Set configuration file content
 // @Security  ApiKeyAuth
 // @Produce   application/json
-// @Param     data  body      system.System                   true  "设置配置文件内容"
-// @Success   200   {object}  response.Response{data=string}  "设置配置文件内容"
+// @Param data body system.System true "Set configuration file content"
+// @Success 200 {object} response.Response{data=string} "Set configuration file content"
 // @Router    /system/setSystemConfig [post]
 func (s *SystemApi) SetSystemConfig(c *gin.Context) {
 	var sys system.System
@@ -47,43 +47,43 @@ func (s *SystemApi) SetSystemConfig(c *gin.Context) {
 	}
 	err = systemConfigService.SetSystemConfig(sys)
 	if err != nil {
-		global.GVA_LOG.Error("设置失败!", zap.Error(err))
-		response.FailWithMessage("设置失败", c)
+		global.GVA_LOG.Error("Setting failed!", zap.Error(err))
+		response.FailWithMessage("Setting failed", c)
 		return
 	}
-	response.OkWithMessage("设置成功", c)
+	response.OkWithMessage("Set successfully", c)
 }
 
 // ReloadSystem
 // @Tags      System
-// @Summary   重启系统
+// @Summary Restart the system
 // @Security  ApiKeyAuth
 // @Produce   application/json
-// @Success   200  {object}  response.Response{msg=string}  "重启系统"
+// @Success 200 {object} response.Response{msg=string} "Restart the system"
 // @Router    /system/reloadSystem [post]
 func (s *SystemApi) ReloadSystem(c *gin.Context) {
 	err := utils.Reload()
 	if err != nil {
-		global.GVA_LOG.Error("重启系统失败!", zap.Error(err))
-		response.FailWithMessage("重启系统失败", c)
+		global.GVA_LOG.Error("Restarting the system failed!", zap.Error(err))
+		response.FailWithMessage("Failed to restart the system", c)
 		return
 	}
-	response.OkWithMessage("重启系统成功", c)
+	response.OkWithMessage("Reboot the system successfully", c)
 }
 
 // GetServerInfo
 // @Tags      System
-// @Summary   获取服务器信息
+// @Summary Get server information
 // @Security  ApiKeyAuth
 // @Produce   application/json
-// @Success   200  {object}  response.Response{data=map[string]interface{},msg=string}  "获取服务器信息"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Get server information"
 // @Router    /system/getServerInfo [post]
 func (s *SystemApi) GetServerInfo(c *gin.Context) {
 	server, err := systemConfigService.GetServerInfo()
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
-	response.OkWithDetailed(gin.H{"server": server}, "获取成功", c)
+	response.OkWithDetailed(gin.H{"server": server}, "Get successful", c)
 }

@@ -19,7 +19,7 @@
 
 <script setup>
 
-import '@wangeditor/editor/dist/css/style.css' // 引入 css
+import '@wangeditor/editor/dist/css/style.css' // Import css
 
 const basePath = import.meta.env.VITE_BASE_API
 
@@ -51,7 +51,7 @@ const valueHtml = ref('')
 
 const toolbarConfig = {}
 const editorConfig = {
-  placeholder: '请输入内容...',
+  placeholder: 'Please enter content...',
   MENU_CONF: {}
 }
 editorConfig.MENU_CONF['uploadImage'] = {
@@ -67,7 +67,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
   }
 }
 
-// 组件销毁时，也及时销毁编辑器
+//When the component is destroyed, the editor is also destroyed in time.
 onBeforeUnmount(() => {
   const editor = editorRef.value
   if (editor == null) return

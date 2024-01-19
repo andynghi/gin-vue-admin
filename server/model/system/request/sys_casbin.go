@@ -2,13 +2,13 @@ package request
 
 // Casbin info structure
 type CasbinInfo struct {
-	Path   string `json:"path"`   // 路径
-	Method string `json:"method"` // 方法
+	Path   string `json:"path"`   // path
+	Method string `json:"method"` // method
 }
 
 // Casbin structure for input parameters
 type CasbinInReceive struct {
-	AuthorityId uint         `json:"authorityId"` // 权限id
+	AuthorityId uint         `json:"authorityId"` // Authority id
 	CasbinInfos []CasbinInfo `json:"casbinInfos"`
 }
 

@@ -14,12 +14,12 @@ type CasbinApi struct{}
 
 // UpdateCasbin
 // @Tags      Casbin
-// @Summary   更新角色api权限
+// @Summary Update role api permissions
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.CasbinInReceive        true  "权限id, 权限模型列表"
-// @Success   200   {object}  response.Response{msg=string}  "更新角色api权限"
+// @Param data body request.CasbinInReceive true "Permission id, permission model list"
+// @Success 200 {object} response.Response{msg=string} "Update role api permissions"
 // @Router    /casbin/UpdateCasbin [post]
 func (cas *CasbinApi) UpdateCasbin(c *gin.Context) {
 	var cmr request.CasbinInReceive
@@ -35,21 +35,21 @@ func (cas *CasbinApi) UpdateCasbin(c *gin.Context) {
 	}
 	err = casbinService.UpdateCasbin(cmr.AuthorityId, cmr.CasbinInfos)
 	if err != nil {
-		global.GVA_LOG.Error("更新失败!", zap.Error(err))
-		response.FailWithMessage("更新失败", c)
+		global.GVA_LOG.Error("Update failed!", zap.Error(err))
+		response.FailWithMessage("Update failed", c)
 		return
 	}
-	response.OkWithMessage("更新成功", c)
+	response.OkWithMessage("Update successful", c)
 }
 
 // GetPolicyPathByAuthorityId
 // @Tags      Casbin
-// @Summary   获取权限列表
+// @Summary Get the permission list
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.CasbinInReceive                                          true  "权限id, 权限模型列表"
-// @Success   200   {object}  response.Response{data=systemRes.PolicyPathResponse,msg=string}  "获取权限列表,返回包括casbin详情列表"
+// @Param data body request.CasbinInReceive true "Permission id, permission model list"
+// @Success 200 {object} response.Response{data=systemRes.PolicyPathResponse,msg=string} "Get the permission list and return the list including casbin details"
 // @Router    /casbin/getPolicyPathByAuthorityId [post]
 func (cas *CasbinApi) GetPolicyPathByAuthorityId(c *gin.Context) {
 	var casbin request.CasbinInReceive
@@ -64,5 +64,5 @@ func (cas *CasbinApi) GetPolicyPathByAuthorityId(c *gin.Context) {
 		return
 	}
 	paths := casbinService.GetPolicyPathByAuthorityId(casbin.AuthorityId)
-	response.OkWithDetailed(systemRes.PolicyPathResponse{Paths: paths}, "获取成功", c)
+	response.OkWithDetailed(systemRes.PolicyPathResponse{Paths: paths}, "Get successful", c)
 }

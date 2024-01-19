@@ -13,17 +13,17 @@ func (s *UserRouter) InitUserRouter(Router *gin.RouterGroup) {
 	userRouterWithoutRecord := Router.Group("user")
 	baseApi := v1.ApiGroupApp.SystemApiGroup.BaseApi
 	{
-		userRouter.POST("admin_register", baseApi.Register)               // 管理员注册账号
-		userRouter.POST("changePassword", baseApi.ChangePassword)         // 用户修改密码
-		userRouter.POST("setUserAuthority", baseApi.SetUserAuthority)     // 设置用户权限
-		userRouter.DELETE("deleteUser", baseApi.DeleteUser)               // 删除用户
-		userRouter.PUT("setUserInfo", baseApi.SetUserInfo)                // 设置用户信息
-		userRouter.PUT("setSelfInfo", baseApi.SetSelfInfo)                // 设置自身信息
-		userRouter.POST("setUserAuthorities", baseApi.SetUserAuthorities) // 设置用户权限组
-		userRouter.POST("resetPassword", baseApi.ResetPassword)           // 设置用户权限组
+		userRouter.POST("admin_register", baseApi.Register)               // Administrator registration account
+		userRouter.POST("changePassword", baseApi.ChangePassword)         // User changes password
+		userRouter.POST("setUserAuthority", baseApi.SetUserAuthority)     //Set user permissions
+		userRouter.DELETE("deleteUser", baseApi.DeleteUser)               // Delete user
+		userRouter.PUT("setUserInfo", baseApi.SetUserInfo)                // Set user information
+		userRouter.PUT("setSelfInfo", baseApi.SetSelfInfo)                //Set self-information
+		userRouter.POST("setUserAuthorities", baseApi.SetUserAuthorities) //Set user permission group
+		userRouter.POST("resetPassword", baseApi.ResetPassword)           //Set user permission group
 	}
 	{
-		userRouterWithoutRecord.POST("getUserList", baseApi.GetUserList) // 分页获取用户列表
-		userRouterWithoutRecord.GET("getUserInfo", baseApi.GetUserInfo)  // 获取自身信息
+		userRouterWithoutRecord.POST("getUserList", baseApi.GetUserList) // Get the user list in paging
+		userRouterWithoutRecord.GET("getUserInfo", baseApi.GetUserInfo)  // Get own information
 	}
 }

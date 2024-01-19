@@ -27,8 +27,8 @@ func DBList() {
 			continue
 		}
 	}
-	// 做特殊判断,是否有迁移
-	// 适配低版本迁移多数据库版本
+	// Make a special judgment to determine whether there is migration
+	// Adapt to lower versions and migrate multiple database versions
 	if sysDB, ok := dbMap[sys]; ok {
 		global.GVA_DB = sysDB
 	}

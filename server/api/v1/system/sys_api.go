@@ -17,12 +17,12 @@ type SystemApiApi struct{}
 
 // CreateApi
 // @Tags      SysApi
-// @Summary   创建基础api
+// @Summary Create basic api
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysApi                  true  "api路径, api中文描述, api组, 方法"
-// @Success   200   {object}  response.Response{msg=string}  "创建基础api"
+// @Param data body system.SysApi true "api path, api Chinese description, api group, method"
+// @Success 200 {object} response.Response{msg=string} "Create basic api"
 // @Router    /api/createApi [post]
 func (s *SystemApiApi) CreateApi(c *gin.Context) {
 	var api system.SysApi
@@ -38,21 +38,21 @@ func (s *SystemApiApi) CreateApi(c *gin.Context) {
 	}
 	err = apiService.CreateApi(api)
 	if err != nil {
-		global.GVA_LOG.Error("创建失败!", zap.Error(err))
-		response.FailWithMessage("创建失败", c)
+		global.GVA_LOG.Error("Creation failed!", zap.Error(err))
+		response.FailWithMessage("Creation failed", c)
 		return
 	}
-	response.OkWithMessage("创建成功", c)
+	response.OkWithMessage("Created successfully", c)
 }
 
 // DeleteApi
 // @Tags      SysApi
-// @Summary   删除api
+// @Summary delete api
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
 // @Param     data  body      system.SysApi                  true  "ID"
-// @Success   200   {object}  response.Response{msg=string}  "删除api"
+// @Success 200 {object} response.Response{msg=string} "Delete api"
 // @Router    /api/deleteApi [post]
 func (s *SystemApiApi) DeleteApi(c *gin.Context) {
 	var api system.SysApi
@@ -68,21 +68,21 @@ func (s *SystemApiApi) DeleteApi(c *gin.Context) {
 	}
 	err = apiService.DeleteApi(api)
 	if err != nil {
-		global.GVA_LOG.Error("删除失败!", zap.Error(err))
-		response.FailWithMessage("删除失败", c)
+		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
+		response.FailWithMessage("Deletion failed", c)
 		return
 	}
-	response.OkWithMessage("删除成功", c)
+	response.OkWithMessage("Deletion successful", c)
 }
 
 // GetApiList
 // @Tags      SysApi
-// @Summary   分页获取API列表
+// @Summary Get the API list by pagination
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      systemReq.SearchApiParams                               true  "分页获取API列表"
-// @Success   200   {object}  response.Response{data=response.PageResult,msg=string}  "分页获取API列表,返回包括列表,总数,页码,每页数量"
+// @Param data body systemReq.SearchApiParams true "Get the API list by pagination"
+// @Success 200 {object} response.Response{data=response.PageResult,msg=string} "Get the API list in paging, and return the list, total number, page number, and number per page"
 // @Router    /api/getApiList [post]
 func (s *SystemApiApi) GetApiList(c *gin.Context) {
 	var pageInfo systemReq.SearchApiParams
@@ -98,8 +98,8 @@ func (s *SystemApiApi) GetApiList(c *gin.Context) {
 	}
 	list, total, err := apiService.GetAPIInfoList(pageInfo.SysApi, pageInfo.PageInfo, pageInfo.OrderKey, pageInfo.Desc)
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
 	response.OkWithDetailed(response.PageResult{
@@ -107,17 +107,17 @@ func (s *SystemApiApi) GetApiList(c *gin.Context) {
 		Total:    total,
 		Page:     pageInfo.Page,
 		PageSize: pageInfo.PageSize,
-	}, "获取成功", c)
+	}, "Get successful", c)
 }
 
 // GetApiById
 // @Tags      SysApi
-// @Summary   根据id获取api
+// @Summary Get api based on id
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.GetById                                   true  "根据id获取api"
-// @Success   200   {object}  response.Response{data=systemRes.SysAPIResponse}  "根据id获取api,返回包括api详情"
+// @Param data body request.GetById true "Get api based on id"
+// @Success 200 {object} response.Response{data=systemRes.SysAPIResponse} "Get api based on id, return including api details"
 // @Router    /api/getApiById [post]
 func (s *SystemApiApi) GetApiById(c *gin.Context) {
 	var idInfo request.GetById
@@ -133,21 +133,21 @@ func (s *SystemApiApi) GetApiById(c *gin.Context) {
 	}
 	api, err := apiService.GetApiById(idInfo.ID)
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
-	response.OkWithDetailed(systemRes.SysAPIResponse{Api: api}, "获取成功", c)
+	response.OkWithDetailed(systemRes.SysAPIResponse{Api: api}, "Get successful", c)
 }
 
 // UpdateApi
 // @Tags      SysApi
-// @Summary   修改基础api
+// @Summary Modify the basic api
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysApi                  true  "api路径, api中文描述, api组, 方法"
-// @Success   200   {object}  response.Response{msg=string}  "修改基础api"
+// @Param data body system.SysApi true "api path, api Chinese description, api group, method"
+// @Success 200 {object} response.Response{msg=string} "Modify basic api"
 // @Router    /api/updateApi [post]
 func (s *SystemApiApi) UpdateApi(c *gin.Context) {
 	var api system.SysApi
@@ -163,39 +163,39 @@ func (s *SystemApiApi) UpdateApi(c *gin.Context) {
 	}
 	err = apiService.UpdateApi(api)
 	if err != nil {
-		global.GVA_LOG.Error("修改失败!", zap.Error(err))
-		response.FailWithMessage("修改失败", c)
+		global.GVA_LOG.Error("Modification failed!", zap.Error(err))
+		response.FailWithMessage("Modification failed", c)
 		return
 	}
-	response.OkWithMessage("修改成功", c)
+	response.OkWithMessage("Modification successful", c)
 }
 
 // GetAllApis
 // @Tags      SysApi
-// @Summary   获取所有的Api 不分页
+// @Summary Get all APIs without paging
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Success   200  {object}  response.Response{data=systemRes.SysAPIListResponse,msg=string}  "获取所有的Api 不分页,返回包括api列表"
+// @Success 200 {object} response.Response{data=systemRes.SysAPIListResponse,msg=string} "Get all APIs without paging, return including api list"
 // @Router    /api/getAllApis [post]
 func (s *SystemApiApi) GetAllApis(c *gin.Context) {
 	apis, err := apiService.GetAllApis()
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
-	response.OkWithDetailed(systemRes.SysAPIListResponse{Apis: apis}, "获取成功", c)
+	response.OkWithDetailed(systemRes.SysAPIListResponse{Apis: apis}, "Get successful", c)
 }
 
 // DeleteApisByIds
 // @Tags      SysApi
-// @Summary   删除选中Api
+// @Summary Delete selected API
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
 // @Param     data  body      request.IdsReq                 true  "ID"
-// @Success   200   {object}  response.Response{msg=string}  "删除选中Api"
+// @Success 200 {object} response.Response{msg=string} "Delete selected Api"
 // @Router    /api/deleteApisByIds [delete]
 func (s *SystemApiApi) DeleteApisByIds(c *gin.Context) {
 	var ids request.IdsReq
@@ -206,26 +206,26 @@ func (s *SystemApiApi) DeleteApisByIds(c *gin.Context) {
 	}
 	err = apiService.DeleteApisByIds(ids)
 	if err != nil {
-		global.GVA_LOG.Error("删除失败!", zap.Error(err))
-		response.FailWithMessage("删除失败", c)
+		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
+		response.FailWithMessage("Deletion failed", c)
 		return
 	}
-	response.OkWithMessage("删除成功", c)
+	response.OkWithMessage("Deletion successful", c)
 }
 
 // FreshCasbin
 // @Tags      SysApi
-// @Summary   刷新casbin缓存
+// @Summary refresh casbin cache
 // @accept    application/json
 // @Produce   application/json
-// @Success   200   {object}  response.Response{msg=string}  "刷新成功"
+// @Success 200 {object} response.Response{msg=string} "Refresh successful"
 // @Router    /api/freshCasbin [get]
 func (s *SystemApiApi) FreshCasbin(c *gin.Context) {
 	err := casbinService.FreshCasbin()
 	if err != nil {
-		global.GVA_LOG.Error("刷新失败!", zap.Error(err))
-		response.FailWithMessage("刷新失败", c)
+		global.GVA_LOG.Error("Refresh failed!", zap.Error(err))
+		response.FailWithMessage("Refresh failed", c)
 		return
 	}
-	response.OkWithMessage("刷新成功", c)
+	response.OkWithMessage("Refresh successful", c)
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
 )
 
-// OSS 对象存储接口
+// OSS object storage interface
 // Author [SliverHorn](https://github.com/SliverHorn)
 // Author [ccfish86](https://github.com/ccfish86)
 type OSS interface {
@@ -14,7 +14,7 @@ type OSS interface {
 	DeleteFile(key string) error
 }
 
-// NewOss OSS的实例化方法
+// NewOss OSS instantiation method
 // Author [SliverHorn](https://github.com/SliverHorn)
 // Author [ccfish86](https://github.com/ccfish86)
 func NewOss() OSS {

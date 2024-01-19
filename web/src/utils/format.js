@@ -3,7 +3,7 @@ import { getDict } from '@/utils/dictionary'
 
 export const formatBoolean = (bool) => {
   if (bool !== null) {
-    return bool ? '是' : '否'
+    return bool ? 'Yes' : 'No'
   } else {
     return ''
   }
@@ -30,7 +30,7 @@ export const getDictFunc = async(type) => {
 const path = import.meta.env.VITE_BASE_PATH + ':' + import.meta.env.VITE_SERVER_PORT + '/'
 export const ReturnArrImg = (arr) => {
   const imgArr = []
-  if (arr instanceof Array) { // 如果是数组类型
+  if (arr instanceof Array) { // if it is an array type
     for (const arrKey in arr) {
       if (arr[arrKey].slice(0, 4) !== 'http') {
         imgArr.push(path + arr[arrKey])
@@ -38,7 +38,7 @@ export const ReturnArrImg = (arr) => {
         imgArr.push(arr[arrKey])
       }
     }
-  } else { // 如果不是数组类型
+  } else { // if not an array type
     if (arr.slice(0, 4) !== 'http') {
       imgArr.push(path + arr)
     } else {

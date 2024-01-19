@@ -1,9 +1,9 @@
 import service from '@/utils/request'
 // @Tags InitDB
-// @Summary 初始化用户数据库
+// @Summary Initialize user database
 // @Produce  application/json
-// @Param data body request.InitDB true "初始化数据库参数"
-// @Success 200 {string} string "{"code":0,"data":{},"msg":"自动创建数据库成功"}"
+// @Param data body request.InitDB true "Initialization database parameters"
+// @Success 200 {string} string "{"code":0,"data":{},"msg":"Automatically created database successfully"}"
 // @Router /init/initdb [post]
 export const initDB = (data) => {
   return service({
@@ -14,9 +14,9 @@ export const initDB = (data) => {
 }
 
 // @Tags CheckDB
-// @Summary 初始化用户数据库
+// @Summary Initialize user database
 // @Produce  application/json
-// @Success 200 {string} string "{"code":0,"data":{},"msg":"探测完成"}"
+// @Success 200 {string} string "{"code":0,"data":{},"msg":"Detection completed"}"
 // @Router /init/checkdb [post]
 export const checkDB = () => {
   return service({

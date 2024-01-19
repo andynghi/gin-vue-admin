@@ -4,9 +4,9 @@ import 'element-plus/es/components/notification/style/css'
 import 'element-plus/es/components/message-box/style/css'
 import './style/element_visiable.scss'
 import { createApp } from 'vue'
-// 引入gin-vue-admin前端初始化相关内容
+//Introduce gin-vue-admin front-end initialization related content
 import './core/gin-vue-admin'
-// 引入封装的router
+//Introduce the encapsulated router
 import router from '@/router/index'
 import '@/permission'
 import run from '@/core/gin-vue-admin.js'
@@ -17,7 +17,7 @@ import { initDom } from './utils/positionToCode'
 
 initDom()
 /**
- * @description 导入加载进度条，防止首屏加载时间过长，用户等待
+ * @description Import the loading progress bar to prevent the first screen from loading too long and the user waiting
  *
  * */
 import Nprogress from 'nprogress'
@@ -26,7 +26,7 @@ Nprogress.configure({ showSpinner: false, ease: 'ease', speed: 500 })
 Nprogress.start()
 
 /**
- * 无需在这块结束，会在路由中间件中结束此块内容
+ * There is no need to end this block, this block will be ended in the routing middleware.
  * */
 
 const app = createApp(App)

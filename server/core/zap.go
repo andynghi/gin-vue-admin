@@ -10,10 +10,10 @@ import (
 	"os"
 )
 
-// Zap 获取 zap.Logger
+// Zap gets zap.Logger
 // Author [SliverHorn](https://github.com/SliverHorn)
 func Zap() (logger *zap.Logger) {
-	if ok, _ := utils.PathExists(global.GVA_CONFIG.Zap.Director); !ok { // 判断是否有Director文件夹
+	if ok, _ := utils.PathExists(global.GVA_CONFIG.Zap.Director); !ok { // Determine whether there is a Director folder
 		fmt.Printf("create %v directory\n", global.GVA_CONFIG.Zap.Director)
 		_ = os.Mkdir(global.GVA_CONFIG.Zap.Director, os.ModePerm)
 	}

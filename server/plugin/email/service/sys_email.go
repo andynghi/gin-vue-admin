@@ -8,7 +8,7 @@ type EmailService struct{}
 
 //@author: [maplepie](https://github.com/maplepie)
 //@function: EmailTest
-//@description: 发送邮件测试
+//@description: Send email test
 //@return: err error
 
 func (e *EmailService) EmailTest() (err error) {
@@ -20,11 +20,11 @@ func (e *EmailService) EmailTest() (err error) {
 
 //@author: [maplepie](https://github.com/maplepie)
 //@function: EmailTest
-//@description: 发送邮件测试
+//@description: Send email test
 //@return: err error
-//@params to string 	 收件人
-//@params subject string   标题（主题）
-//@params body  string 	 邮件内容
+//@params to string recipient
+//@params subject string title (topic)
+//@params body string email content
 
 func (e *EmailService) SendEmail(to, subject, body string) (err error) {
 	err = utils.Email(to, subject, body)

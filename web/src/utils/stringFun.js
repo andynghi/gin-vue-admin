@@ -15,13 +15,13 @@ export const toLowerCase = (str) => {
     }
 }
 
-// 驼峰转换下划线
+// Convert camel case to underscore
 export const toSQLLine = (str) => {
     if (str === 'ID') return 'ID'
     return str.replace(/([A-Z])/g, "_$1").toLowerCase();
 }
 
-// 下划线转换驼峰
+// Convert underscore to camel case
 export const toHump = (name) => {
     return name.replace(/\_(\w)/g, function(all, letter) {
         return letter.toUpperCase();

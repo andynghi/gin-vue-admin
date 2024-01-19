@@ -8,12 +8,12 @@ export const getAuthorityList = (data) => {
   })
 }
 
-// @Summary 删除角色
+// @Summary Delete role
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body {authorityId uint} true "删除角色"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body {authorityId uint} true "Delete role"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /authority/deleteAuthority [post]
 export const deleteAuthority = (data) => {
   return service({
@@ -23,12 +23,12 @@ export const deleteAuthority = (data) => {
   })
 }
 
-// @Summary 创建角色
+// @Summary Create role
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body api.CreateAuthorityPatams true "创建角色"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body api.CreateAuthorityPatams true "Create role"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /authority/createAuthority [post]
 export const createAuthority = (data) => {
   return service({
@@ -39,12 +39,12 @@ export const createAuthority = (data) => {
 }
 
 // @Tags authority
-// @Summary 拷贝角色
+// @Summary copy character
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body api.CreateAuthorityPatams true "拷贝角色"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"拷贝成功"}"
+// @Param data body api.CreateAuthorityPatams true "Copy role"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Copy successful"}"
 // @Router /authority/copyAuthority [post]
 export const copyAuthority = (data) => {
   return service({
@@ -54,12 +54,12 @@ export const copyAuthority = (data) => {
   })
 }
 
-// @Summary 设置角色资源权限
+// @Summary Set role resource permissions
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body sysModel.SysAuthority true "设置角色资源权限"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"设置成功"}"
+// @Param data body sysModel.SysAuthority true "Set role resource permissions"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Set successfully"}"
 // @Router /authority/setDataAuthority [post]
 export const setDataAuthority = (data) => {
   return service({
@@ -69,12 +69,12 @@ export const setDataAuthority = (data) => {
   })
 }
 
-// @Summary 修改角色
+// @Summary Modify role
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysAuthority true "修改角色"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"设置成功"}"
+// @Param data body model.SysAuthority true "Modify role"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Set successfully"}"
 // @Router /authority/setDataAuthority [post]
 export const updateAuthority = (data) => {
   return service({

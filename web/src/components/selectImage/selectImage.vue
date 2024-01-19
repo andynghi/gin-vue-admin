@@ -34,7 +34,7 @@
       <el-icon>
         <delete />
       </el-icon>
-      删除</span>
+      Delete</span>
     <span
       v-else
       class="update text-gray-600"
@@ -43,7 +43,7 @@
       <el-icon>
         <plus />
       </el-icon>
-      上传</span>
+      Upload</span>
   </div>
   <div
     v-else
@@ -82,7 +82,7 @@
         <el-icon>
           <delete />
         </el-icon>
-        删除</span>
+        Delete</span>
     </div>
     <div
       v-if="!maxUpdateCount || maxUpdateCount>multipleValue.length"
@@ -95,17 +95,17 @@
         <el-icon>
           <Plus />
         </el-icon>
-        上传</span>
+        Upload</span>
     </div>
   </div>
 
   <el-drawer
     v-model="drawer"
-    title="媒体库"
+    title="Media Library"
     size="650px"
   >
     <warning-bar
-      title="点击“文件名/备注”可以编辑文件名或者备注内容。"
+      title="Click "File Name/Remarks" to edit the file name or comment content."
     />
     <div class="gva-btn-list">
       <upload-common
@@ -129,7 +129,7 @@
           <el-input
             v-model="search.keyword"
             class="keyword"
-            placeholder="请输入文件名或备注"
+            placeholder="Please enter file name or remarks"
           />
         </el-form-item>
 
@@ -138,7 +138,7 @@
             type="primary"
             icon="search"
             @click="getImageList"
-          >查询
+          >Query
           </el-button>
         </el-form-item>
       </el-form>
@@ -173,7 +173,7 @@
                 @click="chooseImg(item.url)"
               >
                 <source :src="getUrl(item.url) + '#t=1'">
-                您的浏览器不支持视频播放
+                Your browser does not support video playback
               </video>
               <div
                 v-else
@@ -257,7 +257,7 @@ const deleteImg = (index) => {
   emits('update:modelValue', multipleValue.value)
 }
 
-// 分页
+// paging
 const handleSizeChange = (val) => {
   pageSize.value = val
   getImageList()
@@ -268,11 +268,11 @@ const handleCurrentChange = (val) => {
   getImageList()
 }
 const editFileNameFunc = async(row) => {
-  ElMessageBox.prompt('请输入文件名或者备注', '编辑', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
+  ElMessageBox.prompt('Please enter the file name or remarks', 'Edit', {
+    confirmButtonText: 'OK',
+    cancelButtonText: 'Cancel',
     inputPattern: /\S/,
-    inputErrorMessage: '不能为空',
+    inputErrorMessage: 'Cannot be empty',
     inputValue: row.name
   }).then(async({ value }) => {
     row.name = value
@@ -281,14 +281,14 @@ const editFileNameFunc = async(row) => {
     if (res.code === 0) {
       ElMessage({
         type: 'success',
-        message: '编辑成功!',
+        message: 'Editing successful!',
       })
       getImageList()
     }
   }).catch(() => {
     ElMessage({
       type: 'info',
-      message: '取消修改'
+      message: 'Cancel modification'
     })
   })
 }
@@ -315,7 +315,7 @@ const chooseImg = (url) => {
     if (!typeSuccess) {
       ElMessage({
         type: 'error',
-        message: '当前类型不支持使用'
+        message: 'The current type does not support use'
       })
       return
     }

@@ -19,9 +19,9 @@ func RollBackAst(pk, model string) {
 
 func RollGormBack(pk, model string) {
 
-	// 首先分析存在多少个ttt作为调用方的node块
-	// 如果多个 仅仅删除对应块即可
-	// 如果单个 那么还需要剔除import
+	// First analyze how many node blocks exist with ttt as the caller
+	// If there are multiple, just delete the corresponding block.
+	// If it is single, then the import needs to be eliminated.
 	path := filepath.Join(global.GVA_CONFIG.AutoCode.Root, global.GVA_CONFIG.AutoCode.Server, "initialize", "gorm.go")
 	src, err := os.ReadFile(path)
 	if err != nil {
@@ -96,9 +96,9 @@ func RollGormBack(pk, model string) {
 
 func RollRouterBack(pk, model string) {
 
-	// 首先抓到所有的代码块结构 {}
-	// 分析结构中是否存在一个变量叫做 pk+Router
-	// 然后获取到代码块指针 对内部需要回滚的代码进行剔除
+	// First capture all code block structures {}
+	// Analyze whether there is a variable called pk+Router in the structure
+	// Then get the code block pointer and eliminate the internal code that needs to be rolled back.
 	path := filepath.Join(global.GVA_CONFIG.AutoCode.Root, global.GVA_CONFIG.AutoCode.Server, "initialize", "router.go")
 	src, err := os.ReadFile(path)
 	if err != nil {
@@ -144,9 +144,9 @@ func RollRouterBack(pk, model string) {
 	block.List = append(append([]ast.Stmt{}, block.List[:k]...), block.List[k+1:]...)
 
 	if len(block.List) == 1 {
-		// 说明这个块就没任何意义了
+		// This means that this block has no meaning.
 		block.List = nil
-		// TODO 删除空的{}
+		// TODO delete empty {}
 	}
 
 	var out []byte

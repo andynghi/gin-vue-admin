@@ -13,24 +13,24 @@ import (
 //go:generate go mod tidy
 //go:generate go mod download
 
-// @title                       Gin-Vue-Admin Swagger API接口文档
+// @title Gin-Vue-Admin Swagger API interface document
 // @version                     v2.5.9
-// @description                 使用gin+vue进行极速开发的全栈开发基础平台
+// @description A full-stack development basic platform using gin+vue for extremely fast development
 // @securityDefinitions.apikey  ApiKeyAuth
 // @in                          header
 // @name                        x-token
 // @BasePath                    /
 func main() {
-	global.GVA_VP = core.Viper() // 初始化Viper
+	global.GVA_VP = core.Viper() // Initialize Viper
 	initialize.OtherInit()
-	global.GVA_LOG = core.Zap() // 初始化zap日志库
+	global.GVA_LOG = core.Zap() //Initialize zap log library
 	zap.ReplaceGlobals(global.GVA_LOG)
-	global.GVA_DB = initialize.Gorm() // gorm连接数据库
+	global.GVA_DB = initialize.Gorm() // gorm connects to the database
 	initialize.Timer()
 	initialize.DBList()
 	if global.GVA_DB != nil {
-		initialize.RegisterTables() // 初始化表
-		// 程序结束前关闭数据库链接
+		initialize.RegisterTables() // Initialize table
+		//Close the database connection before the program ends
 		db, _ := global.GVA_DB.DB()
 		defer db.Close()
 	}

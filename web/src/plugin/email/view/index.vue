@@ -1,6 +1,6 @@
 <template>
   <div>
-    <warning-bar title="需要提前配置email配置文件，为防止不必要的垃圾邮件，在线体验功能不开放此功能体验。" />
+    <warning-bar title="You need to configure the email configuration file in advance. To prevent unnecessary spam, the online experience function does not allow this feature to be experienced." />
     <div class="gva-form-box">
       <el-form
         ref="emailForm"
@@ -8,21 +8,21 @@
         label-width="80px"
         :model="form"
       >
-        <el-form-item label="目标邮箱">
+        <el-form-item label="target email">
           <el-input v-model="form.to" />
         </el-form-item>
-        <el-form-item label="邮件">
+        <el-form-item label="mail">
           <el-input v-model="form.subject" />
         </el-form-item>
-        <el-form-item label="邮件内容">
+        <el-form-item label="Email content">
           <el-input
             v-model="form.body"
             type="textarea"
           />
         </el-form-item>
         <el-form-item>
-          <el-button @click="sendTestEmail">发送测试邮件</el-button>
-          <el-button @click="sendEmail">发送邮件</el-button>
+          <el-button @click="sendTestEmail">Send test email</el-button>
+          <el-button @click="sendEmail">Send email</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -49,14 +49,14 @@ const form = reactive({
 const sendTestEmail = async() => {
   const res = await emailTest()
   if (res.code === 0) {
-    ElMessage.success('发送成功')
+    ElMessage.success('sent successfully')
   }
 }
 
 const sendEmail = async() => {
   const res = await emailTest()
   if (res.code === 0) {
-    ElMessage.success('发送成功,请查收')
+    ElMessage.success('Sent successfully, please check')
   }
 }
 </script>

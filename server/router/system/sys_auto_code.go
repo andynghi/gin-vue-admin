@@ -11,16 +11,16 @@ func (s *AutoCodeRouter) InitAutoCodeRouter(Router *gin.RouterGroup) {
 	autoCodeRouter := Router.Group("autoCode")
 	autoCodeApi := v1.ApiGroupApp.SystemApiGroup.AutoCodeApi
 	{
-		autoCodeRouter.GET("getDB", autoCodeApi.GetDB)                  // 获取数据库
-		autoCodeRouter.GET("getTables", autoCodeApi.GetTables)          // 获取对应数据库的表
-		autoCodeRouter.GET("getColumn", autoCodeApi.GetColumn)          // 获取指定表所有字段信息
-		autoCodeRouter.POST("preview", autoCodeApi.PreviewTemp)         // 获取自动创建代码预览
-		autoCodeRouter.POST("createTemp", autoCodeApi.CreateTemp)       // 创建自动化代码
-		autoCodeRouter.POST("createPackage", autoCodeApi.CreatePackage) // 创建package包
-		autoCodeRouter.POST("getPackage", autoCodeApi.GetPackage)       // 获取package包
-		autoCodeRouter.POST("delPackage", autoCodeApi.DelPackage)       // 删除package包
-		autoCodeRouter.POST("createPlug", autoCodeApi.AutoPlug)         // 自动插件包模板
-		autoCodeRouter.POST("installPlugin", autoCodeApi.InstallPlugin) // 自动安装插件
-		autoCodeRouter.POST("pubPlug", autoCodeApi.PubPlug)             // 打包插件
+		autoCodeRouter.GET("getDB", autoCodeApi.GetDB)                  // Get the database
+		autoCodeRouter.GET("getTables", autoCodeApi.GetTables)          // Get the tables of the corresponding database
+		autoCodeRouter.GET("getColumn", autoCodeApi.GetColumn)          // Get all field information of the specified table
+		autoCodeRouter.POST("preview", autoCodeApi.PreviewTemp)         // Get automatically created code preview
+		autoCodeRouter.POST("createTemp", autoCodeApi.CreateTemp)       // Create automation code
+		autoCodeRouter.POST("createPackage", autoCodeApi.CreatePackage) // Create package
+		autoCodeRouter.POST("getPackage", autoCodeApi.GetPackage)       // Get the package
+		autoCodeRouter.POST("delPackage", autoCodeApi.DelPackage)       // Delete package
+		autoCodeRouter.POST("createPlug", autoCodeApi.AutoPlug)         // Automatic plug-in package template
+		autoCodeRouter.POST("installPlugin", autoCodeApi.InstallPlugin) // Automatically install plug-ins
+		autoCodeRouter.POST("pubPlug", autoCodeApi.PubPlug)             // Package plug-in
 	}
 }

@@ -75,10 +75,10 @@ func OperationRecord() gin.HandlerFunc {
 			UserID: userId,
 		}
 
-		// 上传文件时候 中间件日志进行裁断操作
+		// When uploading files, the middleware log is trimmed.
 		if strings.Contains(c.GetHeader("Content-Type"), "multipart/form-data") {
 			if len(record.Body) > bufferSize {
-				record.Body = "[文件]"
+				record.Body = "[file]"
 			}
 		}
 
@@ -107,8 +107,8 @@ func OperationRecord() gin.HandlerFunc {
 			strings.Contains(c.Writer.Header().Get("Content-Disposition"), "attachment") ||
 			strings.Contains(c.Writer.Header().Get("Content-Transfer-Encoding"), "binary") {
 			if len(record.Resp) > bufferSize {
-				// 截断
-				record.Body = "超出记录长度"
+				// truncate
+				record.Body = "Record length exceeded"
 			}
 		}
 

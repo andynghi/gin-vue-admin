@@ -12,11 +12,11 @@ import (
 	"gorm.io/gorm"
 )
 
-var ErrRoleExistence = errors.New("存在相同角色id")
+var ErrRoleExistence = errors.New("The same role id exists")
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: CreateAuthority
-//@description: 创建一个角色
+//@description: Create a role
 //@param: auth model.SysAuthority
 //@return: authority system.SysAuthority, err error
 
@@ -54,7 +54,7 @@ func (authorityService *AuthorityService) CreateAuthority(auth system.SysAuthori
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: CopyAuthority
-//@description: 复制一个角色
+//@description: Copy a character
 //@param: copyInfo response.SysAuthorityCopyResponse
 //@return: authority system.SysAuthority, err error
 
@@ -106,7 +106,7 @@ func (authorityService *AuthorityService) CopyAuthority(copyInfo response.SysAut
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: UpdateAuthority
-//@description: 更改一个角色
+//@description: Change a role
 //@param: auth model.SysAuthority
 //@return: authority system.SysAuthority, err error
 
@@ -117,22 +117,22 @@ func (authorityService *AuthorityService) UpdateAuthority(auth system.SysAuthori
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: DeleteAuthority
-//@description: 删除角色
+//@description: Delete role
 //@param: auth *model.SysAuthority
 //@return: err error
 
 func (authorityService *AuthorityService) DeleteAuthority(auth *system.SysAuthority) error {
 	if errors.Is(global.GVA_DB.Debug().Preload("Users").First(&auth).Error, gorm.ErrRecordNotFound) {
-		return errors.New("该角色不存在")
+		return errors.New("This role does not exist")
 	}
 	if len(auth.Users) != 0 {
-		return errors.New("此角色有用户正在使用禁止删除")
+		return errors.New("This role is being used by users and is prohibited from deletion")
 	}
 	if !errors.Is(global.GVA_DB.Where("authority_id = ?", auth.AuthorityId).First(&system.SysUser{}).Error, gorm.ErrRecordNotFound) {
-		return errors.New("此角色有用户正在使用禁止删除")
+		return errors.New("This role is being used by users and is prohibited from deletion")
 	}
 	if !errors.Is(global.GVA_DB.Where("parent_id = ?", auth.AuthorityId).First(&system.SysAuthority{}).Error, gorm.ErrRecordNotFound) {
-		return errors.New("此角色存在子角色不允许删除")
+		return errors.New("This role has subroles that are not allowed to be deleted")
 	}
 
 	return global.GVA_DB.Transaction(func(tx *gorm.DB) error {
@@ -172,7 +172,7 @@ func (authorityService *AuthorityService) DeleteAuthority(auth *system.SysAuthor
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetAuthorityInfoList
-//@description: 分页获取数据
+//@description: Get data in pages
 //@param: info request.PageInfo
 //@return: list interface{}, total int64, err error
 
@@ -193,7 +193,7 @@ func (authorityService *AuthorityService) GetAuthorityInfoList(info request.Page
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetAuthorityInfo
-//@description: 获取所有角色信息
+//@description: Get all role information
 //@param: auth model.SysAuthority
 //@return: sa system.SysAuthority, err error
 
@@ -204,7 +204,7 @@ func (authorityService *AuthorityService) GetAuthorityInfo(auth system.SysAuthor
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: SetDataAuthority
-//@description: 设置角色资源权限
+//@description: Set role resource permissions
 //@param: auth model.SysAuthority
 //@return: error
 
@@ -217,7 +217,7 @@ func (authorityService *AuthorityService) SetDataAuthority(auth system.SysAuthor
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: SetMenuAuthority
-//@description: 菜单与角色绑定
+//@description: Menu and role binding
 //@param: auth *model.SysAuthority
 //@return: error
 
@@ -230,7 +230,7 @@ func (authorityService *AuthorityService) SetMenuAuthority(auth *system.SysAutho
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: findChildrenAuthority
-//@description: 查询子角色
+//@description: Query subroles
 //@param: authority *model.SysAuthority
 //@return: err error
 

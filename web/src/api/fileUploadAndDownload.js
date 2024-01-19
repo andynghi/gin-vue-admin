@@ -1,11 +1,11 @@
 import service from '@/utils/request'
 // @Tags FileUploadAndDownload
-// @Summary 分页文件列表
+// @Summary Paginated file list
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body modelInterface.PageInfo true "分页获取文件户列表"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body modelInterface.PageInfo true "Get the file list by page"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /fileUploadAndDownload/getFileList [post]
 export const getFileList = (data) => {
   return service({
@@ -16,11 +16,11 @@ export const getFileList = (data) => {
 }
 
 // @Tags FileUploadAndDownload
-// @Summary 删除文件
+// @Summary delete file
 // @Security ApiKeyAuth
 // @Produce  application/json
-// @Param data body dbModel.FileUploadAndDownload true "传入文件里面id即可"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"返回成功"}"
+// @Param data body dbModel.FileUploadAndDownload true "Just pass in the id in the file"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Return successful"}"
 // @Router /fileUploadAndDownload/deleteFile [post]
 export const deleteFile = (data) => {
   return service({
@@ -31,7 +31,7 @@ export const deleteFile = (data) => {
 }
 
 /**
- * 编辑文件名或者备注
+ * Edit file name or remarks
  * @param data
  * @returns {*}
  */

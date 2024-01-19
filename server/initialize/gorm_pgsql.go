@@ -8,7 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
-// GormPgSql 初始化 Postgresql 数据库
+// GormPgSql initializes the Postgresql database
 // Author [piexlmax](https://github.com/piexlmax)
 // Author [SliverHorn](https://github.com/SliverHorn)
 func GormPgSql() *gorm.DB {
@@ -30,7 +30,7 @@ func GormPgSql() *gorm.DB {
 	}
 }
 
-// GormPgSqlByConfig 初始化 Postgresql 数据库 通过参数
+// GormPgSqlByConfig initializes the Postgresql database through parameters
 func GormPgSqlByConfig(p config.Pgsql) *gorm.DB {
 	if p.Dbname == "" {
 		return nil

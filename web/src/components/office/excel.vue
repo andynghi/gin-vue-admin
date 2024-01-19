@@ -7,9 +7,9 @@ export default {
 }
 </script>
 <script setup>
-//引入VueOfficeExcel组件
+//Introduce VueOfficeExcel component
 import VueOfficeExcel from '@vue-office/excel'
-//引入相关样式
+//Introduce related styles
 import '@vue-office/excel/lib/index.css'
 import {ref, watch} from 'vue'
 

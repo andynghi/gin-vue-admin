@@ -2,7 +2,7 @@
   <div>
     <warning-bar
       href="https://www.bilibili.com/video/BV1kv4y1g7nT?p=3"
-      title="此功能为开发环境使用，不建议发布到生产，具体使用效果请看视频https://www.bilibili.com/video/BV1kv4y1g7nT?p=3"
+      title="This function is for development environment use and is not recommended for release to production. Please see the video for specific usage effects https://www.bilibili.com/video/BV1kv4y1g7nT?p=3"
     />
     <div class="gva-table-box">
       <div class="gva-btn-list gap-3 flex items-center">
@@ -10,7 +10,7 @@
           type="primary"
           icon="plus"
           @click="openDialog('addApi')"
-        >新增</el-button>
+        >Add</el-button>
         <el-icon
           class="cursor-pointer"
           @click="toDoc('https://www.bilibili.com/video/BV1kv4y1g7nT?p=3&vd_source=f2640257c21e3b547a790461ed94875e')"
@@ -25,26 +25,26 @@
         />
         <el-table-column
           align="left"
-          label="包名"
+          label="package name"
           width="150"
           prop="packageName"
         />
         <el-table-column
           align="left"
-          label="展示名"
+          label="display name"
           width="150"
           prop="label"
         />
         <el-table-column
           align="left"
-          label="描述"
+          label="description"
           min-width="150"
           prop="desc"
         />
 
         <el-table-column
           align="left"
-          label="操作"
+          label="operation"
           width="200"
         >
           <template #default="scope">
@@ -54,7 +54,7 @@
               type="primary"
               link
               @click="deleteApiFunc(scope.row)"
-            >删除</el-button>
+            >Delete</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -64,9 +64,9 @@
     <el-dialog
       v-model="dialogFormVisible"
       :before-close="closeDialog"
-      title="创建Package"
+      title="Create Package"
     >
-      <warning-bar title="新增Pkg用于自动化代码使用" />
+      <warning-bar title="New Pkg for automated code use" />
       <el-form
         ref="pkgForm"
         :model="form"
@@ -74,7 +74,7 @@
         label-width="80px"
       >
         <el-form-item
-          label="包名"
+          label="package name"
           prop="packageName"
         >
           <el-input
@@ -83,7 +83,7 @@
           />
         </el-form-item>
         <el-form-item
-          label="展示名"
+          label="display name"
           prop="label"
         >
           <el-input
@@ -92,7 +92,7 @@
           />
         </el-form-item>
         <el-form-item
-          label="描述"
+          label="description"
           prop="desc"
         >
           <el-input
@@ -103,11 +103,11 @@
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="closeDialog">取 消</el-button>
+          <el-button @click="closeDialog">Cancel</el-button>
           <el-button
             type="primary"
             @click="enterDialog"
-          >确 定</el-button>
+          >Confirm</el-button>
         </div>
       </template>
     </el-dialog>
@@ -138,7 +138,7 @@ const form = ref({
 
 const validateNum = (rule, value, callback) => {
   if ((/^\d+$/.test(value[0]))) {
-    callback(new Error('不能够以数字开头'))
+    callback(new Error('Cannot start with a number'))
   } else {
     callback()
   }
@@ -146,7 +146,7 @@ const validateNum = (rule, value, callback) => {
 
 const rules = ref({
   packageName: [
-    { required: true, message: '请输入包名', trigger: 'blur' },
+    { required: true, message: 'Please enter the package name', trigger: 'blur' },
     { validator: validateNum, trigger: 'blur' }
   ],
 })
@@ -173,7 +173,7 @@ const enterDialog = async() => {
       if (res.code === 0) {
         ElMessage({
           type: 'success',
-          message: '添加成功',
+          message: 'Added successfully',
           showClose: true
         })
       }
@@ -192,9 +192,9 @@ const getTableData = async() => {
 }
 
 const deleteApiFunc = async(row) => {
-  ElMessageBox.confirm('此操作仅删除数据库中的pkg存储，后端相应目录结构请自行删除与数据库保持一致！', '提示', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
+  ElMessageBox.confirm('This operation only deletes the pkg storage in the database. Please delete the corresponding directory structure in the backend to keep it consistent with the database!', 'Prompt', {
+    confirmButtonText: 'OK',
+    cancelButtonText: 'Cancel',
     type: 'warning'
   })
     .then(async() => {
@@ -202,7 +202,7 @@ const deleteApiFunc = async(row) => {
       if (res.code === 0) {
         ElMessage({
           type: 'success',
-          message: '删除成功!'
+          message: 'Delete successfully!'
         })
         getTableData()
       }

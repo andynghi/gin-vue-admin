@@ -15,12 +15,12 @@ type CustomerApi struct{}
 
 // CreateExaCustomer
 // @Tags      ExaCustomer
-// @Summary   创建客户
+// @Summary Create a customer
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      example.ExaCustomer            true  "客户用户名, 客户手机号码"
-// @Success   200   {object}  response.Response{msg=string}  "创建客户"
+// @Param data body example.ExaCustomer true "Customer username, customer mobile phone number"
+// @Success 200 {object} response.Response{msg=string} "Create customer"
 // @Router    /customer/customer [post]
 func (e *CustomerApi) CreateExaCustomer(c *gin.Context) {
 	var customer example.ExaCustomer
@@ -38,21 +38,21 @@ func (e *CustomerApi) CreateExaCustomer(c *gin.Context) {
 	customer.SysUserAuthorityID = utils.GetUserAuthorityId(c)
 	err = customerService.CreateExaCustomer(customer)
 	if err != nil {
-		global.GVA_LOG.Error("创建失败!", zap.Error(err))
-		response.FailWithMessage("创建失败", c)
+		global.GVA_LOG.Error("Creation failed!", zap.Error(err))
+		response.FailWithMessage("Creation failed", c)
 		return
 	}
-	response.OkWithMessage("创建成功", c)
+	response.OkWithMessage("Created successfully", c)
 }
 
 // DeleteExaCustomer
 // @Tags      ExaCustomer
-// @Summary   删除客户
+// @Summary Delete customer
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      example.ExaCustomer            true  "客户ID"
-// @Success   200   {object}  response.Response{msg=string}  "删除客户"
+// @Param data body example.ExaCustomer true "Customer ID"
+// @Success 200 {object} response.Response{msg=string} "Delete customer"
 // @Router    /customer/customer [delete]
 func (e *CustomerApi) DeleteExaCustomer(c *gin.Context) {
 	var customer example.ExaCustomer
@@ -68,21 +68,21 @@ func (e *CustomerApi) DeleteExaCustomer(c *gin.Context) {
 	}
 	err = customerService.DeleteExaCustomer(customer)
 	if err != nil {
-		global.GVA_LOG.Error("删除失败!", zap.Error(err))
-		response.FailWithMessage("删除失败", c)
+		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
+		response.FailWithMessage("Deletion failed", c)
 		return
 	}
-	response.OkWithMessage("删除成功", c)
+	response.OkWithMessage("Deletion successful", c)
 }
 
 // UpdateExaCustomer
 // @Tags      ExaCustomer
-// @Summary   更新客户信息
+// @Summary Update customer information
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      example.ExaCustomer            true  "客户ID, 客户信息"
-// @Success   200   {object}  response.Response{msg=string}  "更新客户信息"
+// @Param data body example.ExaCustomer true "Customer ID, customer information"
+// @Success 200 {object} response.Response{msg=string} "Update customer information"
 // @Router    /customer/customer [put]
 func (e *CustomerApi) UpdateExaCustomer(c *gin.Context) {
 	var customer example.ExaCustomer
@@ -103,21 +103,21 @@ func (e *CustomerApi) UpdateExaCustomer(c *gin.Context) {
 	}
 	err = customerService.UpdateExaCustomer(&customer)
 	if err != nil {
-		global.GVA_LOG.Error("更新失败!", zap.Error(err))
-		response.FailWithMessage("更新失败", c)
+		global.GVA_LOG.Error("Update failed!", zap.Error(err))
+		response.FailWithMessage("Update failed", c)
 		return
 	}
-	response.OkWithMessage("更新成功", c)
+	response.OkWithMessage("Update successful", c)
 }
 
 // GetExaCustomer
 // @Tags      ExaCustomer
-// @Summary   获取单一客户信息
+// @Summary Get single customer information
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  query     example.ExaCustomer                                                true  "客户ID"
-// @Success   200   {object}  response.Response{data=exampleRes.ExaCustomerResponse,msg=string}  "获取单一客户信息,返回包括客户详情"
+// @Param data query example.ExaCustomer true "Customer ID"
+// @Success 200 {object} response.Response{data=exampleRes.ExaCustomerResponse,msg=string} "Get single customer information, return including customer details"
 // @Router    /customer/customer [get]
 func (e *CustomerApi) GetExaCustomer(c *gin.Context) {
 	var customer example.ExaCustomer
@@ -133,21 +133,21 @@ func (e *CustomerApi) GetExaCustomer(c *gin.Context) {
 	}
 	data, err := customerService.GetExaCustomer(customer.ID)
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
-	response.OkWithDetailed(exampleRes.ExaCustomerResponse{Customer: data}, "获取成功", c)
+	response.OkWithDetailed(exampleRes.ExaCustomerResponse{Customer: data}, "Get successful", c)
 }
 
 // GetExaCustomerList
 // @Tags      ExaCustomer
-// @Summary   分页获取权限客户列表
+// @Summary Get the list of authorized customers in paging
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  query     request.PageInfo                                        true  "页码, 每页大小"
-// @Success   200   {object}  response.Response{data=response.PageResult,msg=string}  "分页获取权限客户列表,返回包括列表,总数,页码,每页数量"
+// @Param data query request.PageInfo true "Page number, size of each page"
+// @Success 200 {object} response.Response{data=response.PageResult,msg=string} "Get the list of authorized customers in paging, and return the list, total number, page number, and number per page"
 // @Router    /customer/customerList [get]
 func (e *CustomerApi) GetExaCustomerList(c *gin.Context) {
 	var pageInfo request.PageInfo
@@ -163,8 +163,8 @@ func (e *CustomerApi) GetExaCustomerList(c *gin.Context) {
 	}
 	customerList, total, err := customerService.GetCustomerInfoList(utils.GetUserAuthorityId(c), pageInfo)
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败"+err.Error(), c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain"+err.Error(), c)
 		return
 	}
 	response.OkWithDetailed(response.PageResult{
@@ -172,5 +172,5 @@ func (e *CustomerApi) GetExaCustomerList(c *gin.Context) {
 		Total:    total,
 		Page:     pageInfo.Page,
 		PageSize: pageInfo.PageSize,
-	}, "获取成功", c)
+	}, "Get successful", c)
 }

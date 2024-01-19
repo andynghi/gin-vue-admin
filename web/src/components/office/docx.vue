@@ -11,9 +11,9 @@ export default {
 <script setup>
 import {ref, watch} from 'vue'
 
-// 引入VueOfficeDocx组件
+//Introduce VueOfficeDocx component
 import VueOfficeDocx from '@vue-office/docx'
-// 引入相关样式
+//Introduce related styles
 import '@vue-office/docx/lib/index.css'
 
 const props = defineProps({

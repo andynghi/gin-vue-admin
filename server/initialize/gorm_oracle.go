@@ -11,8 +11,8 @@ import (
 	"gorm.io/gorm"
 )
 
-// GormOracle 初始化oracle数据库
-// 如果需要Oracle库 放开import里的注释 把下方 mysql.Config 改为 oracle.Config ;  mysql.New 改为 oracle.New
+// GormOracle initializes the oracle database
+// If you need the Oracle library, uncomment the import and change mysql.Config below to oracle.Config; mysql.New to oracle.New
 func GormOracle() *gorm.DB {
 	m := global.GVA_CONFIG.Oracle
 	if m.Dbname == "" {
@@ -20,7 +20,7 @@ func GormOracle() *gorm.DB {
 	}
 	oracleConfig := mysql.Config{
 		DSN:               m.Dsn(), // DSN data source name
-		DefaultStringSize: 191,     // string 类型字段的默认长度
+		DefaultStringSize: 191,     //Default length of string type field
 	}
 	if db, err := gorm.Open(mysql.New(oracleConfig), internal.Gorm.Config(m.Prefix, m.Singular)); err != nil {
 		panic(err)
@@ -32,14 +32,14 @@ func GormOracle() *gorm.DB {
 	}
 }
 
-// GormOracleByConfig 初始化Oracle数据库用过传入配置
+// GormOracleByConfig initializes the Oracle database using the incoming configuration
 func GormOracleByConfig(m config.Oracle) *gorm.DB {
 	if m.Dbname == "" {
 		return nil
 	}
 	oracleConfig := mysql.Config{
 		DSN:               m.Dsn(), // DSN data source name
-		DefaultStringSize: 191,     // string 类型字段的默认长度
+		DefaultStringSize: 191,     //Default length of string type field
 	}
 	if db, err := gorm.Open(mysql.New(oracleConfig), internal.Gorm.Config(m.Prefix, m.Singular)); err != nil {
 		panic(err)

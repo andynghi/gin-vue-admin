@@ -13,7 +13,7 @@ import (
 
 //@author: [maplepie](https://github.com/maplepie)
 //@function: Email
-//@description: Email发送方法
+//@description: Email sending method
 //@param: subject string, body string
 //@return: error
 
@@ -24,13 +24,13 @@ func Email(To, subject string, body string) error {
 
 //@author: [SliverHorn](https://github.com/SliverHorn)
 //@function: ErrorToEmail
-//@description: 给email中间件错误发送邮件到指定邮箱
+//@description: Send an email to the specified mailbox if the email middleware error occurs
 //@param: subject string, body string
 //@return: error
 
 func ErrorToEmail(subject string, body string) error {
 	to := strings.Split(global.GlobalConfig.To, ",")
-	if to[len(to)-1] == "" { // 判断切片的最后一个元素是否为空,为空则移除
+	if to[len(to)-1] == "" { // Determine whether the last element of the slice is empty, remove it if it is empty
 		to = to[:len(to)-1]
 	}
 	return send(to, subject, body)
@@ -38,7 +38,7 @@ func ErrorToEmail(subject string, body string) error {
 
 //@author: [maplepie](https://github.com/maplepie)
 //@function: EmailTest
-//@description: Email测试方法
+//@description: Email test method
 //@param: subject string, body string
 //@return: error
 
@@ -49,7 +49,7 @@ func EmailTest(subject string, body string) error {
 
 //@author: [maplepie](https://github.com/maplepie)
 //@function: send
-//@description: Email发送方法
+//@description: Email sending method
 //@param: subject string, body string
 //@return: error
 

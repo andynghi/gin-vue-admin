@@ -8,7 +8,7 @@
     >
       <div class="md:w-3/5 w-10/12 h-full flex items-center justify-evenly">
         <div class="oblique h-[130%] w-3/5 bg-white transform -rotate-12 absolute -ml-52" />
-        <!-- 分割斜块 -->
+        <!-- Split inclined block -->
         <div class="z-[999] pt-12 pb-10 md:w-96 w-full  rounded-lg flex flex-col justify-between box-border">
           <div>
             <div class="flex items-center justify-center">
@@ -38,7 +38,7 @@
                 <el-input
                   v-model="loginFormData.username"
                   size="large"
-                  placeholder="请输入用户名"
+                  placeholder="Please enter username"
                   suffix-icon="user"
                 />
               </el-form-item>
@@ -51,7 +51,7 @@
                   show-password
                   size="large"
                   type="password"
-                  placeholder="请输入密码"
+                  placeholder="Please enter password"
                 />
               </el-form-item>
               <el-form-item
@@ -62,7 +62,7 @@
                 <div class="flex w-full justify-between">
                   <el-input
                     v-model="loginFormData.captcha"
-                    placeholder="请输入验证码"
+                    placeholder="Please enter the verification code"
                     size="large"
                     class="flex-1 mr-5"
                   />
@@ -71,7 +71,7 @@
                       v-if="picPath"
                       class="w-full h-full"
                       :src="picPath"
-                      alt="请输入验证码"
+                      alt="Please enter the verification code"
                       @click="loginVerify()"
                     >
                   </div>
@@ -83,7 +83,7 @@
                   type="primary"
                   size="large"
                   @click="submitForm"
-                >登 录</el-button>
+                >Login</el-button>
               </el-form-item>
               <el-form-item class="mb-6">
                 <el-button
@@ -91,7 +91,7 @@
                   type="primary"
                   size="large"
                   @click="checkInit"
-                >前往初始化</el-button>
+                >Go to initialization</el-button>
 
               </el-form-item>
             </el-form>
@@ -114,7 +114,7 @@
           <img
             src="@/assets/docs.png"
             class="w-8 h-8"
-            alt="文档"
+            alt="documentation"
           >
         </a>
         <a
@@ -124,7 +124,7 @@
           <img
             src="@/assets/kefu.png"
             class="w-8 h-8"
-            alt="客服"
+            alt="Customer Service"
           >
         </a>
         <a
@@ -144,7 +144,7 @@
           <img
             src="@/assets/video.png"
             class="w-8 h-8"
-            alt="视频站"
+            alt="Video site"
           >
         </a>
       </div>
@@ -166,29 +166,29 @@ defineOptions({
 })
 
 const router = useRouter()
-// 验证函数
+//verification function
 const checkUsername = (rule, value, callback) => {
   if (value.length < 5) {
-    return callback(new Error('请输入正确的用户名'))
+    return callback(new Error('Please enter the correct user name'))
   } else {
     callback()
   }
 }
 const checkPassword = (rule, value, callback) => {
   if (value.length < 6) {
-    return callback(new Error('请输入正确的密码'))
+    return callback(new Error('Please enter the correct password'))
   } else {
     callback()
   }
 }
 
-// 获取验证码
+// get verification code
 const loginVerify = () => {
   captcha({}).then(async(ele) => {
     rules.captcha.push({
       max: ele.data.captchaLength,
       min: ele.data.captchaLength,
-      message: `请输入${ele.data.captchaLength}位验证码`,
+      message: `Please enter the ${ele.data.captchaLength} digit verification code`,
       trigger: 'blur',
     })
     picPath.value = ele.data.picPath
@@ -198,7 +198,7 @@ const loginVerify = () => {
 }
 loginVerify()
 
-// 登录相关操作
+// Login related operations
 const loginForm = ref(null)
 const picPath = ref('')
 const loginFormData = reactive({
@@ -213,7 +213,7 @@ const rules = reactive({
   password: [{ validator: checkPassword, trigger: 'blur' }],
   captcha: [
     {
-      message: '验证码格式不正确',
+      message: 'Verification code format is incorrect',
       trigger: 'blur',
     },
   ],
@@ -233,7 +233,7 @@ const submitForm = () => {
     } else {
       ElMessage({
         type: 'error',
-        message: '请正确填写登录信息',
+        message: 'Please fill in the login information correctly',
         showClose: true,
       })
       loginVerify()
@@ -242,7 +242,7 @@ const submitForm = () => {
   })
 }
 
-// 跳转初始化
+//Jump initialization
 const checkInit = async() => {
   const res = await checkDB()
   if (res.code === 0) {
@@ -252,7 +252,7 @@ const checkInit = async() => {
     } else {
       ElMessage({
         type: 'info',
-        message: '已配置数据库信息，无法初始化',
+        message: 'Database information has been configured and cannot be initialized',
       })
     }
   }

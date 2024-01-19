@@ -10,7 +10,7 @@ import (
 
 func Reload() error {
 	if runtime.GOOS == "windows" {
-		return errors.New("系统不支持")
+		return errors.New("The system does not support")
 	}
 	pid := os.Getpid()
 	cmd := exec.Command("kill", "-1", strconv.Itoa(pid))

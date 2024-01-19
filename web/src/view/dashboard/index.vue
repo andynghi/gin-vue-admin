@@ -3,7 +3,7 @@
     <div class="gva-card-box">
       <div class="gva-card gva-top-card">
         <div class="gva-top-card-left">
-          <div class="gva-top-card-left-title">早安，管理员，请开始一天的工作吧</div>
+          <div class="gva-top-card-left-title">Good morning, administrator, please start your day's work</div>
           <div class="gva-top-card-left-dot">{{ weatherInfo }}</div>
           <el-row class="my-8 w-[500px]">
             <el-col
@@ -15,7 +15,7 @@
                 <el-icon class="dashboard-icon">
                   <sort />
                 </el-icon>
-                今日流量 (1231231)
+                Today’s traffic (1231231)
               </div>
             </el-col>
             <el-col
@@ -27,7 +27,7 @@
                 <el-icon class="dashboard-icon">
                   <avatar />
                 </el-icon>
-                总用户数 (24001)
+                Total users (24001)
               </div>
             </el-col>
             <el-col
@@ -39,13 +39,13 @@
                 <el-icon class="dashboard-icon">
                   <comment />
                 </el-icon>
-                好评率 (99%)
+                Positive rating (99%)
               </div>
             </el-col>
           </el-row>
           <div>
             <div class="gva-top-card-left-item">
-              使用教学：
+              Instructions for use:
               <a
                 style="color:#409EFF"
                 target="view_window"
@@ -53,7 +53,7 @@
               >https://www.bilibili.com/video/BV1Rg411u7xH</a>
             </div>
             <div class="gva-top-card-left-item">
-              插件仓库：
+              Plug-in repository:
               <a
                 style="color:#409EFF"
                 target="view_window"
@@ -71,7 +71,7 @@
     </div>
     <div class="gva-card-box">
       <div class="gva-card quick-entrance">
-        <div class="gva-card-title">快捷入口</div>
+        <div class="gva-card-title">Quick entry</div>
         <el-row :gutter="20">
           <el-col
             v-for="(card, key) in toolCards"
@@ -101,7 +101,7 @@
     </div>
     <div class="gva-card-box">
       <div class="gva-card">
-        <div class="gva-card-title">数据统计</div>
+        <div class="gva-card-title">Statistics</div>
         <div class="p-4">
           <el-row :gutter="20">
             <el-col
@@ -138,42 +138,42 @@ const weatherInfo = useWeatherInfo()
 
 const toolCards = ref([
   {
-    label: '用户管理',
+    label: 'User Management',
     icon: 'monitor',
     name: 'user',
     color: '#ff9c6e',
     bg: 'rgba(255, 156, 110,.3)'
   },
   {
-    label: '角色管理',
+    label: 'role management',
     icon: 'setting',
     name: 'authority',
     color: '#69c0ff',
     bg: 'rgba(105, 192, 255,.3)'
   },
   {
-    label: '菜单管理',
+    label: 'menu management',
     icon: 'menu',
     name: 'menu',
     color: '#b37feb',
     bg: 'rgba(179, 127, 235,.3)'
   },
   {
-    label: '代码生成器',
+    label: 'code generator',
     icon: 'cpu',
     name: 'autoCode',
     color: '#ffd666',
     bg: 'rgba(255, 214, 102,.3)'
   },
   {
-    label: '表单生成器',
+    label: 'Form Builder',
     icon: 'document-checked',
     name: 'formCreate',
     color: '#ff85c0',
     bg: 'rgba(255, 133, 192,.3)'
   },
   {
-    label: '关于我们',
+    label: 'About us',
     icon: 'user',
     name: 'about',
     color: '#5cdbd3',

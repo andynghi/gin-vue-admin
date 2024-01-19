@@ -1,5 +1,5 @@
 import service from '@/utils/request'
-// @Summary 用户登录
+// @Summary User login
 // @Produce  application/json
 // @Param data body {username:"string",password:"string"}
 // @Router /base/login [post]
@@ -11,7 +11,7 @@ export const login = (data) => {
   })
 }
 
-// @Summary 获取验证码
+// @Summary Get verification code
 // @Produce  application/json
 // @Param data body {username:"string",password:"string"}
 // @Router /base/captcha [post]
@@ -23,7 +23,7 @@ export const captcha = (data) => {
   })
 }
 
-// @Summary 用户注册
+// @Summary User registration
 // @Produce  application/json
 // @Param data body {username:"string",password:"string"}
 // @Router /base/resige [post]
@@ -35,7 +35,7 @@ export const register = (data) => {
   })
 }
 
-// @Summary 修改密码
+// @Summary Change password
 // @Produce  application/json
 // @Param data body {username:"string",password:"string",newPassword:"string"}
 // @Router /user/changePassword [post]
@@ -48,12 +48,12 @@ export const changePassword = (data) => {
 }
 
 // @Tags User
-// @Summary 分页获取用户列表
+// @Summary Get the user list by pagination
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body modelInterface.PageInfo true "分页获取用户列表"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body modelInterface.PageInfo true "Get the user list by page"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /user/getUserList [post]
 export const getUserList = (data) => {
   return service({
@@ -64,12 +64,12 @@ export const getUserList = (data) => {
 }
 
 // @Tags User
-// @Summary 设置用户权限
+// @Summary Set user permissions
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body api.SetUserAuth true "设置用户权限"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"修改成功"}"
+// @Param data body api.SetUserAuth true "Set user permissions"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Modification successful"}"
 // @Router /user/setUserAuthority [post]
 export const setUserAuthority = (data) => {
   return service({
@@ -80,12 +80,12 @@ export const setUserAuthority = (data) => {
 }
 
 // @Tags SysUser
-// @Summary 删除用户
+// @Summary delete user
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body request.SetUserAuth true "删除用户"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"修改成功"}"
+// @Param data body request.SetUserAuth true "Delete user"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Modification successful"}"
 // @Router /user/deleteUser [delete]
 export const deleteUser = (data) => {
   return service({
@@ -96,12 +96,12 @@ export const deleteUser = (data) => {
 }
 
 // @Tags SysUser
-// @Summary 设置用户信息
+// @Summary Set user information
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysUser true "设置用户信息"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"修改成功"}"
+// @Param data body model.SysUser true "Set user information"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Modification successful"}"
 // @Router /user/setUserInfo [put]
 export const setUserInfo = (data) => {
   return service({
@@ -112,12 +112,12 @@ export const setUserInfo = (data) => {
 }
 
 // @Tags SysUser
-// @Summary 设置用户信息
+// @Summary Set user information
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysUser true "设置用户信息"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"修改成功"}"
+// @Param data body model.SysUser true "Set user information"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Modification successful"}"
 // @Router /user/setSelfInfo [put]
 export const setSelfInfo = (data) => {
   return service({
@@ -128,12 +128,12 @@ export const setSelfInfo = (data) => {
 }
 
 // @Tags User
-// @Summary 设置用户权限
+// @Summary Set user permissions
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body api.setUserAuthorities true "设置用户权限"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"修改成功"}"
+// @Param data body api.setUserAuthorities true "Set user permissions"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Modification successful"}"
 // @Router /user/setUserAuthorities [post]
 export const setUserAuthorities = (data) => {
   return service({
@@ -144,11 +144,11 @@ export const setUserAuthorities = (data) => {
 }
 
 // @Tags User
-// @Summary 获取用户信息
+// @Summary Get user information
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /user/getUserInfo [get]
 export const getUserInfo = () => {
   return service({

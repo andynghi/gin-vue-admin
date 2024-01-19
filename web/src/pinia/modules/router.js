@@ -28,7 +28,7 @@ const formatRouter = (routes, routeMap, parent) => {
 
 const KeepAliveFilter = (routes) => {
   routes && routes.forEach(item => {
-    // 子菜单中有 keep-alive 的，父菜单也必须 keep-alive，否则无效。这里将子菜单中有 keep-alive 的父菜单也加入。
+    // If there is keep-alive in the submenu, the parent menu must also be keep-alive, otherwise it will be invalid. Here, the parent menu with keep-alive in the submenu is also added.
     if ((item.children && item.children.some(ch => ch.meta.keepAlive) || item.meta.keepAlive)) {
       item.component && item.component().then(val => {
         keepAliveRoutersArr.push(val.default.name)
@@ -57,7 +57,7 @@ export const useRouterStore = defineStore('router', () => {
 
   const asyncRouters = ref([])
   const routeMap = ({})
-  // 从后台获取动态路由
+  // Get dynamic routing from the background
   const SetAsyncRouter = async() => {
     asyncRouterFlag.value++
     const baseRouter = [{
@@ -65,7 +65,7 @@ export const useRouterStore = defineStore('router', () => {
       name: 'layout',
       component: 'view/layout/index.vue',
       meta: {
-        title: '底层layout'
+        title: 'bottom layout'
       },
       children: []
     }]

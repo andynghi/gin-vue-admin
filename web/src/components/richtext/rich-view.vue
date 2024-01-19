@@ -12,7 +12,7 @@
 </template>
 <script setup>
 
-import '@wangeditor/editor/dist/css/style.css' // 引入 css
+import '@wangeditor/editor/dist/css/style.css' // Import css
 
 import { onBeforeUnmount, ref, shallowRef, watch } from 'vue'
 import { Editor } from '@wangeditor/editor-for-vue'
@@ -40,7 +40,7 @@ const props = defineProps({
 const editorRef = shallowRef()
 const valueHtml = ref('')
 
-// 组件销毁时，也及时销毁编辑器
+//When the component is destroyed, the editor is also destroyed in time.
 onBeforeUnmount(() => {
   const editor = editorRef.value
   if (editor == null) return

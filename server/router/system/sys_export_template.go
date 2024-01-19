@@ -9,22 +9,22 @@ import (
 type SysExportTemplateRouter struct {
 }
 
-// InitSysExportTemplateRouter 初始化 导出模板 路由信息
+// InitSysExportTemplateRouter initialization export template routing information
 func (s *SysExportTemplateRouter) InitSysExportTemplateRouter(Router *gin.RouterGroup) {
 	sysExportTemplateRouter := Router.Group("sysExportTemplate").Use(middleware.OperationRecord())
 	sysExportTemplateRouterWithoutRecord := Router.Group("sysExportTemplate")
 	var sysExportTemplateApi = v1.ApiGroupApp.SystemApiGroup.SysExportTemplateApi
 	{
-		sysExportTemplateRouter.POST("createSysExportTemplate", sysExportTemplateApi.CreateSysExportTemplate)             // 新建导出模板
-		sysExportTemplateRouter.DELETE("deleteSysExportTemplate", sysExportTemplateApi.DeleteSysExportTemplate)           // 删除导出模板
-		sysExportTemplateRouter.DELETE("deleteSysExportTemplateByIds", sysExportTemplateApi.DeleteSysExportTemplateByIds) // 批量删除导出模板
-		sysExportTemplateRouter.PUT("updateSysExportTemplate", sysExportTemplateApi.UpdateSysExportTemplate)              // 更新导出模板
-		sysExportTemplateRouter.POST("importExcel", sysExportTemplateApi.ImportExcel)                                     // 更新导出模板
+		sysExportTemplateRouter.POST("createSysExportTemplate", sysExportTemplateApi.CreateSysExportTemplate)             // Create a new export template
+		sysExportTemplateRouter.DELETE("deleteSysExportTemplate", sysExportTemplateApi.DeleteSysExportTemplate)           // Delete the export template
+		sysExportTemplateRouter.DELETE("deleteSysExportTemplateByIds", sysExportTemplateApi.DeleteSysExportTemplateByIds) // Batch delete export templates
+		sysExportTemplateRouter.PUT("updateSysExportTemplate", sysExportTemplateApi.UpdateSysExportTemplate)              // Update export template
+		sysExportTemplateRouter.POST("importExcel", sysExportTemplateApi.ImportExcel)                                     // Update export template
 	}
 	{
-		sysExportTemplateRouterWithoutRecord.GET("findSysExportTemplate", sysExportTemplateApi.FindSysExportTemplate)       // 根据ID获取导出模板
-		sysExportTemplateRouterWithoutRecord.GET("getSysExportTemplateList", sysExportTemplateApi.GetSysExportTemplateList) // 获取导出模板列表
-		sysExportTemplateRouterWithoutRecord.GET("exportExcel", sysExportTemplateApi.ExportExcel)                           // 导出表格
-		sysExportTemplateRouterWithoutRecord.GET("exportTemplate", sysExportTemplateApi.ExportTemplate)                     // 导出表格模板
+		sysExportTemplateRouterWithoutRecord.GET("findSysExportTemplate", sysExportTemplateApi.FindSysExportTemplate)       // Get the export template based on ID
+		sysExportTemplateRouterWithoutRecord.GET("getSysExportTemplateList", sysExportTemplateApi.GetSysExportTemplateList) // Get the export template list
+		sysExportTemplateRouterWithoutRecord.GET("exportExcel", sysExportTemplateApi.ExportExcel)                           // Export table
+		sysExportTemplateRouterWithoutRecord.GET("exportTemplate", sysExportTemplateApi.ExportTemplate)                     // Export table template
 	}
 }

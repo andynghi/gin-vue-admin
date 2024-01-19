@@ -25,7 +25,7 @@ async function handleKeepAlive(to) {
           to.matched.splice(i, 1)
           await handleKeepAlive(to)
         }
-        // 如果没有按需加载完成则等待加载
+        //If the on-demand loading is not completed, wait for loading
         if (typeof element.components.default === 'function') {
           await element.components.default()
           await handleKeepAlive(to)
@@ -42,7 +42,7 @@ router.beforeEach(async(to, from) => {
   to.meta.matched = [...to.matched]
   handleKeepAlive(to)
   const token = userStore.token
-  // 在白名单中的判断情况
+  // Judgment in the whitelist
   document.title = getPageTitle(to.meta.title, to)
   if(to.meta.client) {
     return true
@@ -52,7 +52,7 @@ router.beforeEach(async(to, from) => {
       if (!routerStore.asyncRouterFlag && whiteList.indexOf(from.name) < 0) {
         await getRouter(userStore)
       }
-      // token 可以解析但是却是不存在的用户 id 或角色 id 会导致无限调用
+      // The token can be parsed but does not exist as a user id or role id, which will result in infinite calls.
       if (userStore.userInfo?.authority?.defaultRouter != null) {
         if (router.hasRoute(userStore.userInfo.authority.defaultRouter)) {
           return { name: userStore.userInfo.authority.defaultRouter }
@@ -60,7 +60,7 @@ router.beforeEach(async(to, from) => {
           return { path: '/layout/404' }
         }
       } else {
-        // 强制退出账号
+        //Force log out of account
         userStore.ClearStorage()
         return {
           name: 'Login',
@@ -73,9 +73,9 @@ router.beforeEach(async(to, from) => {
       return true
     }
   } else {
-    // 不在白名单中并且已经登录的时候
+    // When not in the whitelist and already logged in
     if (token) {
-      // 添加flag防止多次获取动态路由和栈溢出
+      //Add flag to prevent multiple acquisitions of dynamic routing and stack overflow
       if (!routerStore.asyncRouterFlag && whiteList.indexOf(from.name) < 0) {
         await getRouter(userStore)
         if (userStore.token) {
@@ -98,7 +98,7 @@ router.beforeEach(async(to, from) => {
         }
       }
     }
-    // 不在白名单中并且未登录的时候
+    // When not in the whitelist and not logged in
     if (!token) {
       return {
         name: 'Login',
@@ -111,12 +111,12 @@ router.beforeEach(async(to, from) => {
 })
 
 router.afterEach(() => {
-  // 路由加载完成后关闭进度条
+  //Close the progress bar after the route is loaded
   document.getElementsByClassName('main-cont main-right')[0]?.scrollTo(0, 0)
   Nprogress.done()
 })
 
 router.onError(() => {
-  // 路由发生错误后销毁进度条
+  // Destroy the progress bar after an error occurs in the routing
   Nprogress.remove()
 })

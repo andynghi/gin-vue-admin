@@ -8,7 +8,7 @@
       :before-upload="beforeImageUpload"
       :multiple="false"
     >
-      <el-button type="primary">压缩上传</el-button>
+      <el-button type="primary">Compressed upload</el-button>
     </el-upload>
   </div>
 </template>
@@ -31,11 +31,11 @@ const props = defineProps({
   },
   fileSize: {
     type: Number,
-    default: 2048 // 2M 超出后执行压缩
+    default: 2048 // Perform compression after exceeding 2M
   },
   maxWH: {
     type: Number,
-    default: 1920 // 图片长宽上限
+    default: 1920 //Maximum image length and width
   }
 })
 
@@ -47,13 +47,13 @@ const beforeImageUpload = (file) => {
   const isJPG = file.type === 'image/jpeg'
   const isPng = file.type === 'image/png'
   if (!isJPG && !isPng) {
-    ElMessage.error('上传头像图片只能是 jpg或png 格式!')
+    ElMessage.error('Uploaded avatar pictures can only be in jpg or png format!')
     return false
   }
 
   const isRightSize = file.size / 1024 < props.fileSize
   if (!isRightSize) {
-    // 压缩
+    // Compression
     const compress = new ImageCompress(file, props.fileSize, props.maxWH)
     return compress.compress()
   }

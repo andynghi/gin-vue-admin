@@ -17,50 +17,50 @@ import (
 type SysExportTemplateService struct {
 }
 
-// CreateSysExportTemplate 创建导出模板记录
+// CreateSysExportTemplate creates export template records
 // Author [piexlmax](https://github.com/piexlmax)
 func (sysExportTemplateService *SysExportTemplateService) CreateSysExportTemplate(sysExportTemplate *system.SysExportTemplate) (err error) {
 	err = global.GVA_DB.Create(sysExportTemplate).Error
 	return err
 }
 
-// DeleteSysExportTemplate 删除导出模板记录
+// DeleteSysExportTemplate deletes the export template record
 // Author [piexlmax](https://github.com/piexlmax)
 func (sysExportTemplateService *SysExportTemplateService) DeleteSysExportTemplate(sysExportTemplate system.SysExportTemplate) (err error) {
 	err = global.GVA_DB.Delete(&sysExportTemplate).Error
 	return err
 }
 
-// DeleteSysExportTemplateByIds 批量删除导出模板记录
+// DeleteSysExportTemplateByIds delete export template records in batches
 // Author [piexlmax](https://github.com/piexlmax)
 func (sysExportTemplateService *SysExportTemplateService) DeleteSysExportTemplateByIds(ids request.IdsReq) (err error) {
 	err = global.GVA_DB.Delete(&[]system.SysExportTemplate{}, "id in ?", ids.Ids).Error
 	return err
 }
 
-// UpdateSysExportTemplate 更新导出模板记录
+// UpdateSysExportTemplate updates export template records
 // Author [piexlmax](https://github.com/piexlmax)
 func (sysExportTemplateService *SysExportTemplateService) UpdateSysExportTemplate(sysExportTemplate system.SysExportTemplate) (err error) {
 	err = global.GVA_DB.Save(&sysExportTemplate).Error
 	return err
 }
 
-// GetSysExportTemplate 根据id获取导出模板记录
+// GetSysExportTemplate Gets the export template record based on id
 // Author [piexlmax](https://github.com/piexlmax)
 func (sysExportTemplateService *SysExportTemplateService) GetSysExportTemplate(id uint) (sysExportTemplate system.SysExportTemplate, err error) {
 	err = global.GVA_DB.Where("id = ?", id).First(&sysExportTemplate).Error
 	return
 }
 
-// GetSysExportTemplateInfoList 分页获取导出模板记录
+// GetSysExportTemplateInfoList Gets export template records in paging
 // Author [piexlmax](https://github.com/piexlmax)
 func (sysExportTemplateService *SysExportTemplateService) GetSysExportTemplateInfoList(info systemReq.SysExportTemplateSearch) (list []system.SysExportTemplate, total int64, err error) {
 	limit := info.PageSize
 	offset := info.PageSize * (info.Page - 1)
-	// 创建db
+	//Create db
 	db := global.GVA_DB.Model(&system.SysExportTemplate{})
 	var sysExportTemplates []system.SysExportTemplate
-	// 如果有条件搜索 下方会自动创建搜索语句
+	// If there is a conditional search, the search statement will be automatically created below
 	if info.StartCreatedAt != nil && info.EndCreatedAt != nil {
 		db = db.Where("created_at BETWEEN ? AND ?", info.StartCreatedAt, info.EndCreatedAt)
 	}
@@ -86,7 +86,7 @@ func (sysExportTemplateService *SysExportTemplateService) GetSysExportTemplateIn
 	return sysExportTemplates, total, err
 }
 
-// ExportExcel 导出Excel
+// ExportExcel export Excel
 // Author [piexlmax](https://github.com/piexlmax)
 func (sysExportTemplateService *SysExportTemplateService) ExportExcel(templateID string) (file *bytes.Buffer, name string, err error) {
 	var template system.SysExportTemplate
@@ -149,7 +149,7 @@ func (sysExportTemplateService *SysExportTemplateService) ExportExcel(templateID
 	return file, template.Name, nil
 }
 
-// ExportTemplate 导出Excel模板
+// ExportTemplate exports Excel template
 // Author [piexlmax](https://github.com/piexlmax)
 func (sysExportTemplateService *SysExportTemplateService) ExportTemplate(templateID string) (file *bytes.Buffer, name string, err error) {
 	var template system.SysExportTemplate
@@ -193,7 +193,7 @@ func (sysExportTemplateService *SysExportTemplateService) ExportTemplate(templat
 	return file, template.Name, nil
 }
 
-// ImportExcel 导入Excel
+// ImportExcel Import Excel
 // Author [piexlmax](https://github.com/piexlmax)
 func (sysExportTemplateService *SysExportTemplateService) ImportExcel(templateID string, file *multipart.FileHeader) (err error) {
 	var template system.SysExportTemplate

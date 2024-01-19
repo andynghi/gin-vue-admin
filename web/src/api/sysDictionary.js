@@ -1,11 +1,11 @@
 import service from '@/utils/request'
 // @Tags SysDictionary
-// @Summary 创建SysDictionary
+// @Summary Create SysDictionary
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysDictionary true "创建SysDictionary"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body model.SysDictionary true "Create SysDictionary"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /sysDictionary/createSysDictionary [post]
 export const createSysDictionary = (data) => {
   return service({
@@ -16,12 +16,12 @@ export const createSysDictionary = (data) => {
 }
 
 // @Tags SysDictionary
-// @Summary 删除SysDictionary
+// @Summary delete SysDictionary
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysDictionary true "删除SysDictionary"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
+// @Param data body model.SysDictionary true "Delete SysDictionary"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /sysDictionary/deleteSysDictionary [delete]
 export const deleteSysDictionary = (data) => {
   return service({
@@ -32,12 +32,12 @@ export const deleteSysDictionary = (data) => {
 }
 
 // @Tags SysDictionary
-// @Summary 更新SysDictionary
+// @Summary Update SysDictionary
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysDictionary true "更新SysDictionary"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"更新成功"}"
+// @Param data body model.SysDictionary true "Update SysDictionary"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Update successful"}"
 // @Router /sysDictionary/updateSysDictionary [put]
 export const updateSysDictionary = (data) => {
   return service({
@@ -48,12 +48,12 @@ export const updateSysDictionary = (data) => {
 }
 
 // @Tags SysDictionary
-// @Summary 用id查询SysDictionary
+// @Summary Query SysDictionary with id
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysDictionary true "用id查询SysDictionary"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"查询成功"}"
+// @Param data body model.SysDictionary true "Query SysDictionary with id"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Query successful"}"
 // @Router /sysDictionary/findSysDictionary [get]
 export const findSysDictionary = (params) => {
   return service({
@@ -64,12 +64,12 @@ export const findSysDictionary = (params) => {
 }
 
 // @Tags SysDictionary
-// @Summary 分页获取SysDictionary列表
+// @Summary Get the SysDictionary list by pagination
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body request.PageInfo true "分页获取SysDictionary列表"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body request.PageInfo true "Get the SysDictionary list in pages"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /sysDictionary/getSysDictionaryList [get]
 export const getSysDictionaryList = (params) => {
   return service({

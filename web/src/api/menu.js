@@ -1,7 +1,7 @@
 import service from '@/utils/request'
-// @Summary 用户登录 获取动态路由
+// @Summary User login to obtain dynamic routing
 // @Produce  application/json
-// @Param 可以什么都不填 调一下即可
+// @Param You can fill in nothing, just adjust it
 // @Router /menu/getMenu [post]
 export const asyncMenu = () => {
   return service({
@@ -10,7 +10,7 @@ export const asyncMenu = () => {
   })
 }
 
-// @Summary 获取menu列表
+// @Summary Get the menu list
 // @Produce  application/json
 // @Param {
 //  page     int
@@ -25,7 +25,7 @@ export const getMenuList = (data) => {
   })
 }
 
-// @Summary 新增基础menu
+// @Summary Add a new basic menu
 // @Produce  application/json
 // @Param menu Object
 // @Router /menu/getMenuList [post]
@@ -37,9 +37,9 @@ export const addBaseMenu = (data) => {
   })
 }
 
-// @Summary 获取基础路由列表
+// @Summary Get the basic route list
 // @Produce  application/json
-// @Param 可以什么都不填 调一下即可
+// @Param You can fill in nothing, just adjust it
 // @Router /menu/getBaseMenuTree [post]
 export const getBaseMenuTree = () => {
   return service({
@@ -48,7 +48,7 @@ export const getBaseMenuTree = () => {
   })
 }
 
-// @Summary 添加用户menu关联关系
+// @Summary Add user menu association relationship
 // @Produce  application/json
 // @Param menus Object authorityId string
 // @Router /menu/getMenuList [post]
@@ -60,7 +60,7 @@ export const addMenuAuthority = (data) => {
   })
 }
 
-// @Summary 获取用户menu关联关系
+// @Summary Get the user menu association relationship
 // @Produce  application/json
 // @Param authorityId string
 // @Router /menu/getMenuAuthority [post]
@@ -72,7 +72,7 @@ export const getMenuAuthority = (data) => {
   })
 }
 
-// @Summary 删除menu
+// @Summary delete menu
 // @Produce  application/json
 // @Param ID float64
 // @Router /menu/deleteBaseMenu [post]
@@ -84,7 +84,7 @@ export const deleteBaseMenu = (data) => {
   })
 }
 
-// @Summary 修改menu列表
+// @Summary Modify menu list
 // @Produce  application/json
 // @Param menu Object
 // @Router /menu/updateBaseMenu [post]
@@ -97,12 +97,12 @@ export const updateBaseMenu = (data) => {
 }
 
 // @Tags menu
-// @Summary 根据id获取菜单
+// @Summary Get the menu based on id
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body api.GetById true "根据id获取菜单"
-// @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body api.GetById true "Get menu based on id"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /menu/getBaseMenuById [post]
 export const getBaseMenuById = (data) => {
   return service({

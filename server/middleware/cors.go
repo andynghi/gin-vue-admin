@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-// Cors 直接放行所有跨域请求并放行所有 OPTIONS 方法
+// Cors directly allows all cross-domain requests and all OPTIONS methods
 func Cors() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		method := c.Request.Method
@@ -18,25 +18,25 @@ func Cors() gin.HandlerFunc {
 		c.Header("Access-Control-Expose-Headers", "Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type, New-Token, New-Expires-At")
 		c.Header("Access-Control-Allow-Credentials", "true")
 
-		// 放行所有OPTIONS方法
+		// Release all OPTIONS methods
 		if method == "OPTIONS" {
 			c.AbortWithStatus(http.StatusNoContent)
 		}
-		// 处理请求
+		// handle the request
 		c.Next()
 	}
 }
 
-// CorsByRules 按照配置处理跨域请求
+// CorsByRules handles cross-domain requests according to configuration
 func CorsByRules() gin.HandlerFunc {
-	// 放行全部
+	// release all
 	if global.GVA_CONFIG.Cors.Mode == "allow-all" {
 		return Cors()
 	}
 	return func(c *gin.Context) {
 		whitelist := checkCors(c.GetHeader("origin"))
 
-		// 通过检查, 添加请求头
+		// Pass the check and add the request header
 		if whitelist != nil {
 			c.Header("Access-Control-Allow-Origin", whitelist.AllowOrigin)
 			c.Header("Access-Control-Allow-Headers", whitelist.AllowHeaders)
@@ -47,24 +47,24 @@ func CorsByRules() gin.HandlerFunc {
 			}
 		}
 
-		// 严格白名单模式且未通过检查，直接拒绝处理请求
+		// Strict whitelist mode and fails the check, directly refuses to process the request
 		if whitelist == nil && global.GVA_CONFIG.Cors.Mode == "strict-whitelist" && !(c.Request.Method == "GET" && c.Request.URL.Path == "/health") {
 			c.AbortWithStatus(http.StatusForbidden)
 		} else {
-			// 非严格白名单模式，无论是否通过检查均放行所有 OPTIONS 方法
+			// Non-strict whitelist mode, all OPTIONS methods are allowed regardless of whether they pass the check or not.
 			if c.Request.Method == http.MethodOptions {
 				c.AbortWithStatus(http.StatusNoContent)
 			}
 		}
 
-		// 处理请求
+		// handle the request
 		c.Next()
 	}
 }
 
 func checkCors(currentOrigin string) *config.CORSWhitelist {
 	for _, whitelist := range global.GVA_CONFIG.Cors.Whitelist {
-		// 遍历配置中的跨域头，寻找匹配项
+		// Traverse the cross-domain headers in the configuration to find matches
 		if currentOrigin == whitelist.AllowOrigin {
 			return &whitelist
 		}

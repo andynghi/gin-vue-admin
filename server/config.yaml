@@ -51,18 +51,18 @@ email:
 
 # system configuration
 system:
-  env: local # 修改为public可以关闭路由日志输出
+  env: local #Change to public to turn off routing log output
   addr: 8888
   db-type: mysql
-  oss-type: local # 控制oss选择走本地还是 七牛等其他仓 自行增加其他oss仓可以在 server/utils/upload/upload.go 中 NewOss函数配置
-  use-redis: false # 使用redis
-  use-mongo: false     # 使用mongo
+  oss-type: local # Control whether oss chooses to go to local or other warehouses such as Qiniu. To add other oss warehouses by yourself, you can configure the NewOss function in server/utils/upload/upload.go
+  use-redis: false # Use redis
+  use-mongo: false # Use mongo
   use-multipoint: false
-  # IP限制次数 一个小时15000次
+  # IP limit times: 15,000 times an hour
   iplimit-count: 15000
-  #  IP限制一个小时
+  #IP limit for one hour
   iplimit-time: 3600
-  #  路由全局前缀
+  #Route global prefix
   router-prefix: ""
 
 # captcha configuration
@@ -70,11 +70,11 @@ captcha:
   key-long: 6
   img-width: 240
   img-height: 80
-  open-captcha: 0 # 0代表一直开启，大于0代表限制次数
-  open-captcha-timeout: 3600 # open-captcha大于0时才生效
+  open-captcha: 0 # 0 means always open, greater than 0 means limit the number of times
+  open-captcha-timeout: 3600 # It takes effect only when open-captcha is greater than 0
 
 # mysql connect configuration
-# 未初始化之前请勿手动修改数据库信息！！！如果一定要手动初始化请看（https://gin-vue-admin.com/docs/first_master）
+# Do not manually modify the database information before initialization! ! ! If you must initialize manually, please see (https://gin-vue-admin.com/docs/first_master)
 mysql:
   path: ""
   port: ""
@@ -88,7 +88,7 @@ mysql:
   log-zap: false
 
 # pgsql connect configuration
-# 未初始化之前请勿手动修改数据库信息！！！如果一定要手动初始化请看（https://gin-vue-admin.com/docs/first_master）
+# Do not manually modify the database information before initialization! ! ! If you must initialize manually, please see (https://gin-vue-admin.com/docs/first_master)
 pgsql:
   path: ""
   port: ""
@@ -134,9 +134,9 @@ sqlite:
   log-mode: ""
   log-zap: false
 db-list:
-  - disable: true # 是否禁用
-    type: "" # 数据库的类型,目前支持mysql、pgsql、mssql、oracle
-    alias-name: "" # 数据库的名称,注意: alias-name 需要在db-list中唯一
+  - disable: true # Whether to disable
+    type: "" # The type of database, currently supports mysql, pgsql, mssql, oracle
+    alias-name: "" # The name of the database, note: alias-name needs to be unique in db-list
     path: ""
     port: ""
     config: ""
@@ -156,8 +156,8 @@ local:
 # autocode configuration
 autocode:
   transfer-restart: true
-  # root 自动适配项目根目录
-  # 请不要手动配置,他会在项目加载的时候识别出根路径
+  # root automatically adapts to the project root directory
+  # Please do not configure it manually, it will identify the root path when the project is loaded.
   root: ""
   server: /server
   server-plug: /plugin/%s
@@ -172,7 +172,7 @@ autocode:
   web-form: /view
   web-table: /view
 
-# qiniu configuration (请自行七牛申请对应的 公钥 私钥 bucket 和 域名地址)
+# qiniu configuration (please apply for the corresponding public key, private key bucket and domain name address from Qiniu yourself)
 qiniu:
   zone: ZoneHuaDong
   bucket: ""
@@ -224,19 +224,19 @@ hua-wei-obs:
 excel:
   dir: ./resource/excel/
 
-# 跨域配置
-# 需要配合 server/initialize/router.go -> `Router.Use(middleware.CorsByRules())` 使用
+# Cross-domain configuration
+# Need to be used with server/initialize/router.go -> `Router.Use(middleware.CorsByRules())`
 cors:
-  mode: strict-whitelist # 放行模式: allow-all, 放行全部; whitelist, 白名单模式, 来自白名单内域名的请求添加 cors 头; strict-whitelist 严格白名单模式, 白名单外的请求一律拒绝
+  mode: strict-whitelist # Release mode: allow-all, release all; whitelist, whitelist mode, requests from domain names in the whitelist add cors header; strict-whitelist strict whitelist mode, requests outside the whitelist will be rejected
   whitelist:
     - allow-origin: example1.com
       allow-headers: Content-Type,AccessToken,X-CSRF-Token, Authorization, Token,X-Token,X-User-Id
       allow-methods: POST, GET
       expose-headers: Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type
 
-      allow-credentials: true # 布尔值
+      allow-credentials: true # Boolean value
     - allow-origin: example2.com
       allow-headers: content-type
       allow-methods: GET, POST
       expose-headers: Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type
-      allow-credentials: true # 布尔值
+      allow-credentials: true # Boolean value

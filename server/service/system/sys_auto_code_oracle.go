@@ -9,7 +9,7 @@ var AutoCodeOracle = new(autoCodeOracle)
 
 type autoCodeOracle struct{}
 
-// GetDB 获取数据库的所有数据库名
+// GetDB gets all database names of the database
 // Author [piexlmax](https://github.com/piexlmax)
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (s *autoCodeOracle) GetDB(businessDB string) (data []response.Db, err error) {
@@ -19,7 +19,7 @@ func (s *autoCodeOracle) GetDB(businessDB string) (data []response.Db, err error
 	return entities, err
 }
 
-// GetTables 获取数据库的所有表名
+// GetTables gets all table names in the database
 // Author [piexlmax](https://github.com/piexlmax)
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (s *autoCodeOracle) GetTables(businessDB string, dbName string) (data []response.Table, err error) {
@@ -30,7 +30,7 @@ func (s *autoCodeOracle) GetTables(businessDB string, dbName string) (data []res
 	return entities, err
 }
 
-// GetColumn 获取指定数据库和指定数据表的所有字段名,类型值等
+// GetColumn gets all field names, type values, etc. of the specified database and specified data table
 // Author [piexlmax](https://github.com/piexlmax)
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (s *autoCodeOracle) GetColumn(businessDB string, tableName string, dbName string) (data []response.Column, err error) {

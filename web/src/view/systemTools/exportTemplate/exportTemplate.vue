@@ -1,7 +1,7 @@
 <template>
   <div>
     <WarningBar
-      title="本功能提供同步的表格导出功能，大数据量的异步表格导出功能，可以选择点我定制"
+      title="This function provides synchronous table export function and asynchronous table export function for large amounts of data. You can choose to click me to customize"
       href="https://flipped-aurora.feishu.cn/docx/KwjxdnvatozgwIxGV0rcpkZSn4d"
     />
     <div class="gva-search-box">
@@ -14,13 +14,13 @@
         @keyup.enter="onSubmit"
       >
         <el-form-item
-          label="创建日期"
+          label="Creation date"
           prop="createdAt"
         >
           <template #label>
             <span>
-              创建日期
-              <el-tooltip content="搜索范围是开始日期（包含）至结束日期（不包含）">
+              Creation date
+              <el-tooltip content="The search range is from start date (inclusive) to end date (exclusive)">
                 <el-icon><QuestionFilled /></el-icon>
               </el-tooltip>
             </span>
@@ -28,44 +28,44 @@
           <el-date-picker
             v-model="searchInfo.startCreatedAt"
             type="datetime"
-            placeholder="开始日期"
+            placeholder="start date"
             :disabled-date="time=> searchInfo.endCreatedAt ? time.getTime() > searchInfo.endCreatedAt.getTime() : false"
           />
           —
           <el-date-picker
             v-model="searchInfo.endCreatedAt"
             type="datetime"
-            placeholder="结束日期"
+            placeholder="end date"
             :disabled-date="time=> searchInfo.startCreatedAt ? time.getTime() < searchInfo.startCreatedAt.getTime() : false"
           />
         </el-form-item>
         <el-form-item
-          label="模板名称"
+          label="template name"
           prop="name"
         >
           <el-input
             v-model="searchInfo.name"
-            placeholder="搜索条件"
+            placeholder="Search criteria"
           />
 
         </el-form-item>
         <el-form-item
-          label="表名称"
+          label="table name"
           prop="tableName"
         >
           <el-input
             v-model="searchInfo.tableName"
-            placeholder="搜索条件"
+            placeholder="Search criteria"
           />
 
         </el-form-item>
         <el-form-item
-          label="模板标识"
+          label="template logo"
           prop="templateID"
         >
           <el-input
             v-model="searchInfo.templateID"
-            placeholder="搜索条件"
+            placeholder="Search criteria"
           />
 
         </el-form-item>
@@ -74,11 +74,11 @@
             type="primary"
             icon="search"
             @click="onSubmit"
-          >查询</el-button>
+          >Query</el-button>
           <el-button
             icon="refresh"
             @click="onReset"
-          >重置</el-button>
+          >Reset</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -88,24 +88,24 @@
           type="primary"
           icon="plus"
           @click="openDialog"
-        >新增</el-button>
+        >Add</el-button>
         <el-popover
           v-model:visible="deleteVisible"
           :disabled="!multipleSelection.length"
           placement="top"
           width="160"
         >
-          <p>确定要删除吗？</p>
+          <p>Are you sure you want to delete it? </p>
           <div style="text-align: right; margin-top: 8px;">
             <el-button
               type="primary"
               link
               @click="deleteVisible = false"
-            >取消</el-button>
+            >Cancel</el-button>
             <el-button
               type="primary"
               @click="onDelete"
-            >确定</el-button>
+            >OK</el-button>
           </div>
           <template #reference>
             <el-button
@@ -113,7 +113,7 @@
               style="margin-left: 10px;"
               :disabled="!multipleSelection.length"
               @click="deleteVisible = true"
-            >删除</el-button>
+            >Delete</el-button>
           </template>
         </el-popover>
       </div>
@@ -131,38 +131,38 @@
         />
         <el-table-column
           align="left"
-          label="日期"
+          label="date"
           width="180"
         >
           <template #default="scope">{{ formatDate(scope.row.CreatedAt) }}</template>
         </el-table-column>
         <el-table-column
           align="left"
-          label="模板名称"
+          label="template name"
           prop="name"
           width="120"
         />
         <el-table-column
           align="left"
-          label="表名称"
+          label="table name"
           prop="tableName"
           width="120"
         />
         <el-table-column
           align="left"
-          label="模板标识"
+          label="template logo"
           prop="templateID"
           width="120"
         />
         <el-table-column
           align="left"
-          label="模板信息"
+          label="template information"
           prop="templateInfo"
           min-width="120"
         />
         <el-table-column
           align="left"
-          label="操作"
+          label="operation"
           min-width="120"
         >
           <template #default="scope">
@@ -173,7 +173,7 @@
               @click="getDetails(scope.row)"
             >
               <el-icon style="margin-right: 5px"><InfoFilled /></el-icon>
-              查看详情
+              check the details
             </el-button>
             <el-button
               type="primary"
@@ -181,13 +181,13 @@
               icon="edit"
               class="table-button"
               @click="updateSysExportTemplateFunc(scope.row)"
-            >变更</el-button>
+            >Change</el-button>
             <el-button
               type="primary"
               link
               icon="delete"
               @click="deleteRow(scope.row)"
-            >删除</el-button>
+            >Delete</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -206,7 +206,7 @@
     <el-dialog
       v-model="dialogFormVisible"
       :before-close="closeDialog"
-      :title="type==='create'?'添加':'修改'"
+      :title="type==='create'?'Add':'Modify'"
       destroy-on-close
     >
       <el-scrollbar height="500px">
@@ -218,37 +218,37 @@
           label-width="100px"
         >
           <el-form-item
-            label="模板名称:"
+            label="template name:"
             prop="name"
           >
             <el-input
               v-model="formData.name"
               :clearable="true"
-              placeholder="请输入模板名称"
+              placeholder="Please enter the template name"
             />
           </el-form-item>
           <el-form-item
-            label="表名称:"
+            label="Table name:"
             prop="tableName"
           >
             <el-input
               v-model="formData.tableName"
               :clearable="true"
-              placeholder="请输入要导出的表名称"
+              placeholder="Please enter the name of the table to be exported"
             />
           </el-form-item>
           <el-form-item
-            label="模板标识:"
+            label="Template ID:"
             prop="templateID"
           >
             <el-input
               v-model="formData.templateID"
               :clearable="true"
-              placeholder="模板标识为前端组件需要挂在的标识属性"
+              placeholder="The template logo is the logo attribute that the front-end component needs to hang on"
             />
           </el-form-item>
           <el-form-item
-            label="模板信息:"
+            label="Template information:"
             prop="templateInfo"
           >
             <el-input
@@ -263,11 +263,11 @@
       </el-scrollbar>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="closeDialog">取 消</el-button>
+          <el-button @click="closeDialog">Cancel</el-button>
           <el-button
             type="primary"
             @click="enterDialog"
-          >确 定</el-button>
+          >Confirm</el-button>
         </div>
       </template>
     </el-dialog>
@@ -277,7 +277,7 @@
       style="width: 800px"
       lock-scroll
       :before-close="closeDetailShow"
-      title="查看详情"
+      title="View details"
       destroy-on-close
     >
       <el-scrollbar height="550px">
@@ -285,16 +285,16 @@
           column="1"
           border
         >
-          <el-descriptions-item label="模板名称">
+          <el-descriptions-item label="template name">
             {{ formData.name }}
           </el-descriptions-item>
-          <el-descriptions-item label="表名称">
+          <el-descriptions-item label="table name">
             {{ formData.tableName }}
           </el-descriptions-item>
-          <el-descriptions-item label="模板标识">
+          <el-descriptions-item label="template label">
             {{ formData.templateID }}
           </el-descriptions-item>
-          <el-descriptions-item label="模板信息">
+          <el-descriptions-item label="Template information">
             {{ formData.templateInfo }}
           </el-descriptions-item>
         </el-descriptions>
@@ -313,7 +313,7 @@ import {
   getSysExportTemplateList
 } from '@/api/exportTemplate.js'
 
-// 全量引入格式化工具 请按需保留
+// Fully introduced formatting tools, please keep them as needed
 import { formatDate } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref, reactive } from 'vue'
@@ -323,15 +323,15 @@ defineOptions({
   name: 'ExportTemplate'
 })
 
-const templatePlaceholder = `模板信息格式：key标识数据库column列名称，value标识导出excel列名称，如下：
+const templatePlaceholder = `Template information format: key identifies the database column name, value identifies the exported excel column name, as follows:
 {
-  "table_name1":"第一列",
-  "table_name2":"第二列",
-  "table_name3":"第三列",
-  "table_name4":"第四列",
+  "table_name1":"First column",
+  "table_name2":"Second column",
+  "table_name3":"Third column",
+  "table_name4":"Fourth column",
 }`
 
-// 自动化生成的字典（可能为空）以及字段
+//Automatically generated dictionary (may be empty) and fields
 const formData = ref({
   name: '',
   tableName: '',
@@ -339,7 +339,7 @@ const formData = ref({
   templateInfo: '',
 })
 
-// 验证规则
+// Validation rules
 const rule = reactive({
   name: [{
     required: true,
@@ -348,7 +348,7 @@ const rule = reactive({
   },
   {
     whitespace: true,
-    message: '不能只输入空格',
+    message: 'Cannot enter only spaces',
     trigger: ['input', 'blur'],
   }
   ],
@@ -359,7 +359,7 @@ const rule = reactive({
   },
   {
     whitespace: true,
-    message: '不能只输入空格',
+    message: 'Cannot enter only spaces',
     trigger: ['input', 'blur'],
   }
   ],
@@ -370,7 +370,7 @@ const rule = reactive({
   },
   {
     whitespace: true,
-    message: '不能只输入空格',
+    message: 'Cannot enter only spaces',
     trigger: ['input', 'blur'],
   }
   ],
@@ -381,7 +381,7 @@ const rule = reactive({
   },
   {
     whitespace: true,
-    message: '不能只输入空格',
+    message: 'Cannot enter only spaces',
     trigger: ['input', 'blur'],
   }
   ],
@@ -391,11 +391,11 @@ const searchRule = reactive({
   createdAt: [
     { validator: (rule, value, callback) => {
       if (searchInfo.value.startCreatedAt && !searchInfo.value.endCreatedAt) {
-        callback(new Error('请填写结束日期'))
+        callback(new Error('Please fill in the end date'))
       } else if (!searchInfo.value.startCreatedAt && searchInfo.value.endCreatedAt) {
-        callback(new Error('请填写开始日期'))
+        callback(new Error('Please fill in the start date'))
       } else if (searchInfo.value.startCreatedAt && searchInfo.value.endCreatedAt && (searchInfo.value.startCreatedAt.getTime() === searchInfo.value.endCreatedAt.getTime() || searchInfo.value.startCreatedAt.getTime() > searchInfo.value.endCreatedAt.getTime())) {
-        callback(new Error('开始日期应当早于结束日期'))
+        callback(new Error('Start date should be earlier than end date'))
       } else {
         callback()
       }
@@ -406,20 +406,20 @@ const searchRule = reactive({
 const elFormRef = ref()
 const elSearchFormRef = ref()
 
-// =========== 表格控制部分 ===========
+// =========== Table control part ===========
 const page = ref(1)
 const total = ref(0)
 const pageSize = ref(10)
 const tableData = ref([])
 const searchInfo = ref({})
 
-// 重置
+// reset
 const onReset = () => {
   searchInfo.value = {}
   getTableData()
 }
 
-// 搜索
+// search
 const onSubmit = () => {
   elSearchFormRef.value?.validate(async(valid) => {
     if (!valid) return
@@ -429,19 +429,19 @@ const onSubmit = () => {
   })
 }
 
-// 分页
+// paging
 const handleSizeChange = (val) => {
   pageSize.value = val
   getTableData()
 }
 
-// 修改页面容量
+//Modify page capacity
 const handleCurrentChange = (val) => {
   page.value = val
   getTableData()
 }
 
-// 查询
+// Inquire
 const getTableData = async() => {
   const table = await getSysExportTemplateList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
   if (table.code === 0) {
@@ -454,43 +454,43 @@ const getTableData = async() => {
 
 getTableData()
 
-// ============== 表格控制部分结束 ===============
+// ============== End of table control part ===============
 
-// 获取需要的字典 可能为空 按需保留
+// Get the required dictionary. It may be empty. Keep it as needed.
 const setOptions = async() => {
 }
 
-// 获取需要的字典 可能为空 按需保留
+// Get the required dictionary. It may be empty. Keep it as needed.
 setOptions()
 
-// 多选数据
+//Multiple selection data
 const multipleSelection = ref([])
-// 多选
+//Multiple selection
 const handleSelectionChange = (val) => {
   multipleSelection.value = val
 }
 
-// 删除行
+// delete row
 const deleteRow = (row) => {
-  ElMessageBox.confirm('确定要删除吗?', '提示', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
+  ElMessageBox.confirm('Are you sure you want to delete?', 'Prompt', {
+    confirmButtonText: 'OK',
+    cancelButtonText: 'Cancel',
     type: 'warning'
   }).then(() => {
     deleteSysExportTemplateFunc(row)
   })
 }
 
-// 批量删除控制标记
+// Batch delete control tags
 const deleteVisible = ref(false)
 
-// 多选删除
+//Multiple selection delete
 const onDelete = async() => {
   const ids = []
   if (multipleSelection.value.length === 0) {
     ElMessage({
       type: 'warning',
-      message: '请选择要删除的数据'
+      message: 'Please select the data to be deleted'
     })
     return
   }
@@ -502,7 +502,7 @@ const onDelete = async() => {
   if (res.code === 0) {
     ElMessage({
       type: 'success',
-      message: '删除成功'
+      message: 'Delete successfully'
     })
     if (tableData.value.length === ids.length && page.value > 1) {
       page.value--
@@ -512,10 +512,10 @@ const onDelete = async() => {
   }
 }
 
-// 行为控制标记（弹窗内部需要增还是改）
+// Behavior control tag (does it need to be added or modified inside the pop-up window)
 const type = ref('')
 
-// 更新行
+// update row
 const updateSysExportTemplateFunc = async(row) => {
   const res = await findSysExportTemplate({ ID: row.ID })
   type.value = 'update'
@@ -525,13 +525,13 @@ const updateSysExportTemplateFunc = async(row) => {
   }
 }
 
-// 删除行
+// delete row
 const deleteSysExportTemplateFunc = async(row) => {
   const res = await deleteSysExportTemplate({ ID: row.ID })
   if (res.code === 0) {
     ElMessage({
       type: 'success',
-      message: '删除成功'
+      message: 'Delete successfully'
     })
     if (tableData.value.length === 1 && page.value > 1) {
       page.value--
@@ -540,20 +540,20 @@ const deleteSysExportTemplateFunc = async(row) => {
   }
 }
 
-// 弹窗控制标记
+// Pop-up window control tag
 const dialogFormVisible = ref(false)
 
-// 查看详情控制标记
+//View details control tag
 const detailShow = ref(false)
 
-// 打开详情弹窗
+//Open the details popup window
 const openDetailShow = () => {
   detailShow.value = true
 }
 
-// 打开详情
+//Open details
 const getDetails = async(row) => {
-  // 打开弹窗
+  //Open the pop-up window
   const res = await findSysExportTemplate({ ID: row.ID })
   if (res.code === 0) {
     formData.value = res.data.resysExportTemplate
@@ -561,7 +561,7 @@ const getDetails = async(row) => {
   }
 }
 
-// 关闭详情弹窗
+// Close the details pop-up window
 const closeDetailShow = () => {
   detailShow.value = false
   formData.value = {
@@ -572,13 +572,13 @@ const closeDetailShow = () => {
   }
 }
 
-// 打开弹窗
+//Open the pop-up window
 const openDialog = () => {
   type.value = 'create'
   dialogFormVisible.value = true
 }
 
-// 关闭弹窗
+//Close pop-up window
 const closeDialog = () => {
   dialogFormVisible.value = false
   formData.value = {
@@ -588,15 +588,15 @@ const closeDialog = () => {
     templateInfo: '',
   }
 }
-// 弹窗确定
+// Pop-up window confirmed
 const enterDialog = async() => {
-  // 判断 formData.templateInfo 是否为标准json格式 如果不是标准json 则辅助调整
+  // Determine whether formData.templateInfo is in standard json format. If it is not standard json, assist in adjustment.
   try {
     JSON.parse(formData.value.templateInfo)
   } catch (error) {
     ElMessage({
       type: 'error',
-      message: '模板信息格式不正确，请检查'
+      message: 'The template information format is incorrect, please check'
     })
     return
   }
@@ -618,7 +618,7 @@ const enterDialog = async() => {
     if (res.code === 0) {
       ElMessage({
         type: 'success',
-        message: '创建/更改成功'
+        message: 'Creation/change successful'
       })
       closeDialog()
       getTableData()

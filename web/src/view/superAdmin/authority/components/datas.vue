@@ -1,7 +1,7 @@
 <template>
   <div>
     <warning-bar
-      title="此功能仅用于创建角色和角色的many2many关系表，具体使用还须自己结合表实现业务，详情参考示例代码（客户示例）。此功能不建议使用，建议使用插件市场【组织管理功能（点击前往）】来管理资源权限。"
+      title="This function is only used to create roles and many2many relationship tables. For specific use, you must combine the tables to implement business. For details, please refer to the sample code (customer example). This function is not recommended. It is recommended to use the plug-in market [Organization Management Function (Click to go)] to manage resource permissions."
       href="https://plugin.gin-vue-admin.com/#/layout/newPluginInfo?id=36"
     />
     <div class="sticky top-0.5 z-10 bg-white my-4">
@@ -9,22 +9,22 @@
         class="float-left"
         type="primary"
         @click="all"
-      >全选</el-button>
+      >Select all</el-button>
       <el-button
         class="float-left"
         type="primary"
         @click="self"
-      >本角色</el-button>
+      >This role</el-button>
       <el-button
         class="float-left"
         type="primary"
         @click="selfAndChildren"
-      >本角色及子角色</el-button>
+      >This role and sub-roles</el-button>
       <el-button
         class="float-right"
         type="primary"
         @click="authDataEnter"
-      >确 定</el-button>
+      >Confirm</el-button>
     </div>
     <div class="clear-both pt-4">
       <el-checkbox-group
@@ -68,7 +68,7 @@ const props = defineProps({
 
 const authoritys = ref([])
 const needConfirm = ref(false)
-//   平铺角色
+//Tile the character
 const roundAuthority = (authoritysData) => {
   authoritysData && authoritysData.forEach(item => {
     const obj = {}
@@ -92,7 +92,7 @@ const init = () => {
 
 init()
 
-// 暴露给外层使用的切换拦截统一方法
+// Unified switching interception method exposed to the outer layer
 const enterAndNext = () => {
   authDataEnter()
 }
@@ -121,15 +121,15 @@ const getChildrenId = (row, arrBox) => {
     getChildrenId(item, arrBox)
   })
 }
-// 提交
+// submit
 const authDataEnter = async() => {
   const res = await setDataAuthority(props.row)
   if (res.code === 0) {
-    ElMessage({ type: 'success', message: '资源设置成功' })
+    ElMessage({ type: 'success', message: 'Resource setting successful' })
   }
 }
 
-//   选择
+//   choose
 const selectAuthority = () => {
   emit('changeRow', 'dataAuthorityId', dataAuthorityId.value)
   needConfirm.value = true

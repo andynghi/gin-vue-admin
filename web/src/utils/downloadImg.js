@@ -1,4 +1,4 @@
-export const downloadImage = (imgsrc, name) => { // 下载图片地址和图片名
+export const downloadImage = (imgsrc, name) => { // Download image address and image name
   var image = new Image()
   image.setAttribute('crossOrigin', 'anonymous')
   image.onload = function() {
@@ -7,13 +7,13 @@ export const downloadImage = (imgsrc, name) => { // 下载图片地址和图片�
     canvas.height = image.height
     var context = canvas.getContext('2d')
     context.drawImage(image, 0, 0, image.width, image.height)
-    var url = canvas.toDataURL('image/png') // 得到图片的base64编码数据
+    var url = canvas.toDataURL('image/png') // Get the base64 encoded data of the image
 
-    var a = document.createElement('a') // 生成一个a元素
-    var event = new MouseEvent('click') // 创建一个单击事件
-    a.download = name || 'photo' // 设置图片名称
-    a.href = url // 将生成的URL设置为a.href属性
-    a.dispatchEvent(event) // 触发a的单击事件
+    var a = document.createElement('a') // Generate an a element
+    var event = new MouseEvent('click') // Create a click event
+    a.download = name || 'photo' //Set the picture name
+    a.href = url // Set the generated URL to the a.href attribute
+    a.dispatchEvent(event) // Trigger the click event of a
   }
   image.src = imgsrc
 }

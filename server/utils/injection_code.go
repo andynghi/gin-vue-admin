@@ -12,7 +12,7 @@ import (
 
 //@author: [LeonardWang](https://github.com/WangLeonard)
 //@function: AutoInjectionCode
-//@description: 向文件中固定注释位置写入代码
+//@description: Write code to the fixed comment position in the file
 //@param: filepath string, funcName string, codeData string
 //@return: error
 
@@ -23,7 +23,7 @@ const (
 
 //@author: [LeonardWang](https://github.com/WangLeonard)
 //@function: AutoInjectionCode
-//@description: 向文件中固定注释位置写入代码
+//@description: Write code to the fixed comment position in the file
 //@param: filepath string, funcName string, codeData string
 //@return: error
 
@@ -46,7 +46,7 @@ func AutoInjectionCode(filepath string, funcName string, codeData string) error 
 	startCommentPos := -1
 	endCommentPos := srcDataLen
 
-	// 如果指定了函数名，先寻找对应函数
+	// If a function name is specified, first find the corresponding function
 	if funcName != "" {
 		for _, decl := range fparser.Decls {
 			if funDecl, ok := decl.(*ast.FuncDecl); ok && funDecl.Name.Name == funcName {
@@ -58,7 +58,7 @@ func AutoInjectionCode(filepath string, funcName string, codeData string) error 
 		}
 	}
 
-	// 遍历所有注释
+	// iterate through all comments
 	for _, comment := range fparser.Comments {
 		if int(comment.Pos()) > codeStartPos && int(comment.End()) <= codeEndPos {
 			if startComment != "" && strings.Contains(comment.Text(), startComment) {
@@ -74,15 +74,15 @@ func AutoInjectionCode(filepath string, funcName string, codeData string) error 
 		return fmt.Errorf("comment:%s not found", endComment)
 	}
 
-	// 在指定函数名，且函数中startComment和endComment都存在时，进行区间查重
+	// When the function name is specified and both startComment and endComment exist in the function, perform interval duplication checking
 	if (codeStartPos != -1 && codeEndPos <= srcDataLen) && (startCommentPos != -1 && endCommentPos != srcDataLen) && expectedFunction != nil {
 		if exist := checkExist(&srcData, startCommentPos, endCommentPos, expectedFunction.Body, codeData); exist {
-			fmt.Printf("文件 %s 待插入数据 %s 已存在\n", filepath, codeData)
-			return nil // 这里不需要返回错误？
+			fmt.Printf("File %s data to be inserted %s already exists\n", filepath, codeData)
+			return nil // No need to return an error here?
 		}
 	}
 
-	// 两行注释中间没有换行时，会被认为是一条Comment
+	// When there is no line break between two lines of comments, they will be considered as one Comment
 	if startCommentPos == endCommentPos {
 		endCommentPos = startCommentPos + strings.Index(string(srcData[startCommentPos:]), endComment)
 		for srcData[endCommentPos] != '/' {
@@ -90,7 +90,7 @@ func AutoInjectionCode(filepath string, funcName string, codeData string) error 
 		}
 	}
 
-	// 记录"//"之前的空字符，保持写入后的格式一致
+	//Record the null character before "//" to keep the format consistent after writing
 	tmpSpace := make([]byte, 0, 10)
 	for tmp := endCommentPos - 2; tmp >= 0; tmp-- {
 		if srcData[tmp] != '\n' {
@@ -105,14 +105,14 @@ func AutoInjectionCode(filepath string, funcName string, codeData string) error 
 		reverseSpace = append(reverseSpace, tmpSpace[index])
 	}
 
-	// 插入数据
+	//Insert data
 	indexPos := endCommentPos - 1
 	insertData := []byte(append([]byte(codeData+"\n"), reverseSpace...))
 
 	remainData := append([]byte{}, srcData[indexPos:]...)
 	srcData = append(append(srcData[:indexPos], insertData...), remainData...)
 
-	// 写回数据
+	//Write back data
 	return os.WriteFile(filepath, srcData, 0o600)
 }
 
@@ -133,7 +133,7 @@ func checkExist(srcData *[]byte, startPos int, endPos int, blockStmt *ast.BlockS
 				return true
 			}
 		case *ast.AssignStmt:
-			// 为 model 中的代码进行检查
+			// Check for code in model
 			if len(stmt.Rhs) > 0 {
 				if callExpr, ok := stmt.Rhs[0].(*ast.CallExpr); ok {
 					for _, arg := range callExpr.Args {
@@ -176,5 +176,5 @@ func cleanCode(clearCode string, srcData string) ([]byte, error) {
 		}
 		bf = append(bf, v)
 	}
-	return []byte(srcData), errors.New("未找到内容")
+	return []byte(srcData), errors.New("Content not found")
 }

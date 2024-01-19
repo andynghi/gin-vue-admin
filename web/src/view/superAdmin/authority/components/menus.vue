@@ -4,13 +4,13 @@
       <el-input
         v-model="filterText"
         class="w-3/5"
-        placeholder="筛选"
+        placeholder="Filter"
       />
       <el-button
         class="float-right"
         type="primary"
         @click="relation"
-      >确 定</el-button>
+      >Confirm</el-button>
     </div>
     <div class="tree-content clear-both">
       <el-scrollbar>
@@ -38,7 +38,7 @@
                   :disabled="!node.checked"
                   @click="() => setDefault(data)"
                 >
-                  {{ row.defaultRouter === data.name?"首页":"设为首页" }}
+                  {{ row.defaultRouter === data.name?"Homepage":"Set as homepage" }}
                 </el-button>
               </span>
               <span v-if="data.menuBtn.length">
@@ -48,7 +48,7 @@
 
                   @click="() => OpenBtn(data)"
                 >
-                  分配按钮
+                  Assign button
                 </el-button>
               </span>
             </span>
@@ -58,7 +58,7 @@
     </div>
     <el-dialog
       v-model="btnVisible"
-      title="分配按钮"
+      title="Assign Button"
       destroy-on-close
     >
       <el-table
@@ -72,21 +72,21 @@
           width="55"
         />
         <el-table-column
-          label="按钮名称"
+          label="Button name"
           prop="name"
         />
         <el-table-column
-          label="按钮备注"
+          label="Button remarks"
           prop="desc"
         />
       </el-table>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="closeDialog">取 消</el-button>
+          <el-button @click="closeDialog">Cancel</el-button>
           <el-button
             type="primary"
             @click="enterDialog"
-          >确 定</el-button>
+          >Confirm</el-button>
         </div>
       </template>
     </el-dialog>
@@ -128,14 +128,14 @@ const menuDefaultProps = ref({
 })
 
 const init = async() => {
-  // 获取所有菜单树
+  // Get all menu trees
   const res = await getBaseMenuTree()
   menuTreeData.value = res.data.menus
   const res1 = await getMenuAuthority({ authorityId: props.row.authorityId })
   const menus = res1.data.menus
   const arr = []
   menus.forEach(item => {
-    // 防止直接选中父级造成全选
+    // Prevent direct selection of the parent from selecting all
     if (!menus.some(same => same.parentId === item.menuId)) {
       arr.push(Number(item.menuId))
     }
@@ -148,18 +148,18 @@ init()
 const setDefault = async(data) => {
   const res = await updateAuthority({ authorityId: props.row.authorityId, AuthorityName: props.row.authorityName, parentId: props.row.parentId, defaultRouter: data.name })
   if (res.code === 0) {
-    ElMessage({ type: 'success', message: '设置成功' })
+    ElMessage({ type: 'success', message: 'Set successfully' })
     emit('changeRow', 'defaultRouter', res.data.authority.defaultRouter)
   }
 }
 const nodeChange = () => {
   needConfirm.value = true
 }
-// 暴露给外层使用的切换拦截统一方法
+// Unified switching interception method exposed to the outer layer
 const enterAndNext = () => {
   relation()
 }
-// 关联树 确认方法
+// Association tree confirmation method
 const menuTree = ref(null)
 const relation = async() => {
   const checkArr = menuTree.value.getCheckedNodes(false, true)
@@ -170,7 +170,7 @@ const relation = async() => {
   if (res.code === 0) {
     ElMessage({
       type: 'success',
-      message: '菜单设置成功!'
+      message: 'Menu set up successfully!'
     })
   }
 }
@@ -221,7 +221,7 @@ const enterDialog = async() => {
     authorityId: props.row.authorityId
   })
   if (res.code === 0) {
-    ElMessage({ type: 'success', message: '设置成功' })
+    ElMessage({ type: 'success', message: 'Set successfully' })
     btnVisible.value = false
   }
 }

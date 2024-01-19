@@ -6,36 +6,36 @@ import (
 )
 
 type Zap struct {
-	Level         string `mapstructure:"level" json:"level" yaml:"level"`                            // 级别
-	Prefix        string `mapstructure:"prefix" json:"prefix" yaml:"prefix"`                         // 日志前缀
-	Format        string `mapstructure:"format" json:"format" yaml:"format"`                         // 输出
-	Director      string `mapstructure:"director" json:"director"  yaml:"director"`                  // 日志文件夹
-	EncodeLevel   string `mapstructure:"encode-level" json:"encode-level" yaml:"encode-level"`       // 编码级
-	StacktraceKey string `mapstructure:"stacktrace-key" json:"stacktrace-key" yaml:"stacktrace-key"` // 栈名
+	Level         string `mapstructure:"level" json:"level" yaml:"level"`                            // Level
+	Prefix        string `mapstructure:"prefix" json:"prefix" yaml:"prefix"`                         // Log prefix
+	Format        string `mapstructure:"format" json:"format" yaml:"format"`                         // Output
+	Director      string `mapstructure:"director" json:"director" yaml:"director"`                   // Log folder
+	EncodeLevel   string `mapstructure:"encode-level" json:"encode-level" yaml:"encode-level"`       // Encoding level
+	StacktraceKey string `mapstructure:"stacktrace-key" json:"stacktrace-key" yaml:"stacktrace-key"` // stack name
 
-	MaxAge       int  `mapstructure:"max-age" json:"max-age" yaml:"max-age"`                      // 日志留存时间
-	ShowLine     bool `mapstructure:"show-line" json:"show-line" yaml:"show-line"`                // 显示行
-	LogInConsole bool `mapstructure:"log-in-console" json:"log-in-console" yaml:"log-in-console"` // 输出控制台
+	MaxAge       int  `mapstructure:"max-age" json:"max-age" yaml:"max-age"`                      // Log retention time
+	ShowLine     bool `mapstructure:"show-line" json:"show-line" yaml:"show-line"`                // Show line
+	LogInConsole bool `mapstructure:"log-in-console" json:"log-in-console" yaml:"log-in-console"` // Output console
 }
 
-// ZapEncodeLevel 根据 EncodeLevel 返回 zapcore.LevelEncoder
+// ZapEncodeLevel returns zapcore.LevelEncoder based on EncodeLevel
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (z *Zap) ZapEncodeLevel() zapcore.LevelEncoder {
 	switch {
-	case z.EncodeLevel == "LowercaseLevelEncoder": // 小写编码器(默认)
+	case z.EncodeLevel == "LowercaseLevelEncoder": // Lowercase encoder (default)
 		return zapcore.LowercaseLevelEncoder
-	case z.EncodeLevel == "LowercaseColorLevelEncoder": // 小写编码器带颜色
+	case z.EncodeLevel == "LowercaseColorLevelEncoder": // Lowercase encoder with color
 		return zapcore.LowercaseColorLevelEncoder
-	case z.EncodeLevel == "CapitalLevelEncoder": // 大写编码器
+	case z.EncodeLevel == "CapitalLevelEncoder": // Capital encoder
 		return zapcore.CapitalLevelEncoder
-	case z.EncodeLevel == "CapitalColorLevelEncoder": // 大写编码器带颜色
+	case z.EncodeLevel == "CapitalColorLevelEncoder": // Capital encoder with color
 		return zapcore.CapitalColorLevelEncoder
 	default:
 		return zapcore.LowercaseLevelEncoder
 	}
 }
 
-// TransportLevel 根据字符串转化为 zapcore.Level
+// TransportLevel is converted to zapcore.Level according to the string
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (z *Zap) TransportLevel() zapcore.Level {
 	z.Level = strings.ToLower(z.Level)

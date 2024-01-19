@@ -18,12 +18,12 @@ import (
 
 // BreakpointContinue
 // @Tags      ExaFileUploadAndDownload
-// @Summary   断点续传到服务器
+// @Summary Resume the breakpoint to the server
 // @Security  ApiKeyAuth
 // @accept    multipart/form-data
 // @Produce   application/json
-// @Param     file  formData  file                           true  "an example for breakpoint resume, 断点续传示例"
-// @Success   200   {object}  response.Response{msg=string}  "断点续传到服务器"
+// @Param file formData file true "an example for breakpoint resume, breakpoint resume example"
+// @Success 200 {object} response.Response{msg=string} "Resume breakpoint to server"
 // @Router    /fileUploadAndDownload/breakpointContinue [post]
 func (b *FileUploadAndDownloadApi) BreakpointContinue(c *gin.Context) {
 	fileMd5 := c.Request.FormValue("fileMd5")
@@ -33,14 +33,14 @@ func (b *FileUploadAndDownloadApi) BreakpointContinue(c *gin.Context) {
 	chunkTotal, _ := strconv.Atoi(c.Request.FormValue("chunkTotal"))
 	_, FileHeader, err := c.Request.FormFile("file")
 	if err != nil {
-		global.GVA_LOG.Error("接收文件失败!", zap.Error(err))
-		response.FailWithMessage("接收文件失败", c)
+		global.GVA_LOG.Error("Failed to receive file!", zap.Error(err))
+		response.FailWithMessage("Failed to receive file", c)
 		return
 	}
 	f, err := FileHeader.Open()
 	if err != nil {
-		global.GVA_LOG.Error("文件读取失败!", zap.Error(err))
-		response.FailWithMessage("文件读取失败", c)
+		global.GVA_LOG.Error("File reading failed!", zap.Error(err))
+		response.FailWithMessage("File reading failed", c)
 		return
 	}
 	defer func(f multipart.File) {
@@ -51,39 +51,39 @@ func (b *FileUploadAndDownloadApi) BreakpointContinue(c *gin.Context) {
 	}(f)
 	cen, _ := io.ReadAll(f)
 	if !utils.CheckMd5(cen, chunkMd5) {
-		global.GVA_LOG.Error("检查md5失败!", zap.Error(err))
-		response.FailWithMessage("检查md5失败", c)
+		global.GVA_LOG.Error("Checking md5 failed!", zap.Error(err))
+		response.FailWithMessage("Checking md5 failed", c)
 		return
 	}
 	file, err := fileUploadAndDownloadService.FindOrCreateFile(fileMd5, fileName, chunkTotal)
 	if err != nil {
-		global.GVA_LOG.Error("查找或创建记录失败!", zap.Error(err))
-		response.FailWithMessage("查找或创建记录失败", c)
+		global.GVA_LOG.Error("Failed to find or create records!", zap.Error(err))
+		response.FailWithMessage("Failed to find or create records", c)
 		return
 	}
 	pathC, err := utils.BreakPointContinue(cen, fileName, chunkNumber, chunkTotal, fileMd5)
 	if err != nil {
-		global.GVA_LOG.Error("断点续传失败!", zap.Error(err))
-		response.FailWithMessage("断点续传失败", c)
+		global.GVA_LOG.Error("Resumable upload failed!", zap.Error(err))
+		response.FailWithMessage("Resumable upload failed", c)
 		return
 	}
 
 	if err = fileUploadAndDownloadService.CreateFileChunk(file.ID, pathC, chunkNumber); err != nil {
-		global.GVA_LOG.Error("创建文件记录失败!", zap.Error(err))
-		response.FailWithMessage("创建文件记录失败", c)
+		global.GVA_LOG.Error("Failed to create file record!", zap.Error(err))
+		response.FailWithMessage("Failed to create file record", c)
 		return
 	}
-	response.OkWithMessage("切片创建成功", c)
+	response.OkWithMessage("Slice created successfully", c)
 }
 
 // FindFile
 // @Tags      ExaFileUploadAndDownload
-// @Summary   查找文件
+// @Summary Find files
 // @Security  ApiKeyAuth
 // @accept    multipart/form-data
 // @Produce   application/json
-// @Param     file  formData  file                                                        true  "Find the file, 查找文件"
-// @Success   200   {object}  response.Response{data=exampleRes.FileResponse,msg=string}  "查找文件,返回包括文件详情"
+// @Param file formData file true "Find the file, Find the file"
+// @Success 200 {object} response.Response{data=exampleRes.FileResponse,msg=string} "Search for files and return including file details"
 // @Router    /fileUploadAndDownload/findFile [post]
 func (b *FileUploadAndDownloadApi) FindFile(c *gin.Context) {
 	fileMd5 := c.Query("fileMd5")
@@ -91,42 +91,42 @@ func (b *FileUploadAndDownloadApi) FindFile(c *gin.Context) {
 	chunkTotal, _ := strconv.Atoi(c.Query("chunkTotal"))
 	file, err := fileUploadAndDownloadService.FindOrCreateFile(fileMd5, fileName, chunkTotal)
 	if err != nil {
-		global.GVA_LOG.Error("查找失败!", zap.Error(err))
-		response.FailWithMessage("查找失败", c)
+		global.GVA_LOG.Error("Search failed!", zap.Error(err))
+		response.FailWithMessage("Find failed", c)
 	} else {
-		response.OkWithDetailed(exampleRes.FileResponse{File: file}, "查找成功", c)
+		response.OkWithDetailed(exampleRes.FileResponse{File: file}, "Find successfully", c)
 	}
 }
 
 // BreakpointContinueFinish
 // @Tags      ExaFileUploadAndDownload
-// @Summary   创建文件
+// @Summary Create file
 // @Security  ApiKeyAuth
 // @accept    multipart/form-data
 // @Produce   application/json
-// @Param     file  formData  file                                                            true  "上传文件完成"
-// @Success   200   {object}  response.Response{data=exampleRes.FilePathResponse,msg=string}  "创建文件,返回包括文件路径"
+// @Param file formData file true "Upload file completed"
+// @Success 200 {object} response.Response{data=exampleRes.FilePathResponse,msg=string} "Create file, return including file path"
 // @Router    /fileUploadAndDownload/findFile [post]
 func (b *FileUploadAndDownloadApi) BreakpointContinueFinish(c *gin.Context) {
 	fileMd5 := c.Query("fileMd5")
 	fileName := c.Query("fileName")
 	filePath, err := utils.MakeFile(fileName, fileMd5)
 	if err != nil {
-		global.GVA_LOG.Error("文件创建失败!", zap.Error(err))
-		response.FailWithDetailed(exampleRes.FilePathResponse{FilePath: filePath}, "文件创建失败", c)
+		global.GVA_LOG.Error("File creation failed!", zap.Error(err))
+		response.FailWithDetailed(exampleRes.FilePathResponse{FilePath: filePath}, "File creation failed", c)
 	} else {
-		response.OkWithDetailed(exampleRes.FilePathResponse{FilePath: filePath}, "文件创建成功", c)
+		response.OkWithDetailed(exampleRes.FilePathResponse{FilePath: filePath}, "File created successfully", c)
 	}
 }
 
 // RemoveChunk
 // @Tags      ExaFileUploadAndDownload
-// @Summary   删除切片
+// @Summary delete slice
 // @Security  ApiKeyAuth
 // @accept    multipart/form-data
 // @Produce   application/json
-// @Param     file  formData  file                           true  "删除缓存切片"
-// @Success   200   {object}  response.Response{msg=string}  "删除切片"
+// @Param file formData file true "Delete cache slice"
+// @Success 200 {object} response.Response{msg=string} "Delete slice"
 // @Router    /fileUploadAndDownload/removeChunk [post]
 func (b *FileUploadAndDownloadApi) RemoveChunk(c *gin.Context) {
 	var file example.ExaFile
@@ -137,7 +137,7 @@ func (b *FileUploadAndDownloadApi) RemoveChunk(c *gin.Context) {
 	}
 	err = utils.RemoveChunk(file.FileMd5)
 	if err != nil {
-		global.GVA_LOG.Error("缓存切片删除失败!", zap.Error(err))
+		global.GVA_LOG.Error("Cache slice deletion failed!", zap.Error(err))
 		return
 	}
 	err = fileUploadAndDownloadService.DeleteFileChunk(file.FileMd5, file.FilePath)
@@ -146,5 +146,5 @@ func (b *FileUploadAndDownloadApi) RemoveChunk(c *gin.Context) {
 		response.FailWithMessage(err.Error(), c)
 		return
 	}
-	response.OkWithMessage("缓存切片删除成功", c)
+	response.OkWithMessage("Cache slice deleted successfully", c)
 }

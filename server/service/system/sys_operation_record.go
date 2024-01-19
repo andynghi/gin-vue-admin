@@ -9,7 +9,7 @@ import (
 
 //@author: [granty1](https://github.com/granty1)
 //@function: CreateSysOperationRecord
-//@description: 创建记录
+//@description: Create record
 //@param: sysOperationRecord model.SysOperationRecord
 //@return: err error
 
@@ -23,7 +23,7 @@ func (operationRecordService *OperationRecordService) CreateSysOperationRecord(s
 //@author: [granty1](https://github.com/granty1)
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: DeleteSysOperationRecordByIds
-//@description: 批量删除记录
+//@description: Delete records in batches
 //@param: ids request.IdsReq
 //@return: err error
 
@@ -34,7 +34,7 @@ func (operationRecordService *OperationRecordService) DeleteSysOperationRecordBy
 
 //@author: [granty1](https://github.com/granty1)
 //@function: DeleteSysOperationRecord
-//@description: 删除操作记录
+//@description: Delete operation record
 //@param: sysOperationRecord model.SysOperationRecord
 //@return: err error
 
@@ -45,7 +45,7 @@ func (operationRecordService *OperationRecordService) DeleteSysOperationRecord(s
 
 //@author: [granty1](https://github.com/granty1)
 //@function: DeleteSysOperationRecord
-//@description: 根据id获取单条操作记录
+//@description: Get a single operation record based on id
 //@param: id uint
 //@return: sysOperationRecord system.SysOperationRecord, err error
 
@@ -57,17 +57,17 @@ func (operationRecordService *OperationRecordService) GetSysOperationRecord(id u
 //@author: [granty1](https://github.com/granty1)
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetSysOperationRecordInfoList
-//@description: 分页获取操作记录列表
+//@description: Get the operation record list in pages
 //@param: info systemReq.SysOperationRecordSearch
 //@return: list interface{}, total int64, err error
 
 func (operationRecordService *OperationRecordService) GetSysOperationRecordInfoList(info systemReq.SysOperationRecordSearch) (list interface{}, total int64, err error) {
 	limit := info.PageSize
 	offset := info.PageSize * (info.Page - 1)
-	// 创建db
+	//Create db
 	db := global.GVA_DB.Model(&system.SysOperationRecord{})
 	var sysOperationRecords []system.SysOperationRecord
-	// 如果有条件搜索 下方会自动创建搜索语句
+	// If there is a conditional search, the search statement will be automatically created below
 	if info.Method != "" {
 		db = db.Where("method = ?", info.Method)
 	}

@@ -36,7 +36,7 @@ func (*AwsS3) UploadFile(file *multipart.FileHeader) (string, string, error) {
 		global.GVA_LOG.Error("function file.Open() failed", zap.Any("err", openError.Error()))
 		return "", "", errors.New("function file.Open() failed, err:" + openError.Error())
 	}
-	defer f.Close() // 创建文件 defer 关闭
+	defer f.Close() // Create file defer close
 
 	_, err := uploader.Upload(&s3manager.UploadInput{
 		Bucket: aws.String(global.GVA_CONFIG.AwsS3.Bucket),
@@ -84,7 +84,7 @@ func (*AwsS3) DeleteFile(key string) error {
 func newSession() *session.Session {
 	sess, _ := session.NewSession(&aws.Config{
 		Region:           aws.String(global.GVA_CONFIG.AwsS3.Region),
-		Endpoint:         aws.String(global.GVA_CONFIG.AwsS3.Endpoint), //minio在这里设置地址,可以兼容
+		Endpoint:         aws.String(global.GVA_CONFIG.AwsS3.Endpoint), //minio sets the address here, which is compatible
 		S3ForcePathStyle: aws.Bool(global.GVA_CONFIG.AwsS3.S3ForcePathStyle),
 		DisableSSL:       aws.Bool(global.GVA_CONFIG.AwsS3.DisableSSL),
 		Credentials: credentials.NewStaticCredentials(

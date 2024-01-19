@@ -13,12 +13,12 @@ type AutoCodeHistoryApi struct{}
 
 // First
 // @Tags      AutoCode
-// @Summary   获取meta信息
+// @Summary Get meta information
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.GetById                                            true  "请求参数"
-// @Success   200   {object}  response.Response{data=map[string]interface{},msg=string}  "获取meta信息"
+// @Param data body request.GetById true "Request parameter"
+// @Success 200 {object} response.Response{data=map[string]interface{},msg=string} "Get meta information"
 // @Router    /autoCode/getMeta [post]
 func (a *AutoCodeHistoryApi) First(c *gin.Context) {
 	var info request.GetById
@@ -32,17 +32,17 @@ func (a *AutoCodeHistoryApi) First(c *gin.Context) {
 		response.FailWithMessage(err.Error(), c)
 		return
 	}
-	response.OkWithDetailed(gin.H{"meta": data}, "获取成功", c)
+	response.OkWithDetailed(gin.H{"meta": data}, "Get successful", c)
 }
 
 // Delete
 // @Tags      AutoCode
-// @Summary   删除回滚记录
+// @Summary Delete rollback records
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.GetById                true  "请求参数"
-// @Success   200   {object}  response.Response{msg=string}  "删除回滚记录"
+// @Param data body request.GetById true "Request parameter"
+// @Success 200 {object} response.Response{msg=string} "Delete rollback record"
 // @Router    /autoCode/delSysHistory [post]
 func (a *AutoCodeHistoryApi) Delete(c *gin.Context) {
 	var info request.GetById
@@ -53,21 +53,21 @@ func (a *AutoCodeHistoryApi) Delete(c *gin.Context) {
 	}
 	err = autoCodeHistoryService.Delete(&info)
 	if err != nil {
-		global.GVA_LOG.Error("删除失败!", zap.Error(err))
-		response.FailWithMessage("删除失败", c)
+		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
+		response.FailWithMessage("Deletion failed", c)
 		return
 	}
-	response.OkWithMessage("删除成功", c)
+	response.OkWithMessage("Deletion successful", c)
 }
 
 // RollBack
 // @Tags      AutoCode
-// @Summary   回滚自动生成代码
+// @Summary Roll back automatically generated code
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      systemReq.RollBack             true  "请求参数"
-// @Success   200   {object}  response.Response{msg=string}  "回滚自动生成代码"
+// @Param data body systemReq.RollBack true "Request Parameters"
+// @Success 200 {object} response.Response{msg=string} "Rollback automatically generated code"
 // @Router    /autoCode/rollback [post]
 func (a *AutoCodeHistoryApi) RollBack(c *gin.Context) {
 	var info systemReq.RollBack
@@ -81,17 +81,17 @@ func (a *AutoCodeHistoryApi) RollBack(c *gin.Context) {
 		response.FailWithMessage(err.Error(), c)
 		return
 	}
-	response.OkWithMessage("回滚成功", c)
+	response.OkWithMessage("Rollback successful", c)
 }
 
 // GetList
 // @Tags      AutoCode
-// @Summary   查询回滚记录
+// @Summary Query rollback records
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      systemReq.SysAutoHistory                                true  "请求参数"
-// @Success   200   {object}  response.Response{data=response.PageResult,msg=string}  "查询回滚记录,返回包括列表,总数,页码,每页数量"
+// @Param data body systemReq.SysAutoHistory true "Request Parameters"
+// @Success 200 {object} response.Response{data=response.PageResult,msg=string} "Query the rollback record, return includes list, total number, page number, and number of each page"
 // @Router    /autoCode/getSysHistory [post]
 func (a *AutoCodeHistoryApi) GetList(c *gin.Context) {
 	var search systemReq.SysAutoHistory
@@ -102,8 +102,8 @@ func (a *AutoCodeHistoryApi) GetList(c *gin.Context) {
 	}
 	list, total, err := autoCodeHistoryService.GetList(search.PageInfo)
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败", c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain", c)
 		return
 	}
 	response.OkWithDetailed(response.PageResult{
@@ -111,5 +111,5 @@ func (a *AutoCodeHistoryApi) GetList(c *gin.Context) {
 		Total:    total,
 		Page:     search.Page,
 		PageSize: search.PageSize,
-	}, "获取成功", c)
+	}, "Get successful", c)
 }

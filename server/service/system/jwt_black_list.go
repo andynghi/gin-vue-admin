@@ -14,7 +14,7 @@ type JwtService struct{}
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: JsonInBlacklist
-//@description: 拉黑jwt
+//@description: Blacklist jwt
 //@param: jwtList model.JwtBlacklist
 //@return: err error
 
@@ -29,7 +29,7 @@ func (jwtService *JwtService) JsonInBlacklist(jwtList system.JwtBlacklist) (err 
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: IsBlacklist
-//@description: 判断JWT是否在黑名单内部
+//@description: Determine whether the JWT is in the blacklist
 //@param: jwt string
 //@return: bool
 
@@ -43,7 +43,7 @@ func (jwtService *JwtService) IsBlacklist(jwt string) bool {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: GetRedisJWT
-//@description: 从redis取jwt
+//@description: Get jwt from redis
 //@param: userName string
 //@return: redisJWT string, err error
 
@@ -54,12 +54,12 @@ func (jwtService *JwtService) GetRedisJWT(userName string) (redisJWT string, err
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: SetRedisJWT
-//@description: jwt存入redis并设置过期时间
+//@description: jwt is stored in redis and sets the expiration time
 //@param: jwt string, userName string
 //@return: err error
 
 func (jwtService *JwtService) SetRedisJWT(jwt string, userName string) (err error) {
-	// 此处过期时间等于jwt过期时间
+	//The expiration time here is equal to the jwt expiration time
 	dr, err := utils.ParseDuration(global.GVA_CONFIG.JWT.ExpiresTime)
 	if err != nil {
 		return err
@@ -73,10 +73,10 @@ func LoadAll() {
 	var data []string
 	err := global.GVA_DB.Model(&system.JwtBlacklist{}).Select("jwt").Find(&data).Error
 	if err != nil {
-		global.GVA_LOG.Error("加载数据库jwt黑名单失败!", zap.Error(err))
+		global.GVA_LOG.Error("Failed to load database jwt blacklist!", zap.Error(err))
 		return
 	}
 	for i := 0; i < len(data); i++ {
 		global.BlackCache.SetDefault(data[i], struct{}{})
-	} // jwt黑名单 加入 BlackCache 中
+	} // jwt blacklist added to BlackCache
 }

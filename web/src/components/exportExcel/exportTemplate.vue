@@ -3,7 +3,7 @@
     type="primary"
     icon="download"
     @click="exportTemplate"
-  >下载模板</el-button>
+  >Download template</el-button>
 </template>
 
 <script setup>
@@ -18,7 +18,7 @@ import { ElMessage } from 'element-plus'
 
 const exportTemplate = async() => {
   if (props.templateId === '') {
-    ElMessage.error('组件未设置模板ID')
+    ElMessage.error('The component does not set the template ID')
     return
   }
   const baseUrl = import.meta.env.VITE_BASE_API

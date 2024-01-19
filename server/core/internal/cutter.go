@@ -10,16 +10,16 @@ import (
 )
 
 type Cutter struct {
-	level    string        // 日志级别(debug, info, warn, error, dpanic, panic, fatal)
-	format   string        // 时间格式(2006-01-02)
-	Director string        // 日志文件夹
-	file     *os.File      // 文件句柄
-	mutex    *sync.RWMutex // 读写锁
+	level    string        // log level (debug, info, warn, error, dpanic, panic, fatal)
+	format   string        // time format (2006-01-02)
+	Director string        // log folder
+	file     *os.File      // file handle
+	mutex    *sync.RWMutex // read-write lock
 }
 
 type CutterOption func(*Cutter)
 
-// WithCutterFormat 设置时间格式
+// WithCutterFormat sets the time format
 func WithCutterFormat(format string) CutterOption {
 	return func(c *Cutter) {
 		c.format = format

@@ -26,7 +26,7 @@
         </div>
         <Aside class="aside" />
       </el-aside>
-      <!-- 分块滑动功能 -->
+      <!-- Block sliding function -->
       <el-main class="main-cont main-right">
         <transition
           :duration="{ enter: 800, leave: 100 }"
@@ -72,7 +72,7 @@
                       :pull="1"
                       class="flex items-center"
                     >
-                      <!-- 修改为手机端不显示顶部标签 -->
+                      <!-- Modified so that the top label is not displayed on the mobile phone -->
                       <el-breadcrumb
                         v-show="!isMobile"
                         class="breadcrumb"
@@ -110,7 +110,7 @@
                             <el-dropdown-menu>
                               <el-dropdown-item>
                                 <span class="font-bold">
-                                  当前角色：{{ userStore.userInfo.authority.authorityName }}
+                                  Current role: {{ userStore.userInfo.authority.authorityName }}
                                 </span>
                               </el-dropdown-item>
                               <template v-if="userStore.userInfo.authorities">
@@ -120,7 +120,7 @@
                                   @click="changeUserAuth(item.authorityId)"
                                 >
                                   <span>
-                                    切换为：{{ item.authorityName }}
+                                    Switch to: {{ item.authorityName }}
                                   </span>
                                 </el-dropdown-item>
                               </template>
@@ -130,7 +130,7 @@
                                   style="display: flex"
                                   @click="handleCommand"
                                 >
-                                  <div>指令菜单</div>
+                                  <div>Command menu</div>
                                   <div style="margin-left: 8px">
                                     <span class="button">{{ first }}</span>
                                     +
@@ -141,11 +141,11 @@
                               <el-dropdown-item
                                 icon="avatar"
                                 @click="toPerson"
-                              >个人信息</el-dropdown-item>
+                              >Personal information</el-dropdown-item>
                               <el-dropdown-item
                                 icon="reading-lamp"
                                 @click="userStore.LoginOut"
-                              >登 出</el-dropdown-item>
+                              >Logout</el-dropdown-item>
                             </el-dropdown-menu>
                           </template>
                         </el-dropdown>
@@ -155,9 +155,9 @@
                 </el-header>
               </el-col>
             </el-row>
-            <!-- 当前面包屑用路由自动生成可根据需求修改 -->
+            <!-- The current breadcrumbs are automatically generated using routes and can be modified according to needs -->
             <!--
-            :to="{ path: item.path }" 暂时注释不用-->
+            :to="{ path: item.path }" No comments are needed for now -->
             <HistoryComponent ref="layoutHistoryComponent" />
           </div>
         </transition>
@@ -168,7 +168,7 @@
         >
           <div
             v-loading="loadingFlag"
-            element-loading-text="正在加载中"
+            element-loading-text="Loading"
           >
             <transition
               mode="out-in"
@@ -212,7 +212,7 @@ defineOptions({
 const router = useRouter()
 const route = useRoute()
 const routerStore = useRouterStore()
-// 三种窗口适配
+//Three kinds of window adaptation
 const isCollapse = ref(false)
 const isSider = ref(true)
 const isMobile = ref(false)
@@ -220,16 +220,16 @@ const isMobile = ref(false)
 const first = ref('')
 const dialogVisible = ref(false)
 const initPage = () => {
-  // 判断当前用户的操作系统
+  // Determine the current user's operating system
   if (window.localStorage.getItem('osType') === 'WIN') {
     first.value = 'Ctrl'
   } else {
     first.value = '⌘'
   }
-  // 当用户同时按下ctrl和k键的时候
+  // When the user presses the ctrl and k keys at the same time
   const handleKeyDown = (e) => {
     if (e.ctrlKey && e.key === 'k') {
-      // 阻止浏览器默认事件
+      // Prevent browser default events
       e.preventDefault()
       handleCommand()
     }
@@ -261,7 +261,7 @@ const handleCommand = () => {
 
 const loadingFlag = ref(false)
 onMounted(() => {
-  // 挂载一些通用的事件
+  //Mount some common events
   emitter.emit('collapse', isCollapse.value)
   emitter.emit('mobile', isMobile.value)
   emitter.on('reload', reload)

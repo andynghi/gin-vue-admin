@@ -16,12 +16,12 @@ type AuthorityApi struct{}
 
 // CreateAuthority
 // @Tags      Authority
-// @Summary   创建角色
+// @Summary Create role
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysAuthority                                                true  "权限id, 权限名, 父角色id"
-// @Success   200   {object}  response.Response{data=systemRes.SysAuthorityResponse,msg=string}  "创建角色,返回包括系统角色详情"
+// @Param data body system.SysAuthority true "Permission id, permission name, parent role id"
+// @Success 200 {object} response.Response{data=systemRes.SysAuthorityResponse,msg=string} "Create role, return including system role details"
 // @Router    /authority/createAuthority [post]
 func (a *AuthorityApi) CreateAuthority(c *gin.Context) {
 	var authority, authBack system.SysAuthority
@@ -38,27 +38,27 @@ func (a *AuthorityApi) CreateAuthority(c *gin.Context) {
 	}
 
 	if authBack, err = authorityService.CreateAuthority(authority); err != nil {
-		global.GVA_LOG.Error("创建失败!", zap.Error(err))
-		response.FailWithMessage("创建失败"+err.Error(), c)
+		global.GVA_LOG.Error("Creation failed!", zap.Error(err))
+		response.FailWithMessage("Creation failed"+err.Error(), c)
 		return
 	}
 	err = casbinService.FreshCasbin()
 	if err != nil {
-		global.GVA_LOG.Error("创建成功，权限刷新失败。", zap.Error(err))
-		response.FailWithMessage("创建成功，权限刷新失败。"+err.Error(), c)
+		global.GVA_LOG.Error("Creation successful, permission refresh failed.", zap.Error(err))
+		response.FailWithMessage("Creation successful, permission refresh failed."+err.Error(), c)
 		return
 	}
-	response.OkWithDetailed(systemRes.SysAuthorityResponse{Authority: authBack}, "创建成功", c)
+	response.OkWithDetailed(systemRes.SysAuthorityResponse{Authority: authBack}, "Created successfully", c)
 }
 
 // CopyAuthority
 // @Tags      Authority
-// @Summary   拷贝角色
+// @Summary copy character
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      response.SysAuthorityCopyResponse                                  true  "旧角色id, 新权限id, 新权限名, 新父角色id"
-// @Success   200   {object}  response.Response{data=systemRes.SysAuthorityResponse,msg=string}  "拷贝角色,返回包括系统角色详情"
+// @Param data body response.SysAuthorityCopyResponse true "Old role id, new permission id, new permission name, new parent role id"
+// @Success 200 {object} response.Response{data=systemRes.SysAuthorityResponse,msg=string} "Copy role, return including system role details"
 // @Router    /authority/copyAuthority [post]
 func (a *AuthorityApi) CopyAuthority(c *gin.Context) {
 	var copyInfo systemRes.SysAuthorityCopyResponse
@@ -79,21 +79,21 @@ func (a *AuthorityApi) CopyAuthority(c *gin.Context) {
 	}
 	authBack, err := authorityService.CopyAuthority(copyInfo)
 	if err != nil {
-		global.GVA_LOG.Error("拷贝失败!", zap.Error(err))
-		response.FailWithMessage("拷贝失败"+err.Error(), c)
+		global.GVA_LOG.Error("Copy failed!", zap.Error(err))
+		response.FailWithMessage("Copy failed"+err.Error(), c)
 		return
 	}
-	response.OkWithDetailed(systemRes.SysAuthorityResponse{Authority: authBack}, "拷贝成功", c)
+	response.OkWithDetailed(systemRes.SysAuthorityResponse{Authority: authBack}, "Copy successful", c)
 }
 
 // DeleteAuthority
 // @Tags      Authority
-// @Summary   删除角色
+// @Summary Delete role
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysAuthority            true  "删除角色"
-// @Success   200   {object}  response.Response{msg=string}  "删除角色"
+// @Param data body system.SysAuthority true "Delete role"
+// @Success 200 {object} response.Response{msg=string} "Delete role"
 // @Router    /authority/deleteAuthority [post]
 func (a *AuthorityApi) DeleteAuthority(c *gin.Context) {
 	var authority system.SysAuthority
@@ -106,24 +106,24 @@ func (a *AuthorityApi) DeleteAuthority(c *gin.Context) {
 		response.FailWithMessage(err.Error(), c)
 		return
 	}
-	// 删除角色之前需要判断是否有用户正在使用此角色
+	// Before deleting a role, you need to determine whether there is a user using this role.
 	if err = authorityService.DeleteAuthority(&authority); err != nil {
-		global.GVA_LOG.Error("删除失败!", zap.Error(err))
-		response.FailWithMessage("删除失败"+err.Error(), c)
+		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
+		response.FailWithMessage("Deletion failed"+err.Error(), c)
 		return
 	}
 	_ = casbinService.FreshCasbin()
-	response.OkWithMessage("删除成功", c)
+	response.OkWithMessage("Deletion successful", c)
 }
 
 // UpdateAuthority
 // @Tags      Authority
-// @Summary   更新角色信息
+// @Summary Update character information
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysAuthority                                                true  "权限id, 权限名, 父角色id"
-// @Success   200   {object}  response.Response{data=systemRes.SysAuthorityResponse,msg=string}  "更新角色信息,返回包括系统角色详情"
+// @Param data body system.SysAuthority true "Permission id, permission name, parent role id"
+// @Success 200 {object} response.Response{data=systemRes.SysAuthorityResponse,msg=string} "Update role information, return including system role details"
 // @Router    /authority/updateAuthority [post]
 func (a *AuthorityApi) UpdateAuthority(c *gin.Context) {
 	var auth system.SysAuthority
@@ -139,21 +139,21 @@ func (a *AuthorityApi) UpdateAuthority(c *gin.Context) {
 	}
 	authority, err := authorityService.UpdateAuthority(auth)
 	if err != nil {
-		global.GVA_LOG.Error("更新失败!", zap.Error(err))
-		response.FailWithMessage("更新失败"+err.Error(), c)
+		global.GVA_LOG.Error("Update failed!", zap.Error(err))
+		response.FailWithMessage("Update failed"+err.Error(), c)
 		return
 	}
-	response.OkWithDetailed(systemRes.SysAuthorityResponse{Authority: authority}, "更新成功", c)
+	response.OkWithDetailed(systemRes.SysAuthorityResponse{Authority: authority}, "Update successful", c)
 }
 
 // GetAuthorityList
 // @Tags      Authority
-// @Summary   分页获取角色列表
+// @Summary Get the role list by pagination
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.PageInfo                                        true  "页码, 每页大小"
-// @Success   200   {object}  response.Response{data=response.PageResult,msg=string}  "分页获取角色列表,返回包括列表,总数,页码,每页数量"
+// @Param data body request.PageInfo true "Page number, size of each page"
+// @Success 200 {object} response.Response{data=response.PageResult,msg=string} "Get the role list in paging, and return the list, total number, page number, and number per page"
 // @Router    /authority/getAuthorityList [post]
 func (a *AuthorityApi) GetAuthorityList(c *gin.Context) {
 	var pageInfo request.PageInfo
@@ -169,8 +169,8 @@ func (a *AuthorityApi) GetAuthorityList(c *gin.Context) {
 	}
 	list, total, err := authorityService.GetAuthorityInfoList(pageInfo)
 	if err != nil {
-		global.GVA_LOG.Error("获取失败!", zap.Error(err))
-		response.FailWithMessage("获取失败"+err.Error(), c)
+		global.GVA_LOG.Error("Acquisition failed!", zap.Error(err))
+		response.FailWithMessage("Failed to obtain"+err.Error(), c)
 		return
 	}
 	response.OkWithDetailed(response.PageResult{
@@ -178,17 +178,17 @@ func (a *AuthorityApi) GetAuthorityList(c *gin.Context) {
 		Total:    total,
 		Page:     pageInfo.Page,
 		PageSize: pageInfo.PageSize,
-	}, "获取成功", c)
+	}, "Get successful", c)
 }
 
 // SetDataAuthority
 // @Tags      Authority
-// @Summary   设置角色资源权限
+// @Summary Set role resource permissions
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      system.SysAuthority            true  "设置角色资源权限"
-// @Success   200   {object}  response.Response{msg=string}  "设置角色资源权限"
+// @Param data body system.SysAuthority true "Set role resource permissions"
+// @Success 200 {object} response.Response{msg=string} "Set role resource permissions"
 // @Router    /authority/setDataAuthority [post]
 func (a *AuthorityApi) SetDataAuthority(c *gin.Context) {
 	var auth system.SysAuthority
@@ -204,9 +204,9 @@ func (a *AuthorityApi) SetDataAuthority(c *gin.Context) {
 	}
 	err = authorityService.SetDataAuthority(auth)
 	if err != nil {
-		global.GVA_LOG.Error("设置失败!", zap.Error(err))
-		response.FailWithMessage("设置失败"+err.Error(), c)
+		global.GVA_LOG.Error("Setting failed!", zap.Error(err))
+		response.FailWithMessage("Setting failed"+err.Error(), c)
 		return
 	}
-	response.OkWithMessage("设置成功", c)
+	response.OkWithMessage("Set successfully", c)
 }

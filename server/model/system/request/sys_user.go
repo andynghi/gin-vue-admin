@@ -6,51 +6,51 @@ import (
 
 // Register User register structure
 type Register struct {
-	Username     string `json:"userName" example:"用户名"`
-	Password     string `json:"passWord" example:"密码"`
-	NickName     string `json:"nickName" example:"昵称"`
-	HeaderImg    string `json:"headerImg" example:"头像链接"`
-	AuthorityId  uint   `json:"authorityId" swaggertype:"string" example:"int 角色id"`
-	Enable       int    `json:"enable" swaggertype:"string" example:"int 是否启用"`
-	AuthorityIds []uint `json:"authorityIds" swaggertype:"string" example:"[]uint 角色id"`
-	Phone        string `json:"phone" example:"电话号码"`
-	Email        string `json:"email" example:"电子邮箱"`
+	Username     string `json:"userName" example:"username"`
+	Password     string `json:"passWord" example:"password"`
+	NickName     string `json:"nickName" example:"nickname"`
+	HeaderImg    string `json:"headerImg" example:"Avatar link"`
+	AuthorityId  uint   `json:"authorityId" swaggertype:"string" example:"int role id"`
+	Enable       int    `json:"enable" swaggertype:"string" example:"int whether to enable"`
+	AuthorityIds []uint `json:"authorityIds" swaggertype:"string" example:"[]uint role id"`
+	Phone        string `json:"phone" example:"phone number"`
+	Email        string `json:"email" example:"email"`
 }
 
 // User login structure
 type Login struct {
-	Username  string `json:"username"`  // 用户名
-	Password  string `json:"password"`  // 密码
-	Captcha   string `json:"captcha"`   // 验证码
-	CaptchaId string `json:"captchaId"` // 验证码ID
+	Username  string `json:"username"`  // Username
+	Password  string `json:"password"`  // Password
+	Captcha   string `json:"captcha"`   // Verification code
+	CaptchaId string `json:"captchaId"` // Verification code ID
 }
 
 // Modify password structure
 type ChangePasswordReq struct {
-	ID          uint   `json:"-"`           // 从 JWT 中提取 user id，避免越权
-	Password    string `json:"password"`    // 密码
-	NewPassword string `json:"newPassword"` // 新密码
+	ID          uint   `json:"-"`           // Extract user id from JWT to avoid unauthorized access
+	Password    string `json:"password"`    // Password
+	NewPassword string `json:"newPassword"` // New password
 }
 
 // Modify  user's auth structure
 type SetUserAuth struct {
-	AuthorityId uint `json:"authorityId"` // 角色ID
+	AuthorityId uint `json:"authorityId"` // Role ID
 }
 
 // Modify  user's auth structure
 type SetUserAuthorities struct {
 	ID           uint
-	AuthorityIds []uint `json:"authorityIds"` // 角色ID
+	AuthorityIds []uint `json:"authorityIds"` // Role ID
 }
 
 type ChangeUserInfo struct {
-	ID           uint                  `gorm:"primarykey"`                                                                           // 主键ID
-	NickName     string                `json:"nickName" gorm:"default:系统用户;comment:用户昵称"`                                            // 用户昵称
-	Phone        string                `json:"phone"  gorm:"comment:用户手机号"`                                                          // 用户手机号
-	AuthorityIds []uint                `json:"authorityIds" gorm:"-"`                                                                // 角色ID
-	Email        string                `json:"email"  gorm:"comment:用户邮箱"`                                                           // 用户邮箱
-	HeaderImg    string                `json:"headerImg" gorm:"default:https://qmplusimg.henrongyi.top/gva_header.jpg;comment:用户头像"` // 用户头像
-	SideMode     string                `json:"sideMode"  gorm:"comment:用户侧边主题"`                                                      // 用户侧边主题
-	Enable       int                   `json:"enable" gorm:"comment:冻结用户"`                                                           //冻结用户
+	ID           uint                  `gorm:"primarykey"`                                                                                  // Primary key ID
+	NickName     string                `json:"nickName" gorm:"default:system user;comment:user nickname"`                                   // User nickname
+	Phone        string                `json:"phone" gorm:"comment:User's mobile phone number"`                                             // User's mobile phone number
+	AuthorityIds []uint                `json:"authorityIds" gorm:"-"`                                                                       // Role ID
+	Email        string                `json:"email" gorm:"comment:user's email"`                                                           // User's email
+	HeaderImg    string                `json:"headerImg" gorm:"default:https://qmplusimg.henrongyi.top/gva_header.jpg;comment:user avatar"` // User avatar
+	SideMode     string                `json:"sideMode" gorm:"comment:User side theme"`                                                     // User side theme
+	Enable       int                   `json:"enable" gorm:"comment:Freeze user"`                                                           //Freeze user
 	Authorities  []system.SysAuthority `json:"-" gorm:"many2many:sys_user_authority;"`
 }

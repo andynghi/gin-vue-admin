@@ -5,22 +5,22 @@
         :inline="true"
         :model="searchInfo"
       >
-        <el-form-item label="请求方法">
+        <el-form-item label="Request method">
           <el-input
             v-model="searchInfo.method"
-            placeholder="搜索条件"
+            placeholder="Search criteria"
           />
         </el-form-item>
-        <el-form-item label="请求路径">
+        <el-form-item label="Request path">
           <el-input
             v-model="searchInfo.path"
-            placeholder="搜索条件"
+            placeholder="Search criteria"
           />
         </el-form-item>
-        <el-form-item label="结果状态码">
+        <el-form-item label="Result status code">
           <el-input
             v-model="searchInfo.status"
-            placeholder="搜索条件"
+            placeholder="Search criteria"
           />
         </el-form-item>
         <el-form-item>
@@ -28,11 +28,11 @@
             type="primary"
             icon="search"
             @click="onSubmit"
-          >查询</el-button>
+          >Query</el-button>
           <el-button
             icon="refresh"
             @click="onReset"
-          >重置</el-button>
+          >Reset</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -44,17 +44,17 @@
           placement="top"
           width="160"
         >
-          <p>确定要删除吗？</p>
+          <p>Are you sure you want to delete it? </p>
           <div style="text-align: right; margin-top: 8px;">
             <el-button
               type="primary"
               link
               @click="deleteVisible = false"
-            >取消</el-button>
+            >Cancel</el-button>
             <el-button
               type="primary"
               @click="onDelete"
-            >确定</el-button>
+            >OK</el-button>
           </div>
           <template #reference>
             <el-button
@@ -62,7 +62,7 @@
               style="margin-left: 10px;"
               :disabled="!multipleSelection.length"
               @click="deleteVisible = true"
-            >删除</el-button>
+            >Delete</el-button>
           </template>
         </el-popover>
       </div>
@@ -81,7 +81,7 @@
         />
         <el-table-column
           align="left"
-          label="操作人"
+          label="operator"
           width="140"
         >
           <template #default="scope">
@@ -90,14 +90,14 @@
         </el-table-column>
         <el-table-column
           align="left"
-          label="日期"
+          label="date"
           width="180"
         >
           <template #default="scope">{{ formatDate(scope.row.CreatedAt) }}</template>
         </el-table-column>
         <el-table-column
           align="left"
-          label="状态码"
+          label="status code"
           prop="status"
           width="120"
         >
@@ -109,25 +109,25 @@
         </el-table-column>
         <el-table-column
           align="left"
-          label="请求IP"
+          label="Request IP"
           prop="ip"
           width="120"
         />
         <el-table-column
           align="left"
-          label="请求方法"
+          label="Request method"
           prop="method"
           width="120"
         />
         <el-table-column
           align="left"
-          label="请求路径"
+          label="request path"
           prop="path"
           width="240"
         />
         <el-table-column
           align="left"
-          label="请求"
+          label="Request"
           prop="path"
           width="80"
         >
@@ -146,13 +146,13 @@
                 </template>
               </el-popover>
 
-              <span v-else>无</span>
+              <span v-else>None</span>
             </div>
           </template>
         </el-table-column>
         <el-table-column
           align="left"
-          label="响应"
+          label="response"
           prop="path"
           width="80"
         >
@@ -170,13 +170,13 @@
                   <el-icon style="cursor: pointer;"><warning /></el-icon>
                 </template>
               </el-popover>
-              <span v-else>无</span>
+              <span v-else>None</span>
             </div>
           </template>
         </el-table-column>
         <el-table-column
           align="left"
-          label="操作"
+          label="operation"
         >
           <template #default="scope">
             <el-popover
@@ -184,17 +184,17 @@
               placement="top"
               width="160"
             >
-              <p>确定要删除吗？</p>
+              <p>Are you sure you want to delete it? </p>
               <div style="text-align: right; margin-top: 8px;">
                 <el-button
                   type="primary"
                   link
                   @click="scope.row.visible = false"
-                >取消</el-button>
+                >Cancel</el-button>
                 <el-button
                   type="primary"
                   @click="deleteSysOperationRecordFunc(scope.row)"
-                >确定</el-button>
+                >OK</el-button>
               </div>
               <template #reference>
                 <el-button
@@ -202,7 +202,7 @@
                   type="primary"
                   link
                   @click="scope.row.visible = true"
-                >删除</el-button>
+                >Delete</el-button>
               </template>
             </el-popover>
           </template>
@@ -228,7 +228,7 @@ import {
   deleteSysOperationRecord,
   getSysOperationRecordList,
   deleteSysOperationRecordByIds
-} from '@/api/sysOperationRecord' // 此处请自行替换地址
+} from '@/api/sysOperationRecord' // Please replace the address here.
 import { formatDate } from '@/utils/format'
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
@@ -245,7 +245,7 @@ const searchInfo = ref({})
 const onReset = () => {
   searchInfo.value = {}
 }
-// 条件搜索前端看此方法
+// See this method for conditional search front-end
 const onSubmit = () => {
   page.value = 1
   pageSize.value = 10
@@ -255,7 +255,7 @@ const onSubmit = () => {
   getTableData()
 }
 
-// 分页
+// paging
 const handleSizeChange = (val) => {
   pageSize.value = val
   getTableData()
@@ -266,7 +266,7 @@ const handleCurrentChange = (val) => {
   getTableData()
 }
 
-// 查询
+// Inquire
 const getTableData = async() => {
   const table = await getSysOperationRecordList({
     page: page.value,
@@ -298,7 +298,7 @@ const onDelete = async() => {
   if (res.code === 0) {
     ElMessage({
       type: 'success',
-      message: '删除成功'
+      message: 'Delete successfully'
     })
     if (tableData.value.length === ids.length && page.value > 1) {
       page.value--
@@ -313,7 +313,7 @@ const deleteSysOperationRecordFunc = async(row) => {
   if (res.code === 0) {
     ElMessage({
       type: 'success',
-      message: '删除成功'
+      message: 'Delete successfully'
     })
     if (tableData.value.length === 1 && page.value > 1) {
       page.value--

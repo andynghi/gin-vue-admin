@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// 解压
+// decompress
 func Unzip(zipFile string, destDir string) ([]string, error) {
 	zipReader, err := zip.OpenReader(zipFile)
 	var paths []string
@@ -20,7 +20,7 @@ func Unzip(zipFile string, destDir string) ([]string, error) {
 
 	for _, f := range zipReader.File {
 		if strings.Index(f.Name, "..") > -1 {
-			return []string{}, fmt.Errorf("%s 文件名不合法", f.Name)
+			return []string{}, fmt.Errorf("%s file name is illegal", f.Name)
 		}
 		fpath := filepath.Join(destDir, f.Name)
 		paths = append(paths, fpath)
@@ -66,7 +66,7 @@ func ZipFiles(filename string, files []string, oldForm, newForm string) error {
 		_ = zipWriter.Close()
 	}()
 
-	// 把files添加到zip中
+	//Add files to zip
 	for _, file := range files {
 
 		err = func(file string) error {
@@ -75,7 +75,7 @@ func ZipFiles(filename string, files []string, oldForm, newForm string) error {
 				return err
 			}
 			defer zipFile.Close()
-			// 获取file的基础信息
+			// Get basic information about file
 			info, err := zipFile.Stat()
 			if err != nil {
 				return err
@@ -86,11 +86,11 @@ func ZipFiles(filename string, files []string, oldForm, newForm string) error {
 				return err
 			}
 
-			// 使用上面的FileInforHeader() 就可以把文件保存的路径替换成我们自己想要的了，如下面
+			//Use the above FileInforHeader() to replace the path where the file is saved with what we want, as shown below
 			header.Name = strings.Replace(file, oldForm, newForm, -1)
 
-			// 优化压缩
-			// 更多参考see http://golang.org/pkg/archive/zip/#pkg-constants
+			// Optimize compression
+			// For more reference see http://golang.org/pkg/archive/zip/#pkg-constants
 			header.Method = zip.Deflate
 
 			writer, err := zipWriter.CreateHeader(header)

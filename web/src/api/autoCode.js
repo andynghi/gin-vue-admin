@@ -18,11 +18,11 @@ export const createTemp = (data) => {
 }
 
 // @Tags SysApi
-// @Summary 获取当前所有数据库
+// @Summary Get all current databases
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"创建成功"}"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Created successfully"}"
 // @Router /autoCode/getDatabase [get]
 export const getDB = (params) => {
   return service({
@@ -33,11 +33,11 @@ export const getDB = (params) => {
 }
 
 // @Tags SysApi
-// @Summary 获取当前数据库所有表
+// @Summary Get all tables in the current database
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"创建成功"}"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Created successfully"}"
 // @Router /autoCode/getTables [get]
 export const getTable = (params) => {
   return service({
@@ -48,11 +48,11 @@ export const getTable = (params) => {
 }
 
 // @Tags SysApi
-// @Summary 获取当前数据库所有表
+// @Summary Get all tables in the current database
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"创建成功"}"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Created successfully"}"
 // @Router /autoCode/getColumn [get]
 export const getColumn = (params) => {
   return service({

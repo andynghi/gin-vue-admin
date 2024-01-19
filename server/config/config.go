@@ -27,6 +27,6 @@ type Server struct {
 
 	Excel Excel `mapstructure:"excel" json:"excel" yaml:"excel"`
 
-	// 跨域配置
+	// Cross-domain configuration
 	Cors CORS `mapstructure:"cors" json:"cors" yaml:"cors"`
 }

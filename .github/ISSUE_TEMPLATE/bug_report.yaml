@@ -11,50 +11,50 @@ body:
   - type: input
     id: gva
     attributes:
-      label: gin-vue-admin 版本
-      description: 请输入您当前使用的项目版本?
+      label: gin-vue-admin version
+      description: Please enter the project version you are currently using?
       placeholder: 2.4.5Beta
     validations:
       required: true
   - type: input
     id: node
     attributes:
-      label: Node 版本
-      description: 请输入您当前使用的NODE版本?
+      label: Node version
+      description: Please enter the NODE version you are currently using?
       placeholder: v14.16.0
     validations:
       required: true
   - type: input
     id: golang
     attributes:
-      label: Golang 版本
-      description: 请输入您当前使用的GOLANG版本?
+      label: Golang version
+      description: Please enter the GOLANG version you are currently using?
       placeholder: go 1.16
     validations:
       required: true
   - type: dropdown
     id: reappearance
     attributes:
-      label: 是否依旧存在
-      description: 是否可以在master分支复现此bug?
+      label: does it still exist?
+      description: Is it possible to reproduce this bug in the master branch?
       options:
-        - 可以
-        - 不可以
-        - 未测试
+        - Can
+        - Can't
+        - not tested
     validations:
       required: true
   - type: textarea
     id: desc
     attributes:
-      label: bug描述
-      description: 请简要描述bug以及复现过程.
+      label: bug description
+      description: Please briefly describe the bug and the reproduction process.
       placeholder: |
-        1. 首先...
-        2. 然后...
+        1. First...
+        2. Then...
     validations:
       required: true
   - type: textarea
     id: advise
     attributes:
-      label: 修改建议
-      description: 您有好的建议或者修改方案可以提供给我们。
+      label: modification suggestions
+      description: If you have any good suggestions or modifications, you can provide them to us.

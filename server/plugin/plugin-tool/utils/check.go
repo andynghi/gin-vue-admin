@@ -15,7 +15,7 @@ func RegisterApis(apis ...system.SysApi) {
 	}
 	global.GVA_DB.Find(&[]system.SysApi{}, "path in (?)", apiPaths).Count(&count)
 	if count > 0 {
-		fmt.Println("插件已安装或存在同名路由")
+		fmt.Println("The plug-in is installed or a route with the same name exists")
 		return
 	}
 	err := global.GVA_DB.Create(&apis).Error
@@ -34,7 +34,7 @@ func RegisterMenus(menus ...system.SysBaseMenu) {
 	}
 	global.GVA_DB.Find(&[]system.SysBaseMenu{}, "name in (?)", menuNames).Count(&count)
 	if count > 0 {
-		fmt.Println("插件已安装或存在同名菜单")
+		fmt.Println("The plug-in is installed or a menu with the same name exists")
 		return
 	}
 	parentMenu.ParentId = "0"

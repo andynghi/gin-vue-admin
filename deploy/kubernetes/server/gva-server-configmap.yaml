@@ -56,7 +56,7 @@ data:
       env: 'develop'  # Change to "develop" to skip authentication for development mode
       addr: 8888
       db-type: 'mysql'
-      oss-type: 'local'    # 控制oss选择走本期还是 七牛等其他仓 自行增加其他oss仓可以在 server/utils/upload/upload.go 中 NewOss函数配置
+      oss-type: 'local' # Control whether oss chooses to go to this period or other warehouses such as Qiniu. To add other oss warehouses by yourself, you can configure the NewOss function in server/utils/upload/upload.go
       use-multipoint: false
 
     # captcha configuration
@@ -66,7 +66,7 @@ data:
       img-height: 80
 
     # mysql connect configuration
-    # 未初始化之前请勿手动修改数据库信息！！！如果一定要手动初始化请看（https://www.github.com/flipped-aurora/gin-vue-admin/server.com/docs/first）
+    # Do not manually modify the database information before initialization! ! ! If you must initialize manually, please see (https://www.github.com/flipped-aurora/gin-vue-admin/server.com/docs/first)
     mysql:
       path: ''
       config: ''
@@ -99,7 +99,7 @@ data:
       web-form: /view
       web-table: /view
 
-    # qiniu configuration (请自行七牛申请对应的 公钥 私钥 bucket 和 域名地址)
+    # qiniu configuration (please apply for the corresponding public key, private key bucket and domain name address from Qiniu yourself)
     qiniu:
       zone: 'ZoneHuaDong'
       bucket: ''
@@ -136,12 +136,12 @@ data:
     # timer task db clear table
     Timer:
       start: true
-      spec: "@daily"  # 定时任务详细配置参考 https://pkg.go.dev/github.com/robfig/cron/v3
+      spec: "@daily" # Detailed configuration of scheduled tasks, please refer to https://pkg.go.dev/github.com/robfig/cron/v3
       detail: [
-        # tableName: 需要清理的表名
-        # compareField: 需要比较时间的字段
-        # interval: 时间间隔, 具体配置详看 time.ParseDuration() 中字符串表示 且不能为负数
-        # 2160h = 24 * 30 * 3 -> 三个月
+        # tableName: The name of the table that needs to be cleaned
+        # compareField: field that needs to be compared
+        # interval: time interval, please see the string representation in time.ParseDuration() for detailed configuration and cannot be a negative number.
+        # 2160h = 24 * 30 * 3 -> three months
         { tableName: "sys_operation_records" , compareField: "created_at", interval: "2160h" },
         { tableName: "jwt_blacklists" , compareField: "created_at", interval: "168h" }
         #{ tableName: "log2" , compareField: "created_at", interval: "2160h" }

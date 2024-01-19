@@ -10,7 +10,7 @@
 <img src="https://img.shields.io/badge/gorm-1.25.2-red"/>
 </div>
 
-English | [简体中文](./README.md)
+English | [Simplified Chinese](./README.md)
 
 [gitee](https://gitee.com/pixelmax/gin-vue-admin): https://gitee.com/pixelmax/gin-vue-admin
 
@@ -152,7 +152,7 @@ go env -w GOPROXY=https://goproxy.cn,https://goproxy.io,direct
 cd server
 go generate -run "go env -w .*?"
 
-# 使用如下命令下载swag
+#Use the following command to download swag
 go get -u github.com/swaggo/swag/cmd/swag
 ````
 
@@ -291,7 +291,7 @@ swag init
 | <img src="http://qmplusimg.henrongyi.top/qq.jpg" width="180"/> |
 
 
-#### Wechat group: comment "加入gin-vue-admin交流群"
+#### Wechat group: comment "Join gin-vue-admin communication group"
 
 | Wechat |
 |  :---:  | 

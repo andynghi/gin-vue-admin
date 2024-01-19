@@ -9,7 +9,7 @@ import (
 )
 
 func ClearToken(c *gin.Context) {
-	// 增加cookie x-token 向来源的web添加
+	//Add cookie x-token to the source web
 	host, _, err := net.SplitHostPort(c.Request.Host)
 	if err != nil {
 		host = c.Request.Host
@@ -18,7 +18,7 @@ func ClearToken(c *gin.Context) {
 }
 
 func SetToken(c *gin.Context, token string, maxAge int) {
-	// 增加cookie x-token 向来源的web添加
+	//Add cookie x-token to the source web
 	host, _, err := net.SplitHostPort(c.Request.Host)
 	if err != nil {
 		host = c.Request.Host
@@ -39,12 +39,12 @@ func GetClaims(c *gin.Context) (*systemReq.CustomClaims, error) {
 	j := NewJWT()
 	claims, err := j.ParseToken(token)
 	if err != nil {
-		global.GVA_LOG.Error("从Gin的Context中获取从jwt解析信息失败, 请检查请求头是否存在x-token且claims是否为规定结构")
+		global.GVA_LOG.Error("Failed to obtain jwt parsing information from Gin's Context, please check whether x-token exists in the request header and whether claims are the specified structure")
 	}
 	return claims, err
 }
 
-// GetUserID 从Gin的Context中获取从jwt解析出来的用户ID
+// GetUserID Gets the user ID parsed from jwt from Gin's Context
 func GetUserID(c *gin.Context) uint {
 	if claims, exists := c.Get("claims"); !exists {
 		if cl, err := GetClaims(c); err != nil {
@@ -58,7 +58,7 @@ func GetUserID(c *gin.Context) uint {
 	}
 }
 
-// GetUserUuid 从Gin的Context中获取从jwt解析出来的用户UUID
+// GetUserUuid Gets the user UUID parsed from jwt from Gin's Context
 func GetUserUuid(c *gin.Context) uuid.UUID {
 	if claims, exists := c.Get("claims"); !exists {
 		if cl, err := GetClaims(c); err != nil {
@@ -72,7 +72,7 @@ func GetUserUuid(c *gin.Context) uuid.UUID {
 	}
 }
 
-// GetUserAuthorityId 从Gin的Context中获取从jwt解析出来的用户角色id
+// GetUserAuthorityId Get the user role id parsed from jwt from Gin's Context
 func GetUserAuthorityId(c *gin.Context) uint {
 	if claims, exists := c.Get("claims"); !exists {
 		if cl, err := GetClaims(c); err != nil {
@@ -86,7 +86,7 @@ func GetUserAuthorityId(c *gin.Context) uint {
 	}
 }
 
-// GetUserInfo 从Gin的Context中获取从jwt解析出来的用户角色id
+// GetUserInfo Gets the user role id parsed from jwt from Gin's Context
 func GetUserInfo(c *gin.Context) *systemReq.CustomClaims {
 	if claims, exists := c.Get("claims"); !exists {
 		if cl, err := GetClaims(c); err != nil {
@@ -100,7 +100,7 @@ func GetUserInfo(c *gin.Context) *systemReq.CustomClaims {
 	}
 }
 
-// GetUserName 从Gin的Context中获取从jwt解析出来的用户名
+// GetUserName Gets the user name parsed from jwt from Gin's Context
 func GetUserName(c *gin.Context) string {
 	if claims, exists := c.Get("claims"); !exists {
 		if cl, err := GetClaims(c); err != nil {

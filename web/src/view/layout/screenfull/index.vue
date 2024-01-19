@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import screenfull from 'screenfull' // 引入screenfull
+import screenfull from 'screenfull' //Introduce screenfull
 import { onMounted, onUnmounted, ref } from 'vue'
 
 defineOptions({

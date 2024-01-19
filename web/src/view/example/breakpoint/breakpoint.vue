@@ -1,7 +1,7 @@
 <template>
   <div class="break-point">
     <div class="gva-table-box">
-      <el-divider content-position="left">大文件上传</el-divider>
+      <el-divider content-position="left">Large file upload</el-divider>
       <form
         id="fromCont"
         method="post"
@@ -10,7 +10,7 @@
           class="fileUpload"
           @click="inputChange"
         >
-          选择文件
+          Select a document
           <input
             v-show="false"
             id="file"
@@ -26,8 +26,8 @@
         type="primary"
         class="uploadBtn"
         @click="getFile"
-      >上传文件</el-button>
-      <div class="el-upload__tip">请上传不超过5MB的文件</div>
+      >Upload file</el-button>
+      <div class="el-upload__tip">Please upload files no larger than 5MB</div>
       <div class="list">
         <transition
           name="list"
@@ -51,7 +51,7 @@
           </div>
         </transition>
       </div>
-      <div class="tips">此版本为先行体验功能测试版，样式美化和性能优化正在进行中，上传切片文件和合成的完整文件分别再QMPlusserver目录的breakpointDir文件夹和fileDir文件夹</div>
+      <div class="tips">This version is a trial version of the trial function. Style beautification and performance optimization are in progress. Upload the sliced files and the synthesized complete files to the breakpointDir folder and fileDir folder of the QMPlusserver directory respectively</div>
     </div>
   </div>
 
@@ -81,37 +81,37 @@ const limitFileSize = ref(false)
 const percentage = ref(0)
 const percentageFlage = ref(true)
 
-// 选中文件的函数
+//Function to select files
 const choseFile = async(e) => {
-  const fileR = new FileReader() // 创建一个reader用来读取文件流
-  const fileInput = e.target.files[0] // 获取当前文件
+  const fileR = new FileReader() // Create a reader to read the file stream
+  const fileInput = e.target.files[0] // Get the current file
   const maxSize = 5 * 1024 * 1024
-  file.value = fileInput // file 丢全局方便后面用 可以改进为func传参形式
+  file.value = fileInput // file is lost globally for later use. It can be improved to func parameter passing form.
   percentage.value = 0
   if (file.value.size < maxSize) {
-    fileR.readAsArrayBuffer(file.value) // 把文件读成ArrayBuffer  主要为了保持跟后端的流一致
+    fileR.readAsArrayBuffer(file.value) //Read the file into ArrayBuffer mainly to maintain consistency with the back-end stream
     fileR.onload = async e => {
-      // 读成arrayBuffer的回调 e 为方法自带参数 相当于 dom的e 流存在e.target.result 中
+      // The callback e read as arrayBuffer is the method's own parameter, which is equivalent to the e stream of dom stored in e.target.result
       const blob = e.target.result
-      const spark = new SparkMD5.ArrayBuffer() // 创建md5制造工具 （md5用于检测文件一致性 这里不懂就打电话问我）
-      spark.append(blob) // 文件流丢进工具
-      fileMd5.value = spark.end() // 工具结束 产生一个a 总文件的md5
-      const FileSliceCap = 1 * 1024 * 1024 // 分片字节数
-      let start = 0 // 定义分片开始切的地方
-      let end = 0 // 每片结束切的地方a
-      let i = 0 // 第几片
-      formDataList.value = [] // 分片存储的一个池子 丢全局
+      const spark = new SparkMD5.ArrayBuffer() // Create md5 manufacturing tool (md5 is used to detect file consistency. If you don’t understand here, please call me and ask me)
+      spark.append(blob) //File stream thrown into tool
+      fileMd5.value = spark.end() // The tool ends and generates a md5 of the total file.
+      const FileSliceCap = 1 * 1024 * 1024 //Number of slice bytes
+      let start = 0 // Define where the sharding starts
+      let end = 0 // The end of each slice is cut a
+      let i = 0 // which slice
+      formDataList.value = [] // A pool of sharded storage, losing the global
       while (end < file.value.size) {
-        // 当结尾数字大于文件总size的时候 结束切片
-        start = i * FileSliceCap // 计算每片开始位置
-        end = (i + 1) * FileSliceCap // 计算每片结束位置
-        var fileSlice = file.value.slice(start, end) // 开始切  file.slice 为 h5方法 对文件切片 参数为 起止字节数
-        const formData = new window.FormData() // 创建FormData用于存储传给后端的信息
-        formData.append('fileMd5', fileMd5.value) // 存储总文件的Md5 让后端知道自己是谁的切片
-        formData.append('file', fileSlice) // 当前的切片
-        formData.append('chunkNumber', i) // 当前是第几片
-        formData.append('fileName', file.value.name) // 当前文件的文件名 用于后端文件切片的命名  formData.appen 为 formData对象添加参数的方法
-        formDataList.value.push({ key: i, formData }) // 把当前切片信息 自己是第几片 存入我们方才准备好的池子
+        // When the ending number is greater than the total size of the file, end slicing
+        start = i * FileSliceCap // Calculate the starting position of each slice
+        end = (i + 1) * FileSliceCap // Calculate the end position of each slice
+        var fileSlice = file.value.slice(start, end) // Start slicing file.slice is the h5 method to slice the file. The parameters are the starting and ending bytes.
+        const formData = new window.FormData() // Create FormData to store information passed to the backend
+        formData.append('fileMd5', fileMd5.value) // Store the Md5 of the total file to let the backend know whose slice it is.
+        formData.append('file', fileSlice) //Current slice
+        formData.append('chunkNumber', i) // Which piece is the current one?
+        formData.append('fileName', file.value.name) // The file name of the current file. The naming used for back-end file slices. formData.appen is a method for adding parameters to the formData object.
+        formDataList.value.push({ key: i, formData }) // Store the current slice information into the pool we just prepared
         i++
       }
       const params = {
@@ -120,53 +120,53 @@ const choseFile = async(e) => {
         chunkTotal: formDataList.value.length
       }
       const res = await findFile(params)
-      // 全部切完以后 发一个请求给后端 拉当前文件后台存储的切片信息 用于检测有多少上传成功的切片
-      const finishList = res.data.file.ExaFileChunk // 上传成功的切片
-      const IsFinish = res.data.file.IsFinish // 是否是同文件不同命 （文件md5相同 文件名不同 则默认是同一个文件但是不同文件名 此时后台数据库只需要拷贝一下数据库文件即可 不需要上传文件 即秒传功能）
+      // After all slicing is completed, send a request to the backend to pull the slicing information stored in the background of the current file to detect how many successfully uploaded slices there are.
+      const finishList = res.data.file.ExaFileChunk // Successfully uploaded slices
+      const IsFinish = res.data.file.IsFinish // Whether the same file has different names (if the file md5 is the same and the file name is different, the default is the same file but different file names. At this time, the backend database only needs to copy the database file without uploading the file. That is, the instant transmission function)
       if (!IsFinish) {
-        // 当是断点续传时候
+        // When resuming the upload from a breakpoint
         waitUpLoad.value = formDataList.value.filter(all => {
           return !(
             finishList &&
               finishList.some(fi => fi.FileChunkNumber === all.key)
-          ) // 找出需要上传的切片
+          ) // Find the slices that need to be uploaded
         })
       } else {
-        waitUpLoad.value = [] // 秒传则没有需要上传的切片
-        ElMessage.success('文件已秒传')
+        waitUpLoad.value = [] //If the second upload occurs, there are no slices to be uploaded.
+        ElMessage.success('The file has been transferred in seconds')
       }
-      waitNum.value = waitUpLoad.value.length // 记录长度用于百分比展示
+      waitNum.value = waitUpLoad.value.length // Record length is used for percentage display
     }
   } else {
     limitFileSize.value = true
-    ElMessage('请上传小于5M文件')
+    ElMessage('Please upload files smaller than 5M')
   }
 }
 
 const getFile = () => {
-  // 确定按钮
+  // Confirm button
   if (file.value === null) {
-    ElMessage('请先上传文件')
+    ElMessage('Please upload the file first')
     return
   }
   if (percentage.value === 100) {
     percentageFlage.value = false
   }
-  sliceFile() // 上传切片
+  sliceFile() // Upload slice
 }
 
 const sliceFile = () => {
   waitUpLoad.value &&
         waitUpLoad.value.forEach(item => {
-          // 需要上传的切片
-          item.formData.append('chunkTotal', formDataList.value.length) // 切片总数携带给后台 总有用的
-          const fileR = new FileReader() // 功能同上
+          // Slices to be uploaded
+          item.formData.append('chunkTotal', formDataList.value.length) // The total number of slices is carried to the background. It is always useful.
+          const fileR = new FileReader() // Same function as above
           const fileF = item.formData.get('file')
           fileR.readAsArrayBuffer(fileF)
           fileR.onload = e => {
             const spark = new SparkMD5.ArrayBuffer()
             spark.append(e.target.result)
-            item.formData.append('chunkMd5', spark.end()) // 获取当前切片md5 后端用于验证切片完整性
+            item.formData.append('chunkMd5', spark.end()) // Get the current slice md5 backend to verify the slice integrity
             upLoadFileSlice(item)
           }
         })
@@ -175,27 +175,27 @@ const sliceFile = () => {
 watch(() => waitNum.value, () => { percentage.value = Math.floor(((formDataList.value.length - waitNum.value) / formDataList.value.length) * 100) })
 
 const upLoadFileSlice = async(item) => {
-  // 切片上传
+  //Slice upload
   const fileRe = await breakpointContinue(item.formData)
   if (fileRe.code !== 0) {
     return
   }
-  waitNum.value-- // 百分数增加
+  waitNum.value-- // Percentage increase
   if (waitNum.value === 0) {
-    // 切片传完以后 合成文件
+    // After the slice is transmitted, the file is synthesized
     const params = {
       fileName: file.value.name,
       fileMd5: fileMd5.value
     }
     const res = await breakpointContinueFinish(params)
     if (res.code === 0) {
-      // 合成文件过后 删除缓存切片
+      // Delete cache tiles after compositing files
       const params = {
         fileName: file.value.name,
         fileMd5: fileMd5.value,
         filePath: res.data.filePath,
       }
-      ElMessage.success('上传成功')
+      ElMessage.success('Upload successful')
       await removeChunk(params)
     }
   }

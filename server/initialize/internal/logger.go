@@ -11,13 +11,13 @@ type writer struct {
 	logger.Writer
 }
 
-// NewWriter writer 构造函数
+// NewWriter writer constructor
 // Author [SliverHorn](https://github.com/SliverHorn)
 func NewWriter(w logger.Writer) *writer {
 	return &writer{Writer: w}
 }
 
-// Printf 格式化打印日志
+// Printf formats the print log
 // Author [SliverHorn](https://github.com/SliverHorn)
 func (w *writer) Printf(message string, data ...interface{}) {
 	var logZap bool

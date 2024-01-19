@@ -15,10 +15,10 @@ const (
 	Mysql           = "mysql"
 	Pgsql           = "pgsql"
 	Sqlite          = "sqlite"
-	InitSuccess     = "\n[%v] --> 初始数据成功!\n"
-	InitDataExist   = "\n[%v] --> %v 的初始数据已存在!\n"
-	InitDataFailed  = "\n[%v] --> %v 初始数据失败! \nerr: %+v\n"
-	InitDataSuccess = "\n[%v] --> %v 初始数据成功!\n"
+	InitSuccess     = "\n[%v] --> Initial data successful!\n"
+	InitDataExist   = "\n[%v] --> The initial data of %v already exists!\n"
+	InitDataFailed  = "\n[%v] --> %v initial data failed! \nerr: %+v\n"
+	InitDataSuccess = "\n[%v] --> %v initial data successful!\n"
 )
 
 const (
@@ -33,30 +33,30 @@ var (
 	ErrDBTypeMismatch          = errors.New("db type mismatch")
 )
 
-// SubInitializer 提供 source/*/init() 使用的接口，每个 initializer 完成一个初始化过程
+// SubInitializer provides the interface used by source/*/init(). Each initializer completes an initialization process.
 type SubInitializer interface {
-	InitializerName() string // 不一定代表单独一个表，所以改成了更宽泛的语义
+	InitializerName() string // does not necessarily represent a single table, so it is changed to a broader semantics
 	MigrateTable(ctx context.Context) (next context.Context, err error)
 	InitializeData(ctx context.Context) (next context.Context, err error)
 	TableCreated(ctx context.Context) bool
 	DataInserted(ctx context.Context) bool
 }
 
-// TypedDBInitHandler 执行传入的 initializer
+// TypedDBInitHandler executes the passed in initializer
 type TypedDBInitHandler interface {
-	EnsureDB(ctx context.Context, conf *request.InitDB) (context.Context, error) // 建库，失败属于 fatal error，因此让它 panic
-	WriteConfig(ctx context.Context) error                                       // 回写配置
-	InitTables(ctx context.Context, inits initSlice) error                       // 建表 handler
-	InitData(ctx context.Context, inits initSlice) error                         // 建数据 handler
+	EnsureDB(ctx context.Context, conf *request.InitDB) (context.Context, error) //Build the database, failure is a fatal error, so let it panic
+	WriteConfig(ctx context.Context) error                                       // Write back configuration
+	InitTables(ctx context.Context, inits initSlice) error                       // Create table handler
+	InitData(ctx context.Context, inits initSlice) error                         // Create data handler
 }
 
-// orderedInitializer 组合一个顺序字段，以供排序
+// orderedInitializer combines an ordered field for sorting
 type orderedInitializer struct {
 	order int
 	SubInitializer
 }
 
-// initSlice 供 initializer 排序依赖时使用
+// initSlice is used by the initializer when sorting dependencies
 type initSlice []*orderedInitializer
 
 var (
@@ -64,7 +64,7 @@ var (
 	cache        map[string]*orderedInitializer
 )
 
-// RegisterInit 注册要执行的初始化过程，会在 InitDB() 时调用
+// RegisterInit registers the initialization process to be executed, which will be called during InitDB()
 func RegisterInit(order int, i SubInitializer) {
 	if initializers == nil {
 		initializers = initSlice{}
@@ -85,16 +85,16 @@ func RegisterInit(order int, i SubInitializer) {
 
 type InitDBService struct{}
 
-// InitDB 创建数据库并初始化 总入口
+// InitDB creates the database and initializes the main entrance
 func (initDBService *InitDBService) InitDB(conf request.InitDB) (err error) {
 	ctx := context.TODO()
 	if len(initializers) == 0 {
-		return errors.New("无可用初始化过程，请检查初始化是否已执行完成")
+		return errors.New("No initialization process available, please check whether the initialization has been completed")
 	}
-	sort.Sort(&initializers) // 保证有依赖的 initializer 排在后面执行
-	// Note: 若 initializer 只有单一依赖，可以写为 B=A+1, C=A+1; 由于 BC 之间没有依赖关系，所以谁先谁后并不影响初始化
-	// 若存在多个依赖，可以写为 C=A+B, D=A+B+C, E=A+1;
-	// C必然>A|B，因此在AB之后执行，D必然>A|B|C，因此在ABC后执行，而E只依赖A，顺序与CD无关，因此E与CD哪个先执行并不影响
+	sort.Sort(&initializers) // Ensure that dependent initializers are executed later
+	// Note: If the initializer has only a single dependency, it can be written as B=A+1, C=A+1; since there is no dependency between BC, who comes first does not affect the initialization
+	// If there are multiple dependencies, it can be written as C=A+B, D=A+B+C, E=A+1;
+	// C must be >A|B, so it is executed after AB, D must be >A|B|C, so it is executed after ABC, and E only depends on A. The order has nothing to do with CD, so it does not matter which one of E or CD is executed first. Influence
 	var initHandler TypedDBInitHandler
 	switch conf.DBType {
 	case "mysql":
@@ -133,7 +133,7 @@ func (initDBService *InitDBService) InitDB(conf request.InitDB) (err error) {
 	return nil
 }
 
-// createDatabase 创建数据库（ EnsureDB() 中调用 ）
+// createDatabase creates a database (called in EnsureDB())
 func createDatabase(dsn string, driver string, createSql string) error {
 	db, err := sql.Open(driver, dsn)
 	if err != nil {
@@ -152,7 +152,7 @@ func createDatabase(dsn string, driver string, createSql string) error {
 	return err
 }
 
-// createTables 创建表（默认 dbInitHandler.initTables 行为）
+// createTables creates tables (default dbInitHandler.initTables behavior)
 func createTables(ctx context.Context, inits initSlice) error {
 	next, cancel := context.WithCancel(ctx)
 	defer func(c func()) { c() }(cancel)

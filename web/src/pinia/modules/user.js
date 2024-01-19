@@ -41,7 +41,7 @@ export const useUserStore = defineStore('user', () => {
       ...value
     }
   }
-  /* 获取用户信息*/
+  /* Get user information */
   const GetUserInfo = async() => {
     const res = await getUserInfo()
     if (res.code === 0) {
@@ -49,11 +49,11 @@ export const useUserStore = defineStore('user', () => {
     }
     return res
   }
-  /* 登录*/
+  /* Log in*/
   const LoginIn = async(loginInfo) => {
     loadingInstance.value = ElLoading.service({
       fullscreen: true,
-      text: '登录中，请稍候...',
+      text: 'Logging in, please wait...',
     })
     try {
       const res = await login(loginInfo)
@@ -68,7 +68,7 @@ export const useUserStore = defineStore('user', () => {
         })
 
         if (!router.hasRoute(userInfo.value.authority.defaultRouter)) {
-          ElMessage.error('请联系管理员进行授权')
+          ElMessage.error('Please contact the administrator for authorization')
         } else {
           await router.replace({ name: userInfo.value.authority.defaultRouter })
         }
@@ -88,7 +88,7 @@ export const useUserStore = defineStore('user', () => {
     }
     loadingInstance.value.close()
   }
-  /* 登出*/
+  /* Sign out*/
   const LoginOut = async() => {
     const res = await jsonInBlacklist()
     if (res.code === 0) {
@@ -97,21 +97,21 @@ export const useUserStore = defineStore('user', () => {
       window.location.reload()
     }
   }
-  /* 清理数据 */
+  /* Clean data */
   const ClearStorage = async() => {
     token.value = ''
     sessionStorage.clear()
     localStorage.clear()
     cookie.remove('x-token')
   }
-  /* 设置侧边栏模式*/
+  /*Set sidebar mode*/
   const changeSideMode = async(data) => {
     const res = await setSelfInfo({ sideMode: data })
     if (res.code === 0) {
       userInfo.value.sideMode = data
       ElMessage({
         type: 'success',
-        message: '设置成功'
+        message: 'Set successfully'
       })
     }
   }

@@ -19,11 +19,11 @@ func PluginInit(group *gin.RouterGroup, Plugin ...plugin.Plugin) {
 
 func InstallPlugin(Router *gin.Engine) {
 	PublicGroup := Router.Group("")
-	fmt.Println("无鉴权插件安装==》", PublicGroup)
+	fmt.Println("Unauthorized plug-in installation==》", PublicGroup)
 	PrivateGroup := Router.Group("")
-	fmt.Println("鉴权插件安装==》", PrivateGroup)
+	fmt.Println("Authentication plug-in installation==》", PrivateGroup)
 	PrivateGroup.Use(middleware.JWTAuth()).Use(middleware.CasbinHandler())
-	//  添加跟角色挂钩权限的插件 示例 本地示例模式于在线仓库模式注意上方的import 可以自行切换 效果相同
+	// Add a plug-in that is linked to role permissions. Example. In local sample mode and online warehouse mode, please note that the import above can be switched by yourself. The effect is the same.
 	PluginInit(PrivateGroup, email.CreateEmailPlug(
 		global.GVA_CONFIG.Email.To,
 		global.GVA_CONFIG.Email.From,

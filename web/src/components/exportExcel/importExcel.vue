@@ -8,7 +8,7 @@
     <el-button
       type="primary"
       icon="upload"
-    >导入</el-button>
+    >Import</el-button>
   </el-upload>
 
 </template>
@@ -31,7 +31,7 @@ const url = `${baseUrl}/sysExportTemplate/importExcel?templateID=${props.templat
 
 const handleSuccess = (res) => {
   if (res.code === 0) {
-    ElMessage.success('导入成功')
+    ElMessage.success('Import successful')
     emit('on-success')
   } else {
     ElMessage.error(res.msg)

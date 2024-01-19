@@ -9,7 +9,7 @@ import (
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: StructToMap
-//@description: 利用反射将结构体转化为map
+//@description: Use reflection to convert the structure into a map
 //@param: obj interface{}
 //@return: map[string]interface{}
 
@@ -30,7 +30,7 @@ func StructToMap(obj interface{}) map[string]interface{} {
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: ArrayToString
-//@description: 将数组格式化为字符串
+//@description: Format array into string
 //@param: array []interface{}
 //@return: string
 
@@ -56,7 +56,7 @@ func FirstLower(s string) string {
 	return strings.ToLower(s[:1]) + s[1:]
 }
 
-// MaheHump 将字符串转换为驼峰命名
+// MaheHump converts the string into camel case naming
 func MaheHump(s string) string {
 	words := strings.Split(s, "-")
 
@@ -67,7 +67,7 @@ func MaheHump(s string) string {
 	return strings.Join(words, "")
 }
 
-// 随机字符串
+// random string
 func RandomString(n int) string {
 	var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 	b := make([]rune, n)

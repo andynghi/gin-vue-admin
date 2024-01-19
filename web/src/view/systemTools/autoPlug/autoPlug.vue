@@ -5,25 +5,25 @@
         label-width="140px"
         class="w-[680px]"
       >
-        <el-form-item label="插件名">
+        <el-form-item label="plugin name">
           <el-input
             v-model="form.plugName"
-            placeholder="必填（英文大写字母开头）"
+            placeholder="required (starting with an English capital letter)"
             @blur="titleCase"
           />
         </el-form-item>
-        <el-form-item label="路由组">
+        <el-form-item label="routing group">
           <el-input
             v-model="form.routerGroup"
-            placeholder="将会作为插件路由组使用"
+            placeholder="will be used as a plugin routing group"
           />
         </el-form-item>
-        <el-form-item label="使用全局属性">
+        <el-form-item label="Use global attributes">
           <el-checkbox v-model="form.hasGlobal" />
         </el-form-item>
         <el-form-item
           v-if="form.hasGlobal"
-          label="全局属性"
+          label="global properties"
         >
           <div
             v-for="(i,k) in form.global"
@@ -33,13 +33,13 @@
             <span>
               <el-input
                 v-model="i.key"
-                placeholder="key 必填"
+                placeholder="key required"
               />
             </span>
             <span>
               <el-select
                 v-model="i.type"
-                placeholder="type 必填"
+                placeholder="type required"
               >
                 <el-option
                   label="string"
@@ -66,7 +66,7 @@
             <span>
               <el-input
                 v-model="i.desc"
-                placeholder="备注 必填"
+                placeholder="Remarks required"
               />
             </span>
             <span>
@@ -85,7 +85,7 @@
             </span>
           </div>
         </el-form-item>
-        <el-form-item label="使用Request">
+        <el-form-item label="Use Request">
           <el-checkbox v-model="form.hasRequest" />
         </el-form-item>
         <el-form-item
@@ -100,13 +100,13 @@
             <span>
               <el-input
                 v-model="i.key"
-                placeholder="key 必填"
+                placeholder="key required"
               />
             </span>
             <span>
               <el-select
                 v-model="i.type"
-                placeholder="type 必填"
+                placeholder="type required"
               >
                 <el-option
                   label="string"
@@ -133,7 +133,7 @@
             <span>
               <el-input
                 v-model="i.desc"
-                placeholder="备注 必填"
+                placeholder="Remarks required"
               />
             </span>
             <span>
@@ -152,7 +152,7 @@
             </span>
           </div>
         </el-form-item>
-        <el-form-item label="使用Response">
+        <el-form-item label="Use Response">
           <el-checkbox v-model="form.hasResponse" />
         </el-form-item>
         <el-form-item
@@ -167,13 +167,13 @@
             <span>
               <el-input
                 v-model="i.key"
-                placeholder="key 必填"
+                placeholder="key required"
               />
             </span>
             <span>
               <el-select
                 v-model="i.type"
-                placeholder="type 必填"
+                placeholder="type required"
               >
                 <el-option
                   label="string"
@@ -200,7 +200,7 @@
             <span>
               <el-input
                 v-model="i.desc"
-                placeholder="备注 必填"
+                placeholder="Remarks required"
               />
             </span>
             <span>
@@ -223,7 +223,7 @@
           <el-button
             type="primary"
             @click="createPlug"
-          >创建</el-button>
+          >Create</el-button>
           <el-icon
             class="cursor-pointer ml-3"
             @click="toDoc('https://www.bilibili.com/video/BV1kv4y1g7nT?p=13&vd_source=f2640257c21e3b547a790461ed94875e')"
@@ -278,7 +278,7 @@ const titleCase = () => {
 
 const createPlug = async() => {
   if (!form.plugName || !form.routerGroup) {
-    ElMessage.error('插件名称和插件路由组为必填项')
+    ElMessage.error('Plug-in name and plug-in routing group are required')
     return
   }
   if (form.hasGlobal) {
@@ -288,7 +288,7 @@ const createPlug = async() => {
       }
     })
     if (intercept) {
-      ElMessage.error('全局属性的key和type为必填项')
+      ElMessage.error('The key and type of global attributes are required')
       return
     }
   }
@@ -299,7 +299,7 @@ const createPlug = async() => {
       }
     })
     if (intercept) {
-      ElMessage.error('请求属性的key和type为必填项')
+      ElMessage.error('The key and type of the request attribute are required')
       return
     }
   }
@@ -310,13 +310,13 @@ const createPlug = async() => {
       }
     })
     if (intercept) {
-      ElMessage.error('响应属性的key和type为必填项')
+      ElMessage.error('The key and type of the response attribute are required')
       return
     }
   }
   const res = await createPlugApi(form)
   if (res.code === 0) {
-    ElMessageBox('创建成功，插件已自动写入后端plugin目录下，请按照自己的逻辑进行创造')
+    ElMessageBox('Created successfully, the plug-in has been automatically written to the back-end plugin directory, please create it according to your own logic')
   }
 }
 
@@ -329,7 +329,7 @@ const addkv = (arr) => {
 
 const minkv = (arr, key) => {
   if (arr.length === 1) {
-    ElMessage.warning('至少有一个全局属性')
+    ElMessage.warning('At least one global property')
     return
   }
   arr.splice(key, 1)

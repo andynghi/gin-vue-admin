@@ -37,11 +37,11 @@ func (i *initMenuAuthority) InitializeData(ctx context.Context) (next context.Co
 	}
 	authorities, ok := ctx.Value(initAuthority{}.InitializerName()).([]sysModel.SysAuthority)
 	if !ok {
-		return ctx, errors.Wrap(system.ErrMissingDependentContext, "创建 [菜单-权限] 关联失败, 未找到权限表初始化数据")
+		return ctx, errors.Wrap(system.ErrMissingDependentContext, "Failed to create [menu-permission] association, permission table initialization data not found")
 	}
 	menus, ok := ctx.Value(initMenu{}.InitializerName()).([]sysModel.SysBaseMenu)
 	if !ok {
-		return next, errors.Wrap(errors.New(""), "创建 [菜单-权限] 关联失败, 未找到菜单表初始化数据")
+		return next, errors.Wrap(errors.New(""), "Failed to create [menu-permission] association, menu table initialization data not found")
 	}
 	next = ctx
 	// 888

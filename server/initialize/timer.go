@@ -13,21 +13,21 @@ func Timer() {
 	go func() {
 		var option []cron.Option
 		option = append(option, cron.WithSeconds())
-		// 清理DB定时任务
+		// Clean up DB scheduled tasks
 		_, err := global.GVA_Timer.AddTaskByFunc("ClearDB", "@daily", func() {
-			err := task.ClearTable(global.GVA_DB) // 定时任务方法定在task文件包中
+			err := task.ClearTable(global.GVA_DB) // The scheduled task method is set in the task file package
 			if err != nil {
 				fmt.Println("timer error:", err)
 			}
-		}, "定时清理数据库【日志，黑名单】内容", option...)
+		}, "Regularly clear the contents of the database [log, blacklist]", option...)
 		if err != nil {
 			fmt.Println("add timer error:", err)
 		}
 
-		// 其他定时任务定在这里 参考上方使用方法
+		// Other scheduled tasks are set here. Please refer to the usage method above.
 
-		//_, err := global.GVA_Timer.AddTaskByFunc("定时任务标识", "corn表达式", func() {
-		//	具体执行内容...
+		//_, err := global.GVA_Timer.AddTaskByFunc("Timed task identifier", "corn expression", func() {
+		// Specific execution content...
 		//  ......
 		//}, option...)
 		//if err != nil {

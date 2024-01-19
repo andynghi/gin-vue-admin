@@ -2,7 +2,7 @@
   <div v-loading.fullscreen.lock="fullscreenLoading">
     <div class="gva-table-box">
       <warning-bar
-        title="点击“文件名/备注”可以编辑文件名或者备注内容。"
+        title="Click "File Name/Remarks" to edit the file name or comment content."
       />
       <div class="gva-btn-list">
         <upload-common
@@ -18,19 +18,19 @@
         <el-input
           v-model="search.keyword"
           class="keyword"
-          placeholder="请输入文件名或备注"
+          placeholder="Please enter file name or remarks"
         />
         <el-button
           type="primary"
           icon="search"
           @click="getTableData"
-        >查询</el-button>
+        >Query</el-button>
       </div>
 
       <el-table :data="tableData">
         <el-table-column
           align="left"
-          label="预览"
+          label="preview"
           width="100"
         >
           <template #default="scope">
@@ -43,7 +43,7 @@
         </el-table-column>
         <el-table-column
           align="left"
-          label="日期"
+          label="date"
           prop="UpdatedAt"
           width="180"
         >
@@ -53,7 +53,7 @@
         </el-table-column>
         <el-table-column
           align="left"
-          label="文件名/备注"
+          label="File name/Remarks"
           prop="name"
           width="180"
         >
@@ -66,13 +66,13 @@
         </el-table-column>
         <el-table-column
           align="left"
-          label="链接"
+          label="link"
           prop="url"
           min-width="300"
         />
         <el-table-column
           align="left"
-          label="标签"
+          label="label"
           prop="tag"
           width="100"
         >
@@ -86,7 +86,7 @@
         </el-table-column>
         <el-table-column
           align="left"
-          label="操作"
+          label="operation"
           width="160"
         >
           <template #default="scope">
@@ -95,13 +95,13 @@
               type="primary"
               link
               @click="downloadFile(scope.row)"
-            >下载</el-button>
+            >Download</el-button>
             <el-button
               icon="delete"
               type="primary"
               link
               @click="deleteFileFunc(scope.row)"
-            >删除</el-button>
+            >Delete</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -148,7 +148,7 @@ const pageSize = ref(10)
 const search = ref({})
 const tableData = ref([])
 
-// 分页
+// paging
 const handleSizeChange = (val) => {
   pageSize.value = val
   getTableData()
@@ -159,7 +159,7 @@ const handleCurrentChange = (val) => {
   getTableData()
 }
 
-// 查询
+// Inquire
 const getTableData = async() => {
   const table = await getFileList({ page: page.value, pageSize: pageSize.value, ...search.value })
   if (table.code === 0) {
@@ -172,9 +172,9 @@ const getTableData = async() => {
 getTableData()
 
 const deleteFileFunc = async(row) => {
-  ElMessageBox.confirm('此操作将永久删除文件, 是否继续?', '提示', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
+  ElMessageBox.confirm('This operation will permanently delete the file, do you want to continue?', 'Prompt', {
+    confirmButtonText: 'OK',
+    cancelButtonText: 'Cancel',
     type: 'warning',
   })
     .then(async() => {
@@ -182,7 +182,7 @@ const deleteFileFunc = async(row) => {
       if (res.code === 0) {
         ElMessage({
           type: 'success',
-          message: '删除成功!',
+          message: 'Delete successfully!',
         })
         if (tableData.value.length === 1 && page.value > 1) {
           page.value--
@@ -193,7 +193,7 @@ const deleteFileFunc = async(row) => {
     .catch(() => {
       ElMessage({
         type: 'info',
-        message: '已取消删除',
+        message: 'Deletion canceled',
       })
     })
 }
@@ -208,16 +208,16 @@ const downloadFile = (row) => {
 }
 
 /**
- * 编辑文件名或者备注
+ * Edit file name or remarks
  * @param row
  * @returns {Promise<void>}
  */
 const editFileNameFunc = async(row) => {
-  ElMessageBox.prompt('请输入文件名或者备注', '编辑', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
+  ElMessageBox.prompt('Please enter the file name or remarks', 'Edit', {
+    confirmButtonText: 'OK',
+    cancelButtonText: 'Cancel',
     inputPattern: /\S/,
-    inputErrorMessage: '不能为空',
+    inputErrorMessage: 'Cannot be empty',
     inputValue: row.name
   }).then(async({ value }) => {
     row.name = value
@@ -226,14 +226,14 @@ const editFileNameFunc = async(row) => {
     if (res.code === 0) {
       ElMessage({
         type: 'success',
-        message: '编辑成功!',
+        message: 'Editing successful!',
       })
       getTableData()
     }
   }).catch(() => {
     ElMessage({
       type: 'info',
-      message: '取消修改'
+      message: 'Cancel modification'
     })
   })
 }

@@ -2,11 +2,11 @@ export default class ImageCompress {
   constructor(file, fileSize, maxWH = 1920) {
     this.file = file
     this.fileSize = fileSize
-    this.maxWH = maxWH // 最大长宽
+    this.maxWH = maxWH // Maximum length and width
   }
 
   compress() {
-    // 压缩
+    // Compression
     const fileType = this.file.type
     const fileSize = this.file.size / 1024
     return new Promise(resolve => {
@@ -22,17 +22,17 @@ export default class ImageCompress {
           canvas.width = _dWH.width
           canvas.height = _dWH.height
 
-          // 清空后, 重写画布
+          //After clearing, rewrite the canvas
           ctx.clearRect(0, 0, canvas.width, canvas.height)
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 
           const newImgData = canvas.toDataURL(fileType, 0.90)
 
-          // 压缩宽高后的图像大小
+          // Image size after compressing width and height
           const newImgSize = this.fileSizeKB(newImgData)
 
           if (newImgSize > this.fileSize) {
-            console.log('图片尺寸太大!' + fileSize + ' >> ' + newImgSize)
+            console.log('Picture size is too big!' + fileSize + ' >> ' + newImgSize)
           }
 
           const blob = this.dataURLtoBlob(newImgData, fileType)
@@ -44,8 +44,8 @@ export default class ImageCompress {
   }
 
   /**
-   * 长宽等比缩小
-   * 图像的一边(长或宽)为最大目标值
+   * Reduced proportionally to length and width
+   * One side (length or width) of the image is the maximum target value
    */
   dWH(srcW, srcH, dMax) {
     const defaults = {
@@ -74,7 +74,7 @@ export default class ImageCompress {
   }
 
   /**
-   * 转为Blob
+   * Convert to Blob
    */
   dataURLtoBlob(dataURL, fileType) {
     const byteString = atob(dataURL.split(',')[1])

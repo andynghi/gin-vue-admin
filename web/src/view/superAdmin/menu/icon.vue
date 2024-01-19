@@ -14,7 +14,7 @@
       clearable
       filterable
       class="gva-select"
-      placeholder="请选择"
+      placeholder="Please select"
     >
       <el-option
         v-for="item in options"

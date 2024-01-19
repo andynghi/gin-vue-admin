@@ -1,11 +1,11 @@
 import service from '@/utils/request'
 // @Tags SysOperationRecord
-// @Summary 删除SysOperationRecord
+// @Summary Delete SysOperationRecord
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.SysOperationRecord true "删除SysOperationRecord"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
+// @Param data body model.SysOperationRecord true "Delete SysOperationRecord"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /sysOperationRecord/deleteSysOperationRecord [delete]
 export const deleteSysOperationRecord = (data) => {
   return service({
@@ -16,12 +16,12 @@ export const deleteSysOperationRecord = (data) => {
 }
 
 // @Tags SysOperationRecord
-// @Summary 删除SysOperationRecord
+// @Summary Delete SysOperationRecord
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body request.IdsReq true "删除SysOperationRecord"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
+// @Param data body request.IdsReq true "Delete SysOperationRecord"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Delete successfully"}"
 // @Router /sysOperationRecord/deleteSysOperationRecord [delete]
 export const deleteSysOperationRecordByIds = (data) => {
   return service({
@@ -32,12 +32,12 @@ export const deleteSysOperationRecordByIds = (data) => {
 }
 
 // @Tags SysOperationRecord
-// @Summary 分页获取SysOperationRecord列表
+// @Summary Get the SysOperationRecord list in paging
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body request.PageInfo true "分页获取SysOperationRecord列表"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data body request.PageInfo true "Get the SysOperationRecord list in pages"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"Get successful"}"
 // @Router /sysOperationRecord/getSysOperationRecordList [get]
 export const getSysOperationRecordList = (params) => {
   return service({

@@ -9,7 +9,7 @@
       <input
         v-model="searchInput"
         class="quick-input"
-        placeholder="请输入你需要快捷到达的功能"
+        placeholder="Please enter the function you need to reach quickly"
       >
     </template>
 
@@ -33,7 +33,7 @@
 
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="close">关闭</el-button>
+        <el-button @click="close">Close</el-button>
       </span>
     </template>
   </el-dialog>
@@ -75,7 +75,7 @@ const deepMenus = (menus) => {
 
 const addQuickMenu = () => {
   const option = {
-    label: '跳转',
+    label: 'jump',
     children: []
   }
   const menus = deepMenus(routerStore.asyncRouters[0].children)
@@ -85,18 +85,18 @@ const addQuickMenu = () => {
 
 const addQuickOption = () => {
   const option = {
-    label: '操作',
+    label: 'operation',
     children: []
   }
   const quickArr = [
     {
-      label: '亮色主题',
+      label: 'Light theme',
       func: () => changeMode('light')
     }, {
-      label: '暗色主题',
+      label: 'dark theme',
       func: () => changeMode('dark')
     }, {
-      label: '退出登录',
+      label: 'log out',
       func: () => userStore.LoginOut()
     }
   ]

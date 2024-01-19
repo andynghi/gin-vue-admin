@@ -34,16 +34,16 @@
       </el-tab-pane>
     </el-tabs>
 
-    <!--自定义右键菜单html代码-->
+    <!--Customized right-click menu html code-->
     <ul
       v-show="contextMenuVisible"
       :style="{ left: left + 'px', top: top + 'px' }"
       class="contextmenu"
     >
-      <li @click="closeAll">关闭所有</li>
-      <li @click="closeLeft">关闭左侧</li>
-      <li @click="closeRight">关闭右侧</li>
-      <li @click="closeOther">关闭其他</li>
+      <li @click="closeAll">Close all</li>
+      <li @click="closeLeft">Close left</li>
+      <li @click="closeRight">Close right</li>
+      <li @click="closeOther">Close other</li>
     </ul>
   </div>
 </template>
@@ -119,7 +119,7 @@ const closeAll = () => {
     {
       name: defaultRouter.value,
       meta: {
-        title: '首页',
+        title: 'Home',
       },
       query: {},
       params: {},
@@ -278,11 +278,11 @@ watch(() => historys.value, () => {
 })
 
 const initPage = () => {
-  // 全局监听 关闭当前页面函数
+  //Global monitoring closes the current page function
   emitter.on('closeThisPage', () => {
     removeTab(name(route))
   })
-  // 全局监听 关闭所有页面函数
+  //Global monitoring closes all page functions
   emitter.on('closeAllPage', () => {
     closeAll()
   })
@@ -296,7 +296,7 @@ const initPage = () => {
     {
       name: defaultRouter.value,
       meta: {
-        title: '首页',
+        title: 'Home',
       },
       query: {},
       params: {},

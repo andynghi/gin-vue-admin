@@ -1,7 +1,7 @@
 <template>
   <div class="commit-table">
     <div class="commit-table-title">
-      更新日志
+      Change log
     </div>
     <div class="log">
       <div

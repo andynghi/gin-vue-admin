@@ -20,13 +20,13 @@ import (
 	"go.uber.org/zap"
 )
 
-var RepeatErr = errors.New("重复创建")
+var RepeatErr = errors.New("Repeat creation")
 
 type AutoCodeHistoryService struct{}
 
 var AutoCodeHistoryServiceApp = new(AutoCodeHistoryService)
 
-// CreateAutoCodeHistory 创建代码生成器历史记录
+// CreateAutoCodeHistory creates code generator history
 // RouterPath : RouterPath@RouterString;RouterPath2@RouterString2
 // Author [SliverHorn](https://github.com/SliverHorn)
 // Author [songzhibin97](https://github.com/songzhibin97)
@@ -44,7 +44,7 @@ func (autoCodeHistoryService *AutoCodeHistoryService) CreateAutoCodeHistory(meta
 	}).Error
 }
 
-// First 根据id获取代码生成器历史的数据
+// First get the code generator history data based on id
 // Author [SliverHorn](https://github.com/SliverHorn)
 // Author [songzhibin97](https://github.com/songzhibin97)
 func (autoCodeHistoryService *AutoCodeHistoryService) First(info *request.GetById) (string, error) {
@@ -52,7 +52,7 @@ func (autoCodeHistoryService *AutoCodeHistoryService) First(info *request.GetByI
 	return meta, global.GVA_DB.Model(system.SysAutoCodeHistory{}).Select("request_meta").Where("id = ?", info.Uint()).First(&meta).Error
 }
 
-// Repeat 检测重复
+// Repeat detects repetitions
 // Author [SliverHorn](https://github.com/SliverHorn)
 // Author [songzhibin97](https://github.com/songzhibin97)
 func (autoCodeHistoryService *AutoCodeHistoryService) Repeat(businessDB, structName, Package string) bool {
@@ -61,7 +61,7 @@ func (autoCodeHistoryService *AutoCodeHistoryService) Repeat(businessDB, structN
 	return count > 0
 }
 
-// RollBack 回滚
+// RollBack rollback
 // Author [SliverHorn](https://github.com/SliverHorn)
 // Author [songzhibin97](https://github.com/songzhibin97)
 func (autoCodeHistoryService *AutoCodeHistoryService) RollBack(info *systemReq.RollBack) error {
@@ -69,7 +69,7 @@ func (autoCodeHistoryService *AutoCodeHistoryService) RollBack(info *systemReq.R
 	if err := global.GVA_DB.Where("id = ?", info.ID).First(&md).Error; err != nil {
 		return err
 	}
-	// 清除API表
+	// Clear API table
 
 	ids := request.IdsReq{}
 	idsStr := strings.Split(md.ApiIDs, ";")
@@ -84,28 +84,28 @@ func (autoCodeHistoryService *AutoCodeHistoryService) RollBack(info *systemReq.R
 	if err != nil {
 		global.GVA_LOG.Error("ClearTag DeleteApiByIds:", zap.Error(err))
 	}
-	// 删除表
+	// delete table
 	if info.DeleteTable {
 		if err = AutoCodeServiceApp.DropTable(md.BusinessDB, md.TableName); err != nil {
 			global.GVA_LOG.Error("ClearTag DropTable:", zap.Error(err))
 		}
 	}
-	// 删除文件
+	// Delete Files
 
 	for _, path := range strings.Split(md.AutoCodePath, ";") {
 
-		// 增加安全判断补丁:
+		// Add security judgment patch:
 		_path, err := filepath.Abs(path)
 		if err != nil || _path != path {
 			continue
 		}
 
-		// 迁移
+		// migration
 		nPath := filepath.Join(global.GVA_CONFIG.AutoCode.Root,
 			"rm_file", time.Now().Format("20060102"), filepath.Base(filepath.Dir(filepath.Dir(path))), filepath.Base(filepath.Dir(path)), filepath.Base(path))
-		// 判断目标文件是否存在
+		// Determine whether the target file exists
 		for utils.FileExist(nPath) {
-			fmt.Println("文件已存在:", nPath)
+			fmt.Println("File already exists:", nPath)
 			nPath += fmt.Sprintf("_%d", time.Now().Nanosecond())
 		}
 		err = utils.FileMove(path, nPath)
@@ -114,7 +114,7 @@ func (autoCodeHistoryService *AutoCodeHistoryService) RollBack(info *systemReq.R
 		}
 		//_ = utils.DeLFile(path)
 	}
-	// 清除注入
+	// clear injection
 	for _, v := range strings.Split(md.InjectionMeta, ";") {
 		// RouterPath@functionName@RouterString
 		meta := strings.Split(v, "@")
@@ -129,14 +129,14 @@ func (autoCodeHistoryService *AutoCodeHistoryService) RollBack(info *systemReq.R
 	return global.GVA_DB.Save(&md).Error
 }
 
-// Delete 删除历史数据
+// Delete delete historical data
 // Author [SliverHorn](https://github.com/SliverHorn)
 // Author [songzhibin97](https://github.com/songzhibin97)
 func (autoCodeHistoryService *AutoCodeHistoryService) Delete(info *request.GetById) error {
 	return global.GVA_DB.Where("id = ?", info.Uint()).Delete(&system.SysAutoCodeHistory{}).Error
 }
 
-// GetList 获取系统历史数据
+// GetList obtains system historical data
 // Author [SliverHorn](https://github.com/SliverHorn)
 // Author [songzhibin97](https://github.com/songzhibin97)
 func (autoCodeHistoryService *AutoCodeHistoryService) GetList(info request.PageInfo) (list []response.AutoCodeHistory, total int64, err error) {

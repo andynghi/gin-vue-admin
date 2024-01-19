@@ -1,15 +1,15 @@
 <template>
   <div class="p-5 bg-white">
-    <WarningBar title="目前只支持标准插件（通过插件模板生成的标准目录插件），非标准插件请自行打包" />
+    <WarningBar title="Currently only supports standard plug-ins (standard directory plug-ins generated through plug-in templates). Please package non-standard plug-ins by yourself" />
     <div class="flex items-center gap-3">
       <el-input
         v-model="plugName"
-        placeholder="插件模板处填写的【插件名】"
+        placeholder="[Plug-in name] filled in the plug-in template"
       />
       <el-button
         type="primary"
         @click="pubPlugin"
-      >打包插件</el-button>
+      >Packaging plug-in</el-button>
     </div>
   </div>
 </template>
